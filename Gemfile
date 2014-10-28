@@ -30,6 +30,8 @@ gem 'rspec-rails'
 
 gem 'devise', '~> 3.4.0'
 
+gem 'omniauth-facebook'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
