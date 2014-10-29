@@ -1,5 +1,13 @@
 require 'rails_helper'
 
+  def new_user
+    user = User.new
+    user.email = "alfonsopintos@gmail.com"
+    user.password = "12345678"
+    user.password_confirmation = "12345678"
+    user.save
+  end
+
 RSpec.describe User, :type => :model do
 
   it "should save a user upon successful registration" do 
@@ -30,12 +38,14 @@ RSpec.describe User, :type => :model do
     expect(User.count).to eq(1)
   end
 
-  def new_user
+  it "should not save a user if the email is not valid" do 
+    expect(User.count).to eq(0)
     user = User.new
-    user.email = "alfonsopintos@gmail.com"
+    user.email = "alfonsopintosgmail.com"
     user.password = "12345678"
     user.password_confirmation = "12345678"
     user.save
-  end
+    expect(User.count).to eq(0)
+  end    
 
 end
