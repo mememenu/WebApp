@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
   :recoverable, :rememberable, :trackable, :validatable
 
-
+  # sets user attributes to attributes provided through omniauth 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider
@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  
   def self.new_with_session(params, session)
     if session["devise.user_attributes"]
       new(session["devise.user_attributes"], without_protection: true) do |user|
