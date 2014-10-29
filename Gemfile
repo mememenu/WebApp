@@ -28,7 +28,7 @@ gem 'spring',        group: :development
 
 gem 'rspec-rails'
 
-gem 'devise', '~> 3.4.0'
+gem 'devise', '~> 3.3.0'
 
 gem 'omniauth-facebook'
 
