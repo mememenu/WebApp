@@ -1,5 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it "should save a user upon succesful registration" do 
+    expect(User.count).to eq(0)
+    user = User.new
+    user.email = "alfonsopintos@gmail.com"
+    user.password = "12345678"
+    user.password_confirmation = "12345678"
+    user.save
+    expect(User.count).to eq(1)
+  end
 end
