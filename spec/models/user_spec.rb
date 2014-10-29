@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, :type => :model do
 
-  it "should save a user upon succesful registration" do 
+  it "should save a user upon successful registration" do 
     expect(User.count).to eq(0)
     user = User.new
     user.email = "alfonsopintos@gmail.com"
