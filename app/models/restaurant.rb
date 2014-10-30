@@ -6,4 +6,6 @@ class Restaurant < ActiveRecord::Base
   validates :state, presence: true, length: { is: 2}
   validates :zipcode, presence: true, numericality: true, length: { is: 5 }
   validates :phone, presence: true, numericality: true, length: { is: 10 }
+
+  has_many :cuisines, through: :restaurant_cuisine
 end

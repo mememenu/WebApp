@@ -1,8 +1,8 @@
 class CreateRestaurantCuisines < ActiveRecord::Migration
   def change
     create_table :restaurant_cuisines do |t|
-      t.restaurant :references
-      t.cuisine :references
+      t.references :restaurant, index: true
+      t.references :cuisine, index: true
 
       t.timestamps
     end
