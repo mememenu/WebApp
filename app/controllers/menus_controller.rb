@@ -25,6 +25,7 @@ class MenusController < ApplicationController
   # POST /menus.json
   def create
     @menu = Menu.new(menu_params)
+    @menu.restaurant_ids = params[:menu][:restaurant_ids]
 
     respond_to do |format|
       if @menu.save
@@ -40,6 +41,7 @@ class MenusController < ApplicationController
   # PATCH/PUT /menus/1
   # PATCH/PUT /menus/1.json
   def update
+    @menu.restaurant_ids = params[:menu][:restaurant_ids]
     respond_to do |format|
       if @menu.update(menu_params)
         format.html { redirect_to @menu, notice: 'Menu was successfully updated.' }

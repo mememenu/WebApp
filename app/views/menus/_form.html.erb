@@ -23,6 +23,13 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
+
+  <div class="field">
+    <% @selectors = [] %>
+    <% Restaurant.all.each do |restaurant| @selectors<<[restaurant.name, restaurant.id] end %>
+    <%= select_tag "menu[restaurant_ids][]", options_for_select(@selectors), selected: @menu.restaurants.first.name %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
