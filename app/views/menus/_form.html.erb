@@ -27,7 +27,7 @@
   <div class="field">
     <% @selectors = [] %>
     <% Restaurant.all.each do |restaurant| @selectors<<[restaurant.name, restaurant.id] end %>
-    <%= select_tag "menu[restaurant_ids][]", options_for_select(@selectors), selected: @menu.restaurants.first.name %>
+    <%= select_tag "menu[restaurant_ids][]", options_for_select(@selectors)%>
   </div>
 
   <div class="actions">
