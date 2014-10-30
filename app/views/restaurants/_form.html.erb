@@ -51,6 +51,7 @@
     <%= f.label :reservations %><br>
     <%= f.check_box :reservations %>
   </div>
+  <hr>
   <div class="field">
     <%= hidden_field_tag "restaurant[cuisine_ids][]", nil %>
     <% Cuisine.all.each do |cuisine| %>
