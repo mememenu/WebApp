@@ -10,7 +10,9 @@ class Restaurant < ActiveRecord::Base
 
   has_many :cuisines, through: :restaurant_cuisines
   has_many :restaurant_cuisines, dependent: :destroy
-  has_many :menus, dependent: :destroy
+
+  has_many :menus, through: :restaurant_menus
+  has_many :restaurant_menus, dependent: :destroy
 end
 
 

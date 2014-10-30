@@ -55,7 +55,14 @@
 
   <% end %>  
 </p>
+<p>
+  <strong>Menus:</strong>
+  <% @restaurant.menus.each do |menu| %>
+  
+  <%=menu.display_name%>
 
+  <% end %>  
+</p>
 
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
