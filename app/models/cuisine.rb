@@ -1,3 +1,3 @@
 class Cuisine < ActiveRecord::Base
-  has_many :restaurants, through: :restaurant_cuisine
+  has_many :restaurants, through: :restaurant_cuisines
 end

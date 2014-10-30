@@ -7,5 +7,5 @@ class Restaurant < ActiveRecord::Base
   validates :zipcode, presence: true, numericality: true, length: { is: 5 }
   validates :phone, presence: true, numericality: true, length: { is: 10 }
 
-  has_many :cuisines, through: :restaurant_cuisine
+  has_many :cuisines, through: :restaurant_cuisines
 end
