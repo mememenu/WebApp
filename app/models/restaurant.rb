@@ -8,4 +8,7 @@ class Restaurant < ActiveRecord::Base
   validates :phone, presence: true, numericality: true, length: { is: 10 }
 
   has_many :cuisines, through: :restaurant_cuisines
+  has_many :restaurant_cuisines, dependent: :destroy
 end
+
+
