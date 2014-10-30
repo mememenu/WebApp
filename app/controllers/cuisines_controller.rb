@@ -69,6 +69,6 @@ class CuisinesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cuisine_params
-      params.require(:cuisine).permit(:type)
+      params.require(:cuisine).permit(:genre)
     end
 end

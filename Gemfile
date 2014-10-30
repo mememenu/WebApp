@@ -44,3 +44,7 @@ gem 'unicorn'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Both required for better errors
+ gem "better_errors"
+ gem "binding_of_caller"
+
