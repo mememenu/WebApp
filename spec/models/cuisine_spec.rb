@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Cuisine, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  it "should save if genre presence is true" do
+    expect(Cuisine.count).to eq(0)
+    cui = Cuisine.new
+    cui.genre = "Italian"
+    cui.save
+    expect(Cuisine.count).to eq(1)
+  end
 end
