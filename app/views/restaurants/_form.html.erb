@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :state %><br>
-    <%= f.select :state, options_for_select(us_states)%>
+    <%= f.select :state, options_for_select(us_states, restaurant_state)%>
   </div>
   <div class="field">
     <%= f.label :zipcode %><br>
@@ -45,7 +45,7 @@
   </div>
   <div class="field">
     <%= f.label :dollars %><br>
-    <%= f.select :dollars, options_for_select([1,2,3,4]) %>
+    <%= f.select :dollars, options_for_select([1,2,3,4], restaurant_dollars)%>
   </div>
   <div class="field">
     <%= f.label :reservations %><br>
