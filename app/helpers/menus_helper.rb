@@ -12,4 +12,12 @@ module MenusHelper
 
   end
 
+  def default_restaurant_selector
+    if @menu.restaurants.first
+      @menu.restaurants.first.id
+    else
+      1
+    end
+  end
+
 end
