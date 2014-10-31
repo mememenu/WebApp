@@ -8,7 +8,9 @@ Cuisine.create!([
   {genre: "Southern"},
   {genre: "Spanish"},
   {genre: "Tapas"},
-  {genre: "Seafood"}
+  {genre: "Seafood"},
+  {genre: "Sandwiches"},
+  {genre: "Desserts"}
 ])
 Restaurant.create!([
   {name: "The Federal", address_1: "5132 Biscayne Blvd", address_2: "", city: "Miami", state: "FL", zipcode: "33137", description: "", phone: "3057589559", dollars: 2, reservations: true},
@@ -22,7 +24,8 @@ Restaurant.create!([
   {name: "The Dutch", address_1: "2201 Collins Ave", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: "", phone: "3059383111", dollars: 3, reservations: true},
   {name: "The District", address_1: "190 NE 46th St", address_2: "", city: "Miami", state: "FL", zipcode: "33137", description: "", phone: "3055734199", dollars: 3, reservations: true},
   {name: "Bulla", address_1: "2500 Ponce De Leon Blvd", address_2: "", city: "Coral Gables", state: "FL", zipcode: "33134", description: "", phone: "3054410107", dollars: 2, reservations: true},
-  {name: "Mignonette", address_1: "210 NE 18th St", address_2: "", city: "Miami", state: "FL", zipcode: "33132", description: "", phone: "3053744635", dollars: 3, reservations: true}
+  {name: "Mignonette", address_1: "210 NE 18th St", address_2: "", city: "Miami", state: "FL", zipcode: "33132", description: "", phone: "3053744635", dollars: 3, reservations: true},
+  {name: "mmmm", address_1: "2519 NW 2nd Ave", address_2: "", city: "Miami", state: "AL", zipcode: "33137", description: "", phone: "7867033409", dollars: 1, reservations: true}
 ])
 RestaurantCuisine.create!([
   {restaurant_id: 1, cuisine_id: 3},
@@ -41,5 +44,7 @@ RestaurantCuisine.create!([
   {restaurant_id: 10, cuisine_id: 3},
   {restaurant_id: 11, cuisine_id: 8},
   {restaurant_id: 11, cuisine_id: 9},
-  {restaurant_id: 12, cuisine_id: 10}
+  {restaurant_id: 12, cuisine_id: 10},
+  {restaurant_id: 14, cuisine_id: 11},
+  {restaurant_id: 14, cuisine_id: 12}
 ])
