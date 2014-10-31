@@ -6,7 +6,7 @@ RSpec.describe Restaurant, :type => :model do
     @cuisine = Cuisine.create(genre: "Italian")
   end
 
-  #This method is useless as it only serves for one test. Find a way to make it dynamic. Probably options hash
+  #Refactor this method with an options hash in order to make it more usable.
   def create_restaurant
     @rest = Restaurant.new
     @rest.name = "mmmm"
