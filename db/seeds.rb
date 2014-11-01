@@ -13,43 +13,6 @@ Cuisine.create!([
   {genre: "Desserts"},
   {genre: "Catalan"}
 ])
-Menu.create!([
-  {name: "Brunch", display_name: "Brunch", description: ""},
-  {name: "Dinner", display_name: "Supper", description: ""},
-  {name: "Dinner", display_name: "Dinner", description: ""},
-  {name: "Brunch", display_name: "Sunday Brunch Fare", description: ""},
-  {name: "Brunch", display_name: "Brunch", description: ""},
-  {name: "Lunch", display_name: "Lunch", description: ""},
-  {name: "Dinner", display_name: "Supper", description: ""},
-  {name: "Dessert", display_name: "Dessert", description: ""},
-  {name: "Brunch", display_name: "Brunch", description: ""},
-  {name: "Lunch", display_name: "Lunch", description: ""},
-  {name: "Happy Hour", display_name: "Happy Hour", description: ""},
-  {name: "Dinner", display_name: "Dinner", description: ""},
-  {name: "Kids", display_name: "Kids", description: ""},
-  {name: "Brunch", display_name: "Dim Sum Sunday", description: ""},
-  {name: "Lunch", display_name: "Lunch", description: ""},
-  {name: "Dinner", display_name: "Dinner", description: ""},
-  {name: "Happy Hour", display_name: "Happy Hour", description: ""},
-  {name: "Lunch", display_name: "Lunch", description: ""},
-  {name: "Dinner", display_name: "Dinner", description: ""},
-  {name: "Brunch", display_name: "Brunch", description: ""},
-  {name: "Lunch", display_name: "Lunch", description: ""},
-  {name: "Dinner", display_name: "Dinner", description: ""},
-  {name: "Dessert", display_name: "Dessert", description: ""},
-  {name: "Lunch", display_name: "Lunch", description: ""},
-  {name: "Dinner", display_name: "Supper", description: ""},
-  {name: "Breakfast", display_name: "Breakfast", description: ""},
-  {name: "Dessert", display_name: "Dessert", description: ""},
-  {name: "Brunch", display_name: "Brunch", description: ""},
-  {name: "Lunch", display_name: "Lunch", description: ""},
-  {name: "Dinner", display_name: "Dinner", description: ""},
-  {name: "Dinner", display_name: "Dinner", description: ""},
-  {name: "Lunch", display_name: "Lunch", description: ""},
-  {name: "Dessert", display_name: "Dessert", description: ""},
-  {name: "Happy Hour", display_name: "Happy Hour", description: ""},
-  {name: "Default", display_name: "Menu", description: ""}
-])
 Restaurant.create!([
   {name: "Pubbelly", address_1: "1418 20th St", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: "", phone: "3055327555", dollars: 3, reservations: false},
   {name: "Yardbird Southern Table and Bar", address_1: "1600 Lenox Ave", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: "", phone: "3055385220", dollars: 3, reservations: true},
@@ -66,6 +29,7 @@ Restaurant.create!([
 RestaurantCuisine.create!([
   {restaurant_id: 1, cuisine_id: 3},
   {restaurant_id: 1, cuisine_id: 4},
+  {restaurant_id: 2, cuisine_id: 7},
   {restaurant_id: 3, cuisine_id: 3},
   {restaurant_id: 3, cuisine_id: 4},
   {restaurant_id: 3, cuisine_id: 9},
@@ -73,49 +37,107 @@ RestaurantCuisine.create!([
   {restaurant_id: 5, cuisine_id: 3},
   {restaurant_id: 5, cuisine_id: 4},
   {restaurant_id: 6, cuisine_id: 5},
+  {restaurant_id: 7, cuisine_id: 4},
   {restaurant_id: 8, cuisine_id: 1},
   {restaurant_id: 9, cuisine_id: 3},
-  {restaurant_id: 10, cuisine_id: 3},
-  {restaurant_id: 12, cuisine_id: 10},
-  {restaurant_id: 14, cuisine_id: 11},
-  {restaurant_id: 14, cuisine_id: 12},
-  {restaurant_id: 15, cuisine_id: 8},
-  {restaurant_id: 15, cuisine_id: 13}
+  {restaurant_id: 10, cuisine_id: 8},
+  {restaurant_id: 10, cuisine_id: 13},
+  {restaurant_id: 11, cuisine_id: 4}
 ])
-RestaurantMenu.create!([
-  {restaurant_id: 1, menu_id: 2},
-  {restaurant_id: 1, menu_id: 3},
-  {restaurant_id: 3, menu_id: 4},
-  {restaurant_id: 3, menu_id: 5},
-  {restaurant_id: 4, menu_id: 6},
-  {restaurant_id: 4, menu_id: 7},
-  {restaurant_id: 4, menu_id: 8},
-  {restaurant_id: 4, menu_id: 9},
-  {restaurant_id: 5, menu_id: 10},
-  {restaurant_id: 5, menu_id: 11},
-  {restaurant_id: 5, menu_id: 12},
-  {restaurant_id: 5, menu_id: 13},
-  {restaurant_id: 5, menu_id: 14},
-  {restaurant_id: 6, menu_id: 15},
-  {restaurant_id: 6, menu_id: 16},
-  {restaurant_id: 6, menu_id: 17},
-  {restaurant_id: 6, menu_id: 18},
-  {restaurant_id: 15, menu_id: 19},
-  {restaurant_id: 15, menu_id: 20},
-  {restaurant_id: 8, menu_id: 21},
-  {restaurant_id: 8, menu_id: 22},
-  {restaurant_id: 8, menu_id: 23},
-  {restaurant_id: 8, menu_id: 24},
-  {restaurant_id: 9, menu_id: 25},
-  {restaurant_id: 9, menu_id: 26},
-  {restaurant_id: 9, menu_id: 27},
-  {restaurant_id: 9, menu_id: 28},
-  {restaurant_id: 10, menu_id: 29},
-  {restaurant_id: 10, menu_id: 30},
-  {restaurant_id: 10, menu_id: 31},
-  {restaurant_id: 12, menu_id: 32},
-  {restaurant_id: 12, menu_id: 33},
-  {restaurant_id: 12, menu_id: 34},
-  {restaurant_id: 12, menu_id: 35},
-  {restaurant_id: 14, menu_id: 36}
+Menu.create!([
+   # pubbelly
+   {name: "Dinner", display_name: "Dinner", description: ""},
+   {name: "Brunch", display_name: "Sunday Brunch Fare", description: ""},
+   # yardbird
+   {name: "Brunch", display_name: "Brunch", description: ""},
+   {name: "Lunch", display_name: "Lunch", description: ""},
+   {name: "Dinner", display_name: "Supper", description: ""},
+   {name: "Dessert", display_name: "Dessert", description: ""},
+   # Tongue and Cheek
+   {name: "Brunch", display_name: "Brunch", description: ""},
+   {name: "Lunch", display_name: "Lunch", description: ""},
+   {name: "Happy Hour", display_name: "Happy Hour", description: ""},
+   {name: "Dinner", display_name: "Dinner", description: ""},
+   {name: "Kids", display_name: "Kids", description: ""},
+   # Black Brick
+   {name: "Brunch", display_name: "Dim Sum Sunday", description: ""},
+   {name: "Lunch", display_name: "Dim Sum", description: ""},
+   # MC Kitchen
+   {name: "Brunch", display_name: "Brunch", description: ""},
+   {name: "Lunch", display_name: "Lunch", description: ""},
+   {name: "Dinner", display_name: "Dinner", description: ""},
+   {name: "Dessert", display_name: "Dessert", description: ""},
+   # The Dutch
+   {name: "Breakfast", display_name: "Breakfast", description: ""},
+   {name: "Lunch", display_name: "Lunch", description: ""},
+   {name: "Dinner", display_name: "Supper", description: ""},
+   {name: "Dessert", display_name: "Dessert", description: ""},
+   # The District
+   {name: "Lunch", display_name: "Lunch", description: ""},
+   {name: "Brunch", display_name: "Brunch", description: ""},
+   {name: "Dinner", display_name: "Supper", description: ""},
+   {name: "Dinner", display_name: "Sea Food Tower", description: ""},
+   {name: "Happy Hour", display_name: "Happy Hour", description: ""},
+   # Mignonette
+   {name: "Lunch", display_name: "Lunch", description: ""},
+   {name: "Dinner", display_name: "Dinner", description: ""},
+   {name: "Dessert", display_name: "Dessert", description: ""},
+   {name: "Happy Hour", display_name: "Happy Hour", description: ""},
+   #Mmmm
+   {name: "Default", display_name: "Menu", description: ""},
+   # Niu Kitchen
+   {name: "Lunch", display_name: "Lunch", description: ""},
+   {name: "Dinner", display_name: "Dinner", description: ""},
+   # The Federal
+   {name: "Brunch", display_name: "Brunch", description: ""},
+   {name: "Dinner", display_name: "Supper", description: ""}
+])
+  RestaurantMenu.create!([
+    {restaurant_id: 1, menu_id: 1},
+    {restaurant_id: 1, menu_id: 2},
+
+    {restaurant_id: 2, menu_id: 3},
+    {restaurant_id: 2, menu_id: 4},
+    {restaurant_id: 2, menu_id: 5},
+    {restaurant_id: 2, menu_id: 6},
+
+    {restaurant_id: 3, menu_id: 7},
+    {restaurant_id: 3, menu_id: 8},
+    {restaurant_id: 3, menu_id: 9},
+    {restaurant_id: 3, menu_id: 10},
+    {restaurant_id: 3, menu_id: 11},
+
+    {restaurant_id: 4, menu_id: 12},
+    {restaurant_id: 4, menu_id: 13},
+
+    {restaurant_id: 5, menu_id: 14},
+    {restaurant_id: 5, menu_id: 15},
+    {restaurant_id: 5, menu_id: 16},
+    {restaurant_id: 5, menu_id: 17},
+    {restaurant_id: 5, menu_id: 18},
+
+    {restaurant_id: 6, menu_id: 18},
+    {restaurant_id: 6, menu_id: 19},
+    {restaurant_id: 6, menu_id: 20},
+    {restaurant_id: 6, menu_id: 21},
+
+
+    {restaurant_id: 7, menu_id: 22},
+    {restaurant_id: 7, menu_id: 23},
+    {restaurant_id: 7, menu_id: 24},
+    {restaurant_id: 7, menu_id: 25},
+    {restaurant_id: 7, menu_id: 26},
+
+    {restaurant_id: 8, menu_id: 27},
+    {restaurant_id: 8, menu_id: 28},
+    {restaurant_id: 8, menu_id: 29},
+    {restaurant_id: 8, menu_id: 30},
+
+    {restaurant_id: 9, menu_id: 31},
+
+    {restaurant_id: 10, menu_id: 32},
+    {restaurant_id: 10, menu_id: 33},
+
+    {restaurant_id: 11, menu_id: 34},
+    {restaurant_id: 11, menu_id: 35}
 ])
