@@ -9,16 +9,6 @@
 </p>
 
 <p>
-  <strong>Category:</strong>
-  <%= @dish.category %>
-</p>
-
-<p>
-  <strong>Category display:</strong>
-  <%= @dish.category_display %>
-</p>
-
-<p>
   <strong>Portion size:</strong>
   <%= @dish.portion_size %>
 </p>
@@ -45,7 +35,7 @@
 
 <p>
   <strong>Menu:</strong>
-  <%= @dish.menu %>
+  <%= @dish.category.menu.display_name %>
 </p>
 
 <%= link_to 'Edit', edit_dish_path(@dish) %> |

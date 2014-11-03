@@ -40,7 +40,8 @@
     <%= f.check_box :vegetarian %>
   </div>
   <div class="field">
-    <%= f.hidden_field :menu_id, value: @menu.id %>
+    <%= f.label :category_id %><br>
+    <%= f.text_field :category_id %>
   </div>
   <div class="actions">
     <%= f.submit %>
