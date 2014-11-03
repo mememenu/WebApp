@@ -15,7 +15,7 @@ common: &default_settings
   # You must specify the license key associated with your New Relic
   # account.  This key binds your Agent's data to your account in the
   # New Relic service.
-  license_key: '97fbd0e417b7ba3ff6ba8c3194670115042bf209'
+  license_key: '9b144be82a8c897419ef188901412f9f5193d3fc'
 
   # Agent Enabled (Ruby/Rails Only)
   # Use this setting to force the agent to run or not run.
@@ -192,7 +192,7 @@ development:
   <<: *default_settings
   # Turn on communication to New Relic service in development mode
   monitor_mode: true
-  app_name: My Application (Development)
+  app_name: Meme_Menu (Development)
 
   # Rails Only - when running in Developer Mode, the New Relic Agent will
   # present performance information on the last 100 transactions you have
@@ -221,4 +221,4 @@ production:
 staging:
   <<: *default_settings
   monitor_mode: true
-  app_name: My Application (Staging)
+  app_name: Meme_Menu (Staging)
