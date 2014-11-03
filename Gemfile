@@ -50,4 +50,5 @@ gem 'unicorn'
  gem "better_errors"
  gem "binding_of_caller"
  gem 'newrelic_rpm'
+ gem 'rails_12factor'
 
