@@ -50,6 +50,13 @@
   <div class="field">
     <%= f.hidden_field :menu_id, value: @menu.id %>
   </div>
+  <div class="field">
+    <%= hidden_field_tag "dish[category_ids][]", nil %>
+    <% Category.all.each do |category| %>
+      <%= check_box_tag "dish[category_ids][]", category.id, @dish.category_ids.include?(category.id), id: dom_id(category) %>
+      <%= label_tag dom_id(category), category.name %><br>
+    <% end %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
