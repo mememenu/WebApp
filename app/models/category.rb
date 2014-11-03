@@ -1,6 +1,6 @@
 class Category < ActiveRecord::Base
-  has_many :dishes, through: :dish_categories
-  has_many :dish_categories, dependent: :destroy
+  belongs_to :menu, dependent: :destroy
+  has_many :dishes
 
   validates :name, presence: true
 
