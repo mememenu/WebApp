@@ -20,8 +20,16 @@
   <%= @menu.restaurants.first.name %>
 </p>
 
-
 <%= link_to 'Edit', edit_menu_path(@menu) %> |
 <%= link_to 'Back', menus_path %>
 
 </div>
+
+<h3> View Dishes </h3>
+<% @dishes.each do |dish| %>
+  <%= dish.name %>
+<% end %>
+<hr>
+
+<h6> Add a new dish </h6>
+<%= render 'dishes/form' %>
