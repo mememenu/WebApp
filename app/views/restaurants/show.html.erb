@@ -51,24 +51,31 @@
           <strong>Reservations:</strong>
           <%= @restaurant.reservations %>
         </p>
-        <strong>Cuisines:</strong>
-        <% @restaurant.cuisines.each do |cuisine| %>
-        <%=cuisine.genre%>
-        <% end %> 
+
+        <p>
+          <strong>Cuisines:</strong>
+          <% @restaurant.cuisines.each do |cuisine| %>
+            <%=cuisine.genre%>
+          <% end %> 
+        </p>
+
+        <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+        <%= link_to 'Back', restaurants_path %>
       </div> 
     </div>
 
     <div class="col-md-6">
       <div class="text-center">
-          <strong>Menus:</strong>
-          <% @restaurant.menus.each do |menu| %>
-          <p><%= link_to menu.display_name, menu_path(menu) %></p>
-          <% end %>  
-
-        <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-        <%= link_to 'Back', restaurants_path %>
+        <strong>Menus:</strong>
+        <% @restaurant.menus.each do |menu| %>
+        <p><%= link_to menu.display_name, menu_path(menu) %></p>
+        <% end %>
+        <hr>
+        <p>
+          <strong>New Menu:</strong>
+        </p>
+        <%= render 'menus/form' %>  
       </div>
     </div>
-
   </div>
 </div>
