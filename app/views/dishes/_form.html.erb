@@ -1,0 +1,57 @@
+<%= form_for(@dish) do |f| %>
+  <% if @dish.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dish.errors.count, "error") %> prohibited this dish from being saved:</h2>
+
+      <ul>
+      <% @dish.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br>
+    <%= f.text_field :category %>
+  </div>
+  <div class="field">
+    <%= f.label :category_display %><br>
+    <%= f.text_field :category_display %>
+  </div>
+  <div class="field">
+    <%= f.label :portion_size %><br>
+    <%= f.text_field :portion_size %>
+  </div>
+  <div class="field">
+    <%= f.label :spice %><br>
+    <%= f.number_field :spice %>
+  </div>
+  <div class="field">
+    <%= f.label :hot %><br>
+    <%= f.check_box :hot %>
+  </div>
+  <div class="field">
+    <%= f.label :gluten_free %><br>
+    <%= f.check_box :gluten_free %>
+  </div>
+  <div class="field">
+    <%= f.label :vegetarian %><br>
+    <%= f.check_box :vegetarian %>
+  </div>
+  <div class="field">
+    <%= f.label :menu_id %><br>
+    <%= f.text_field :menu_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @dish.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @dish.description %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @dish.category %>
+</p>
+
+<p>
+  <strong>Category display:</strong>
+  <%= @dish.category_display %>
+</p>
+
+<p>
+  <strong>Portion size:</strong>
+  <%= @dish.portion_size %>
+</p>
+
+<p>
+  <strong>Spice:</strong>
+  <%= @dish.spice %>
+</p>
+
+<p>
+  <strong>Hot:</strong>
+  <%= @dish.hot %>
+</p>
+
+<p>
+  <strong>Gluten free:</strong>
+  <%= @dish.gluten_free %>
+</p>
+
+<p>
+  <strong>Vegetarian:</strong>
+  <%= @dish.vegetarian %>
+</p>
+
+<p>
+  <strong>Menu:</strong>
+  <%= @dish.menu %>
+</p>
+
+<%= link_to 'Edit', edit_dish_path(@dish) %> |
+<%= link_to 'Back', dishes_path %>
