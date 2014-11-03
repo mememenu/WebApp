@@ -10,8 +10,8 @@ class MenusController < ApplicationController
   # GET /menus/1
   # GET /menus/1.json
   def show
-    @dishes = Dish.where(menu_id: @menu.id)
-    @dish = Dish.new
+    @categories = Category.where(menu_id: @menu.id)
+    @category = Category.new
   end
 
   # GET /menus/new

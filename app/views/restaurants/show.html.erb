@@ -1,72 +1,74 @@
-<div class="container col-xs-12">
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="text-center">
+        <p>
+          <strong>Name:</strong>
+          <%= @restaurant.name %>
+        </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
+        <p>
+          <strong>Address 1:</strong>
+          <%= @restaurant.address_1 %>
+        </p>
 
-<p>
-  <strong>Address 1:</strong>
-  <%= @restaurant.address_1 %>
-</p>
+        <p>
+          <strong>Address 2:</strong>
+          <%= @restaurant.address_2 %>
+        </p>
 
-<p>
-  <strong>Address 2:</strong>
-  <%= @restaurant.address_2 %>
-</p>
+        <p>
+          <strong>City:</strong>
+          <%= @restaurant.city %>
+        </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @restaurant.city %>
-</p>
+        <p>
+          <strong>State:</strong>
+          <%= @restaurant.state %>
+        </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @restaurant.state %>
-</p>
+        <p>
+          <strong>Zipcode:</strong>
+          <%= @restaurant.zipcode %>
+        </p>
 
-<p>
-  <strong>Zipcode:</strong>
-  <%= @restaurant.zipcode %>
-</p>
+        <p>
+          <strong>Description:</strong>
+          <%= @restaurant.description %>
+        </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @restaurant.description %>
-</p>
+        <p>
+          <strong>Phone:</strong>
+          <%= @restaurant.phone %>
+        </p>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @restaurant.phone %>
-</p>
+        <p>
+          <strong>Dollars:</strong>
+          <%= @restaurant.dollars %>
+        </p>
 
-<p>
-  <strong>Dollars:</strong>
-  <%= @restaurant.dollars %>
-</p>
+        <p>
+          <strong>Reservations:</strong>
+          <%= @restaurant.reservations %>
+        </p>
+        <strong>Cuisines:</strong>
+        <% @restaurant.cuisines.each do |cuisine| %>
+        <%=cuisine.genre%>
+        <% end %> 
+      </div> 
+    </div>
 
-<p>
-  <strong>Reservations:</strong>
-  <%= @restaurant.reservations %>
-</p>
-<p>
-  <strong>Cuisines:</strong>
-  <% @restaurant.cuisines.each do |cuisine| %>
-  
-  <%=cuisine.genre%>
+    <div class="col-md-6">
+      <div class="text-center">
+          <strong>Menus:</strong>
+          <% @restaurant.menus.each do |menu| %>
+          <p><%= link_to menu.display_name, menu_path(menu) %></p>
+          <% end %>  
 
-  <% end %>  
-</p>
-<p>
-  <strong>Menus:</strong>
-  <% @restaurant.menus.each do |menu| %>
+        <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+        <%= link_to 'Back', restaurants_path %>
+      </div>
+    </div>
 
-  <p><%= link_to menu.display_name, menu_path(menu) %></p>
-
-  <% end %>  
-</p>
-
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
-
+  </div>
 </div>
