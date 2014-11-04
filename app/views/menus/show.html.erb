@@ -12,9 +12,9 @@
             <%= @menu.description %>
           </p>
         <% end %>
-
-        <%= link_to 'Edit', edit_menu_path(@menu) %> |
-        <%= link_to 'Back', @menu.restaurants.first %>
+        
+        <%= link_to 'Back to Restaurant', @menu.restaurants.first %> |
+        <%= link_to 'Edit', edit_menu_path(@menu) %>
       </div>
     </div>
 

@@ -1,5 +1,6 @@
 <div class="text-center">
   <h1><%= @category.name %></h1>
+  <%= link_to 'Back to Menu', @category.menu %>
 </div>
 <hr>
 <div class="container">
@@ -26,4 +27,3 @@
 </div>
 
 
-<%= link_to 'Back', categories_path %>
