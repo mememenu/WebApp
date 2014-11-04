@@ -1,3 +1,12 @@
+<script>
+var slide;
+slide = function() {
+$('.slider').slider()  
+};
+$(document).ready(slide);
+$(document).on('page:load', slide);
+</script>
+
 <%= form_for(@dish) do |f| %>
   <% if @dish.errors.any? %>
     <div id="error_explanation">
@@ -25,7 +34,11 @@
   </div>
   <div class="field">
     <%= f.label :spice %><br>
-    <%= f.number_field :spice %>
+    <%= f.number_field :spice, :class => "slider",
+                 data: {'slider-min' => '1',
+                        'slider-max' => '5',
+                        'slider-step' => '1',
+                        'slider-value' => '1' } %>
   </div>
   <div class="field">
     <%= f.label :hot %><br>
