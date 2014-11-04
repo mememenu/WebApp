@@ -10,6 +10,8 @@ class DishesController < ApplicationController
   # GET /dishes/1
   # GET /dishes/1.json
   def show
+    @images = Image.where(dish_id: @dish.id)
+    @image = Image.new
   end
 
   # GET /dishes/new

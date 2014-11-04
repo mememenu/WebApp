@@ -1,0 +1,9 @@
+<p>
+  <strong>Dish:</strong>
+  <%= @image.dish.name %>
+</p>
+
+<%= image_tag @image.avatar.url(:large) %>
+
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>
