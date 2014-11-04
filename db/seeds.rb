@@ -48,51 +48,51 @@ RestaurantCuisine.create!([
 ])
 Menu.create!([
    # pubbelly
-   {name: "Dinner", display_name: "Dinner", description: ""},
-   {name: "Brunch", display_name: "Sunday Brunch Fare", description: ""},
+   {name: "Dinner", description: ""},
+   {name: "Sunday Brunch Fare", description: ""},
    # yardbird
-   {name: "Brunch", display_name: "Brunch", description: ""},
-   {name: "Lunch", display_name: "Lunch", description: ""},
-   {name: "Dinner", display_name: "Supper", description: ""},
-   {name: "Dessert", display_name: "Dessert", description: ""},
+   {name: "Brunch", description: ""},
+   {name: "Lunch", description: ""},
+   {name: "Supper", description: ""},
+   {name: "Dessert", description: ""},
    # Tongue and Cheek
-   {name: "Brunch", display_name: "Brunch", description: ""},
-   {name: "Lunch", display_name: "Lunch", description: ""},
-   {name: "Happy Hour", display_name: "Happy Hour", description: ""},
-   {name: "Dinner", display_name: "Dinner", description: ""},
-   {name: "Kids", display_name: "Kids", description: ""},
+   {name: "Brunch", description: ""},
+   {name: "Lunch", description: ""},
+   {name: "Happy Hour", description: ""},
+   {name: "Dinner", description: ""},
+   {name: "Kids", description: ""},
    # Black Brick
-   {name: "Brunch", display_name: "Dim Sum Sunday", description: ""},
-   {name: "Lunch", display_name: "Dim Sum", description: ""},
+   {name: "Dim Sum Sunday", description: ""},
+   {name: "Dim Sum", description: ""},
    # MC Kitchen
-   {name: "Brunch", display_name: "Brunch", description: ""},
-   {name: "Lunch", display_name: "Lunch", description: ""},
-   {name: "Dinner", display_name: "Dinner", description: ""},
-   {name: "Dessert", display_name: "Dessert", description: ""},
+   {name: "Brunch", description: ""},
+   {name: "Lunch", description: ""},
+   {name: "Dinner", description: ""},
+   {name: "Dessert", description: ""},
    # The Dutch
-   {name: "Breakfast", display_name: "Breakfast", description: ""},
-   {name: "Lunch", display_name: "Lunch", description: ""},
-   {name: "Dinner", display_name: "Supper", description: ""},
-   {name: "Dessert", display_name: "Dessert", description: ""},
+   {name: "Breakfast", description: ""},
+   {name: "Lunch", description: ""},
+   {name: "Supper", description: ""},
+   {name: "Dessert", description: ""},
    # The District
-   {name: "Lunch", display_name: "Lunch", description: ""},
-   {name: "Brunch", display_name: "Brunch", description: ""},
-   {name: "Dinner", display_name: "Supper", description: ""},
-   {name: "Dinner", display_name: "Sea Food Tower", description: ""},
-   {name: "Happy Hour", display_name: "Happy Hour", description: ""},
+   {name: "Lunch", description: ""},
+   {name: "Brunch", description: ""},
+   {name: "Supper", description: ""},
+   {name: "Sea Food Tower", description: ""},
+   {name: "Happy Hour", description: ""},
    # Mignonette
-   {name: "Lunch", display_name: "Lunch", description: ""},
-   {name: "Dinner", display_name: "Dinner", description: ""},
-   {name: "Dessert", display_name: "Dessert", description: ""},
-   {name: "Happy Hour", display_name: "Happy Hour", description: ""},
+   {name: "Lunch", description: ""},
+   {name: "Dinner", description: ""},
+   {name: "Dessert", description: ""},
+   {name: "Happy Hour", description: ""},
    #Mmmm
-   {name: "Default", display_name: "Menu", description: ""},
+   {name: "Menu", description: ""},
    # Niu Kitchen
-   {name: "Lunch", display_name: "Lunch", description: ""},
-   {name: "Dinner", display_name: "Dinner", description: ""},
+   {name: "Lunch", description: ""},
+   {name: "Dinner", description: ""},
    # The Federal
-   {name: "Brunch", display_name: "Brunch", description: ""},
-   {name: "Dinner", display_name: "Supper", description: ""}
+   {name: "Brunch", description: ""},
+   {name: "Supper", description: ""}
 ])
   RestaurantMenu.create!([
     {restaurant_id: 1, menu_id: 1},
