@@ -1,6 +1,12 @@
 <div class="text-center">
   <h1><%= @category.name %></h1>
   <h5><%= @category.menu.restaurants.first.name %></h5>
+  <hr>
+  <% @categories.each do |category| %>
+    <%= link_to category.name, category %> |
+  <% end %>
+
+  <hr>
   <%= link_to 'Back to Menu', @category.menu %> |
   <%= link_to 'Edit', edit_category_path(@category) %>
 </div>

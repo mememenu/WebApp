@@ -7,5 +7,4 @@ module CategoriesHelper
       nil
     end
   end
-
 end

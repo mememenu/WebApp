@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
   def show
     @dishes = Dish.where(category_id: @category.id)
     @dish = Dish.new
+    @categories = Category.where(menu_id: @category.menu_id)
   end
 
   # GET /categories/new
