@@ -1,42 +1,64 @@
-<p>
-  <strong>Name:</strong>
-  <%= @dish.name %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="text-center">
+        <p>
+          <strong>Name:</strong>
+          <%= @dish.name %>
+        </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @dish.description %>
-</p>
+        <p>
+          <strong>Description:</strong>
+          <%= @dish.description %>
+        </p>
 
-<p>
-  <strong>Portion size:</strong>
-  <%= @dish.portion_size %>
-</p>
+        <p>
+          <strong>Portion size:</strong>
+          <%= @dish.portion_size %>
+        </p>
 
-<p>
-  <strong>Spice:</strong>
-  <%= @dish.spice %>
-</p>
+        <p>
+          <strong>Spice:</strong>
+          <%= @dish.spice %>
+        </p>
 
-<p>
-  <strong>Hot:</strong>
-  <%= @dish.hot %>
-</p>
+        <p>
+          <strong>Hot:</strong>
+          <%= @dish.hot %>
+        </p>
 
-<p>
-  <strong>Gluten free:</strong>
-  <%= @dish.gluten_free %>
-</p>
+        <p>
+          <strong>Gluten free:</strong>
+          <%= @dish.gluten_free %>
+        </p>
 
-<p>
-  <strong>Vegetarian:</strong>
-  <%= @dish.vegetarian %>
-</p>
+        <p>
+          <strong>Vegetarian:</strong>
+          <%= @dish.vegetarian %>
+        </p>
 
-<p>
-  <strong>Menu:</strong>
-  <%= @dish.category.menu.display_name %>
-</p>
+        <p>
+          <strong>Menu:</strong>
+          <%= @dish.category.menu.display_name %>
+        </p>
+        <%= link_to 'Edit', edit_dish_path(@dish) %> |
+        <%= link_to 'Back', dishes_path %>
+        <hr>
+        <div class="col-md-6 col-md-offset-3">
+          <h3> Add New Image </h3>
+          <%= render 'images/form' %>      
+        </div>
+    </div>
+    </div>
 
-<%= link_to 'Edit', edit_dish_path(@dish) %> |
-<%= link_to 'Back', dishes_path %>
+    <div class="col-md-6">
+      <% @images.each do |image| %>
+        <%= image_tag image.avatar.url(:medium) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+</div>

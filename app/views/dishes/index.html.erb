@@ -6,7 +6,6 @@
       <th>Name</th>
       <th>Description</th>
       <th>Category</th>
-      <th>Category display</th>
       <th>Portion size</th>
       <th>Spice</th>
       <th>Hot</th>
@@ -22,14 +21,12 @@
       <tr>
         <td><%= dish.name %></td>
         <td><%= dish.description %></td>
-        <td><%= dish.category %></td>
-        <td><%= dish.category_display %></td>
+        <td><%= dish.category.name %></td>
         <td><%= dish.portion_size %></td>
         <td><%= dish.spice %></td>
         <td><%= dish.hot %></td>
         <td><%= dish.gluten_free %></td>
         <td><%= dish.vegetarian %></td>
-        <td><%= dish.menu %></td>
         <td><%= link_to 'Show', dish %></td>
         <td><%= link_to 'Edit', edit_dish_path(dish) %></td>
         <td><%= link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' } %></td>

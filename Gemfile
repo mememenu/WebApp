@@ -51,4 +51,5 @@ gem 'unicorn'
  gem "binding_of_caller"
  gem 'newrelic_rpm'
  gem 'rails_12factor'
+ gem "paperclip", "~> 4.2"
 
