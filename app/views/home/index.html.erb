@@ -1,7 +1,13 @@
-<div class="container col-xs-12">
+<div class="container">
+  <div class="row">
 
-<h1>Meme Menu</h1>
+    <% @restaurants.each do |restaurant| %>
+      <div class="col-md-4">
+        <%= link_to restaurant do %>
+          <%= image_tag restaurant.avatar.url(:medium) %>
+        <% end %>
+      </div>
+    <% end %>
 
-<p>Homepage goes here</p>
-
+  </div>
 </div>
