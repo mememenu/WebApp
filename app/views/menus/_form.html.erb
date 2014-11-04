@@ -25,7 +25,7 @@
   </div>
   <!-- Find restaurant selectors in menus_helper.rb -->
   <div class="field">
-    <%= select_tag "menu[restaurant_ids][]", options_for_select(restaurant_selectors, default_restaurant_selector)%>
+     <%= hidden_field_tag "menu[restaurant_ids][]", [@restaurant.id] %>   
   </div>
   <div class="actions">
     <%= f.submit %>

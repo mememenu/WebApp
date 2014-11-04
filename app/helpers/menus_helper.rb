@@ -1,23 +1,23 @@
 module MenusHelper
 
-  def restaurant_selectors
+  # def restaurant_selectors
   
-    selectors = []
+  #   selectors = []
   
-    Restaurant.all.each do |restaurant| 
-      selectors<<[restaurant.name, restaurant.id] 
-    end 
+  #   Restaurant.all.each do |restaurant| 
+  #     selectors<<[restaurant.name, restaurant.id] 
+  #   end 
   
-    selectors
+  #   selectors
 
-  end
+  # end
 
-  def default_restaurant_selector
-    if @menu.restaurants.first
-      @menu.restaurants.first.id
-    else
-      1
-    end
-  end
+  # def default_restaurant_selector
+  #   if @menu.restaurants.first
+  #     @menu.restaurants.first.id
+  #   else
+  #     1
+  #   end
+  # end
 
 end
