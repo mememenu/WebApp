@@ -3,6 +3,7 @@ class Category < ActiveRecord::Base
   has_many :dishes
 
   validates :name, presence: true
+  validates :menu_id, presence: true
 
 
 end

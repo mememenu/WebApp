@@ -16,8 +16,7 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :menu_id %><br>
-    <%= f.text_field :menu_id, value: default_value %>
+    <%= f.hidden_field :menu_id, value: default_value %>
   </div>
   <div class="actions">
     <%= f.submit %>
