@@ -39,7 +39,7 @@
 
         <p>
           <strong>Menu:</strong>
-          <%= @dish.category.menu.display_name %>
+          <%= @dish.category.menu.name %>
         </p>
         <%= link_to 'Edit', edit_dish_path(@dish) %> |
         <%= link_to 'Back', dishes_path %>
@@ -52,6 +52,7 @@
     </div>
 
     <div class="col-md-6">
+      <%= image_tag @dish.avatar.url(:medium) %>
       <% @images.each do |image| %>
         <%= image_tag image.avatar.url(:medium) %>
       <% end %>
