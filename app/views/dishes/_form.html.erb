@@ -7,7 +7,7 @@ $(document).ready(slide);
 $(document).on('page:load', slide);
 </script>
 
-<%= form_for(@dish) do |f| %>
+<%= form_for @dish, :html => { :multipart => true } do |f| %>
   <% if @dish.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@dish.errors.count, "error") %> prohibited this dish from being saved:</h2>
@@ -49,9 +49,14 @@ $(document).on('page:load', slide);
     <%= f.check_box :vegetarian %>
   </div>
   <div class="field">
-    <%= f.hidden_field :category_id, value: @category.id %>
+    <%= f.text_field :category_id, value: @category.id %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="col-md-6 col-md-offset-3">
+    <div class="field">
+        <%= f.file_field :avatar %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
   </div>
 <% end %>
