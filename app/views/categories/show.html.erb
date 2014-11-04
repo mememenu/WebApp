@@ -1,10 +1,13 @@
 <div class="text-center">
   <h1><%= @category.name %></h1>
-  <%= link_to 'Back to Menu', @category.menu %>
+  <%= link_to 'Back to Menu', @category.menu %> |
+  <%= link_to 'Edit', edit_category_path(@category) %>
 </div>
 <hr>
+
 <div class="container">
   <div class="row">
+    
     <div class="col-md-6">
       <div class="text-center">
         <h3> Dishes </h3>
@@ -23,6 +26,7 @@
         <%= render 'dishes/form' %>
       </div>
     </div>
+
   </div>
 </div>
 
