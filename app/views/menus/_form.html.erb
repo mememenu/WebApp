@@ -23,7 +23,6 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
-  <!-- Find restaurant selectors in menus_helper.rb -->
   <div class="field">
      <%= hidden_field_tag "menu[restaurant_ids][]", [@restaurant.id] %>   
   </div>
