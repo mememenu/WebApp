@@ -1,7 +1,26 @@
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
+<div class="text-center">
+  <h1><%= @category.name %></h1>
+</div>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="text-center">
+        <h3> Dishes </h3>
+        <% @dishes.each do |dish| %>
+          <%= link_to dish.name, dish %>
+        <% end %>
+      </div>
+    </div>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
+    <div class="col-md-6">
+      <div class="text-center">
+        <h3> Add a Dish </h3>
+        <%= render 'dishes/form' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <%= link_to 'Back', categories_path %>

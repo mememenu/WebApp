@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :portion_size %><br>
-    <%= f.text_field :portion_size %>
+    <%= f.select :portion_size, ['Small','Medium','Full'] %>
   </div>
   <div class="field">
     <%= f.label :spice %><br>
@@ -40,8 +40,7 @@
     <%= f.check_box :vegetarian %>
   </div>
   <div class="field">
-    <%= f.label :category_id %><br>
-    <%= f.text_field :category_id %>
+    <%= f.hidden_field :category_id, value: @category.id %>
   </div>
   <div class="actions">
     <%= f.submit %>
