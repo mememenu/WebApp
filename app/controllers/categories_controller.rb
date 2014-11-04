@@ -10,7 +10,8 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @dishes = Dish.where(:category_id, )
+    @dishes = Dish.where(category_id: @category.id)
+    @dish = Dish.new
   end
 
   # GET /categories/new
