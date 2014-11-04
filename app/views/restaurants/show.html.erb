@@ -68,7 +68,7 @@
       <div class="text-center">
         <strong>Menus:</strong>
         <% @restaurant.menus.each do |menu| %>
-        <p><%= link_to menu.display_name, menu_path(menu) %></p>
+        <p><%= link_to menu.name, menu_path(menu) %></p>
         <% end %>
         <hr>
         <p>
