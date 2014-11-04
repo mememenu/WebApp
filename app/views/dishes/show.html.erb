@@ -42,7 +42,7 @@
           <%= @dish.category.menu.name %>
         </p>
         <%= link_to 'Edit', edit_dish_path(@dish) %> |
-        <%= link_to 'Back', dishes_path %>
+        <%= link_to 'Back to Menu', @dish.category %>
         <hr>
         <div class="col-md-6 col-md-offset-3">
           <h3> Add Additional Images </h3>
