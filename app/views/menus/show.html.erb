@@ -3,22 +3,18 @@
     <div class="col-md-6">
       <div class="text-center">
         <p>
-          <strong>Restaurant:</strong>
-          <%= @menu.restaurants.first.name %>
+          <%= @menu.name %> Menu at <%= @menu.restaurants.first.name %>
         </p>
 
-        <p>
-          <strong>Restaurant:</strong>
-          <%= @menu.name %>
-        </p>
-
-        <p>
-          <strong>Description:</strong>
-          <%= @menu.description %>
-        </p>
+        <% unless @menu.description.blank? %>
+          <p>
+            <strong>Description:</strong>
+            <%= @menu.description %>
+          </p>
+        <% end %>
 
         <%= link_to 'Edit', edit_menu_path(@menu) %> |
-        <%= link_to 'Back', menus_path %>
+        <%= link_to 'Back', @menu.restaurants.first %>
       </div>
     </div>
 
