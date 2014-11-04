@@ -39,7 +39,7 @@
 
         <p>
           <strong>Menu:</strong>
-          <%= @dish.category.menu.display_name %>
+          <%= @dish.category.menu.name %>
         </p>
         <%= link_to 'Edit', edit_dish_path(@dish) %> |
         <%= link_to 'Back', dishes_path %>
