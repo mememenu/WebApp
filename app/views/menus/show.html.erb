@@ -1,23 +1,25 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <p>
-        <strong>Restaurant:</strong>
-        <%= @menu.restaurants.first.name %>
-      </p>
+      <div class="text-center">
+        <p>
+          <strong>Restaurant:</strong>
+          <%= @menu.restaurants.first.name %>
+        </p>
 
-      <p>
-        <strong>Display name:</strong>
-        <%= @menu.display_name %>
-      </p>
+        <p>
+          <strong>Display name:</strong>
+          <%= @menu.display_name %>
+        </p>
 
-      <p>
-        <strong>Description:</strong>
-        <%= @menu.description %>
-      </p>
+        <p>
+          <strong>Description:</strong>
+          <%= @menu.description %>
+        </p>
 
-      <%= link_to 'Edit', edit_menu_path(@menu) %> |
-      <%= link_to 'Back', menus_path %>
+        <%= link_to 'Edit', edit_menu_path(@menu) %> |
+        <%= link_to 'Back', menus_path %>
+      </div>
     </div>
 
     <div class="col-md-6">
@@ -31,7 +33,7 @@
   <div class="text-center">
     <h3> Categories </h3>
     <% @categories.each do |category| %>
-      <%= link_to category.name, category %>
+    <p><%= link_to category.name, category %></p>
     <% end %>
   </div>
 </div>
