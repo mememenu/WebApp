@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 20141103225857) do
     t.string   "genre"
   end
 
+  create_table "dish_categories", force: true do |t|
+    t.integer  "category_id"
+    t.integer  "dish_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "dish_categories", ["category_id"], name: "index_dish_categories_on_category_id", using: :btree
+  add_index "dish_categories", ["dish_id"], name: "index_dish_categories_on_dish_id", using: :btree
+
   create_table "dishes", force: true do |t|
     t.string   "name"
     t.text     "description"
