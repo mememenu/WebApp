@@ -34,11 +34,7 @@ $(document).on('page:load', slide);
   </div>
   <div class="field">
     <%= f.label :spice %><br>
-    <%= f.number_field :spice, :class => "slider",
-                 data: {'slider-min' => '1',
-                        'slider-max' => '5',
-                        'slider-step' => '1',
-                        'slider-value' => '1' } %>
+    <%= f.select :spice, [0,1,2,3,4]%>
   </div>
   <div class="field">
     <%= f.label :hot %><br>
