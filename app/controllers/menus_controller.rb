@@ -14,11 +14,6 @@ class MenusController < ApplicationController
     @category = Category.new
   end
 
-  # GET /menus/new
-  def new
-    @menu = Menu.new
-  end
-
   # GET /menus/1/edit
   def edit
   end

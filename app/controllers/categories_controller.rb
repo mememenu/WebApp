@@ -15,11 +15,6 @@ class CategoriesController < ApplicationController
     @categories = Category.where(menu_id: @category.menu_id)
   end
 
-  # GET /categories/new
-  def new
-    @category = Category.new
-  end
-
   # GET /categories/1/edit
   def edit
   end
