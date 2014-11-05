@@ -1,49 +1,56 @@
-<div class="text-center">
-  <h1><%= @category.name %></h1>
-  <h5><%= @category.menu.restaurants.first.name %></h5>
-  <hr>
-  <% @categories.each do |category| %>
-    <%= link_to category.name, category %> |
-  <% end %>
-
-  <hr>
-  <%= link_to 'Back to Menu', @category.menu %>
-</div>
-<hr>
 <div class="container">
-  <% @dishes.in_groups_of(4, false).each do |group| %>
-  <div class="row">
-    <% group.each do |dish| %>
-      <div class="col-md-3 text-center">
-        <%= link_to dish do %>
-          <%= dish.name %> <br>
-          <%= image_tag dish.avatar.url(:medium) %>
-        <% end %>
-      </div>
+
+  <div class="text-center">
+    <%= link_to @category.menu.restaurants.first do %>
+    <%= image_tag @category.menu.restaurants.first.avatar.url(:medium) %>
+    <% end %>
+    <h3><%= @category.menu.name %></h3>
+    <hr>
+    <% @categories.each do |category| %>
+      <% if category.id == @category.id %>
+        <strong><%= link_to category.name, category %></strong> |
+      <% else %>
+        <%= link_to category.name, category %> |
+      <% end %>
+    <% end %>
+    <%= link_to "All", @category.menu %>
+  </div>
+  <hr>
+  <div class="container">
+    <% @dishes.in_groups_of(4, false).each do |group| %>
+    <div class="row">
+      <% group.each do |dish| %>
+        <div class="col-md-3 text-center">
+          <%= link_to dish do %>
+            <%= dish.name %> <br>
+            <%= image_tag dish.avatar.url(:medium) %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
     <% end %>
   </div>
-  <% end %>
-</div>
 
 
-<% if current_user %>
-  <% if current_user.admin || current_user.restaurant_id == @category.menu.restaurants.first.id %>
-  <hr>
-    <div class="container">
-      <div class="text-center">
-        <h3> Administrator Panel </h3>
-        <hr>
-        <%= link_to "Edit Category Details (#{@category.name})", edit_category_path(@category) %>
-        <hr>
-        <p>
-          <strong>New Dish:</strong>
-        </p>
-        <%= render 'dishes/form' %> 
+  <% if current_user %>
+    <% if current_user.admin || current_user.restaurant_id == @category.menu.restaurants.first.id %>
+    <hr>
+      <div class="container">
+        <div class="text-center">
+          <h3> Administrator Panel </h3>
+          <hr>
+          <%= link_to "Edit Category Details (#{@category.name})", edit_category_path(@category) %>
+          <hr>
+          <p>
+            <strong>New Dish:</strong>
+          </p>
+          <%= render 'dishes/form' %> 
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
-<% end %>
 
+</div>
 
 
 

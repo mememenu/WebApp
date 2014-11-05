@@ -10,9 +10,9 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    @dishes = Dish.where(category_id: @category.id)
+    @dishes = Dish.where(category_id: @category.id).reverse
     @dish = Dish.new
-    @categories = Category.where(menu_id: @category.menu_id)
+    @categories = Category.where(menu_id: @category.menu_id).reverse
   end
 
   # GET /categories/1/edit
