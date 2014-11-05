@@ -46,6 +46,14 @@
     <div class="field">
         <%= f.file_field :avatar %>
     </div>
+      <hr>
+  <div class="field">
+    <%= hidden_field_tag "dish[ingredient_ids][]", nil %>
+    <% Ingredient.all.each do |ingredient| %>
+      <%= check_box_tag "dish[ingredient_ids][]", ingredient.id, @dish.ingredient_ids.include?(ingredient.id), id: dom_id(ingredient) %>
+      <%= label_tag dom_id(ingredient), ingredient.name %><br>
+    <% end %>
+  </div>
     <div class="actions">
       <%= f.submit %>
     </div>

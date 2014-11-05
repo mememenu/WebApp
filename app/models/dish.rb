@@ -1,6 +1,9 @@
 class Dish < ActiveRecord::Base
   belongs_to :category
   has_many :images, dependent: :destroy
+  
+  has_many :ingredients, through: :dish_ingredients
+  has_many :dish_ingredients, dependent: :destroy
 
   validates :name, presence: true
   validates :portion_size, presence: true

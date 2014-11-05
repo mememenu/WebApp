@@ -41,6 +41,16 @@
           <strong>Menu:</strong>
           <%= @dish.category.menu.name %>
         </p>
+
+        <p>
+          <strong>Ingredients:</strong>
+          <% @dish.ingredients.each do |ingredient| %>
+            <%= ingredient.name %>
+          <% end %>
+        </p>        
+
+
+
         <%= link_to 'Edit', edit_dish_path(@dish) %> |
         <%= link_to 'Back to Menu', @dish.category %>
         <hr>
