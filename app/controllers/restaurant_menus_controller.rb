@@ -12,11 +12,6 @@ class RestaurantMenusController < ApplicationController
   def show
   end
 
-  # GET /restaurant_menus/new
-  def new
-    @restaurant_menu = RestaurantMenu.new
-  end
-
   # GET /restaurant_menus/1/edit
   def edit
   end

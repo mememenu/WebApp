@@ -14,10 +14,6 @@ class DishesController < ApplicationController
     @image = Image.new
   end
 
-  # GET /dishes/new
-  def new
-    @dish = Dish.new
-  end
 
   # GET /dishes/1/edit
   def edit
