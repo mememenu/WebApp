@@ -55,27 +55,27 @@ module RestaurantsHelper
       ['Wisconsin', 'WI'],
       ['Wyoming', 'WY']
     ]
-end
+  end
 
-def restaurant_dollars
-      if @restaurant.dollars 
-            @restaurant.dollars
-      else
-            1
-      end
-end
+  def restaurant_dollars
+    if @restaurant.dollars 
+      @restaurant.dollars
+    else
+      1
+    end
+  end
 
-def restaurant_state 
-      if @restaurant.state 
-            @restaurant.state
-      else
-            1
-      end
-end
+  def restaurant_state 
+    if @restaurant.state 
+      @restaurant.state
+    else
+      1
+    end
+  end
 
-def restaurant_id_array
-      [@restaurant.id]
-end
+  def restaurant_id_array
+    [@restaurant.id]
+  end
 
 
 end

@@ -17,6 +17,24 @@ class Restaurant < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :large => "500x500>", :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/placeholder_image1-1050x663.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
+
+  #returns an array of all category ID's associated with that restaurant
+  def restaurant_categories
+    menus = []
+
+    self.menus.each do |menu|
+      menus<<menu
+    end
+
+    categories = []
+
+    menus.each do |menu|
+      menu.categories.each do |category|
+        categories<<category.id
+      end
+    end
+
+    categories
+  end
+
 end
-
-

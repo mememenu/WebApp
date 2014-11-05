@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+
+    <div class="col-md-4">
       <div class="text-center">
         <p>
           <%= @restaurant.name %>
@@ -48,18 +49,47 @@
       </div> 
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-4">
       <div class="text-center">
-        <strong>Menus:</strong>
+        <p>
+          <strong>Menus:</strong>
+        </p>
         <% @restaurant.menus.each do |menu| %>
         <p><%= link_to menu.name, menu_path(menu) %></p>
         <% end %>
-        <hr>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="text-center">
         <p>
           <strong>New Menu:</strong>
         </p>
-        <%= render 'menus/form' %>  
-      </div>
+        <%= render 'menus/form' %> 
+      </div> 
     </div>
+
   </div>
 </div>
+
+<hr>
+<div class="container">
+  <% @dishes.in_groups_of(4, false).each do |group| %>
+  <div class="row">
+    <% group.each do |dish| %>
+      <div class="col-md-3 text-center">
+        <%= link_to dish do %>
+          <%= dish.name %> <br>
+          <%= image_tag dish.avatar.url(:medium) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+
+
+
+
+
+
