@@ -1,12 +1,3 @@
-<script>
-var slide;
-slide = function() {
-$('.slider').slider()  
-};
-$(document).ready(slide);
-$(document).on('page:load', slide);
-</script>
-
 <%= form_for @dish, :html => { :multipart => true } do |f| %>
   <% if @dish.errors.any? %>
     <div id="error_explanation">
