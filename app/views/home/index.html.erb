@@ -1,13 +1,13 @@
 <div class="container">
-  <div class="row">
-
-    <% @restaurants.each do |restaurant| %>
-      <div class="col-md-4">
-        <%= link_to restaurant do %>
-          <%= image_tag restaurant.avatar.url(:medium) %>
-        <% end %>
-      </div>
-    <% end %>
-
-  </div>
+  <% @restaurants.in_groups_of(3, false) do |group| %>
+    <div class="row">
+      <% group.each do |restaurant| %>
+        <div class="container col-md-4">
+            <%= link_to restaurant do %>
+              <%= image_tag restaurant.avatar.url(:medium) %>
+            <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
