@@ -1,45 +1,39 @@
 <div class="container">
   <div class="row">
+
     <div class="col-md-6">
       <div class="text-center">
-        <p>
-          <strong>Name:</strong>
-          <%= @dish.name %>
-        </p>
+        <p> <%= @dish.name %> </p>
+
+        <p> <%= @dish.description %> </p>
 
         <p>
-          <strong>Description:</strong>
-          <%= @dish.description %>
-        </p>
-
-        <p>
-          <strong>Portion size:</strong>
-          <%= @dish.portion_size %>
+          <strong>Size:</strong> <%= @dish.portion_size %>
         </p>
 
         <p>
           <strong>Spice:</strong>
-          <%= @dish.spice %>
+          <%= @dish.spice %>/5
         </p>
 
         <p>
-          <strong>Hot:</strong>
-          <%= @dish.hot %>
+          <% if @dish.hot %>
+            <strong>Served Hot</strong>
+          <% else %>
+            <strong>Served Cold</strong>
+          <% end %>
         </p>
 
         <p>
-          <strong>Gluten free:</strong>
-          <%= @dish.gluten_free %>
+          <% if @dish.gluten_free %>
+            <strong>Gluten Free</strong>
+          <% end %>
         </p>
 
         <p>
-          <strong>Vegetarian:</strong>
-          <%= @dish.vegetarian %>
-        </p>
-
-        <p>
-          <strong>Menu:</strong>
-          <%= @dish.category.menu.name %>
+          <% if @dish.vegetarian %>
+            <strong>Vegetarian Dish</strong>
+          <% end %>
         </p>
 
         <p>
@@ -49,16 +43,8 @@
           <% end %>
         </p>        
 
-
-
-        <%= link_to 'Edit', edit_dish_path(@dish) %> |
         <%= link_to 'Back to Menu', @dish.category %>
-        <hr>
-        <div class="col-md-6 col-md-offset-3">
-          <h3> Add Additional Images </h3>
-          <%= render 'images/form' %>      
-        </div>
-    </div>
+      </div>
     </div>
 
     <div class="col-md-6">
@@ -67,5 +53,23 @@
         <%= image_tag image.avatar.url(:medium) %>
       <% end %>
     </div>
+
   </div>
 </div>
+
+
+<% if current_user %>
+  <% if current_user.admin || current_user.restaurant_id == @dish.category.menu.restaurants.first.id%>
+  <hr>
+    <div class="container">
+      <div class="text-center">
+        <h3> Administrator Panel </h3>
+        <hr>
+        <%= link_to 'Edit Dish Details', edit_dish_path(@dish) %>
+        <hr>
+        <h5> Add Additional Images </h5><br>
+        <div class="col-md-2 col-md-offset-5"><%= render 'images/form' %></div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
