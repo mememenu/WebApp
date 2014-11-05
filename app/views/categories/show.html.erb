@@ -20,8 +20,10 @@
         <h3> Dishes </h3>
         <% @dishes.each do |dish| %>
           <%= link_to dish do %>
+            <div class="text-center">
             <%= dish.name %><br>
             <%= image_tag dish.avatar.url(:medium) %>
+            </div>
           <% end %>
         <% end %>
       </div>

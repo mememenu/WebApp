@@ -21,7 +21,6 @@ class MenusController < ApplicationController
 
   # GET /menus/1/edit
   def edit
-    @edit = true
   end
 
   # POST /menus
