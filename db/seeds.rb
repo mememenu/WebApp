@@ -14,17 +14,17 @@ Cuisine.create!([
   {genre: "Catalan"}
 ])
 Restaurant.create!([
-  {name: "Pubbelly", address_1: "1418 20th St", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: "", phone: "3055327555", dollars: 3, reservations: false},
-  {name: "Yardbird Southern Table and Bar", address_1: "1600 Lenox Ave", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: "", phone: "3055385220", dollars: 3, reservations: true},
-  {name: "Tongue & Cheek", address_1: "431 Washington Ave", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: "", phone: "3057042900", dollars: 3, reservations: true},
-  {name: "Black Brick", address_1: "3451 NE 1 Ave", address_2: "Ste 103", city: "Miami", state: "FL", zipcode: "33137", description: "", phone: "3055738886", dollars: 2, reservations: false},
-  {name: "MC Kitchen", address_1: "4141 NE 2nd Ave", address_2: "", city: "Miami", state: "FL", zipcode: "33137", description: "", phone: "3054569948", dollars: 3, reservations: true},
-  {name: "The Dutch", address_1: "2201 Collins Ave", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: "", phone: "3059383111", dollars: 3, reservations: true},
-  {name: "The District", address_1: "190 NE 46th St", address_2: "", city: "Miami", state: "FL", zipcode: "33137", description: "", phone: "3055734199", dollars: 3, reservations: true},
-  {name: "Mignonette", address_1: "210 NE 18th St", address_2: "", city: "Miami", state: "FL", zipcode: "33132", description: "", phone: "3053744635", dollars: 3, reservations: true},
-  {name: "Mmmm", address_1: "2519 NW 2nd Ave", address_2: "", city: "Miami", state: "AL", zipcode: "33137", description: "", phone: "7867033409", dollars: 1, reservations: true},
-  {name: "Niu Kitchen", address_1: "134 NE 2nd Ave", address_2: "", city: "Miami", state: "FL", zipcode: "33132", description: "", phone: "7865425070", dollars: 2, reservations: true},
-  {name: "The Federal", address_1: "5132 Biscayne Blvd", address_2: "", city: "Miami", state: "FL", zipcode: "33137", description: "", phone: "3057589559", dollars: 2, reservations: true}
+  {name: "Pubbelly", address_1: "1418 20th St", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: "", phone: "3055327555", dollars: 3, reservations: false, avatar_file_name: "pubbelly.jpeg"},
+  {name: "Yardbird Southern Table and Bar", address_1: "1600 Lenox Ave", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: "", phone: "3055385220", dollars: 3, reservations: true, avatar_file_name: "yardbird-1.jpg"},
+  {name: "Tongue & Cheek", address_1: "431 Washington Ave", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: "", phone: "3057042900", dollars: 3, reservations: true, avatar_file_name: "MIA_TongueCheek_MIA.jpg"},
+  {name: "Black Brick", address_1: "3451 NE 1 Ave", address_2: "Ste 103", city: "Miami", state: "FL", zipcode: "33137", description: "", phone: "3055738886", dollars: 2, reservations: false, avatar_file_name: "download.jpeg"},
+  {name: "MC Kitchen", address_1: "4141 NE 2nd Ave", address_2: "", city: "Miami", state: "FL", zipcode: "33137", description: "", phone: "3054569948", dollars: 3, reservations: true, avatar_file_name:"twitpic.jpg"},
+  {name: "The Dutch", address_1: "2201 Collins Ave", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: "", phone: "3059383111", dollars: 3, reservations: true, avatar_file_name:"the-dutch-miami-beach1.jpg"},
+  {name: "The District", address_1: "190 NE 46th St", address_2: "", city: "Miami", state: "FL", zipcode: "33137", description: "", phone: "3055734199", dollars: 3, reservations: true, avatar_file_name:"548f0c02f3d5ef9bfd0b92ce710afa48_400x400.jpeg"},
+  {name: "Mignonette", address_1: "210 NE 18th St", address_2: "", city: "Miami", state: "FL", zipcode: "33132", description: "", phone: "3053744635", dollars: 3, reservations: true, avatar_file_name:"Mignonette-Oyster-Bar-in-Miamis-Edgwater.png"},
+  {name: "Mmmm", address_1: "2519 NW 2nd Ave", address_2: "", city: "Miami", state: "AL", zipcode: "33137", description: "", phone: "7867033409", dollars: 1, reservations: true, avatar_file_name:"mmmm.jpg"},
+  {name: "Niu Kitchen", address_1: "134 NE 2nd Ave", address_2: "", city: "Miami", state: "FL", zipcode: "33132", description: "", phone: "7865425070", dollars: 2, reservations: true, avatar_file_name:"safe_image.jpeg"},
+  {name: "The Federal", address_1: "5132 Biscayne Blvd", address_2: "", city: "Miami", state: "FL", zipcode: "33137", description: "", phone: "3057589559", dollars: 2, reservations: true, avatar_file_name:"tumblr_lz3wn2Y5Et1qboztc.jpg"}
 ])
 RestaurantCuisine.create!([
   {restaurant_id: 1, cuisine_id: 3},
