@@ -3,63 +3,60 @@
 
     <div class="col-md-6">
       <div class="text-center">
-        <p>
-          <%= @restaurant.name %>
-        </p>
 
-        <p>
-          <%= @restaurant.address_1 %>
-        </p>
-
-        <p>
-          <%= @restaurant.address_2 %>
-        </p>
-
-        <p>
-          <%= @restaurant.city %>, <%= @restaurant.state %> <%= @restaurant.zipcode %>
-        </p>
-
-        <p>
-          <%= @restaurant.description %>
-        </p>
-
-        <p>
-          <%= @restaurant.phone %>
-        </p>
-
-        <p>
-          <strong>Cost:</strong>
-          <%= @restaurant.dollars %>/5
-        </p>
-
-        <p>
-          <strong>Takes Reservations:</strong>
-          <%= @restaurant.reservations %>
-        </p>
-
-        <p>
-          <strong>Cuisines:</strong>
-          <% @restaurant.cuisines.each do |cuisine| %>
-            <%=cuisine.genre%>
-          <% end %> 
-        </p>
-
-        <%= link_to 'Back', '/' %>
+        <%= link_to @restaurant do %>
+          <%= image_tag @restaurant.avatar.url(:large) %>
+        <% end %>
 
       </div> 
     </div>
 
     <div class="col-md-6">
       <div class="text-center">
-        <p>
-          <strong>Menus:</strong>
-        </p>
-        <% @restaurant.menus.each do |menu| %>
-        <p><%= link_to menu.name, menu_path(menu) %></p>
+        <h2> <%= @restaurant.name %> </h2>
+
+        <h4> <%= @restaurant.address_1 %> </h4>
+
+        <h4> <%= @restaurant.address_2 %> </h4>
+
+        <h4>
+          <%= @restaurant.city %>, <%= @restaurant.state %> <%= @restaurant.zipcode %>
+        </h4>
+
+        <h4> <%= number_to_phone(@restaurant.phone, area_code: true) %> </h4>
+        
+        <%if @restaurant.reservations %>
+          <h5> <em>Accepts Reservations</em> </h5>
+        <% else %>
+          <p> <em>Reservations Not Accepted</em> </p>
         <% end %>
+
+        <p>
+          <!-- Displays restaurant.dollars in green and remaining dollars out of 4 in grey -->
+          <span style="color:green"><strong><%=dollars%></strong></span><%(4 - @restaurant.dollars).times do%><span style="color:grey">$</span><% end %>
+        </p>
+        
+        <p>
+          <%= @restaurant.description %>
+        </p>
+
+        <!-- method found in restaurant helper -->
+        <p> 
+          <%= comma_separated_cuisines %>
+        </p>
+
       </div>
     </div>
+
   </div>
+</div>
+<hr>
+
+<div class="text-center">
+  <% @restaurant.menus[0...-1].each do |menu| %>
+    <%= link_to menu.name, menu %> |
+  <% end %>
+  <%= link_to @restaurant.menus.last.name, @restaurant.menus.last %>
 </div>
 
 <hr>

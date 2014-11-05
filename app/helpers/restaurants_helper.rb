@@ -77,5 +77,21 @@ module RestaurantsHelper
     [@restaurant.id]
   end
 
+  def dollars
+    case @restaurant.dollars
+    when 1
+    '$' 
+    when 2
+    '$$'
+    when 3
+    '$$$'
+    when 4
+    '$$$$'
+    end    
+  end
+
+  def comma_separated_cuisines
+    @restaurant.cuisines.map{|cuisine| cuisine.genre}.join(', ') 
+  end
 
 end
