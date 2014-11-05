@@ -30,23 +30,23 @@
 
 
 <% if current_user %>
-<% if current_user.admin || current_user.restaurant_id == @menu.restaurants.first.id%>
-<hr>
-  <div class="container">
-    <div class="text-center">
-      <h3> Administrator Panel </h3>
-      <hr>
-      <p>
-        <strong>New Category:</strong>
-      </p>
-      <%= render 'categories/form' %> 
-      <hr>
-      <p>
-        <%= link_to 'Edit Menu Details', edit_menu_path(@menu) %>
-      </p>
+  <% if current_user.admin || current_user.restaurant_id == @menu.restaurants.first.id%>
+  <hr>
+    <div class="container">
+      <div class="text-center">
+        <h3> Administrator Panel </h3>
+        <hr>
+        <p>
+          <strong>New Category:</strong>
+        </p>
+        <%= render 'categories/form' %> 
+        <hr>
+        <p>
+          <%= link_to 'Edit Menu Details', edit_menu_path(@menu) %>
+        </p>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 <% end %>
 
 

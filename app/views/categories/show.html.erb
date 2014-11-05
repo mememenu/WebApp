@@ -7,36 +7,48 @@
   <% end %>
 
   <hr>
-  <%= link_to 'Back to Menu', @category.menu %> |
-  <%= link_to 'Edit', edit_category_path(@category) %>
+  <%= link_to 'Back to Menu', @category.menu %>
 </div>
 <hr>
-
 <div class="container">
+  <% @dishes.in_groups_of(4, false).each do |group| %>
   <div class="row">
-
-    <div class="col-md-6">
-      <div class="text-center">
-        <h3> Dishes </h3>
-        <% @dishes.each do |dish| %>
-          <%= link_to dish do %>
-            <div class="text-center">
-            <%= dish.name %><br>
-            <%= image_tag dish.avatar.url(:medium) %>
-            </div>
-          <% end %>
+    <% group.each do |dish| %>
+      <div class="col-md-3 text-center">
+        <%= link_to dish do %>
+          <%= dish.name %> <br>
+          <%= image_tag dish.avatar.url(:medium) %>
         <% end %>
       </div>
-    </div>
+    <% end %>
+  </div>
+  <% end %>
+</div>
 
-    <div class="col-md-6">
+
+<% if current_user %>
+  <% if current_user.admin || current_user.restaurant_id == @category.menu.restaurants.first.id %>
+  <hr>
+    <div class="container">
       <div class="text-center">
-        <h3> Add a Dish </h3>
-        <%= render 'dishes/form' %>
+        <h3> Administrator Panel </h3>
+        <hr>
+        <%= link_to "Edit Category Details (#{@category.name})", edit_category_path(@category) %>
+        <hr>
+        <p>
+          <strong>New Dish:</strong>
+        </p>
+        <%= render 'dishes/form' %> 
       </div>
     </div>
+  <% end %>
+<% end %>
 
-  </div>
-</div>
+
+
+
+
+
+
 
 

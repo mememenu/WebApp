@@ -79,23 +79,23 @@
 </div>
 
 <% if current_user %>
-<% if current_user.admin || current_user.restaurant_id == @restaurant.id%>
-<hr>
-  <div class="container">
-    <div class="text-center">
-      <h3> Administrator Panel </h3>
-      <hr>
-      <p>
-        <strong>New Menu:</strong>
-      </p>
-      <%= render 'menus/form' %> 
-      <hr>
-      <p>
-        <%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %>
-      </p>
+  <% if current_user.admin || current_user.restaurant_id == @restaurant.id%>
+  <hr>
+    <div class="container">
+      <div class="text-center">
+        <h3> Administrator Panel </h3>
+        <hr>
+        <p>
+          <strong>New Menu:</strong>
+        </p>
+        <%= render 'menus/form' %> 
+        <hr>
+        <p>
+          <%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %>
+        </p>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 <% end %>
 
 
