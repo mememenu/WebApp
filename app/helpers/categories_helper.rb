@@ -1,6 +1,6 @@
 module CategoriesHelper
 
-  def default_value
+  def menu_value
     if @menu 
       @menu.id
     else

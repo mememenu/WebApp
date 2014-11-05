@@ -20,4 +20,15 @@ module MenusHelper
   #   end
   # end
 
+ def default_value
+  if @edit
+    #same as @menu.restaurant_id
+    @menu.restaurants.first.id
+  elsif @restaurant
+    @restaurant.id
+  else
+    
+  end
+ end
+
 end
