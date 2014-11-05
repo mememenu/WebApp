@@ -35,6 +35,15 @@
           <% if alert %>
             <li class="alert alert-danger"><%= alert %></li>
           <% end %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurant Finder</strong>. <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <% cuisine_finder.each do |cuisine| %>
+                <li><%= link_to cuisine.genre, cuisine %></li>
+                <li class="divider"></li>
+                <% end %>
+            </ul>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
