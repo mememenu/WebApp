@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="text-center">
         <p>
           <%= @restaurant.name %>
@@ -44,12 +44,12 @@
           <% end %> 
         </p>
 
-        <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
         <%= link_to 'Back', '/' %>
+
       </div> 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
       <div class="text-center">
         <p>
           <strong>Menus:</strong>
@@ -59,16 +59,6 @@
         <% end %>
       </div>
     </div>
-
-    <div class="col-md-4">
-      <div class="text-center">
-        <p>
-          <strong>New Menu:</strong>
-        </p>
-        <%= render 'menus/form' %> 
-      </div> 
-    </div>
-
   </div>
 </div>
 
@@ -87,6 +77,27 @@
   </div>
   <% end %>
 </div>
+
+<% if current_user %>
+<% if current_user.admin || current_user.restaurant_id == @restaurant.id%>
+<hr>
+  <div class="container">
+    <div class="text-center">
+      <h3> Administrator Panel </h3>
+      <hr>
+      <p>
+        <strong>New Menu:</strong>
+      </p>
+      <%= render 'menus/form' %> 
+      <hr>
+      <p>
+        <%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %>
+      </p>
+    </div>
+  </div>
+<% end %>
+<% end %>
+
 
 
 
