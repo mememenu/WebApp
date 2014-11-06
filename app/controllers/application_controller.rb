@@ -4,46 +4,44 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def validate_restaurant_owner_or_admin
-    if current_user
-      unless current_user.admin
-        if @restaurant
-          if current_user.restaurant_id == @restaurant.id
-          else
-            redirect_to root_path
-          end
-        elsif @menu
-          if current_user.restaurant_id == @menu.restaurants.first.id
-          else
-            redirect_to root_path
-          end
-        elsif @category
-          if current_user.restaurant_id == @category.menu.restuarants.first.id
-          else
-            redirect_to root_path
-          end
-        elsif @dish
-          if current_user.restaurant_id == @dish.category.menu.restaurants.first.id
-          else
-            redirect_to root_path
-          end
-        elsif @image
-          if current_user.restaurant_id == @image.dish.category.menu.restaurants.first.id
-          else
-            redirect_to root_path
-          end
-        else
-          redirect_to root_path
-        end
-      end  
+
+    if @restaurant
+      if current_user.restaurant_id == @restaurant.id
+      else
+        redirect_to root_path
+      end
+    elsif @menu
+      if current_user.restaurant_id == @menu.restaurants.first.id
+      else
+        redirect_to root_path
+      end
+    elsif @category
+      if current_user.restaurant_id == @category.menu.restaurants.first.id
+      else
+        redirect_to root_path
+      end
+    elsif @dish
+      if current_user.restaurant_id == @dish.category.menu.restaurants.first.id
+      else
+        redirect_to root_path
+      end
+    elsif @image
+      if current_user.restaurant_id == @image.dish.category.menu.restaurants.first.id
+      else
+        redirect_to root_path
+      end
+    elsif current_user.admin
+
+    else
+      redirect_to root_path
     end
+
   end
 
   def validate_admin
-    if current_user
-        if current_user.admin
-        else
-          redirect_to root_path
-        end
+    if current_user.admin
+    else
+      redirect_to root_path
     end
   end
 
