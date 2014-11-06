@@ -14,9 +14,7 @@
  *= require_self
  */
 
-#devise-session-new {
-  margin-top: 150px;
-}
+
 
 #fb-btn-push-down {
   margin-top: 10px;
@@ -24,7 +22,6 @@
 }
 
 #logo {
-  padding-top: 100px;
-  padding-left: 33px;
+  padding-top: 130px;
   padding-bottom: 20px;
 }
