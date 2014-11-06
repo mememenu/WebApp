@@ -67,6 +67,11 @@
         <hr>
         <%= link_to 'Edit Dish Details', edit_dish_path(@dish) %>
         <hr>
+        <h3> Dish Images </h3>
+          <% @images.each do |image| %>
+            <%= image_tag image.avatar.url(:thumb) %>
+          <% end %>
+        <hr>
         <h5> Add Additional Images </h5><br>
         <div class="col-md-2 col-md-offset-5"><%= render 'images/form' %></div>
       </div>

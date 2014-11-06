@@ -1,7 +1,7 @@
 class MenusController < ApplicationController
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: :show
-  before_action :validate_restaurant_owner_or_admin, except: :show
+  before_action :validate_restaurant_owner_or_admin, except: [:show, :create, :update]
 
   # GET /menus
   # GET /menus.json
