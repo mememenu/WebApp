@@ -1,6 +1,7 @@
 class RestaurantMenusController < ApplicationController
   before_action :set_restaurant_menu, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  
   # GET /restaurant_menus
   # GET /restaurant_menus.json
   def index
