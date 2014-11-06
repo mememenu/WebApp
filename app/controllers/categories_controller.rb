@@ -2,6 +2,8 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: :show
   before_action :validate_restaurant_owner_or_admin, except: [:show, :create, :update]
+  before_action :check_hidden, only: :show
+
   # GET /categories
   # GET /categories.json
   def index
@@ -61,6 +63,20 @@ class CategoriesController < ApplicationController
   end
 
   private
+
+    def check_hidden
+      if @category.hide 
+        if current_user
+          unless current_user.admin || current_user.restaurant_id == @category.menu.restaurants.first.id
+            redirect_to root_path
+          end
+        else
+          redirect_to root_path
+        end
+      end
+    end
+
+
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])

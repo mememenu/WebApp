@@ -18,6 +18,8 @@ class Restaurant < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
 
+  after_save :cascade_hidden, :if => :hide_changed?
+
   #returns an array of all category ID's associated with that restaurant
   def restaurant_categories
     menus = []
@@ -35,6 +37,13 @@ class Restaurant < ActiveRecord::Base
     end
 
     categories
+  end
+
+  def cascade_hidden
+    self.menus.each do |menu|
+      menu.hide = self.hide
+      menu.save
+    end
   end
 
 end

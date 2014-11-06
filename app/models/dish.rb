@@ -14,4 +14,13 @@ class Dish < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
 
+  after_save :cascade_hidden, :if => :hide_changed?
+
+  def cascade_hidden
+    self.images.each do |image|
+      image.hide = self.hide
+      image.save
+    end
+  end
+
 end

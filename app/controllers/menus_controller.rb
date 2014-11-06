@@ -2,6 +2,7 @@ class MenusController < ApplicationController
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: :show
   before_action :validate_restaurant_owner_or_admin, except: [:show, :create, :update]
+  before_action :check_hidden, only: :show
 
   # GET /menus
   # GET /menus.json
@@ -65,6 +66,19 @@ class MenusController < ApplicationController
   end
 
   private
+    
+    def check_hidden
+      if @menu.hide 
+        if current_user
+          unless current_user.admin || current_user.restaurant_id == @menu.restaurants.first.id
+            redirect_to root_path
+          end
+        else
+          redirect_to root_path
+        end
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_menu
       @menu = Menu.find(params[:id])
