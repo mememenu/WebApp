@@ -20,6 +20,10 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
+    <%= f.label :hide %><br>
+    <%= f.check_box :hide %>
+  </div>
+  <div class="field">
      <%= hidden_field_tag "menu[restaurant_ids][]", [default_value] %>   
   </div>
   <div class="actions">

@@ -40,6 +40,10 @@
     <%= f.check_box :vegetarian %>
   </div>
   <div class="field">
+    <%= f.label :hide %><br>
+    <%= f.check_box :hide %>
+  </div>
+  <div class="field">
     <%= f.hidden_field :category_id, value: dish_value %>
   </div>
   <div class="col-md-6 col-md-offset-3">
