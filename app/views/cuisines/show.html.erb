@@ -4,6 +4,7 @@
     <strong>Genre:</strong>
     <%= @cuisine.genre %>
   </p>
+  <hr>
 
   <div class="container">
     <% @cuisine.restaurants.in_groups_of(4, false) do |group| %>
