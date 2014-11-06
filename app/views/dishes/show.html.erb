@@ -70,6 +70,7 @@
         <h3> Dish Images </h3>
           <% @images.each do |image| %>
             <%= image_tag image.avatar.url(:thumb) %>
+            <%= link_to 'Edit Image', edit_image_path(image) %>
           <% end %>
         <hr>
         <h5> Add Additional Images </h5><br>
