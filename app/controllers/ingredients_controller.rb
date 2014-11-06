@@ -1,6 +1,7 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :validate_admin, except: :show
 
   # GET /ingredients
   # GET /ingredients.json

@@ -1,6 +1,7 @@
 class DishIngredientsController < ApplicationController
   before_action :set_dish_ingredient, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :validate_admin
 
   # GET /dish_ingredients
   # GET /dish_ingredients.json

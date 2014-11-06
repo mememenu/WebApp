@@ -1,6 +1,7 @@
 class RestaurantCuisinesController < ApplicationController
   before_action :set_restaurant_cuisine, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :validate_admin
 
   # GET /restaurant_cuisines
   # GET /restaurant_cuisines.json
