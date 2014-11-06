@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Hidden</th>
       <th>Description</th>
       <th>Category</th>
       <th>Portion size</th>
@@ -20,6 +21,7 @@
     <% @dishes.each do |dish| %>
       <tr>
         <td><%= dish.name %></td>
+        <td><%= dish.hide %></td>
         <td><%= dish.description %></td>
         <td><%= dish.category.name %></td>
         <td><%= dish.portion_size %></td>

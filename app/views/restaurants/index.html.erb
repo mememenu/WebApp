@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Hidden</th>
       <th>Address 1</th>
       <th>Address 2</th>
       <th>City</th>
@@ -22,6 +23,7 @@
     <% @restaurants.each do |restaurant| %>
       <tr>
         <td><%= restaurant.name %></td>
+        <td><%= restaurant.hide %></td>
         <td><%= restaurant.address_1 %></td>
         <td><%= restaurant.address_2 %></td>
         <td><%= restaurant.city %></td>

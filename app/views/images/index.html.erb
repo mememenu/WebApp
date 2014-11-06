@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Dish</th>
+      <th>Hidden</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +13,7 @@
     <% @images.each do |image| %>
       <tr>
         <td><%= image.dish.name %></td>
+        <td><%= image.hide %></td>
         <td><%= link_to 'Show', image %></td>
         <td><%= link_to 'Edit', edit_image_path(image) %></td>
         <td><%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
