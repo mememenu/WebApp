@@ -25,6 +25,7 @@ class DishesController < ApplicationController
 
   # GET /dishes/1/edit
   def edit
+    @ingredients = Ingredient.where(restaurant_id: @dish.category.menu.restaurants.first.id)
   end
 
   # POST /dishes
