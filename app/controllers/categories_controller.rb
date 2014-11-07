@@ -16,6 +16,7 @@ class CategoriesController < ApplicationController
     @dishes = Dish.where(category_id: @category.id).reverse
     @dish = Dish.new
     @categories = Category.where(menu_id: @category.menu_id).reverse
+    @ingredients = Ingredient.where(restaurant_id: @category.menu.restaurants.first.id)
   end
 
   # GET /categories/1/edit
