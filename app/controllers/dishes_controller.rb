@@ -16,8 +16,12 @@ class DishesController < ApplicationController
   def show
     @images = Image.where(dish_id: @dish.id)
     @image = Image.new
+    @ingredients = Ingredient.where(restaurant_id: @dish.category.menu.restaurants.first.id)
   end
 
+  def new
+    @dish = Dish.new
+  end
 
   # GET /dishes/1/edit
   def edit
