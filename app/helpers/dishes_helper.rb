@@ -1,6 +1,6 @@
 module DishesHelper
 
-  def dish_value
+  def category_id_value
     if @category
       @category.id
     else

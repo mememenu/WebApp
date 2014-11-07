@@ -36,12 +36,20 @@
           <% end %>
         </p>
 
-        <p>
-          <strong>Ingredients:</strong>
-          <% @dish.ingredients.each do |ingredient| %>
-            <%= ingredient.name %>
-          <% end %>
-        </p>        
+          <table align="center">
+            <thead>
+              <th>Ingredients</th>
+            </thead>
+            <tbody>
+              <% @dish.ingredients.each do |ingredient| %>
+              <tr>
+                <td class="has-hover-popover" data-toggle="popover" data-content="<p><%= ingredient.description %></p>"><%= ingredient.name %></td>
+              </tr>
+              <% end %> 
+            </tbody>
+          </table>
+          <br>
+      
 
         <%= link_to 'Back to Menu', @dish.category %>
       </div>
@@ -79,3 +87,14 @@
     </div>
   <% end %>
 <% end %>
+
+
+<script>
+  $(document).ready(function() {
+    $('.has-hover-popover').popover({
+      trigger: 'hover',
+      html: true,
+      placement: 'left'
+    });
+  });
+</script>

@@ -7,4 +7,5 @@ module CategoriesHelper
       @category.menu.restaurants.first.id
     end
   end
+
 end
