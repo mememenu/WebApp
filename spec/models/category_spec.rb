@@ -59,5 +59,22 @@ RSpec.describe Category, :type => :model do
     expect(@category.hide).to eq(@menu.hide)
   end
 
+  it "should become unhidden when corresponding restaurant becomes unhidden" do 
+    create_category
+    expect(@category.hide).to eq(false)
+
+    @menu.hide = true
+    @menu.save
+    @menu.reload
+    @category.reload
+    expect(@category.hide).to eq(@menu.hide)
+
+    @menu.hide = false
+    @menu.save
+    @menu.reload
+    @category.reload
+    expect(@category.hide).to eq(@menu.hide)
+  end
+
 
 end
