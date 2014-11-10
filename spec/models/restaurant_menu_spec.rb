@@ -1,5 +1,36 @@
 require 'rails_helper'
 
 RSpec.describe RestaurantMenu, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+ 
+  before :each do 
+    @restaurant = Restaurant.create(name: "Mmmm", address_1: "123 fake lane", address_2: "apartment 4", city: "Miami", state: "FL", zipcode: "33132", phone: "1234567890", description: "tasty food", dollars: 2, reservations: true)
+    @menu = Menu.create(name: "Lunch")
+  end
+
+  it "should not save if restaurant_id is not present" do
+    expect(RestaurantMenu.count).to eq(0)   
+    @restaurant_menu = RestaurantMenu.new
+    @restaurant_menu.menu_id = @menu.id
+    @restaurant_menu.save
+    expect(RestaurantMenu.count).to eq(0)  
+  end
+
+  it "should not save if menu_id is not present" do
+    expect(RestaurantMenu.count).to eq(0)   
+    @restaurant_menu = RestaurantMenu.new
+    @restaurant_menu.restaurant_id = @restaurant.id
+    @restaurant_menu.save
+    expect(RestaurantMenu.count).to eq(0)
+  end
+
+
+  it "should save if restaurant_menu has restaurant and menu associated with it" do
+    expect(RestaurantMenu.count).to eq(0)   
+    @restaurant_menu = RestaurantMenu.new
+    @restaurant_menu.menu_id = @menu.id
+    @restaurant_menu.restaurant_id = @restaurant.id
+    @restaurant_menu.save
+    expect(RestaurantMenu.count).to eq(1)
+  end
+
 end
