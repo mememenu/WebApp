@@ -18,4 +18,5 @@ RSpec.describe Cuisine, :type => :model do
     expect(Cuisine.count).to eq(0)
     expect { raise StandardError }.to raise_error
   end
+  
 end

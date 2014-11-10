@@ -2,91 +2,68 @@ require 'rails_helper'
 
 RSpec.describe RestaurantCuisine, :type => :model do
   
-  def create_rest
-    @rest = Restaurant.new
-    @rest.name = "mmmm"
-    @rest.address_1 = "123 fake lane"
-    @rest.address_2 = "apartment 4"
-    @rest.city = "miami"
-    @rest.state = "fl"
-    @rest.zipcode = "33134"
-    @rest.phone = "3059999999"
-    @rest.description = "tasty treats for you"
-    @rest.dollars = 4
-    @rest.reservations = true
-    @rest.save
+
+  before :each do 
+    @cuisine = Cuisine.create(genre: "Italian")
+    @restaurant = Restaurant.create(name: "Mmmm", address_1: "123 fake lane", address_2: "apartment 4", city: "Miami", state: "FL", zipcode: "33132", phone: "1234567890", description: "tasty food", dollars: 2, reservations: true)
   end
 
-  def create_cuis
-    @cuis = Cuisine.new
-    @cuis.genre = "Italian"
-    @cuis.save
-  end
-
-  def create_rest_cuis
-    @rc = RestaurantCuisine.new
-    @rc.restaurant_id = @rest.id
-    @rc.cuisine_id = @cuis.id
-    @rc.save
+  def create_restaurant_cuisine
+    @restaurant_cuisine = RestaurantCuisine.new
+    @restaurant_cuisine.restaurant_id = @restaurant.id
+    @restaurant_cuisine.cuisine_id = @cuisine.id
+    @restaurant_cuisine.save
   end
 
 
-  it "associates a RestaurantCuisine with a restaurant instance and cuisine instance" do
-    expect(Restaurant.count).to eq(0)
-    create_rest
-    expect(Restaurant.count).to eq(1)
-
-    expect(Cuisine.count).to eq(0)
-    create_cuis
-    expect(Cuisine.count).to eq(1)
-
+  it "associates a RestaurantCuisine instance with a restaurant and a cuisine" do
     expect(RestaurantCuisine.count).to eq(0)
-    create_rest_cuis
+    create_restaurant_cuisine
     expect(RestaurantCuisine.count).to eq(1)
 
-    expect(@rest.cuisines.first.genre).to eq(@cuis.genre)
+    expect(@restaurant.cuisines.first.genre).to eq(@cuisine.genre)
   end
 
-  it "destroys restaurant_cuisine when restaurant is destroyed" do 
-    expect(Restaurant.count).to eq(0)
-    create_rest
-    expect(Restaurant.count).to eq(1)
-
-    expect(Cuisine.count).to eq(0)
-    create_cuis
-    expect(Cuisine.count).to eq(1)
-
+  it "destroys the restaurant_cuisine instance when dependent restaurant is destroyed" do 
     expect(RestaurantCuisine.count).to eq(0)
-    create_rest_cuis
+    create_restaurant_cuisine
     expect(RestaurantCuisine.count).to eq(1)
 
-    expect(@rest.cuisines.first.genre).to eq(@cuis.genre)
+    expect(@restaurant.cuisines.first.genre).to eq(@cuisine.genre)
 
-    @rest.destroy
+    @restaurant.destroy
     expect(Restaurant.count).to eq(0)
     expect(RestaurantCuisine.count).to eq(0)
     expect(Cuisine.count).to eq(1)
   end
 
-  it "destroys restaurant_cuisine when cuisine is destroyed" do 
-    expect(Restaurant.count).to eq(0)
-    create_rest
-    expect(Restaurant.count).to eq(1)
-
-    expect(Cuisine.count).to eq(0)
-    create_cuis
-    expect(Cuisine.count).to eq(1)
-
+  it "destroys the restaurant_cuisine instance when dependent cuisine is destroyed" do 
     expect(RestaurantCuisine.count).to eq(0)
-    create_rest_cuis
+    create_restaurant_cuisine
     expect(RestaurantCuisine.count).to eq(1)
 
-    expect(@rest.cuisines.first.genre).to eq(@cuis.genre)
+    expect(@restaurant.cuisines.first.genre).to eq(@cuisine.genre)
 
-    @cuis.destroy
+    @cuisine.destroy
     expect(Restaurant.count).to eq(1)
     expect(RestaurantCuisine.count).to eq(0)
     expect(Cuisine.count).to eq(0)
+  end
+
+  it "should not save if cuisine_id is not present" do
+    expect(RestaurantCuisine.count).to eq(0)
+    @restaurant_cuisine = RestaurantCuisine.new
+    @restaurant_cuisine.restaurant_id = @restaurant.id
+    @restaurant_cuisine.save
+    expect(RestaurantCuisine.count).to eq(0)
+  end
+
+  it "should not save if restaurant_id is not present" do
+    expect(RestaurantCuisine.count).to eq(0)
+    @restaurant_cuisine = RestaurantCuisine.new
+    @restaurant_cuisine.cuisine_id = @cuisine.id
+    @restaurant_cuisine.save
+    expect(RestaurantCuisine.count).to eq(0)
   end
 
 
