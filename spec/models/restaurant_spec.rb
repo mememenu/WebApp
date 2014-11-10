@@ -6,7 +6,6 @@ RSpec.describe Restaurant, :type => :model do
     @cuisine = Cuisine.create(genre: "Italian")
   end
 
-  #Refactor this method with an options hash in order to make it more usable.
   def create_restaurant
     @rest = Restaurant.new
     @rest.name = "mmmm"
@@ -19,7 +18,7 @@ RSpec.describe Restaurant, :type => :model do
     @rest.description = "tasty treats for you"
     @rest.dollars = 4
     @rest.reservations = true
-    @rest.cuisine_ids = @cuisine.id
+    @rest.cuisine_ids << @cuisine.id
     @rest.save
   end
 

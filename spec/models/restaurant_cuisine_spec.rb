@@ -16,7 +16,7 @@ RSpec.describe RestaurantCuisine, :type => :model do
   end
 
 
-  it "associates a RestaurantCuisine instance with a restaurant and a cuisine" do
+  it "associates a restaurant_cuisine instance with a restaurant and a cuisine" do
     expect(RestaurantCuisine.count).to eq(0)
     create_restaurant_cuisine
     expect(RestaurantCuisine.count).to eq(1)
@@ -56,6 +56,7 @@ RSpec.describe RestaurantCuisine, :type => :model do
     @restaurant_cuisine.restaurant_id = @restaurant.id
     @restaurant_cuisine.save
     expect(RestaurantCuisine.count).to eq(0)
+    expect { raise StandardError }.to raise_error
   end
 
   it "should not save if restaurant_id is not present" do
@@ -64,6 +65,7 @@ RSpec.describe RestaurantCuisine, :type => :model do
     @restaurant_cuisine.cuisine_id = @cuisine.id
     @restaurant_cuisine.save
     expect(RestaurantCuisine.count).to eq(0)
+    expect { raise StandardError }.to raise_error
   end
 
 

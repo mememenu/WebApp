@@ -19,7 +19,8 @@ RSpec.describe RestaurantMenu, :type => :model do
     @restaurant_menu = RestaurantMenu.new
     @restaurant_menu.menu_id = @menu.id
     @restaurant_menu.save
-    expect(RestaurantMenu.count).to eq(0)  
+    expect(RestaurantMenu.count).to eq(0)
+    expect { raise StandardError }.to raise_error  
   end
 
   it "should not save if menu_id is not present" do
@@ -28,6 +29,7 @@ RSpec.describe RestaurantMenu, :type => :model do
     @restaurant_menu.restaurant_id = @restaurant.id
     @restaurant_menu.save
     expect(RestaurantMenu.count).to eq(0)
+    expect { raise StandardError }.to raise_error
   end
 
   it "should save if restaurant_menu instance has restaurant and menu associated with it" do

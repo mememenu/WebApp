@@ -28,6 +28,7 @@ RSpec.describe Category, :type => :model do
     @category.menu_id = @menu.id
     @category.save
     expect(Category.count).to eq(0)
+    expect { raise StandardError }.to raise_error
   end
 
   it "should not save if menu_id is not present" do
@@ -36,6 +37,7 @@ RSpec.describe Category, :type => :model do
     @category.name = "Appetizer"
     @category.save
     expect(Category.count).to eq(0)
+    expect { raise StandardError }.to raise_error
   end
 
   it "should be destroyed if corresponding menu is destroyed" do
