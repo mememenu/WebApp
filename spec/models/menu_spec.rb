@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Menu, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+
+  it "should save successfully when all information present" do
+    @menu = Menu.new
+    @menu.name = "Lunch"
+    @menu.save
+  end
+
 end
