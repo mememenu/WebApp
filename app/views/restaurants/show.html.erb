@@ -53,10 +53,12 @@
 <hr>
 
 <div class="text-center">
-  <% @restaurant.menus[0...-1].each do |menu| %>
-    <%= link_to menu.name, menu %> |
+  <% if @restaurant.menus.exists? %>
+    <% @restaurant.menus[0...-1].each do |menu| %>
+      <%= link_to menu.name, menu %> |
+    <% end %>
+    <%= link_to @restaurant.menus.last.name, @restaurant.menus.last %>
   <% end %>
-  <%= link_to @restaurant.menus.last.name, @restaurant.menus.last %>
 </div>
 
 <hr>

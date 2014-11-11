@@ -1,5 +1,7 @@
 class Image < ActiveRecord::Base
-  belongs_to :dish, dependent: :destroy
+  belongs_to :dish
+
+  validates :dish_id, presence: true
 
   has_attached_file :avatar, :styles => { :large => "500x500>", :medium => "250x250>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/

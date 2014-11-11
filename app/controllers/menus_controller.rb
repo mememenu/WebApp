@@ -22,6 +22,10 @@ class MenusController < ApplicationController
   def edit
   end
 
+  def new
+    @menu = Menu.new
+  end
+
   # POST /menus
   # POST /menus.json
   def create

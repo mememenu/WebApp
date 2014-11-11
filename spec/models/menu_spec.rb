@@ -9,6 +9,7 @@ RSpec.describe Menu, :type => :model do
     @menu = Menu.new
     @menu.name = "Lunch"
     @menu.save
+    expect(Menu.count).to eq(1)
   end
 
   def create_restaurant_menu
@@ -59,5 +60,18 @@ RSpec.describe Menu, :type => :model do
 
     expect(@menu.hide).to eq(@restaurant.hide)
   end
+
+  it "should be destroyed when corresponding restaurant is destroyed" do
+    create_menu
+    create_restaurant_menu
+
+    @restaurant.destroy
+
+    expect(Restaurant.count).to eq(0)
+    expect(Menu.count).to eq(0)
+    expect(RestaurantMenu.count).to eq(0)
+  end
+
+
 
 end
