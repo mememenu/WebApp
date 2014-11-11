@@ -6,4 +6,5 @@ class Ingredient < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: { scope: :restaurant, 
     message: "This Ingredient already exists at this restaurant" }
+  validates :restaurant_id, presence: true
 end
