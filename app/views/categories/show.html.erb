@@ -1,8 +1,8 @@
 <div class="container">
 
   <div class="text-center">
-    <%= link_to @category.menu.restaurants.first do %>
-    <%= image_tag @category.menu.restaurants.first.avatar.url(:medium) %>
+    <%= link_to @category.menu.restaurant do %>
+    <%= image_tag @category.menu.restaurant.avatar.url(:medium) %>
     <% end %>
     <h3><%= @category.menu.name %></h3>
     <hr>
@@ -33,7 +33,7 @@
 
 
   <% if current_user %>
-    <% if current_user.admin || current_user.restaurant_id == @category.menu.restaurants.first.id %>
+    <% if current_user.admin || current_user.restaurant_id == @category.menu.restaurant.id %>
     <hr>
       <div class="container">
         <div class="text-center">

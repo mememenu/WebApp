@@ -16,7 +16,7 @@ class DishesController < ApplicationController
   def show
     @images = Image.where(dish_id: @dish.id)
     @image = Image.new
-    @ingredients = Ingredient.where(restaurant_id: @dish.category.menu.restaurants.first.id)
+    @ingredients = Ingredient.where(restaurant_id: @dish.category.menu.restaurant.id)
   end
 
   def new
@@ -25,7 +25,7 @@ class DishesController < ApplicationController
 
   # GET /dishes/1/edit
   def edit
-    @ingredients = Ingredient.where(restaurant_id: @dish.category.menu.restaurants.first.id)
+    @ingredients = Ingredient.where(restaurant_id: @dish.category.menu.restaurant.id)
   end
 
   # POST /dishes
@@ -75,7 +75,7 @@ class DishesController < ApplicationController
     def check_hidden
       if @dish.hide 
         if current_user
-          unless current_user.admin || current_user.restaurant_id == @dish.category.menu.restaurants.first.id
+          unless current_user.admin || current_user.restaurant_id == @dish.category.menu.restaurant.id
             redirect_to root_path
           end
         else

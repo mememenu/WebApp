@@ -24,7 +24,7 @@
     <%= f.check_box :hide %>
   </div>
   <div class="field">
-     <%= hidden_field_tag "menu[restaurant_ids][]", [default_value] %>   
+     <%= f.hidden_field :restaurant_id, value: restaurant_id_default_value %>   
   </div>
   <div class="actions">
     <%= f.submit %>

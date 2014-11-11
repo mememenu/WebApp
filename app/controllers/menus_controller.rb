@@ -74,7 +74,7 @@ class MenusController < ApplicationController
     def check_hidden
       if @menu.hide 
         if current_user
-          unless current_user.admin || current_user.restaurant_id == @menu.restaurants.first.id
+          unless current_user.admin || current_user.restaurant_id == @menu.restaurant.id
             redirect_to root_path
           end
         else
@@ -90,7 +90,6 @@ class MenusController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def menu_params
-      params.require(:menu).permit(:name, :description, :hide)
-      # used to have :restaurant_id
+      params.require(:menu).permit(:name, :description, :hide, :restaurant_id)
     end
 end

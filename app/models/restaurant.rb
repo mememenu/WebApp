@@ -7,16 +7,13 @@ class Restaurant < ActiveRecord::Base
   validates :zipcode, presence: true, numericality: true, length: { is: 5 }
   validates :phone, presence: true, numericality: true, length: { is: 10 }
 
+
   # Validation prevents seed file from seeding properly
   # validates :cuisine_ids, presence: true
 
   has_many :cuisines, through: :restaurant_cuisines
   has_many :restaurant_cuisines, dependent: :destroy
-
-  has_many :restaurant_menus, dependent: :destroy
-  has_many :menus, through: :restaurant_menus, dependent: :destroy
-  
-
+  has_many :menus, dependent: :destroy
   has_many :ingredients, dependent: :destroy
 
   has_attached_file :avatar, :styles => { :large => "500x500>", :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/placeholder_image1-1050x663.png"
@@ -24,7 +21,6 @@ class Restaurant < ActiveRecord::Base
   validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
 
   after_save :cascade_hidden, :if => :hide_changed?
-  before_destroy :destroy_menus
 
   #returns an array of all category ID's associated with that restaurant
   def restaurant_categories
@@ -46,17 +42,12 @@ class Restaurant < ActiveRecord::Base
   end
 
   def cascade_hidden
+
     self.menus.each do |menu|
       menu.hide = self.hide
       menu.save
     end
   end
 
-  def destroy_menus
-    self.menus.each do |menu|
-      menu.destroy
-      raise StandardError
-    end
-  end
 
 end

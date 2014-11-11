@@ -4,7 +4,7 @@ module CategoriesHelper
     if @menu 
       @menu.id
     else
-      @category.menu.restaurants.first.id
+      @category.menu.restaurant.id
     end
   end
 

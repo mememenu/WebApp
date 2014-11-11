@@ -1,7 +1,9 @@
 class Menu < ActiveRecord::Base
 
   validates :name, presence: true
+  validates :restaurant_id, presence: true
 
+  belongs_to :restaurant
   has_many :restaurants, through: :restaurant_menus
   has_many :restaurant_menus, dependent: :destroy
   has_many :categories, dependent: :destroy

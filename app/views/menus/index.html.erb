@@ -19,7 +19,7 @@
         <td><%= menu.name %></td>
         <td><%= menu.hide %></td>
         <td><%= menu.description %></td>
-        <td><%= menu.restaurants.first.name %></td>
+        <td><%= menu.restaurant.name %></td>
         <td><%= link_to 'Show', menu %></td>
         <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
         <td><%= link_to 'Destroy', menu, method: :delete, data: { confirm: 'Are you sure?' } %></td>

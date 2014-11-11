@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
     @dishes = Dish.where(category_id: @category.id).reverse
     @dish = Dish.new
     @categories = Category.where(menu_id: @category.menu_id).reverse
-    @ingredients = Ingredient.where(restaurant_id: @category.menu.restaurants.first.id)
+    @ingredients = Ingredient.where(restaurant_id: @category.menu.restaurant.id)
   end
 
   # GET /categories/1/edit
@@ -68,7 +68,7 @@ class CategoriesController < ApplicationController
     def check_hidden
       if @category.hide 
         if current_user
-          unless current_user.admin || current_user.restaurant_id == @category.menu.restaurants.first.id
+          unless current_user.admin || current_user.restaurant_id == @category.menu.restaurant.id
             redirect_to root_path
           end
         else

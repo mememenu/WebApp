@@ -4,8 +4,7 @@ RSpec.describe Dish, :type => :model do
   
   before :each do 
     @restaurant = Restaurant.create!(name: "Mmmm", address_1: "123 fake lane", address_2: "apartment 4", city: "Miami", state: "FL", zipcode: "33132", phone: "1234567890", description: "tasty food", dollars: 2, reservations: true)
-    @menu = Menu.create!(name: "Lunch")
-    @restaurant_menu = RestaurantMenu.create!(restaurant_id: @restaurant.id, menu_id: @menu.id)
+    @menu = Menu.create!(name: "Lunch", restaurant_id: @restaurant.id)
     @category = Category.create!(name: 'Appetizer', menu_id: @menu.id)
   end
 

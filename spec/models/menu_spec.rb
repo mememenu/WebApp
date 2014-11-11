@@ -8,16 +8,9 @@ RSpec.describe Menu, :type => :model do
   def create_menu
     @menu = Menu.new
     @menu.name = "Lunch"
+    @menu.restaurant_id = @restaurant.id
     @menu.save
     expect(Menu.count).to eq(1)
-  end
-
-  def create_restaurant_menu
-    @restaurant_menu = RestaurantMenu.new
-    @restaurant_menu.menu_id = @menu.id
-    @restaurant_menu.restaurant_id = @restaurant.id
-    @restaurant_menu.save
-    expect(RestaurantMenu.count).to eq(1)
   end
 
   it "should save successfully when all information present" do
@@ -28,7 +21,6 @@ RSpec.describe Menu, :type => :model do
 
   it "should become hidden when corresponding restaurant becomes hidden" do 
     create_menu
-    create_restaurant_menu
 
     @restaurant.hide = true
     @restaurant.save
@@ -42,7 +34,6 @@ RSpec.describe Menu, :type => :model do
 
   it "should become unhidden if restaurant becomes unhidden" do
     create_menu
-    create_restaurant_menu
 
     @restaurant.hide = true
     @restaurant.save
@@ -63,7 +54,6 @@ RSpec.describe Menu, :type => :model do
 
   it "should be destroyed when corresponding restaurant is destroyed" do
     create_menu
-    create_restaurant_menu
 
     @restaurant.destroy
 

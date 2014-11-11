@@ -64,7 +64,7 @@ class ImagesController < ApplicationController
     def check_hidden
       if @image.hide 
         if current_user 
-            unless current_user.admin || current_user.restaurant_id == @image.dish.category.menu.restaurants.first.id
+            unless current_user.admin || current_user.restaurant_id == @image.dish.category.menu.restaurant.id
               redirect_to root_path
             end
         else
