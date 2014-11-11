@@ -106,16 +106,6 @@ ActiveRecord::Schema.define(version: 20141111195626) do
   add_index "restaurant_cuisines", ["cuisine_id"], name: "index_restaurant_cuisines_on_cuisine_id", using: :btree
   add_index "restaurant_cuisines", ["restaurant_id"], name: "index_restaurant_cuisines_on_restaurant_id", using: :btree
 
-  create_table "restaurant_menus", force: true do |t|
-    t.integer  "restaurant_id"
-    t.integer  "menu_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "restaurant_menus", ["menu_id"], name: "index_restaurant_menus_on_menu_id", using: :btree
-  add_index "restaurant_menus", ["restaurant_id"], name: "index_restaurant_menus_on_restaurant_id", using: :btree
-
   create_table "restaurants", force: true do |t|
     t.string   "name"
     t.string   "address_1"

@@ -59,7 +59,6 @@ RSpec.describe Menu, :type => :model do
 
     expect(Restaurant.count).to eq(0)
     expect(Menu.count).to eq(0)
-    expect(RestaurantMenu.count).to eq(0)
   end
 
 
