@@ -9,7 +9,7 @@ RSpec.describe Dish, :type => :model do
     @category = Category.create!(name: 'Appetizer', menu_id: @menu.id)
   end
 
-  def create_category
+  def create_dish
     expect(Dish.count).to eq(0)
     @dish = Dish.new
     @dish.name = "Cheese"
@@ -17,12 +17,16 @@ RSpec.describe Dish, :type => :model do
     @dish.portion_size = "full"
     @dish.spice = 3
     @dish.hot = true
-    @dise.gluten_free = false
+    @dish.gluten_free = false
     @dish.vegetarian = false
     @dish.category_id = @category.id
     @dish.hide = false
     @dish.save
     expect(Dish.count).to eq(1)
+  end
+
+it "should save succesfully with name, description, portion_size, spice, hot, gluten_free, vegetarian and category_id" do
+    create_dish
   end
 
 end
