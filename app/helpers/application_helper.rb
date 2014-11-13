@@ -9,6 +9,10 @@ module ApplicationHelper
     end
     
     finder
-
   end
+
+  def restaurant_dropdown_options
+    Restaurant.where(hide: [nil, false])
+  end
+
 end

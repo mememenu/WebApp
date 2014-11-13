@@ -47,21 +47,11 @@
                                     <div data-width="12" class="col-md-12 mega-col-nav">
                                         <div class="mega-inner">
                                             <ul class="mega-nav level1">
+                                                <% restaurant_dropdown_options.each do |restaurant| %>
                                                 <li>
-                                                    <a href="thedutch_menu.html">The Dutch</a>
+                                                <%= link_to restaurant.name, restaurant %>
                                                 </li>
-                                                <!-- <li>
-                                                    <a href="thefederal_menu.html">The Federal</a>
-                                                </li>
-                                                <li>
-                                                    <a href="mmmm_menu.html">Mmmm</a>
-                                                </li>
-                                                <li>
-                                                    <a href="mignonette_menu.html">Mignonette</a>
-                                                </li>
-                                                <li>
-                                                    <a href="pubbelly_menu.html">Pubbelly</a>
-                                                </li> -->
+                                                <% end %>
                                             </ul>
                                         </div>
                                     </div>
