@@ -4,9 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>meme•menu</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+  
 
 
   <!-- Latest compiled and minified Bootstrap CSS & JS-->
@@ -17,10 +15,24 @@
   <!-- Google Font "Raleway" -->
   <link href="http://fonts.googleapis.com/css?family=Raleway:400,700,600,500,300,100,200,800" rel="stylesheet" />
 
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
 
 </head>
 
+<!-- GOOGLE ANALYTICS -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-56672219-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<!-- END GOOGLE ANALYTICS -->
 
 <body>
 
@@ -73,9 +85,9 @@
     </div><!--end class container-->
 </header><!--end class tz-header-->
 
-  <container>
+  <div class="container">
     <%= yield %>
-  </container>
+  </div>
 
 <script>
     jQuery.noConflict();
