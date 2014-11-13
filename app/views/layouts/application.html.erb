@@ -1,67 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
   <title>meme•menu</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
-  <!-- Latest compiled and minified Bootstrap JavaScript -->
+
+  <!-- Latest compiled and minified Bootstrap CSS & JS-->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Google Font "Raleway" -->
+  <link href="http://fonts.googleapis.com/css?family=Raleway:400,700,600,500,300,100,200,800" rel="stylesheet" />
+  
 
 </head>
+
+
+
 <body>
 
-  <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">(meme•menu)</a>
-      </div>
-
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <% if notice %>
-            <li class="alert alert-success"><%= notice %></li>
-          <% end %>
-          <% if alert %>
-            <li class="alert alert-danger"><%= alert %></li>
-          <% end %>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Restaurant Finder</strong> <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <% cuisine_finder.each do |cuisine| %>
-                <li><%= link_to cuisine.genre, cuisine %></li>
-                <li class="divider"></li>
-                <% end %>
+<header class="tz-header tz-header3">
+        <div class="container">
+            <h3 class="tz-logo pull-left">
+                <a href="index.html">
+                    <img src="images/logo_100px_black.png" alt="meme • menu">
+                </a>
+            </h3>
+            <button data-target=".nav-collapse" class="btn-navbar tz_icon_menu pull-right" type="button">
+                <i class="fa fa-bars"></i>
+            </button>
+            <nav class="pull-right">
+                <ul class="nav-collapse">
+                    <li>
+                        <a href="index.html">HOME</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">RESTAURANTS</a>
+                        <div class="nav-child dropdown-menu mega-dropdown-menu">
+                            <div class="mega-dropdown-inner">
+                                <div class="row">
+                                    <div data-width="12" class="col-md-12 mega-col-nav">
+                                        <div class="mega-inner">
+                                            <ul class="mega-nav level1">
+                                                <li>
+                                                    <a href="thedutch_menu.html">The Dutch</a>
+                                                </li>
+                                                <!-- <li>
+                                                    <a href="thefederal_menu.html">The Federal</a>
+                                                </li>
+                                                <li>
+                                                    <a href="mmmm_menu.html">Mmmm</a>
+                                                </li>
+                                                <li>
+                                                    <a href="mignonette_menu.html">Mignonette</a>
+                                                </li>
+                                                <li>
+                                                    <a href="pubbelly_menu.html">Pubbelly</a>
+                                                </li> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="http://meme-menu.tumblr.com" target="_blank">BLOG</a>
+                    </li>
+                    <li>
+                        <a href="about.html">ABOUT</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">CONTACT</a>
+                    </li>
             </ul>
-          </li>
-          <% if user_signed_in? %>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged in as <strong><%= current_user.email %></strong>. <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
-              <li class="divider"></li>
-              <li><%= link_to "Logout", destroy_user_session_path, method: :get, :class => 'navbar-link'  %></li>
-            </ul>
-          </li>
-          <% else %>
-          <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
-          <% end %>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
+        </nav>
+    </div><!--end class container-->
+</header><!--end class tz-header-->
 
   <container>
     <%= yield %>
