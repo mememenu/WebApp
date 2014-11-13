@@ -16,7 +16,7 @@
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- Google Font "Raleway" -->
   <link href="http://fonts.googleapis.com/css?family=Raleway:400,700,600,500,300,100,200,800" rel="stylesheet" />
-  
+
 
 </head>
 
@@ -27,9 +27,9 @@
 <header class="tz-header tz-header3">
         <div class="container">
             <h3 class="tz-logo pull-left">
-                <a href="index.html">
-                    <img src="images/logo_100px_black.png" alt="meme • menu">
-                </a>
+                <%= link_to root_path do %>
+                    <%= image_tag "logo_100px_black.png" %>
+                <% end %>
             </h3>
             <button data-target=".nav-collapse" class="btn-navbar tz_icon_menu pull-right" type="button">
                 <i class="fa fa-bars"></i>
@@ -37,7 +37,7 @@
             <nav class="pull-right">
                 <ul class="nav-collapse">
                     <li>
-                        <a href="index.html">HOME</a>
+                        <%= link_to 'HOME', root_path %>
                     </li>
                     <li class="active">
                         <a href="#">RESTAURANTS</a>
@@ -73,10 +73,10 @@
                         <a href="http://meme-menu.tumblr.com" target="_blank">BLOG</a>
                     </li>
                     <li>
-                        <a href="about.html">ABOUT</a>
+                        <%= link_to 'ABOUT', home_about_path %>
                     </li>
                     <li>
-                        <a href="contact.html">CONTACT</a>
+                        <%= link_to 'CONTACT', home_contact_path %>
                     </li>
             </ul>
         </nav>
