@@ -7,19 +7,38 @@
     <div class="info-restaurant">
       <%= @restaurant.address_1 %><br>
       <% unless @restaurant.address_2.empty? %>
-        <%= @restaurant.address_2 %><br>
+      <%= @restaurant.address_2 %><br>
       <% end %>
       <%= @restaurant.city %><br>
       <%= @restaurant.phone %>
     </div>
     <hr>
     <div class="menu-options">
-    <% @restaurant.menus[0...-1].each do |menu| %>
-    <%= menu.name.upcase + ' •' %>
-    <% end %>
-    <%= @restaurant.menus.last.name.upcase %>
+      <% @restaurant.menus[0...-1].each do |menu| %>
+      <%= menu.name.upcase + ' •' %>
+      <% end %>
+      <%= @restaurant.menus.last.name.upcase %>
     </div>
   </div>
+
+  <div class="tzportfolio-pages tz-no-mansory">
+
+    <% @dishes.reverse.each do |dish| %>
+
+      <div class="element">
+        <div class="tz-inner">
+          <div class="tz-image-item">
+            <%= link_to dish do %>
+            <%= image_tag dish.avatar.url(:large) %>
+          </div>
+          <h6 class="dish-name"><%= dish.name.upcase %></h6>
+          <% end %>
+        </div>
+    </div>
+
+    <% end %>
+  </div>
+
 </section><!--end class tzportfolio-wrap-->
 
 

@@ -5446,7 +5446,7 @@ body .custom-right .tz-collection2{
 .tzportfolio-wrap{
     position: relative;
     background: #fafafa;
-    padding: 71px 70px 120px 100px;
+    padding: 71px 70px 120px 71px;
 }
 .title-restaurant:after {
     background: #333333;
@@ -5454,7 +5454,7 @@ body .custom-right .tz-collection2{
     content: "";
     height: 3px;
     left: 50%;
-    margin-left: -10px;
+    margin-left: -10px;iso
     position: absolute;
     width: 20px;
 }
@@ -5553,9 +5553,7 @@ body .custom-right .tz-collection2{
     margin-top: 16px;
 
 }
-.tz-no-mansory{
-    margin-right: -30px;
-}
+
 .tzportfolio-pages:after{
     clear: both;
     display: table;
@@ -5565,8 +5563,7 @@ body .custom-right .tz-collection2{
     background: transparent;
 }
 .tz-inner{
-    margin: 30px 30px 0 0;
-    padding: 0 0 20px 0;
+    margin: 30px 15px 0 15px;
     overflow: hidden;
     background: #f1f1f1;
     cursor: pointer;
@@ -5595,6 +5592,9 @@ body .tz-grid-2 .tz-image-item{
 .tz-image-item{
     position: relative;
     overflow: hidden;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
 }
 .tz-image-item:after{
     position: absolute;
@@ -5607,6 +5607,7 @@ body .tz-grid-2 .tz-image-item{
 }
 .tz-image-item img{
     width: 100%;
+
     transition: all 0.3s linear 0s;
     -moz-transition: all 0.3s linear 0s;
     -webkit-transition: all 0.3s linear 0s;
@@ -10258,7 +10259,7 @@ body .kfrontstats .kcol-mid{
         padding: 40px 0;
     }
     .tzportfolio-wrap {
-        padding: 10px 0 45px;
+        padding: 10px 0 45px 0;
     }
     .tz-inner{
         margin: 0 10px 0 10px;
@@ -11102,7 +11103,7 @@ width:33%;
         height: 350px;
     }
     .tzportfolio-wrap {
-        padding: 50px 30px 75px;
+        padding: 50px 30px 75px 30px;
     }
     body .tz-grid-3 .tz-image-item {
         height: 250px;
@@ -11248,6 +11249,16 @@ width:33%;
 
 }
 
+.dish-name {
+
+font-family: 'Raleway',sans-serif;
+font-size: 12px;
+font-weight: 600;
+line-height: 25px;
+padding-bottom: 20px;
+
+}
+
 @media (min-width: 991px) and (max-width: 1200px) {
     .laster-thumb {
         height: 210px;
@@ -11378,3 +11389,4 @@ width:33%;
         visibility: visible;
     }
 }
+
