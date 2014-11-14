@@ -11103,7 +11103,7 @@ width:33%;
         height: 350px;
     }
     .tzportfolio-wrap {
-        padding: 50px 30px 75px 30px;
+        padding: 50px 30px 50px 30px;
     }
     body .tz-grid-3 .tz-image-item {
         height: 250px;
@@ -11112,7 +11112,7 @@ width:33%;
         height: 250px;
     }
     .tzportfolio-pages {
-        margin-right: -30px;
+        /*margin-right: -30px;*/
         margin-top: 21px;
         position: relative;
 
