@@ -36,58 +36,58 @@
 
 <body class="home-meme">
 
-<header class="tz-header tz-header3">
-        <div class="container">
-            <h3 class="tz-logo pull-left">
-                <%= link_to root_path do %>
-                    <%= image_tag "logo_100px_black.png" %>
-                <% end %>
-            </h3>
-            <button data-target=".nav-collapse" class="btn-navbar tz_icon_menu pull-right" type="button">
-                <i class="fa fa-bars"></i>
-            </button>
-            <nav class="pull-right">
-                <ul class="nav-collapse">
-                    <li>
-                        <%= link_to 'HOME', root_path %>
-                    </li>
-                    <li class="active">
-                        <a href="#">RESTAURANTS</a>
-                        <div class="nav-child dropdown-menu mega-dropdown-menu">
-                            <div class="mega-dropdown-inner">
-                                <div class="row">
-                                    <div data-width="12" class="col-md-12 mega-col-nav">
-                                        <div class="mega-inner">
-                                            <ul class="mega-nav level1">
-                                                <% restaurant_dropdown_options.each do |restaurant| %>
-                                                <li>
-                                                <%= link_to restaurant.name, restaurant %>
-                                                </li>
-                                                <% end %>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="http://meme-menu.tumblr.com" target="_blank">BLOG</a>
-                    </li>
-                    <li>
-                        <%= link_to 'ABOUT', home_about_path %>
-                    </li>
-                    <li>
-                        <%= link_to 'CONTACT', home_contact_path %>
-                    </li>
-            </ul>
-        </nav>
+  <header class="tz-header tz-header3">
+    <div class="container">
+      <h3 class="tz-logo pull-left">
+        <%= link_to root_path do %>
+        <%= image_tag "logo_100px_black.png" %>
+        <% end %>
+      </h3>
+      <button data-target=".nav-collapse" class="btn-navbar tz_icon_menu pull-right" type="button">
+        <i class="fa fa-bars"></i>
+      </button>
+      <nav class="pull-right">
+        <ul class="nav-collapse">
+          <li>
+            <%= link_to 'HOME', root_path %>
+          </li>
+          <li class="active">
+            <a href="#">RESTAURANTS</a>
+            <div class="nav-child dropdown-menu mega-dropdown-menu">
+              <div class="mega-dropdown-inner">
+                <div class="row">
+                  <div data-width="12" class="col-md-12 mega-col-nav">
+                    <div class="mega-inner">
+                      <ul class="mega-nav level1">
+                        <% restaurant_dropdown_options.each do |restaurant| %>
+                        <li>
+                          <%= link_to restaurant.name, restaurant %>
+                        </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="http://meme-menu.tumblr.com" target="_blank">BLOG</a>
+          </li>
+          <li>
+            <%= link_to 'ABOUT', home_about_path %>
+          </li>
+          <li>
+            <%= link_to 'CONTACT', home_contact_path %>
+          </li>
+        </ul>
+      </nav>
     </div><!--end class container-->
-</header><!--end class tz-header-->
+  </header><!--end class tz-header-->
 
-  <div class="container">
-    <%= yield %>
-  </div>
+
+  <%= yield %>
+
 
 <script>
     jQuery.noConflict();
