@@ -10,7 +10,7 @@
       <%= @restaurant.address_2 %><br>
       <% end %>
       <%= @restaurant.city %><br>
-      <%= @restaurant.phone %>
+      <%= number_to_phone(@restaurant.phone, area_code: true) %>
     </div>
     <hr>
     <div class="menu-options">
