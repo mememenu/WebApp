@@ -25,7 +25,7 @@
     <div class="row">
     <% @dishes.reverse.each do |dish| %>
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class='<%= dish.category.name %> <%= dish.category.menu.name %>'>
+    <div class='<%= dish.category.name %> <%= dish.category.menu.name.gsub(' ', '') %>'>
       <div class="element">
         <div class="tz-inner">
           <div class="tz-image-item">
@@ -74,18 +74,12 @@
 
 <% @restaurant.menus.each do |menu| %>
 
-
-
 <% menus = Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name).map{|a| a.name.gsub(' ', '')} %>
-
-
-
-
 
 $(document).ready(function(){
   $('span#<%=menu.name.gsub(" ", "")%>').click(function(){
-    console.log('<%=menu.name.gsub(" ", "")%> clicked')
-    $('<%= menus.map{|a| a.prepend(".")}.join %>').hide('slow');
+    console.log('<%=menu.name.gsub(" ", "")%> clicked');
+    $('<%= menus.map{|a| a.prepend(".")}.join(", ") %>').hide('slow');
     $('.<%=menu.name.gsub(" ", "")%>').show('slow');
       });
       });
