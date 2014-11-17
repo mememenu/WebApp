@@ -15,16 +15,16 @@
     <hr>
     <div class="menu-options">
       <% @restaurant.menus[0...-1].each do |menu| %>
-      <%= menu.name.upcase + ' •' %>
+      <span id='<%=menu.name%>'> <%= menu.name.upcase + ' •' %> </span>
       <% end %>
-      <%= @restaurant.menus.last.name.upcase %>
+      <span id='<%=@restaurant.menus.last.name%>'> <%= @restaurant.menus.last.name.upcase %> </span>
     </div>
   </div>
 
   <div class="tzportfolio-pages tz-no-mansory">
 
     <% @dishes.reverse.each do |dish| %>
-
+    <div class='<%= dish.category.name %> <%= dish.category.menu.name %>'>
       <div class="element">
         <div class="tz-inner">
           <div class="tz-image-item">
@@ -34,8 +34,8 @@
           <h6 class="dish-name"><%= dish.name.upcase %></h6>
           <% end %>
         </div>
+      </div>
     </div>
-
     <% end %>
   </div>
 
@@ -48,28 +48,34 @@
 
 
 <% if current_user %>
-  <% if current_user.admin || current_user.restaurant_id == @restaurant.id%>
-  <hr>
-    <div class="container">
-      <div class="text-center">
-        <h3> Administrator Panel </h3>
-        <hr>
-        <p>
-          <strong>New Menu:</strong>
-        </p>
-        <%= render 'menus/form' %> 
-        <hr>
-        <p>
-          <%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %>
-        </p>
-      </div>
-    </div>
-  <% end %>
+<% if current_user.admin || current_user.restaurant_id == @restaurant.id%>
+<hr>
+<div class="container">
+  <div class="text-center">
+    <h3> Administrator Panel </h3>
+    <hr>
+    <p>
+      <strong>New Menu:</strong>
+    </p>
+    <%= render 'menus/form' %> 
+    <hr>
+    <p>
+      <%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %>
+    </p>
+  </div>
+</div>
+<% end %>
 <% end %>
 
 
+<script>
+$(document).ready(function(){
+  
+  $("span#Dinner").on("click", function(){
 
+    console.log("Dinner span clicked");
 
-
-
-
+  });
+  
+  });
+</script>
