@@ -16,13 +16,13 @@
 
     <div class="menu-options">
       <% @restaurant.menus[0...-1].each do |menu| %>
-        <a><span id='<%=menu.name.gsub(' ', '')%>'> <%= menu.name.upcase%> </span></a> • 
+        <a><span id='<%=menu.name.gsub(/[ &]/, '')%>'> <%= menu.name.upcase%> </span></a> • 
       <% end %>
-      <a><span id='<%=@restaurant.menus.last.name.gsub(' ', '')%>'> <%= @restaurant.menus.last.name.upcase %> </span></a>
+      <a><span id='<%=@restaurant.menus.last.name.gsub(/[ &]/, '')%>'> <%= @restaurant.menus.last.name.upcase %> </span></a>
       <div class="menu-list tzfilter">
         <% @restaurant.menus.each do |menu| %>
           <% menu.categories.each do |category| %>
-          <a class="<%=category.menu.name.gsub(' ', '')%>"><%= category.name %></a>
+          <a id="<%=category.name.gsub(/[ &]/, '')%>" class="<%=category.menu.name.gsub(/[ &]/, '')%>"><%= category.name %></a>
           <% end %>        
         <% end %>
       </div>
@@ -33,7 +33,7 @@
     <div class="tzportfolio-pages tz-no-mansory">
       <div class="row">
         <% @dishes.reverse.each do |dish| %>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 <%= dish.category.name %> <%= dish.category.menu.name.gsub(' ', '') %>">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 <%= dish.category.name.gsub(/[ &]/, '') %> <%= dish.category.menu.name.gsub(/[ &]/, '') %>">
           <div class="element">
             <div class="tz-inner">
               <div class="tz-image-item">
@@ -51,12 +51,6 @@
   </div>
 
 </section><!--end class tzportfolio-wrap-->
-
-
-
-
-
-
 
 <% if current_user %>
 <% if current_user.admin || current_user.restaurant_id == @restaurant.id%>
@@ -78,23 +72,56 @@
 <% end %>
 <% end %>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 
 <% @restaurant.menus.each do |menu| %>
 
-<% menus = Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name).map{|a| a.name.gsub(' ', '')} %>
+<% menus = Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name).map{|a| a.name.gsub(/[ &]/, '')} %>
 
 $(document).ready(function(){
-  $('span#<%=menu.name.gsub(" ", "")%>').click(function(){
-    console.log('<%=menu.name.gsub(" ", "")%> clicked');
+  $('span#<%=menu.name.gsub(/[ &]/, "")%>').click(function(){
+    console.log('<%=menu.name.gsub(/[ &]/, "")%> clicked');
     $('<%= menus.map{|a| a.prepend(".")}.join(", ") %>').hide('slow');
-    $('.<%=menu.name.gsub(" ", "")%>').show('slow');
+    $('.<%=menu.name.gsub(/[ &]/, "")%>').show('slow');
   });
 });
 
 <% end %>
 
+<% @restaurant.menus.each do |menu| %>
+<% menu.categories.each do |category| %>
+
+<% other_category_names = restaurant_category_names.delete_if{|name| name==category.name.gsub(/[ &]/, "")}.map{|a| a.prepend(".")}.join(", ") %> 
+
+$(document).ready(function(){
+  $('a#<%=category.name.gsub(/[ &]/, "")%>').click(function(){
+    console.log('<%=category.name.gsub(/[ &]/, "")%> clicked');
+    $('<%=other_category_names%>').hide('slow');
+    $('.<%=category.name.gsub(/[ &]/, "")%>').show('slow');
+  });
+});
+
+<% end %>
+<% end %>
+
 </script>
-
-
 

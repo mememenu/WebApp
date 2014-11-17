@@ -94,4 +94,22 @@ module RestaurantsHelper
     @restaurant.cuisines.map{|cuisine| cuisine.genre}.join(', ') 
   end
 
+  def restaurant_category_names
+    menus = []
+
+    @restaurant.menus.each do |menu|
+      menus<<menu
+    end
+
+    categories = []
+
+    menus.each do |menu|
+      menu.categories.each do |category|
+        categories<<category.name.gsub(/[ &]/, "")
+      end
+    end
+
+    categories
+  end
+
 end
