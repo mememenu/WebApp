@@ -105,7 +105,7 @@ module RestaurantsHelper
 
     menus.each do |menu|
       menu.categories.each do |category|
-        categories<<category.name.gsub(/[ &]/, "")
+        categories<<category.clean_name
       end
     end
 

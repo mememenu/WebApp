@@ -15,4 +15,8 @@ class Category < ActiveRecord::Base
     end
   end
 
+  def clean_name
+    self.name.gsub(/[ &]/, '')
+  end
+
 end

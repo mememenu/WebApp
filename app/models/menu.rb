@@ -30,4 +30,8 @@ class Menu < ActiveRecord::Base
 
   end
 
+  def clean_name
+    self.name.gsub(/[ &]/, '')
+  end
+
 end
