@@ -13,31 +13,42 @@
       <%= number_to_phone(@restaurant.phone, area_code: true) %>
     </div>
     <hr>
+
     <div class="menu-options">
       <% @restaurant.menus[0...-1].each do |menu| %>
-      <span id='<%=menu.name.gsub(' ', '')%>'> <%= menu.name.upcase + ' •' %> </span>
+      <a><span id='<%=menu.name.gsub(' ', '')%>'> <%= menu.name.upcase%> </span></a> • 
+      <a><span id='<%=@restaurant.menus.last.name.gsub(' ', '')%>'> <%= @restaurant.menus.last.name.upcase %> </span></a>
+      <div class="menu-list tzfilter">
+        <% menu.categories.each do |category| %>
+        <a><%= category.name %></a>
+        <% end %>
+        <% @restaurant.menus.last.categories.each do |category| %>
+        <a><%= category.name %></a>
+        <% end %>
+      </div>
       <% end %>
-      <span id='<%=@restaurant.menus.last.name.gsub(' ', '')%>'> <%= @restaurant.menus.last.name.upcase %> </span>
     </div>
-  </div>
 
-  <div class="tzportfolio-pages tz-no-mansory container">
-    <div class="row">
-    <% @dishes.reverse.each do |dish| %>
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 <%= dish.category.name %> <%= dish.category.menu.name.gsub(' ', '') %>">
-      <div class="element">
-        <div class="tz-inner">
-          <div class="tz-image-item">
-            <%= link_to dish do %>
-            <%= image_tag dish.avatar.url(:large) %>
+
+
+    <div class="tzportfolio-pages tz-no-mansory">
+      <div class="row">
+        <% @dishes.reverse.each do |dish| %>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 <%= dish.category.name %> <%= dish.category.menu.name.gsub(' ', '') %>">
+          <div class="element">
+            <div class="tz-inner">
+              <div class="tz-image-item">
+                <%= link_to dish do %>
+                <%= image_tag dish.avatar.url(:large) %>
+              </div>
+              <h6 class="dish-name"><%= dish.name.upcase %></h6>
+              <% end %>
+            </div>
           </div>
-          <h6 class="dish-name"><%= dish.name.upcase %></h6>
-          <% end %>
         </div>
+        <% end %>
       </div>
     </div>
-    <% end %>
-  </div>
   </div>
 
 </section><!--end class tzportfolio-wrap-->
@@ -49,38 +60,38 @@
 
 
 <% if current_user %>
-  <% if current_user.admin || current_user.restaurant_id == @restaurant.id%>
-  <hr>
-  <div class="container">
-    <div class="text-center">
-      <h3> Administrator Panel </h3>
-      <hr>
-      <p>
-        <strong>New Menu:</strong>
-      </p>
-      <%= render 'menus/form' %> 
-      <hr>
-      <p>
-        <%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %>
-      </p>
-    </div>
+<% if current_user.admin || current_user.restaurant_id == @restaurant.id%>
+<hr>
+<div class="container">
+  <div class="text-center">
+    <h3> Administrator Panel </h3>
+    <hr>
+    <p>
+      <strong>New Menu:</strong>
+    </p>
+    <%= render 'menus/form' %> 
+    <hr>
+    <p>
+      <%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %>
+    </p>
   </div>
-  <% end %>
+</div>
+<% end %>
 <% end %>
 
 <script>
 
 <% @restaurant.menus.each do |menu| %>
 
-  <% menus = Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name).map{|a| a.name.gsub(' ', '')} %>
+<% menus = Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name).map{|a| a.name.gsub(' ', '')} %>
 
-  $(document).ready(function(){
-    $('span#<%=menu.name.gsub(" ", "")%>').click(function(){
-      console.log('<%=menu.name.gsub(" ", "")%> clicked');
-      $('<%= menus.map{|a| a.prepend(".")}.join(", ") %>').hide('slow');
-      $('.<%=menu.name.gsub(" ", "")%>').show('slow');
-    });
+$(document).ready(function(){
+  $('span#<%=menu.name.gsub(" ", "")%>').click(function(){
+    console.log('<%=menu.name.gsub(" ", "")%> clicked');
+    $('<%= menus.map{|a| a.prepend(".")}.join(", ") %>').hide('slow');
+    $('.<%=menu.name.gsub(" ", "")%>').show('slow');
   });
+});
 
 <% end %>
 
