@@ -49,38 +49,38 @@
 
 
 <% if current_user %>
-<% if current_user.admin || current_user.restaurant_id == @restaurant.id%>
-<hr>
-<div class="container">
-  <div class="text-center">
-    <h3> Administrator Panel </h3>
-    <hr>
-    <p>
-      <strong>New Menu:</strong>
-    </p>
-    <%= render 'menus/form' %> 
-    <hr>
-    <p>
-      <%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %>
-    </p>
+  <% if current_user.admin || current_user.restaurant_id == @restaurant.id%>
+  <hr>
+  <div class="container">
+    <div class="text-center">
+      <h3> Administrator Panel </h3>
+      <hr>
+      <p>
+        <strong>New Menu:</strong>
+      </p>
+      <%= render 'menus/form' %> 
+      <hr>
+      <p>
+        <%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %>
+      </p>
+    </div>
   </div>
-</div>
-<% end %>
+  <% end %>
 <% end %>
 
 <script>
 
 <% @restaurant.menus.each do |menu| %>
 
-<% menus = Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name).map{|a| a.name.gsub(' ', '')} %>
+  <% menus = Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name).map{|a| a.name.gsub(' ', '')} %>
 
-$(document).ready(function(){
-  $('span#<%=menu.name.gsub(" ", "")%>').click(function(){
-    console.log('<%=menu.name.gsub(" ", "")%> clicked');
-    $('<%= menus.map{|a| a.prepend(".")}.join(", ") %>').hide('slow');
-    $('.<%=menu.name.gsub(" ", "")%>').show('slow');
-      });
-      });
+  $(document).ready(function(){
+    $('span#<%=menu.name.gsub(" ", "")%>').click(function(){
+      console.log('<%=menu.name.gsub(" ", "")%> clicked');
+      $('<%= menus.map{|a| a.prepend(".")}.join(", ") %>').hide('slow');
+      $('.<%=menu.name.gsub(" ", "")%>').show('slow');
+    });
+  });
 
 <% end %>
 
