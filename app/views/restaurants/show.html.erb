@@ -17,13 +17,14 @@
       <% @restaurant.menus[0...-1].each do |menu| %>
       <span id='<%=menu.name%>'> <%= menu.name.upcase + ' •' %> </span>
       <% end %>
-      <span id='<%=@restaurant.menus.last.name%>'> <%= @restaurant.menus.last.name.upcase %> </span>
+      <button id='Dinner'> <%= @restaurant.menus.last.name.upcase %> </button>
     </div>
   </div>
 
   <div class="tzportfolio-pages tz-no-mansory">
-
+    <div class="row">
     <% @dishes.reverse.each do |dish| %>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
     <div class='<%= dish.category.name %> <%= dish.category.menu.name %>'>
       <div class="element">
         <div class="tz-inner">
@@ -36,7 +37,9 @@
         </div>
       </div>
     </div>
+    </div>
     <% end %>
+  </div>
   </div>
 
 </section><!--end class tzportfolio-wrap-->
@@ -66,16 +69,3 @@
 </div>
 <% end %>
 <% end %>
-
-
-<script>
-$(document).ready(function(){
-  
-  $("span#Dinner").on("click", function(){
-
-    console.log("Dinner span clicked");
-
-  });
-  
-  });
-</script>
