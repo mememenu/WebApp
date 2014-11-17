@@ -22,7 +22,7 @@
       <div class="menu-list tzfilter">
         <% @restaurant.menus.each do |menu| %>
           <% menu.categories.each do |category| %>
-          <a><%= category.name %></a>
+          <a id="<%=category.menu.name.gsub(' ', '')%>"><%= category.name %></a>
           <% end %>        
         <% end %>
       </div>
