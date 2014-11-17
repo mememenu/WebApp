@@ -1,4 +1,4 @@
-<!-- restaurant info and menus -->
+<!-- restaurant info -->
 <section class="tzportfolio-wrap">
   <div class="container">
     <h2 class="title-restaurant"><%= @restaurant.name.upcase %></h2>
@@ -7,29 +7,34 @@
     <div class="info-restaurant">
       <%= @restaurant.address_1 %><br>
       <% unless @restaurant.address_2.empty? %>
-      <%= @restaurant.address_2 %><br>
+        <%= @restaurant.address_2 %><br>
       <% end %>
       <%= @restaurant.city %><br>
       <%= number_to_phone(@restaurant.phone, area_code: true) %>
-    </div>
+    </div><!--   End of restaurant info --> 
     <hr>
 
+    <!-- Restaurant menus  -->
     <div class="menu-options">
       <% @restaurant.menus[0...-1].each do |menu| %>
         <a><span id='<%=menu.name.gsub(/[ &]/, '')%>'> <%= menu.name.upcase%> </span></a> • 
       <% end %>
       <a><span id='<%=@restaurant.menus.last.name.gsub(/[ &]/, '')%>'> <%= @restaurant.menus.last.name.upcase %> </span></a>
+
+      <!--   Restaurant Menu Categories -->
       <div class="menu-list tzfilter">
         <% @restaurant.menus.each do |menu| %>
           <% menu.categories.each do |category| %>
-          <a id="<%=category.name.gsub(/[ &]/, '')%>" class="<%=category.menu.name.gsub(/[ &]/, '')%>"><%= category.name %></a>
+            <a id="<%=category.name.gsub(/[ &]/, '')%>" class="<%=category.menu.name.gsub(/[ &]/, '')%>"><%= category.name %></a>
           <% end %>        
         <% end %>
-      </div>
-    </div>
+      </div><!--   End of restaurant menu categories -->
+    </div><!-- End of restaurant menus -->
+
+  
 
 
-
+    <!--   Pictures of Food -->
     <div class="tzportfolio-pages tz-no-mansory">
       <div class="row">
         <% @dishes.reverse.each do |dish| %>
@@ -47,80 +52,61 @@
         </div>
         <% end %>
       </div>
-    </div>
-  </div>
-
+    </div><!-- end of food pictures -->
+  </div><!-- Closes top container -->
 </section><!--end class tzportfolio-wrap-->
 
+<!-- Admin Panel -->
 <% if current_user %>
-<% if current_user.admin || current_user.restaurant_id == @restaurant.id%>
-<hr>
-<div class="container">
-  <div class="text-center">
-    <h3> Administrator Panel </h3>
-    <hr>
-    <p>
-      <strong>New Menu:</strong>
-    </p>
-    <%= render 'menus/form' %> 
-    <hr>
-    <p>
-      <%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %>
-    </p>
+  <% if current_user.admin || current_user.restaurant_id == @restaurant.id%>
+  <hr>
+  <div class="container">
+    <div class="text-center">
+      <h3> Administrator Panel </h3>
+      <hr>
+      <p>
+        <strong>New Menu:</strong>
+      </p>
+      <%= render 'menus/form' %> 
+      <hr>
+      <p>
+        <%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %>
+      </p>
+    </div>
   </div>
-</div>
+  <% end %>
 <% end %>
-<% end %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- End of Admin Panel -->
 
 
 
 
 <script>
-
+// Hides and Shows dishes and categories by Menu 
 <% @restaurant.menus.each do |menu| %>
-
-<% menus = Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name).map{|a| a.name.gsub(/[ &]/, '')} %>
-
-$(document).ready(function(){
-  $('span#<%=menu.name.gsub(/[ &]/, "")%>').click(function(){
-    console.log('<%=menu.name.gsub(/[ &]/, "")%> clicked');
-    $('<%= menus.map{|a| a.prepend(".")}.join(", ") %>').hide('slow');
-    $('.<%=menu.name.gsub(/[ &]/, "")%>').show('slow');
+  <% menus = Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name).map{|a| a.name.gsub(/[ &]/, '')} %>
+  $(document).ready(function(){
+    $('span#<%=menu.name.gsub(/[ &]/, "")%>').click(function(){
+      console.log('<%=menu.name.gsub(/[ &]/, "")%> clicked');
+      $('<%= menus.map{|a| a.prepend(".")}.join(", ") %>').hide('slow');
+      $('.<%=menu.name.gsub(/[ &]/, "")%>').show('slow');
+    });
   });
-});
-
 <% end %>
 
+// Hides and shows dishes based on category
 <% @restaurant.menus.each do |menu| %>
-<% menu.categories.each do |category| %>
-
-<% other_category_names = restaurant_category_names.delete_if{|name| name==category.name.gsub(/[ &]/, "")}.map{|a| a.prepend(".")}.join(", ") %> 
-
-$(document).ready(function(){
-  $('a#<%=category.name.gsub(/[ &]/, "")%>').click(function(){
-    console.log('<%=category.name.gsub(/[ &]/, "")%> clicked');
-    $('<%=other_category_names%>').hide('slow');
-    $('.<%=category.name.gsub(/[ &]/, "")%>').show('slow');
-  });
-});
-
-<% end %>
+  <% menu.categories.each do |category| %>
+    // other_category_names can be found in restaurant helper
+    <% other_category_names = restaurant_category_names.delete_if{|name| name==category.name.gsub(/[ &]/, "")}.map{|a| a.prepend(".")}.join(", ") %> 
+    $(document).ready(function(){
+      $('a#<%=category.name.gsub(/[ &]/, "")%>').click(function(){
+        console.log('<%=category.name.gsub(/[ &]/, "")%> clicked');
+        $('<%=other_category_names%>').hide('slow');
+        $('.<%=category.name.gsub(/[ &]/, "")%>').show('slow');
+      });
+    });
+  <% end %>
 <% end %>
 
 </script>
