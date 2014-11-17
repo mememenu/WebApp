@@ -24,8 +24,7 @@
   <div class="tzportfolio-pages tz-no-mansory container">
     <div class="row">
     <% @dishes.reverse.each do |dish| %>
-    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-    <div class='<%= dish.category.name %> <%= dish.category.menu.name.gsub(' ', '') %>'>
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 <%= dish.category.name %> <%= dish.category.menu.name.gsub(' ', '') %>">
       <div class="element">
         <div class="tz-inner">
           <div class="tz-image-item">
@@ -36,7 +35,6 @@
           <% end %>
         </div>
       </div>
-    </div>
     </div>
     <% end %>
   </div>
