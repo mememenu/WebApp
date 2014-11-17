@@ -16,17 +16,16 @@
 
     <div class="menu-options">
       <% @restaurant.menus[0...-1].each do |menu| %>
-      <a><span id='<%=menu.name.gsub(' ', '')%>'> <%= menu.name.upcase%> </span></a> • 
+        <a><span id='<%=menu.name.gsub(' ', '')%>'> <%= menu.name.upcase%> </span></a> • 
+      <% end %>
       <a><span id='<%=@restaurant.menus.last.name.gsub(' ', '')%>'> <%= @restaurant.menus.last.name.upcase %> </span></a>
       <div class="menu-list tzfilter">
-        <% menu.categories.each do |category| %>
-        <a><%= category.name %></a>
-        <% end %>
-        <% @restaurant.menus.last.categories.each do |category| %>
-        <a><%= category.name %></a>
+        <% @restaurant.menus.each do |menu| %>
+          <% menu.categories.each do |category| %>
+          <a><%= category.name %></a>
+          <% end %>        
         <% end %>
       </div>
-      <% end %>
     </div>
 
 
