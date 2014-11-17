@@ -15,9 +15,9 @@
     <hr>
     <div class="menu-options">
       <% @restaurant.menus[0...-1].each do |menu| %>
-      <span id='<%=menu.name%>'> <%= menu.name.upcase + ' •' %> </span>
+      <span id='<%=menu.name.gsub(' ', '')%>'> <%= menu.name.upcase + ' •' %> </span>
       <% end %>
-      <button id='Dinner'> <%= @restaurant.menus.last.name.upcase %> </button>
+      <span id='<%=@restaurant.menus.last.name.gsub(' ', '')%>'> <%= @restaurant.menus.last.name.upcase %> </span>
     </div>
   </div>
 
@@ -69,3 +69,29 @@
 </div>
 <% end %>
 <% end %>
+
+<script>
+
+<% @restaurant.menus.each do |menu| %>
+
+<% menus = [] %>
+
+<% menus << Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name).map{|a| a.name.gsub(' ', '')} 
+
+
+%>
+
+$(document).ready(function(){
+  $('span#<%=menu.name.gsub(' ', '')%>').click(function(){
+    console.log('<%=menu.name.gsub(' ', '')%> clicked')
+    $('<%= menus.map{|a| a.prepend('.')}.to_s %>').hide('slow');
+    $('.<%=menu.name.gsub(' ', '')%>').show('slow');
+      });
+      });
+
+<% end %>
+
+</script>
+
+
+

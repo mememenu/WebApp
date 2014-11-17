@@ -94,5 +94,4 @@ module RestaurantsHelper
     @restaurant.cuisines.map{|cuisine| cuisine.genre}.join(', ') 
   end
 
-
 end
