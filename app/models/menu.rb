@@ -5,6 +5,7 @@ class Menu < ActiveRecord::Base
 
   belongs_to :restaurant
   has_many :categories, dependent: :destroy
+  has_many :dishes
 
   after_save :cascade_hidden, :if => :hide_changed?
 

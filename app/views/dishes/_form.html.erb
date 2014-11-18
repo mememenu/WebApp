@@ -43,9 +43,23 @@
     <%= f.label :hide %><br>
     <%= f.check_box :hide %>
   </div>
+
   <div class="field">
-    <%= f.hidden_field :category_id, value: category_id_value %>
+  <!-- Drop Down menu for menus -->
+  <%= f.label :menu_id %><br>
+  <%= f.select :menu_id, options_for_select(restaurant_menu_options)%>
+  </div><br>
+
+  <div class="field">
+    <!-- Drop Down menu for categories -->
+    <%= f.label :category_id %><br>
+    <%= f.grouped_collection_select :category_id, @menus.order(:name), :categories, :name, :id, :name %>
+  </div><br>
+
+  <div class="field">
+    <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
   </div>
+
 
   <hr>
   <div class="container">

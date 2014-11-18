@@ -1,5 +1,8 @@
 class Dish < ActiveRecord::Base
   belongs_to :category
+  belongs_to :menu
+  belongs_to :restaurant
+  
   has_many :images, dependent: :destroy
   
   has_many :ingredients, through: :dish_ingredients
@@ -9,6 +12,8 @@ class Dish < ActiveRecord::Base
   validates :portion_size, presence: true
   validates :spice, presence: true
   validates :category_id, presence: true
+  validates :menu_id, presence: true
+  validates :restaurant_id, presence: true
 
   has_attached_file :avatar, :styles => { :large => "648x648>", :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/

@@ -8,4 +8,12 @@ module DishesHelper
     end
   end
 
+  def restaurant_menu_options
+    menu_options = []
+    @restaurant.menus.each do |menu|
+      menu_options<<[menu.name, menu.id]
+    end
+    menu_options
+  end
+
 end
