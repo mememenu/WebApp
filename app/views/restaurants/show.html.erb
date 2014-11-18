@@ -59,19 +59,79 @@
 <!-- Admin Panel -->
 <% if current_user %>
   <% if current_user.admin || current_user.restaurant_id == @restaurant.id%>
-  <hr>
   <div class="container">
     <div class="text-center">
-      <h3> Administrator Panel </h3>
+      <h1> Administrator Panel </h1>
       <hr>
-      <p>
-        <strong>New Menu:</strong>
-      </p>
-      <%= render 'menus/form' %> 
-      <hr>
-      <p>
-        <%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %>
-      </p>
+      <%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-8">
+        <h2>All Menus</h2>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Hidden</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @menus.each do |menu| %>
+              <tr>
+                <td><%= menu.name %></td>
+                <td><%= menu.description %></td>
+                <td><%= menu.hide %></td>
+                <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
+                <td><%= link_to 'Destroy', menu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-4 text-center">
+        <h2> New Menu </h2>
+        <br>
+        <%= render 'menus/form' %> 
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-8">
+        <h1>All Categories</h1>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Menu</th>
+              <th>Hidden</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @categories.each do |category| %>
+              <% if category.menu.restaurant.id == @restaurant.id %>
+                <tr>
+                  <td><%= category.name %></td>
+                  <td><%= category.menu.name %></td>
+                  <td><%= category.hide %></td>
+                  <td><%= link_to 'Edit', edit_category_path(category) %></td>
+                  <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+                <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-4 text-center">
+        <h2> New Category </h2>
+          <br>
+          <%= render 'categories/form' %>
+      </div>
     </div>
   </div>
   <% end %>

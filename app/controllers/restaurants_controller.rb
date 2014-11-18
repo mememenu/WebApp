@@ -14,6 +14,12 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1.json
   def show
     @menu = Menu.new
+    @menus = Menu.where(restaurant_id: @restaurant.id)
+
+    @category = Category.new
+    @categories = Category.all
+    
+    @dish = Dish.new
     @dishes = Dish.where(category_id: @restaurant.restaurant_categories)
   end
 
