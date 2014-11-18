@@ -21,6 +21,8 @@ class RestaurantsController < ApplicationController
     
     @dish = Dish.new
     @dishes = Dish.where(category_id: @restaurant.restaurant_categories)
+
+    @ingredients = Ingredient.where(restaurant_id: @restaurant.id)
   end
 
   # GET /restaurants/new
