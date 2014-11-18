@@ -1,10 +1,9 @@
 class Ingredient < ActiveRecord::Base
-  has_many :dishes, through: :dish_ingredients
-  has_many :dish_ingredients, dependent: :destroy
+
   belongs_to :restaurant
+  belongs_to :dish
 
-
-  validates :name, presence: true, uniqueness: { scope: :restaurant, 
-    message: "This Ingredient already exists at this restaurant" }
+  validates :name, presence: true
   validates :restaurant_id, presence: true
+  validates :dish_id, presence: true
 end

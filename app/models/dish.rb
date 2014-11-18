@@ -5,8 +5,7 @@ class Dish < ActiveRecord::Base
   
   has_many :images, dependent: :destroy
   
-  has_many :ingredients, through: :dish_ingredients
-  has_many :dish_ingredients, dependent: :destroy
+  has_many :ingredients, dependent: :destroy
 
   validates :name, presence: true
   validates :portion_size, presence: true
