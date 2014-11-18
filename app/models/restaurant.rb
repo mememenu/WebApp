@@ -15,6 +15,8 @@ class Restaurant < ActiveRecord::Base
   has_many :restaurant_cuisines, dependent: :destroy
   has_many :menus, dependent: :destroy
   has_many :ingredients, dependent: :destroy
+  has_many :dishes
+  has_many :categories
 
   has_attached_file :avatar, :styles => { :large => "500x500>", :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/placeholder_image1-1050x663.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/

@@ -5,7 +5,7 @@
 jQuery -> 
   categories = $('#dish_category_id').html()
   setCategoryMenu = ->
-    menu = $('#Menus :selected').text()
+    menu = $('#dish_menu_id :selected').text()
     console.log(menu)
     options = $(categories).filter("optgroup[label='#{menu}']").html()
     console.log(options)
@@ -15,5 +15,5 @@ jQuery ->
     else
       $('#dish_category_id').empty()
       $('#dish_category_id').parent().hide()
-  $('#Menus').change setCategoryMenu
+  $('#dish_menu_id').change setCategoryMenu
   setCategoryMenu()

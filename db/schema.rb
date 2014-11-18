@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111195626) do
+ActiveRecord::Schema.define(version: 20141118170422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,9 +22,11 @@ ActiveRecord::Schema.define(version: 20141111195626) do
     t.datetime "updated_at"
     t.integer  "menu_id"
     t.boolean  "hide"
+    t.integer  "restaurant_id"
   end
 
   add_index "categories", ["menu_id"], name: "index_categories_on_menu_id", using: :btree
+  add_index "categories", ["restaurant_id"], name: "index_categories_on_restaurant_id", using: :btree
 
   create_table "cuisines", force: true do |t|
     t.datetime "created_at"
@@ -58,9 +60,13 @@ ActiveRecord::Schema.define(version: 20141111195626) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.integer  "menu_id"
+    t.integer  "restaurant_id"
   end
 
   add_index "dishes", ["category_id"], name: "index_dishes_on_category_id", using: :btree
+  add_index "dishes", ["menu_id"], name: "index_dishes_on_menu_id", using: :btree
+  add_index "dishes", ["restaurant_id"], name: "index_dishes_on_restaurant_id", using: :btree
 
   create_table "images", force: true do |t|
     t.integer  "dish_id"
