@@ -53,8 +53,10 @@
   <div class="field">
     <!-- Drop Down menu for categories -->
     <%= f.label :category_id %><br>
-    <%= f.grouped_collection_select :category_id, @menus.order(:name), :categories, :name, :id, :name, include_blank: true%>
+    <%= f.grouped_collection_select :category_id, @menus.order(:name), :categories, :name, :id, :name %>
   </div><br>
+
+
 
   <hr>
   <div class="container">

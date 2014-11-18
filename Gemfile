@@ -54,4 +54,4 @@ gem 'unicorn'
  gem 'newrelic_rpm'
  gem 'rails_12factor'
  gem "paperclip", "~> 4.2"
-
+ gem 'html5_validators'
