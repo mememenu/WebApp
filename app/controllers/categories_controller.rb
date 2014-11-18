@@ -23,10 +23,17 @@ class CategoriesController < ApplicationController
   def edit
   end
 
+  def new
+    @category = Category.new
+  end
+
+
   # POST /categories
   # POST /categories.json
   def create
     @category = Category.new(category_params)
+    @menus = Menu.where(restaurant_id: @category.restaurant_id)
+    @restaurant = Restaurant.find(@category.restaurant_id)
 
     respond_to do |format|
       if @category.save

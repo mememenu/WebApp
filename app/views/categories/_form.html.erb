@@ -20,7 +20,11 @@
     <%= f.check_box :hide %>
   </div>
   <div class="field">
-    <%= f.hidden_field :menu_id, value: menu_value %>
+    <%= f.label :menu_id %><br>
+    <%= f.select :menu_id, options_for_select(restaurant_menu_options)%>
+  </div>
+    <div class="field">
+    <%= f.hidden_field :restaurant_id, value: @restaurant.id%>
   </div>
   <br>
   <div class="actions">
