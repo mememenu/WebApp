@@ -57,7 +57,7 @@
   </div><br>
 
   <div class="field">
-    <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
+    <%= f.text_field :restaurant_id, value: @restaurant.id%>
   </div>
 
 
@@ -71,22 +71,14 @@
     </div>
   </div>
   <hr>
+  
+  <%= f.label :ingredients %><br>
+  <%= f.fields_for :ingredients do |builder| %>
+    <%= render 'ingredient_fields', f: builder %>
+  <% end %>
+  <%= link_to_add_fields "Add Ingredient", f, :ingredients %> 
 
-  <div class="col-md-12">
-    <div class="field">
-      <%= hidden_field_tag "dish[ingredient_ids][]", nil %>
-      <% @ingredients.in_groups_of(6, false) do |group| %>
-        <div class="row">
-          <% group.each do |ingredient| %>
-          <div class="col-md-2">
-            <%= check_box_tag "dish[ingredient_ids][]", ingredient.id, @dish.ingredient_ids.include?(ingredient.id), id: dom_id(ingredient) %>
-            <%= label_tag dom_id(ingredient), ingredient.name %><br>
-          </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <hr>
   <div class="actions">
     <%= f.submit %>
   </div>

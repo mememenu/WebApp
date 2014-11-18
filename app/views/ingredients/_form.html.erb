@@ -20,10 +20,10 @@
     <%= f.text_field :description %>
   </div>
     <div class="field">
-    <%= f.hidden_field :dish_id, value: @dish.id %>
+    <%= f.text_field :dish_id%>
   </div>
   <div class="field">
-    <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
+    <%= f.text_field :restaurant_id%>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -113,11 +113,15 @@ module RestaurantsHelper
   end
 
   def restaurant_menu_options
-    menu_options = []
-    @restaurant.menus.each do |menu|
-      menu_options<<[menu.name, menu.id]
+    if @restaurant  
+      menu_options = []
+      @restaurant.menus.each do |menu|
+        menu_options<<[menu.name, menu.id]
+      end
+      menu_options
+    else 
+      [@dish.menu.name, @dish.menu_id]
     end
-    menu_options
   end
 
 end

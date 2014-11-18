@@ -1,0 +1,7 @@
+<fieldset>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %>
+  <%= f.hidden_field :restaurant_id, value: @restaurant.id %>
+  <%= f.text_field :_destroy %>
+  <%= link_to "remove ingredient", '#', class: 'remove_ingredients' %>
+</fieldset>
