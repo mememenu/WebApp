@@ -1,32 +1,3 @@
-<div class="tzslider">
-  <div id="rev_slider_2_1_wrapper" class="rev_slider_wrapper fullscreen-container">
-    <div id="rev_slider_2_1" class="rev_slider fullscreenbanner">
-      <ul>
-
-        <li data-transition="fade" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" >
-          <!-- MAIN IMAGE -->
-          <img src="../../assets/images/background-1.jpg"  alt="slider"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-        </li>
-
-        <li data-transition="fade" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" >
-          <!-- MAIN IMAGE -->
-          <img src="./images/background-2.jpg"  alt="slider"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-        </li>
-
-        <li data-transition="fade" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" >
-          <!-- MAIN IMAGE -->
-          <img src="./images/background-3.jpg"  alt="slider4"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-        </li>
-
-        <li data-transition="fade" data-slotamount="7" data-masterspeed="300"  data-saveperformance="off" >
-          <!-- MAIN IMAGE -->
-          <img src="./images/background-4.jpg"  alt="slider3"  data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-        </li>
-
-      </ul>
-    </div>
-  </div>
-</div><!--end class tzslider-->
 <section class="tz-about tz-about2 theme-white">
   <div class="container">
     <div class="tz-title-bold-3">
@@ -83,42 +54,6 @@
     </div>
   </div>
 </section><!--end class tz-about-->
-<div class="parallax tz-simple">
-  <button class="simple_prev"><i class="fa fa-angle-left"></i></button>
-  <button class="simple_next"><i class="fa fa-angle-right "></i></button>
-  <div class="container">
-    <ul class="tz-simple-product">
-      <li>
-        <p>The Dutch</p>
-        <a href="thedutch_menu.html">Menu</a>
-      </li>
-      <li>
-        <p>The Federal</p>
-        <a href="#">Coming Soon</a>
-      </li>
-      <li>
-        <p>Mmmm</p>
-        <a href="#">Coming Soon</a>
-      </li>
-      <li>
-        <p>Mignonette</p>
-        <a href="#">Coming Soon</a>
-      </li>
-      <li>
-        <p>Pubbelly</p>
-        <a href="#">Coming Soon</a>
-      </li>
-      <li>
-        <p>The District</p>
-        <a href="#">Coming Soon</a>
-      </li>
-      <li>
-        <p>Niu Kitchen</p>
-        <a href="#">Coming Soon</a>
-      </li>
-    </ul>
-  </div>
-</div><!--end class parallax-->
 
 <!-- WE ARE INSPIRED SECTION -->
 
@@ -172,8 +107,8 @@
         <!-- END LEFT SIDE -->
 
         <!-- IMAGE INSIDE OF WE ARE INSPIRED BY -->
-        <div class="col-lg-4 colg-md-4 col-sm-4 col-xs-12">
-          <img class="collection-icon" alt="mememenulogo" src="./images/1.jpg">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <%= image_tag '1.jpg' %>
         </div>
         <!-- END IMAGE -->
 
@@ -290,8 +225,13 @@
               PROUD MEMBER OF:
             </span>
           </h3>
-          <a href="http://wyncode.com" target="_blank"><img src="images/wyncode_logo.png"  alt="wyncode"></a><br><br>
-          <a href="http://thelabmiami.com" target="_blank"><img src="images/thelab_logo.png" alt="thelab"></a>
+          <%= link_to 'http://wyncode.co', target: '_blank' do %>
+          <%= image_tag 'wyncode_logo.png' %>
+          <% end %>
+          <br><br>
+          <%= link_to 'http://thelabmiami.com', target: '_blank' do %>
+          <%= image_tag 'thelab_logo.png' %>
+          <% end %>
         </div>
       </div>
     </div>
