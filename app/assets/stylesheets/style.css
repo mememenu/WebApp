@@ -3432,7 +3432,10 @@ body .padding-ourblog{
     -o-border-radius: 50%;
     padding: 10px;
     border: 1px solid #eeeeee;
-    margin: 40px 10px 40px 10px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
     overflow: hidden;
 
 }
@@ -3472,6 +3475,7 @@ body .padding-ourblog{
     position: absolute;
     top: 43%;
     left: 0;
+    right: 0;
     width: 100%;
     text-align: center;
     transform: scale(1.7);
@@ -3515,6 +3519,7 @@ body .padding-ourblog{
     -o-border-radius: 50%;
     height: 100%;
     left: 0;
+    right: 0;
     padding: 10px;
     position: absolute;
     top: 0;
@@ -9843,7 +9848,7 @@ body .kfrontstats .kcol-mid{
         position: relative;
         text-align: center;
     }
-    .award_prev,
+
     .award_next{
         display: none;
     }
@@ -10839,6 +10844,13 @@ width:33%;
         line-height: 25px;
         letter-spacing: 0;
     }
+    .tz-team-item{
+        width: 325px;
+        height: 325px;
+        margin-top: 3%;
+        margin-bottom: 3%;
+    }
+
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -11251,6 +11263,12 @@ width:33%;
         width: 100%;
         height: 100%;
     }
+    .tz-team-item{
+        width: 325px;
+        height: 325px;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
 
 }
 
@@ -11329,6 +11347,20 @@ padding-bottom: 20px;
     body .tz-inner{
         margin: 30px 15px 0;
     }
+    .tz-team-item{
+        width: 350px;
+        height: 350px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .squeeze-faces{
+        width: 80%;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
 }
 
 @media (min-width: 1200px) and (max-width: 1499px){
@@ -11393,6 +11425,10 @@ padding-bottom: 20px;
         left: 100%;
         visibility: visible;
     }
+    .tz-team-item{
+        width: 265px;
+        height: 265px;
+    }
 }
 
 
@@ -11405,17 +11441,20 @@ a :hover {color: black;}
     margin-right: -15px;
 }
 
-.team-center {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    padding: 10px;
-}
 
-.inside-center {
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
