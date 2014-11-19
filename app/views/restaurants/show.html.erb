@@ -36,11 +36,12 @@
           <div class="element">
             <div class="tz-inner">
               <div class="tz-image-item">
-                <%= link_to dish do %>
                 <%= image_tag dish.avatar.url(:large) %>
               </div>
               <h6 class="dish-name"><%= dish.name.upcase %></h6>
-              <% end %>
+<!--               <% dish.ingredients.each do |ingredient| %>
+              <a><%= ingredient.name.upcase %></a>
+              <% end %> -->
             </div>
           </div>
         </div>
