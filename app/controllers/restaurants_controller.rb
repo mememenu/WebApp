@@ -15,6 +15,8 @@ class RestaurantsController < ApplicationController
   def show
     @menu = Menu.new
     @menus = Menu.where(restaurant_id: @restaurant.id)
+    @active_menus = @menus.where(hide: [nil, false])
+    @inactive_menus = @menus.where(hide: true)
     @category = Category.new
     @categories = Category.all
     @dish = Dish.new
