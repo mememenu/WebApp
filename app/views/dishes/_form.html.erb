@@ -50,7 +50,7 @@
     <div class="col-md-4">  
       <%= f.label :ingredients %><br>
       <%= f.fields_for :ingredients do |builder| %>
-        <%= render 'ingredient_fields', f: builder %>
+        <%= render 'restaurants/ingredient_fields', f: builder %>
       <% end %>
       <%= link_to_add_fields "Add Ingredient", f, :ingredients %>
     </div>
