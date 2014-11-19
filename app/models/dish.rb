@@ -7,8 +7,6 @@ class Dish < ActiveRecord::Base
   accepts_nested_attributes_for :ingredients, allow_destroy: true
   
   validates :name, presence: true
-  validates :portion_size, presence: true
-  validates :spice, presence: true
   validates :category_id, presence: true
   validates :menu_id, presence: true
   validates :restaurant_id, presence: true
