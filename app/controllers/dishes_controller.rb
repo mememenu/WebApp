@@ -25,7 +25,7 @@ class DishesController < ApplicationController
 
   # GET /dishes/1/edit
   def edit
-    @restaurant = Restaurant.find(@dish.restaurant_id)
+    @restaurant = Restaurant.find(@dish.restaurant.id)
     @ingredients = Ingredient.where(restaurant_id: @dish.category.menu.restaurant.id)
     @menus = Menu.where(restaurant_id: @dish.restaurant_id)
   end
@@ -41,7 +41,7 @@ class DishesController < ApplicationController
 
     respond_to do |format|
       if @dish.save
-        format.html { redirect_to @dish, notice: 'Dish was successfully created.' }
+        format.html { redirect_to @dish.restaurant, notice: 'Dish was successfully created.' }
         format.json { render :show, status: :created, location: @dish }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class DishesController < ApplicationController
     @dish.ingredient_ids = params[:dish][:ingredient_ids]
     respond_to do |format|
       if @dish.update(dish_params)
-        format.html { redirect_to @dish, notice: 'Dish was successfully updated.' }
+        format.html { redirect_to @dish.restaurant, notice: 'Dish was successfully updated.' }
         format.json { render :show, status: :ok, location: @dish }
       else
         format.html { render :edit }
