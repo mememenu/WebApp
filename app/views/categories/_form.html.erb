@@ -24,7 +24,7 @@
     <%= f.select :menu_id, options_for_select(restaurant_menu_options)%>
   </div>
     <div class="field">
-    <%= f.hidden_field :restaurant_id, value: @restaurant.id%>
+    <%= f.hidden_field :restaurant_id, value: category_menu_id_default_value %>
   </div>
   <br>
   <div class="actions">

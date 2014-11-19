@@ -25,7 +25,7 @@ class DishesController < ApplicationController
 
   # GET /dishes/1/edit
   def edit
-    @restaurant = Restaurant.find(@dish.restaurant_id)
+    @restaurant = Restaurant.find(@dish.restaurant.id)
     @ingredients = Ingredient.where(restaurant_id: @dish.category.menu.restaurant.id)
     @menus = Menu.where(restaurant_id: @dish.restaurant_id)
   end
@@ -41,7 +41,7 @@ class DishesController < ApplicationController
 
     respond_to do |format|
       if @dish.save
-        format.html { redirect_to @dish, notice: 'Dish was successfully created.' }
+        format.html { redirect_to @dish.restaurant, notice: 'Dish was successfully created.' }
         format.json { render :show, status: :created, location: @dish }
       else
         format.html { render :new }
@@ -56,7 +56,7 @@ class DishesController < ApplicationController
     @dish.ingredient_ids = params[:dish][:ingredient_ids]
     respond_to do |format|
       if @dish.update(dish_params)
-        format.html { redirect_to @dish, notice: 'Dish was successfully updated.' }
+        format.html { redirect_to @dish.restaurant, notice: 'Dish was successfully updated.' }
         format.json { render :show, status: :ok, location: @dish }
       else
         format.html { render :edit }
@@ -96,10 +96,10 @@ class DishesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dish_params
-      params.require(:dish).permit(:name, :description, :portion_size, :spice, :hot, :gluten_free, :vegetarian, :category_id, :hide, :avatar, :menu_id, :restaurant_id, ingredients_attributes: [:name, :description, :dish_id, :restaurant_id])                           
+      params.require(:dish).permit(:name, :description, :portion_size, :spice, :hot, :gluten_free, :vegetarian, :category_id, :hide, :avatar, :menu_id, :restaurant_id, ingredients_attributes: [:name, :description, :dish_id, :restaurant_id, :_destroy])                           
     end
 
     def ingredient_params
-      params.permit(:ingredient).permit(:name, :description, :restaurant_id, :dish_id)
+      params.permit(:ingredient).permit(:name, :description, :restaurant_id, :dish_id, :_destroy)
     end
 end

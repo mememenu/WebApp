@@ -52,7 +52,8 @@
       <%= f.fields_for :ingredients do |builder| %>
         <%= render 'dishes/ingredient_fields', f: builder %>
       <% end %>
-      <%= link_to_add_fields "Add Ingredient", f, :ingredients %>
+      <hr>
+      <%= link_to_add_fields "Add New Ingredient", f, :ingredients %>
     </div>
   </div>
 
