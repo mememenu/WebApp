@@ -96,10 +96,10 @@ class DishesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dish_params
-      params.require(:dish).permit(:name, :description, :portion_size, :spice, :hot, :gluten_free, :vegetarian, :category_id, :hide, :avatar, :menu_id, :restaurant_id, ingredients_attributes: [:name, :description, :dish_id, :restaurant_id])                           
+      params.require(:dish).permit(:name, :description, :portion_size, :spice, :hot, :gluten_free, :vegetarian, :category_id, :hide, :avatar, :menu_id, :restaurant_id, ingredients_attributes: [:name, :description, :dish_id, :restaurant_id, :_destroy])                           
     end
 
     def ingredient_params
-      params.permit(:ingredient).permit(:name, :description, :restaurant_id, :dish_id)
+      params.permit(:ingredient).permit(:name, :description, :restaurant_id, :dish_id, :_destroy)
     end
 end
