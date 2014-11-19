@@ -17,17 +17,17 @@ class ApplicationController < ActionController::Base
           redirect_to root_path
         end
       elsif @category
-        if current_user.restaurant_id == @category.menu.restaurant.id
+        if current_user.restaurant_id == @category.restaurant.id
         else
           redirect_to root_path
         end
       elsif @dish
-        if current_user.restaurant_id == @dish.category.menu.restaurant.id
+        if current_user.restaurant_id == @dish.category.restaurant.id
         else
           redirect_to root_path
         end
       elsif @image
-        if current_user.restaurant_id == @image.dish.category.menu.restaurant.id
+        if current_user.restaurant_id == @image.dish.restaurant.id
         else
           redirect_to root_path
         end
