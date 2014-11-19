@@ -19,11 +19,11 @@ jQuery ->
   $('#dish_menu_id').change setCategoryMenu
   setCategoryMenu()
 
-
+  
   $('form').on 'click', '.remove_ingredients', (event) -> 
     $(this).prev('input[type=hidden]').val('1')
     $(this).closest('fieldset').hide()
-    event.preventDefault
+    event.preventDefault()
 
 
   $('form').on 'click', '.add_fields', (event) ->
