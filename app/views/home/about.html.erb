@@ -37,6 +37,7 @@
                         <div class="tz-team-overlay">
                             <div class="tz-team-img">
                               <%= image_tag 'pkbanks.png' %>
+                              <%= image_tag 'pkbanks.png', :class=>'img-hover' %>
                                 <div class="tz-team-overlay-bk"></div>
                             </div>
                         </div>
@@ -50,6 +51,7 @@
                         <div class="tz-team-overlay">
                             <div class="tz-team-img">
                                 <%= image_tag 'jesusbrazon.png' %>
+                                <%= image_tag 'jesusbrazon.png', :class=>'img-hover' %>
                                 <div class="tz-team-overlay-bk"></div>
                             </div>
                         </div>
@@ -63,6 +65,7 @@
                         <div class="tz-team-overlay">
                             <div class="tz-team-img">
                                 <%= image_tag 'andyweiss.png' %>
+                                <%= image_tag 'andyweiss.png', :class=>'img-hover' %>
                                 <div class="tz-team-overlay-bk"></div>
                             </div>
                         </div>
@@ -76,6 +79,7 @@
                         <div class="tz-team-overlay">
                             <div class="tz-team-img">
                                 <%= image_tag 'alfonsopintos.png' %>
+                                <%= image_tag 'alfonsopintos.png', :class=>'img-hover' %>
                                 <div class="tz-team-overlay-bk"></div>
                             </div>
                         </div>
@@ -165,14 +169,19 @@
                                         </ul>
                                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 footer-item">
-                        <h3 class="module-title">
-                            <span>
-                                PROUD MEMBER OF:
-                            </span>
-                        </h3>
-                         <a href="http://wyncode.com" target="_blank"><img src="images/wyncode_logo.png"  alt="wyncode"></a><br><br>
-                         <a href="http://thelabmiami.com" target="_blank"><img src="images/thelab_logo.png" alt="thelab"></a>
-                         </div>
+          <h3 class="module-title">
+            <span>
+              PROUD MEMBER OF:
+            </span>
+          </h3>
+          <%= link_to 'http://wyncode.co', target: '_blank' do %>
+          <%= image_tag 'wyncode_logo.png' %>
+          <% end %>
+          <br><br>
+          <%= link_to 'http://thelabmiami.com', target: '_blank' do %>
+          <%= image_tag 'thelab_logo.png' %>
+          <% end %>
+        </div>
                     </div>
                 </div>
             </div>
