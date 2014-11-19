@@ -119,8 +119,10 @@ module RestaurantsHelper
         menu_options<<[menu.name, menu.id]
       end
       menu_options
+    elsif @category
+      [[@category.menu.name, @category.menu_id]]
     else 
-      [@dish.menu.name, @dish.menu_id]
+      [[@dish.menu.name, @dish.menu_id]]
     end
   end
 

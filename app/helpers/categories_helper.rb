@@ -8,4 +8,13 @@ module CategoriesHelper
     end
   end
 
+
+  def category_menu_id_default_value
+    if @restaurant
+      @restaurant.id
+    else
+      @category.restaurant_id
+    end
+  end
+  
 end
