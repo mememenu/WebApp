@@ -11,15 +11,31 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <%if @restaurant %>
+      New 
+      <% else %>
+      Editing 
+      <% end %>
+      Menu Category</h3>
   </div>
-  <div class="field">
-    <%= f.label :hide %>
-    <%= f.check_box :hide %>
-  </div>
-  <div class="field">
+  <div class="panel-body">
+    <div class="row">
+  <div class="field col-md-8">
+      <%= f.label :name, 'Category Name' %><br>
+      <%= f.text_field :name, :class=>'form-control' %>
+    </div>
+  <div class="field col-md-4">
+  <br>
+  <%= f.label :hide%>
+  <%= f.check_box :hide %>
+</div>
+</div>
+<br>
+<div class="row">
+  <div class="field col-md-8">
     <%= f.label :menu_id %><br>
     <%= f.select :menu_id, options_for_select(restaurant_menu_options)%>
   </div>
@@ -27,8 +43,17 @@
     <%= f.hidden_field :restaurant_id, value: category_menu_id_default_value %>
   </div>
   <br>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions col-md-4 text-right">
+    <%= f.submit 'Submit', class: 'btn btn-default btn-xs' %>
+  </div>  
+</div>
+
+
+
+
   </div>
+  </div>
+
+  
 <% end %>
  
