@@ -13,10 +13,10 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title"><%if @restaurant %>
-      New 
-      <% else %>
+    <h3 class="panel-title"><%if @dish.restaurant_id %>
       Editing 
+      <% else %>
+      New 
       <% end %>
       Dish</h3>
   </div>
