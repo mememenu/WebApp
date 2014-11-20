@@ -1,6 +1,17 @@
 User.create!([
   {email: "andyweiss1982@gmail.com", encrypted_password: "", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 2, current_sign_in_at: "2014-11-20 21:39:58", last_sign_in_at: "2014-11-20 20:41:12", current_sign_in_ip: #<IPAddr: IPv4:127.0.0.1/255.255.255.255>, last_sign_in_ip: #<IPAddr: IPv4:127.0.0.1/255.255.255.255>, admin: true, restaurant: nil, provider: "facebook", uid: "1408355", restaurant_id: nil}
 ])
+
+Restaurant.create!([
+  {name: "The Dutch", address_1: "2201 Collins Ave", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: nil, phone: "3059383111", dollars: nil, reservations: false, hide: false, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil}
+])
+
+Menu.create!([
+  {name: "Lunch", description: nil, hide: false, restaurant_id: 1},
+  {name: "Supper", description: nil, hide: false, restaurant_id: 1},
+  {name: "Desserts", description: nil, hide: false, restaurant_id: 1}
+])
+
 Category.create!([
   {name: "Snacks", menu_id: 1, hide: false, restaurant_id: 1},
   {name: "Appetizers", menu_id: 1, hide: false, restaurant_id: 1},
@@ -10,6 +21,7 @@ Category.create!([
   {name: "Second", menu_id: 2, hide: false, restaurant_id: 1},
   {name: "Dessert at the Dutch", menu_id: 3, hide: false, restaurant_id: 1}
 ])
+
 Dish.create!([
   {name: "Sheep's Milk Ricotta, Grilled Bread, Herbs", description: nil, portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 5, avatar_file_name: "lun_sna_02.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 221234, avatar_updated_at: "2014-11-20 21:28:05", menu_id: 1, restaurant_id: 1},
   {name: "Local Field Greens, Shaved Garden Vegetables", description: nil, portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 6, avatar_file_name: "lun_app_01.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 203298, avatar_updated_at: "2014-11-20 21:48:03", menu_id: 1, restaurant_id: 1},
@@ -47,6 +59,7 @@ Dish.create!([
   {name: "New Orleans beignets", description: nil, portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 11, avatar_file_name: "des_03.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 133043, avatar_updated_at: "2014-11-20 22:28:56", menu_id: 3, restaurant_id: 1},
   {name: "coconut ice cream cake", description: nil, portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 11, avatar_file_name: "des_04.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 97970, avatar_updated_at: "2014-11-20 22:29:40", menu_id: 3, restaurant_id: 1}
 ])
+
 Ingredient.create!([
   {name: "Mint Chocolate Chip Ice Cream", restaurant_id: 1, description: "", dish_id: 32},
   {name: "strawberry compote", restaurant_id: 1, description: "", dish_id: 33},
@@ -56,11 +69,5 @@ Ingredient.create!([
   {name: "spiced pineapple", restaurant_id: 1, description: "", dish_id: 35},
   {name: "banana anglaise", restaurant_id: 1, description: "", dish_id: 35}
 ])
-Menu.create!([
-  {name: "Lunch", description: nil, hide: false, restaurant_id: 1},
-  {name: "Supper", description: nil, hide: false, restaurant_id: 1},
-  {name: "Desserts", description: nil, hide: false, restaurant_id: 1}
-])
-Restaurant.create!([
-  {name: "The Dutch", address_1: "2201 Collins Ave", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: nil, phone: "3059383111", dollars: nil, reservations: false, hide: false, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil}
-])
+
+
