@@ -89,7 +89,7 @@
         <ul class="tz-simple-product">
             <% @restaurants.each do |restaurant| %>
             <li><p><%= restaurant.name %></p>
-              <%= link_to restaurant.name, restaurant %>
+              <%= link_to 'Menu', restaurant %>
             </li>
             <% end %>
         </ul>
