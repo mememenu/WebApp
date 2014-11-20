@@ -40,14 +40,23 @@
               <div class="tz-image-item">
                 <%= image_tag dish.avatar.url(:large) %>
               </div>
+              
+                <div class="text-center">    
+                <% dish.ingredients[0...-1].each do |ingredient| %>
+                  <%= ingredient.name %>,
+                <% end %>
+                <% if dish.ingredients.count > 0 %>  
+                <%= dish.ingredients.last.name %>
+                <% end %>
+              </div>
+
+
+
               <h6 class="dish-name"><%= dish.name.upcase %></h6>
-<!--               <% dish.ingredients.each do |ingredient| %>
-              <a><%= ingredient.name.upcase %></a>
-              <% end %> -->
             </div>
           </div>
         </div>
-        <% end %>
+        <% end %><!-- end of active dishes loop -->
       </div>
     </div><!-- end of food pictures -->
   </div><!-- Closes top container -->
