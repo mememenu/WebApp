@@ -113,17 +113,37 @@ module RestaurantsHelper
   end
 
   def restaurant_menu_options
+    
+    menu_options = []
+
     if @restaurant  
-      menu_options = []
       @restaurant.menus.each do |menu|
         menu_options<<[menu.name, menu.id]
       end
-      menu_options
     elsif @category
-      [[@category.menu.name, @category.menu_id]]
+      @category.restaurant.menus.each do |menu|
+        menu_options<<[menu.name, menu.id]
+      end
     else 
-      [[@dish.menu.name, @dish.menu_id]]
+      @dish.resaurant.menus.each do |menu|
+        menu_options<<[menu.name, menu.id]
+      end
     end
+
+    menu_options
+
+  end
+
+  def default_menu_option
+
+    if @category.menu_id
+      @category.menu.id
+    elsif @dish.category
+      @dish.category.menu.id
+    else
+    1    
+    end
+
   end
 
 end
