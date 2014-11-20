@@ -23,7 +23,7 @@
       <div class="menu-list tzfilter">
         <% @restaurant.menus.each do |menu| %>
         <% menu.categories.each do |category| %>
-        <a id="<%=category.clean_name%>" class="<%=category.menu.clean_name%>"><%= category.name %></a>
+        <a id="<%=category.clean_name%>" class="<%=category.menu.clean_name%>" style="display: none;"><%= category.name %></a>
         <% end %>        
         <% end %>
       </div><!--   End of restaurant menu categories -->
@@ -64,7 +64,7 @@
   </div>
 
 
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-pills">
     <li><a href="#menus" data-toggle="tab">Menus</a></li>
     <li><a href="#categories" data-toggle="tab">Categories</a></li>
     <li><a href="#dishes" data-toggle="tab">Dishes</a></li>
@@ -339,7 +339,7 @@
 <% end %>
 <% end %>
 <!-- End of Admin Panel -->
-
+<hr>
 
 
 
@@ -350,7 +350,7 @@
 $(document).ready(function(){
   $('span#<%=menu.clean_name%>').click(function(){
     console.log('<%=menu.clean_name%> clicked');
-    $('<%= menus.map{|a| a.prepend(".")}.join(", ") %>').hide('slow');
+    $('<%= menus.map{|a| a.prepend(".")}.join(", ") %>').hide(0);
     $('.<%=menu.clean_name%>').show('slow');
   });
 });
@@ -364,7 +364,7 @@ $(document).ready(function(){
 $(document).ready(function(){
   $('a#<%=category.clean_name%>').click(function(){
     console.log('<%=category.clean_name%> clicked');
-    $('<%=other_category_names%>').hide('slow');
+    $('<%=other_category_names%>').hide(0);
     $('.<%=category.clean_name%>').show('slow');
   });
 });
