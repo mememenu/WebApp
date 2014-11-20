@@ -8286,7 +8286,7 @@ body #carousel li {
     border: 0;
 }
 .tz-infomation-website{
-    padding: 75px 0;
+    padding: 75px 0 0 10px;
 }
 
 
@@ -11441,8 +11441,16 @@ a :hover {color: black;}
     margin-right: -15px;
 }
 
-.followus {
 
+.followus {
     text-align: left !important;
     line-height: 80% !important;
 }
+
+.contact-message{
+    height: 150px;
+}
+
+
+
+

@@ -1,73 +1,36 @@
 <section class="tz-contact theme-gray">
-        <div class="tz-map" id="googleMap"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                    <form id="contact" action="php/contact_process.php" method="POST" class="tz-form-content">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs 12">
-                               <label>
-                                   First name
-                               </label>
-                               <input type="text" name="first" value="">
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs 12">
-                                <label>
-                                    Last name
-                                </label>
-                                <input type="text" name="last" value="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs 12">
-                                <label>
-                                    Favorite Restaurant
-                                </label>
-                                <input type="text" name="restaurant" value="">
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs 12">
-                                <label>
-                                    Email
-                                </label>
-                                <input type="text" name="email" value="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs 12">
-                                <label>
-                                    Message
-                                </label>
-                                <textarea rows="5" name="message"></textarea>
-                            </div>
-                        </div>
-                        <button class="tzsubmit-form">Send</button>
-                    </form>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                    <div class="tz-infomation-website">
-                        <h3 class="tz-title-contact">ADDRESS</h3>
-                        <address>
-                            The Lab Miami<br>
-                            400 NW 26th. Street<br>
-                            Miami FL<br>
-                            33127
-                        </address>
-                        <h3 class="tz-title-contact">CONTACT</h3>
-                        <ul>
-                            <li>Phone: +1 212 719 79 19</li>
-                            <li>Fax: +1 305 979 64 50</li>
-                            <li>Email: hello@meme.menu</li>
-                            <li>Web: www.meme.menu</li>
-                        </ul>
-                    </div>
-                </div>
-            </div><!--end class row-->
-        </div><!--end class container-->
-    </section><!--end class tz-about-->
+  <div class="tz-map" id="googleMap"></div>
+  <div class="container">
+    <div class="row">
+
+      <%= render 'contacts/form' %>
+
+      <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+        <div class="tz-infomation-website">
+          <h3 class="tz-title-contact">ADDRESS</h3>
+          <address>
+            The Lab Miami<br>
+            400 NW 26th. Street<br>
+            Miami FL<br>
+            33127
+          </address>
+          <h3 class="tz-title-contact">CONTACT</h3>
+          <ul>
+            <li>Phone: +1 212 719 79 19</li>
+            <li>Fax: +1 305 979 64 50</li>
+            <li>Email: hello@meme.menu</li>
+            <li>Web: www.meme.menu</li>
+          </ul>
+        </div>
+      </div>
+      
+    </div><!--end class row-->
+  </div><!--end class container-->
+</section><!--end class tz-about-->
 <footer>
-    <div class="tz-copyright theme-white">
-        <p>meme • menu • 2014 • All Rights Reserved.</p>
-    </div>
+  <div class="tz-copyright theme-white">
+    <p>meme • menu • 2014 • All Rights Reserved.</p>
+  </div>
 </footer><!--end class tz-footer-->
 
 
