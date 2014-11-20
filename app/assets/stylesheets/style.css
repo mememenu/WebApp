@@ -8286,7 +8286,7 @@ body #carousel li {
     border: 0;
 }
 .tz-infomation-website{
-    padding: 75px 0;
+    padding: 75px 0 0 10px;
 }
 
 
@@ -11439,6 +11439,10 @@ a :hover {color: black;}
 .food-photos {
     margin-left: -15px;
     margin-right: -15px;
+}
+
+.contact-message{
+    height: 150px;
 }
 
 
