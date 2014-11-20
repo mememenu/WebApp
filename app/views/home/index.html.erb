@@ -24,9 +24,6 @@
         </div>
     </div>
 </div><!--end class tzslider-->
-
-
-
 <section class="tz-about tz-about2 theme-white">
   <div class="container">
     <div class="tz-title-bold-3">
@@ -83,6 +80,20 @@
     </div>
   </div>
 </section><!--end class tz-about-->
+
+<div class="parallax tz-simple">
+    <button class="simple_prev"><i class="fa fa-angle-left"></i></button>
+    <button class="simple_next"><i class="fa fa-angle-right "></i></button>
+    <div class="container">
+        <ul class="tz-simple-product">
+            <% @restaurants.each do |restaurant| %>
+            <li><p><%= restaurant.name %></p>
+              <%= link_to restaurant.name, restaurant %>
+            </li>
+            <% end %>
+        </ul>
+    </div>
+</div><!--end class parallax-->
 
 <!-- WE ARE INSPIRED SECTION -->
 
