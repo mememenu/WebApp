@@ -1,0 +1,87 @@
+
+.button {
+  position: relative;
+}
+
+.menu {
+  z-index: 1;
+  float: left;
+  width: 100%;
+}
+
+/* for the list to be horizontaly centered */
+.table {
+  display: table;
+  margin: 0 auto;
+}
+
+.menu-options .menu-list {
+  margin-top: -6px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  padding-left: 0;
+}
+
+
+/* Animation keyframes for the drop down */
+@keyframes drop {
+  from {
+    top: 0px;
+  }
+  70% {
+    top: 60px;
+    animation-timing-function: ease-in;
+  }
+  to {
+    top: 60px;
+    animation-timing-function: ease-out;
+  }
+}
+@-webkit-keyframes drop {
+  from {
+    top: 0px;
+  }
+  70% {
+    top: 60px;
+    -webkit-animation-timing-function: ease-in;
+  }
+  to {
+    top: 60px;
+    -webkit-animation-timing-function: ease-out;
+  }
+}
+li {
+  position: relative;
+  list-style: none;
+  padding-bottom: 15px;
+  top: 0px;
+}
+
+li a {
+  text-decoration: none;
+  color: grey;
+  text-align: center;
+  font-size: 1.5em;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/*Animation classes to add to list-items that should be animated*/
+.list-animation, .list-animation-delay1, .list-animation-delay2 {
+  animation: drop 0.9s;
+  -webkit-animation: drop 0.9s;
+  animation-fill-mode: forwards;
+  opacity: 1;
+  -webkit-animation-fill-mode: forwards;
+  opacity: 1;
+}
+
+.list-animation-delay1 {
+  animation-delay: 0.5s;
+  -webkit-animation-delay: 0.5s;
+}
+
+.list-animation-delay2 {
+  animation-delay: 1s;
+  -webkit-animation-delay: 1s;
+}
