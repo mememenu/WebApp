@@ -58,8 +58,15 @@
 <div class="container-fluid">
   <div class="text-center">
     <hr>
+    <% if notice %>
+            <li class="alert alert-success"><%= notice %></li>
+          <% end %>
+          <% if alert %>
+            <li class="alert alert-danger"><%= alert %></li>
+          <% end %>
     <h1> Administrator Panel </h1>
     <h6>Signed in as <%= current_user.email %> (<%= link_to 'Sign Out', destroy_user_session_path %>)</h6>
+
     <hr>
     <div><%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %></div>
     <hr>
