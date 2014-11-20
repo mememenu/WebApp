@@ -34,16 +34,6 @@ ActiveRecord::Schema.define(version: 20141118191300) do
     t.string   "genre"
   end
 
-  create_table "dish_ingredients", force: true do |t|
-    t.integer  "dish_id"
-    t.integer  "ingredient_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "dish_ingredients", ["dish_id"], name: "index_dish_ingredients_on_dish_id", using: :btree
-  add_index "dish_ingredients", ["ingredient_id"], name: "index_dish_ingredients_on_ingredient_id", using: :btree
-
   create_table "dishes", force: true do |t|
     t.string   "name"
     t.text     "description"

@@ -18,7 +18,9 @@
       <% @restaurant.menus[0...-1].each do |menu| %>
       <a><span id='<%=menu.clean_name%>'> <%= menu.name.upcase%> </span></a> • 
       <% end %>
+      <% if @restaurant.menus.count > 0 %>
       <a><span id='<%=@restaurant.menus.last.clean_name%>'> <%= @restaurant.menus.last.name.upcase %> </span></a>
+      <% end %>
       <!--   Restaurant Menu Categories -->
       <div class="menu-list tzfilter">
         <% @restaurant.menus.each do |menu| %>
@@ -105,7 +107,7 @@
             </table>
             <% else %>
             <div class="panel-body">
-              <p>None</p>
+            None
             </div>
             <% end %>
           </div>
