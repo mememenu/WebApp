@@ -33,7 +33,7 @@
     <!--   Pictures of Food -->
     <div class="tzportfolio-pages tz-no-mansory">
       <div class="row">
-        <% @dishes.reverse.each do |dish| %>
+        <% @active_dishes.each do |dish| %>
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 <%= dish.category.clean_name %> <%= dish.category.menu.clean_name %> food-photos">
           <div class="element">
             <div class="tz-inner">
