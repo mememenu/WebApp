@@ -25,7 +25,7 @@
       <div class="menu-list tzfilter">
         <% @restaurant.menus.each do |menu| %>
         <% menu.categories.each do |category| %>
-        <a id="<%=category.clean_name%>" class="<%=category.menu.clean_name%>" style="display: none;"><%= category.name %></a>
+        <a id="<%=category.clean_name%>" class="<%=category.menu.clean_name%> hidden animated"><%= category.name %></a>
         <% end %>        
         <% end %>
       </div><!--   End of restaurant menu categories -->
@@ -34,7 +34,7 @@
     <div class="tzportfolio-pages tz-no-mansory">
       <div class="row">
         <% @active_dishes.each do |dish| %>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 <%= dish.category.clean_name %> <%= dish.category.menu.clean_name %> food-photos">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 <%= dish.category.clean_name %> <%= dish.category.menu.clean_name %> food-photos animated">
           <div class="element">
             <div class="tz-inner">
               <div class="tz-image-item">
@@ -362,12 +362,13 @@
 <script>
 // Hides and Shows dishes and categories by Menu 
 <% @restaurant.menus.each do |menu| %>
-<% menus = Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name).map{|a| a.clean_name} %>
+<% other_menus = Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name).map{|a| a.clean_name} %>
 $(document).ready(function(){
   $('span#<%=menu.clean_name%>').click(function(){
     console.log('<%=menu.clean_name%> clicked');
-    $('<%= menus.map{|a| a.prepend(".")}.join(", ") %>').hide(0);
-    $('.<%=menu.clean_name%>').show('slow');
+    $('<%= other_menus.map{|a| a.prepend(".")}.join(", ") %>').addClass('zoomOutDown hidden');
+    $('.<%=menu.clean_name%>').removeClass('zoomOutDown hidden');
+    $('.<%=menu.clean_name%>').addClass('zoomInDown');
   });
 });
 <% end %>
@@ -380,8 +381,9 @@ $(document).ready(function(){
 $(document).ready(function(){
   $('a#<%=category.clean_name%>').click(function(){
     console.log('<%=category.clean_name%> clicked');
-    $('<%=other_category_names%>').hide(0);
-    $('.<%=category.clean_name%>').show('slow');
+    $('<%=other_category_names%>').addClass('zoomOutDown hidden');
+    $('.<%=category.clean_name%>').removeClass('zoomOutDown hidden');
+    $('.<%=category.clean_name%>').addClass('zoomInUp');
   });
 });
 <% end %>
