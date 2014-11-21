@@ -25,7 +25,7 @@
       <div class="menu-list tzfilter">
         <% @restaurant.menus.each do |menu| %>
         <% menu.categories.each do |category| %>
-        <a id="<%=category.clean_name%>" class="<%=category.menu.clean_name%> hidden animated"><%= category.name %></a>
+        <a id="<%= category.clean_name + category.menu.clean_name %>" class="<%=category.menu.clean_name%> hidden animated"><%= category.name %></a>
         <% end %>        
         <% end %>
       </div><!--   End of restaurant menu categories -->
@@ -34,7 +34,7 @@
     <div class="tzportfolio-pages tz-no-mansory">
       <div class="row">
         <% @active_dishes.each do |dish| %>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 <%= dish.category.clean_name %> <%= dish.category.menu.clean_name %> food-photos animated zoomInUp">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 <%= dish.category.clean_name + dish.category.menu.clean_name %> <%= dish.category.menu.clean_name %> food-photos animated zoomInUp">
           <div class="element">
             <div class="tz-inner">
               <div class="tz-image-item">
@@ -377,13 +377,13 @@ $(document).ready(function(){
 <% @restaurant.menus.each do |menu| %>
 <% menu.categories.each do |category| %>
 // restaurant_category_names can be found in restaurant helper
-<% other_category_names = restaurant_category_names.delete_if{|name| name==category.clean_name}.map{|a| a.prepend(".")}.join(", ") %> 
+<% other_category_and_category_menu_names = restaurant_category_names.delete_if{|name| name==category.clean_name}.map{|a| a+category.menu.clean_name}.map{|a| a.prepend(".")}.join(", ") %>
 $(document).ready(function(){
-  $('a#<%=category.clean_name%>').click(function(){
-    console.log('<%=category.clean_name%> clicked');
-    $('<%=other_category_names%>').addClass('zoomOutDown hidden');
-    $('.<%=category.clean_name%>').removeClass('zoomOutDown zoomOutUp zoomInDown zoomInUp hidden');
-    $('.<%=category.clean_name%>').addClass('zoomInUp');
+  $('a#<%=category.clean_name + category.menu.clean_name%>').click(function(){
+    console.log('<%=category.clean_name+category.menu.clean_name%> clicked');
+    $('<%=other_category_and_category_menu_names%>').addClass('zoomOutDown hidden');
+    $('.<%=category.clean_name+category.menu.clean_name%>').removeClass('zoomOutDown zoomOutUp zoomInDown zoomInUp hidden');
+    $('.<%=category.clean_name+category.menu.clean_name%>').addClass('zoomInUp');
   });
 });
 <% end %>
