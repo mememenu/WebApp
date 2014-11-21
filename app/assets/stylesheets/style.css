@@ -11269,6 +11269,10 @@ width:33%;
         margin-top: 2%;
         margin-bottom: 2%;
     }
+    .tz-inner {
+        min-width: 315px;
+        min-height: 365px;
+    }
 
 }
 
@@ -11360,6 +11364,10 @@ padding-bottom: 20px;
         margin-right: auto;
     }
 
+    .tz-inner {
+        min-width: 263px;
+        min-height: 365px;
+    }
 
 }
 
@@ -11378,6 +11386,12 @@ padding-bottom: 20px;
     body .nav-child ul li:hover ul.mega-nav{
         left: auto;
         right: 100%;
+    }
+
+    .tz-inner{
+        min-width: 233px;
+        min-height: 345px;
+
     }
 }
 
@@ -11429,6 +11443,13 @@ padding-bottom: 20px;
         width: 265px;
         height: 265px;
     }
+
+    .tz-inner{
+        min-width: 233px;
+        min-height: 345px;
+
+    }
+
 }
 
 
@@ -11467,6 +11488,12 @@ margin-left: 15px !important;
 margin-right: 15px !important;
 
 }
+
+/*.tz-inner{
+
+    min-width: 233px !important;
+    min-height: 345px !important;
+}*/
 
 
 
