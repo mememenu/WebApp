@@ -15,15 +15,15 @@ class RestaurantsController < ApplicationController
   def show
     @menu = Menu.new
     @menus = Menu.where(restaurant_id: @restaurant.id)
-    @active_menus = @menus.where(hide: [nil, false]).order(:name)
+    @active_menus = @menus.where(hide: [nil, false]).order(id: :asc)
     @inactive_menus = @menus.where(hide: true).order(:name)
     @category = Category.new
     @categories = Category.all
-    @active_categories = @categories.where(hide: [nil, false]).order(:name)
+    @active_categories = @categories.where(hide: [nil, false]).order(id: :asc)
     @inactive_categories = @categories.where(hide: true).order(:name)
     @dish = Dish.new
     @dishes = Dish.where(category_id: @restaurant.restaurant_categories)
-    @active_dishes = @dishes.where(hide: [nil, false]).order(:name)
+    @active_dishes = @dishes.where(hide: [nil, false]).order(menu_id: :asc, category_id: :asc, name: :asc)
     @inactive_dishes = @dishes.where(hide: true).order(:name)
     @ingredients = Ingredient.where(restaurant_id: @restaurant.id)
   end
