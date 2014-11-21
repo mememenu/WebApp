@@ -134,16 +134,35 @@ module RestaurantsHelper
 
   end
 
-  def default_menu_option
+  # def default_menu_option
 
-    if @category.menu_id
+  #   if @category
+  #     if @category.menu
+  #       @category.menu.id
+  #     elsif @dish.category
+  #       @dish.category.menu.id
+  #     else
+  #       1    
+  #     end
+  #   else
+  #     1
+  #   end
+  # end
+
+  def default_menu_from_category_edit
+    if @category.menu
       @category.menu.id
-    elsif @dish.category
+    else
+      1
+    end
+  end
+
+  def default_menu_from_dish_edit
+    if @dish.category
       @dish.category.menu.id
     else
-    1    
+      1
     end
-
   end
 
 end

@@ -37,7 +37,7 @@
 <div class="row">
   <div class="field col-md-8">
     <%= f.label :menu_id %><br>
-    <%= f.select :menu_id, options_for_select(restaurant_menu_options, default_menu_option)%>
+    <%= f.select :menu_id, options_for_select(restaurant_menu_options, default_menu_from_category_edit)%>
   </div>
     <div class="field">
     <%= f.hidden_field :restaurant_id, value: category_menu_id_default_value %>
