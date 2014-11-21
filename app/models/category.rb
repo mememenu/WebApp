@@ -6,6 +6,8 @@ class Category < ActiveRecord::Base
   validates :name, presence: true
   validates :menu_id, presence: true
   validates :restaurant_id, presence: true
+  validates :priority, presence: true, uniqueness: { scope: :menu_id,
+  message: "(Another Category with this priority already exists.)" }
 
   after_save :cascade_hidden, :if => :hide_changed?
 

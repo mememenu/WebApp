@@ -3,19 +3,19 @@ Restaurant.create!([
 ])
 
 Menu.create!([
-  {name: "Lunch", description: nil, hide: false, restaurant_id: 1},
-  {name: "Supper", description: nil, hide: false, restaurant_id: 1},
-  {name: "Desserts", description: nil, hide: false, restaurant_id: 1}
+  {name: "Lunch", description: nil, hide: false, restaurant_id: 1, priority: 1},
+  {name: "Supper", description: nil, hide: false, restaurant_id: 1, priority: 2},
+  {name: "Desserts", description: nil, hide: false, restaurant_id: 1, priority: 3}
 ])
 
 Category.create!([
-  {name: "Snacks", menu_id: 1, hide: false, restaurant_id: 1},
-  {name: "Appetizers", menu_id: 1, hide: false, restaurant_id: 1},
-  {name: "Second", menu_id: 1, hide: false, restaurant_id: 1},
-  {name: "supper Snacks", menu_id: 2, hide: false, restaurant_id: 1},
-  {name: "supper Appetizers", menu_id: 2, hide: false, restaurant_id: 1},
-  {name: "supper Second", menu_id: 2, hide: false, restaurant_id: 1},
-  {name: "Dessert at the Dutch", menu_id: 3, hide: false, restaurant_id: 1}
+  {name: "Snacks", menu_id: 1, hide: false, restaurant_id: 1, priority: 1},
+  {name: "Appetizers", menu_id: 1, hide: false, restaurant_id: 1, priority: 2},
+  {name: "Second", menu_id: 1, hide: false, restaurant_id: 1, priority: 3},
+  {name: "Snacks", menu_id: 2, hide: false, restaurant_id: 1, priority: 1},
+  {name: "Appetizers", menu_id: 2, hide: false, restaurant_id: 1, priority: 2},
+  {name: "Second", menu_id: 2, hide: false, restaurant_id: 1, priority: 3},
+  {name: "Dessert at the Dutch", menu_id: 3, hide: false, restaurant_id: 1, priority: 1}
 ])
 
 Dish.create!([

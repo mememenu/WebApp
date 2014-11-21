@@ -2,6 +2,8 @@ class Menu < ActiveRecord::Base
 
   validates :name, presence: true
   validates :restaurant_id, presence: true
+  validates :priority, presence: true, uniqueness: { scope: :restaurant_id,
+  message: "(Another Menu with this priority already exists.)" }
 
   belongs_to :restaurant
   has_many :categories, dependent: :destroy
