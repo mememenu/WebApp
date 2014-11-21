@@ -51,7 +51,7 @@
           <%= image_tag "logo_100px_black.png" %>
           <% end %>
         </h3>
-        <button type="button" class="btn-navbar navbar-toggle tz_icon_menu pull-right" data-target=".nav-collapse"  >
+        <button type="button" class="btn-navbar tz_icon_menu pull-right" data-target=".nav-collapse">
           <i class="fa fa-bars"></i>
         </button>
         <nav class="pull-right">
@@ -94,8 +94,6 @@
     </header><!--end class tz-header-->
 
     <%= yield %>
-      <script>
-        var nav = responsiveNav(".nav-collapse");
-    </script>
+      
   </body>
 </html>
