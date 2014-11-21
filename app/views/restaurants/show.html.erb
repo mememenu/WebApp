@@ -24,7 +24,7 @@
       <!--   Restaurant Menu Categories -->
       <div class="menu-list tzfilter">
         <% @active_categories.each do |category| %>
-        <a id="<%= category.clean_name + category.menu.clean_name %>" class="<%=category.menu.clean_name%> hidden animated"><%= category.name %></a>
+        <a id="<%= category.clean_name + category.menu.clean_name %>" class="<%=category.menu.clean_name%> hidden animated category"><%= category.name %></a>
         <% end %>        
       </div><!--   End of restaurant menu categories -->
     </div><!-- End of restaurant menus -->
