@@ -1,40 +1,33 @@
-<h1>Listing dishes</h1>
+<div class="container">  
+  <h1>Listing dishes</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Hidden</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th>Portion size</th>
-      <th>Spice</th>
-      <th>Hot</th>
-      <th>Gluten free</th>
-      <th>Vegetarian</th>
-      <th>Menu</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @dishes.each do |dish| %>
+  <table class="table table-hover">
+    <thead>
       <tr>
-        <td><%= dish.name %></td>
-        <td><%= dish.hide %></td>
-        <td><%= dish.description %></td>
-        <td><%= dish.category.name %></td>
-        <td><%= dish.portion_size %></td>
-        <td><%= dish.spice %></td>
-        <td><%= dish.hot %></td>
-        <td><%= dish.gluten_free %></td>
-        <td><%= dish.vegetarian %></td>
-        <td><%= link_to 'Show', dish %></td>
-        <td><%= link_to 'Edit', edit_dish_path(dish) %></td>
-        <td><%= link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Menu</th>
+        <th>Restaurant</th>
+        <th>Hidden</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @dishes.each do |dish| %>
+        <tr>
+          <td><%= dish.name %></td>
+          <td><%= dish.category.name %></td>
+          <td><%= dish.menu.name %></td>
+          <td><%= dish.restaurant.name %></td>
+          <td><%= dish.hide %></td>
+          <td><%= link_to 'Show', dish %></td>
+          <td><%= link_to 'Edit', edit_dish_path(dish) %></td>
+          <td><%= link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+</div>
