@@ -34,7 +34,7 @@
     <div class="tzportfolio-pages tz-no-mansory">
       <div class="row">
         <% @active_dishes.each do |dish| %>
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 <%= dish.category.clean_name %> <%= dish.category.menu.clean_name %> food-photos animated">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 <%= dish.category.clean_name %> <%= dish.category.menu.clean_name %> food-photos animated zoomInUp">
           <div class="element">
             <div class="tz-inner">
               <div class="tz-image-item">
@@ -367,7 +367,7 @@ $(document).ready(function(){
   $('span#<%=menu.clean_name%>').click(function(){
     console.log('<%=menu.clean_name%> clicked');
     $('<%= other_menus.map{|a| a.prepend(".")}.join(", ") %>').addClass('zoomOutDown hidden');
-    $('.<%=menu.clean_name%>').removeClass('zoomOutDown hidden');
+    $('.<%=menu.clean_name%>').removeClass('zoomOutDown zoomOutUp zoomInDown zoomInUp hidden');
     $('.<%=menu.clean_name%>').addClass('zoomInDown');
   });
 });
@@ -376,13 +376,13 @@ $(document).ready(function(){
 // Hides and shows dishes based on category
 <% @restaurant.menus.each do |menu| %>
 <% menu.categories.each do |category| %>
-// other_category_names can be found in restaurant helper
+// restaurant_category_names can be found in restaurant helper
 <% other_category_names = restaurant_category_names.delete_if{|name| name==category.clean_name}.map{|a| a.prepend(".")}.join(", ") %> 
 $(document).ready(function(){
   $('a#<%=category.clean_name%>').click(function(){
     console.log('<%=category.clean_name%> clicked');
     $('<%=other_category_names%>').addClass('zoomOutDown hidden');
-    $('.<%=category.clean_name%>').removeClass('zoomOutDown hidden');
+    $('.<%=category.clean_name%>').removeClass('zoomOutDown zoomOutUp zoomInDown zoomInUp hidden');
     $('.<%=category.clean_name%>').addClass('zoomInUp');
   });
 });
