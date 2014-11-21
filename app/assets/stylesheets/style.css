@@ -5545,7 +5545,7 @@ body .custom-right .tz-collection2{
     line-height: 13px;
     margin: 20px 0 0 45px;
     padding: 0;
-    text-decoration: none !important;
+    text-decoration: none;
     text-transform: uppercase;
     transition: all 0.2s linear 0s;
     -moz-transition: all 0.2s linear 0s;
@@ -11458,7 +11458,7 @@ a :hover {color: black;}
 
 .selected-category{
 
-    text-decoration: underline;
+    text-decoration: underline !important;
 }
 
 

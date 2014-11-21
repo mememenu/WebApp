@@ -16,10 +16,10 @@
     <!-- Restaurant menus  -->
     <div class="menu-options">
       <% @restaurant.menus[0...-1].each do |menu| %>
-      <a><span id='<%=menu.clean_name%>'> <%= menu.name.upcase%> </span></a> • 
+      <span id='<%=menu.clean_name%>'><a><%= menu.name.upcase%></a></span> • 
       <% end %>
       <% if @restaurant.menus.count > 0 %>
-      <a><span id='<%=@restaurant.menus.last.clean_name%>'> <%= @restaurant.menus.last.name.upcase %> </span></a>
+      <span id='<%=@restaurant.menus.last.clean_name%>'><a><%= @restaurant.menus.last.name.upcase %></a></span>
       <% end %>
       <!--   Restaurant Menu Categories -->
       <div class="menu-list tzfilter">
@@ -362,11 +362,16 @@
 <script>
 // Hides and Shows dishes and categories by Menu 
 <% @restaurant.menus.each do |menu| %>
-<% other_menus = Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name).map{|a| a.clean_name} %>
+<% other_menus = Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name) %>
+<% other_menus2 = Menu.where(restaurant_id: @restaurant.id).where.not(name: menu.name) %>
+
 $(document).ready(function(){
   $('span#<%=menu.clean_name%>').click(function(){
     console.log('<%=menu.clean_name%> clicked');
-    $('<%= other_menus.map{|a| a.prepend(".")}.join(", ") %>').addClass('zoomOutDown hidden');
+    $('<%=restaurant_category_and_category_menu_names%>').removeClass('selected-category');
+    $('span#<%=menu.clean_name%> a').addClass('selected-menu');
+    $("<%= other_menus.map{|b| b.clean_name + ' a'}.map{|c| c.prepend('span#')}.join(', ')%>").removeClass('selected-menu');
+    $('<%= other_menus2.map{|a| a.clean_name}.map{|a| a.prepend(".")}.join(", ") %>').addClass('zoomOutDown hidden');
     $('.<%=menu.clean_name%>').removeClass('zoomOutDown zoomOutUp zoomInDown zoomInUp hidden');
     $('.<%=menu.clean_name%>').addClass('zoomInDown');
   });
@@ -377,11 +382,14 @@ $(document).ready(function(){
 <% @restaurant.menus.each do |menu| %>
 <% menu.categories.each do |category| %>
 // restaurant_category_names can be found in restaurant helper
-<% other_category_and_category_menu_names = restaurant_category_names.delete_if{|name| name==category.clean_name}.map{|a| a+category.menu.clean_name}.map{|a| a.prepend(".")}.join(", ") %>
+<% other_category_and_category_menu_names = restaurant_category_names.delete_if{|name| name==category.clean_name}.map{|a| a+category.menu.clean_name} %>
+<% other_category_and_category_menu_names2 = restaurant_category_names.delete_if{|name| name==category.clean_name}.map{|a| a+category.menu.clean_name} %>
 $(document).ready(function(){
   $('a#<%=category.clean_name + category.menu.clean_name%>').click(function(){
     console.log('<%=category.clean_name+category.menu.clean_name%> clicked');
-    $('<%=other_category_and_category_menu_names%>').addClass('zoomOutDown hidden');
+    $(this).addClass('selected-category');
+    $("<%=other_category_and_category_menu_names.map{|b| b.prepend('a#')}.join(', ')%>").removeClass('selected-category');
+    $("<%=other_category_and_category_menu_names2.map{|a| a.prepend('.')}.join(', ')%>").addClass('zoomOutDown hidden');
     $('.<%=category.clean_name+category.menu.clean_name%>').removeClass('zoomOutDown zoomOutUp zoomInDown zoomInUp hidden');
     $('.<%=category.clean_name+category.menu.clean_name%>').addClass('zoomInUp');
   });

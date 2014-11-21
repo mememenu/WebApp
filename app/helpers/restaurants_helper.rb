@@ -112,6 +112,35 @@ module RestaurantsHelper
     categories
   end
 
+  def restaurant_category_and_category_menu_names
+
+    menus = []
+
+    @restaurant.menus.each do |menu|
+      menus<<menu
+    end
+
+    categories = []
+    
+    menus.each do |menu|
+      menu.categories.each do |category|
+        categories<<category
+      end
+    end
+
+    category_and_menu_names = []
+
+    categories.each do |category|
+
+      category_and_menu_names<<('a#'+category.clean_name+category.menu.clean_name)
+
+    end
+
+    category_and_menu_names.join(', ')
+
+  end
+
+
   def restaurant_menu_options
     
     menu_options = []
