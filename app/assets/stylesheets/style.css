@@ -10191,7 +10191,7 @@ body .kfrontstats .kcol-mid{
         height: 350px;
     }
     .tzportfolio-wrap {
-        padding: 50px 30px 75px;
+        padding: 50px 15px 75px 15px;
     }
     body .tz-grid-3 .tz-image-item {
         height: 250px;
@@ -10200,7 +10200,8 @@ body .kfrontstats .kcol-mid{
         height: 285px;
     }
     .tzportfolio-pages {
-        margin-right: -30px;
+        margin-right: auto;
+        margin-left: auto;
         margin-top: 40px;
         position: relative;
 
@@ -10275,7 +10276,6 @@ body .kfrontstats .kcol-mid{
         margin: 0 10px 0 10px;
     }
     .tzportfolio-pages{
-        margin-right: 0;
         margin-top: 100px;
     }
     .tzfilter a{
@@ -11120,7 +11120,7 @@ width:33%;
         height: 350px;
     }
     .tzportfolio-wrap {
-        padding: 50px 30px 50px 30px;
+        padding: 50px 15px 50px 15px;
     }
     body .tz-grid-3 .tz-image-item {
         height: 250px;
@@ -11437,8 +11437,8 @@ a {color: black;}
 a :hover {color: black;}
 
 .food-photos {
-    margin-left: -15px;
-    margin-right: -15px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
