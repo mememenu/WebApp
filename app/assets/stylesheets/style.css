@@ -11451,6 +11451,15 @@ a :hover {color: black;}
     height: 150px;
 }
 
+.selected-menu{
+
+    text-decoration: underline;
+}
+
+.selected-category{
+
+    text-decoration: underline;
+}
 
 
 
