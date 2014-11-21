@@ -55,4 +55,3 @@ gem 'unicorn'
  gem 'rails_12factor'
  gem "paperclip", "~> 4.2"
  gem 'html5_validators'
- gem 'sprockets_better_errors'
