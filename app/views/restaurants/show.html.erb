@@ -39,17 +39,17 @@
               <div class="tz-image-item">
                 <%= image_tag dish.avatar.url(:large) %>
               </div>
-             <!--  dish ingredients -->
-                <div class="text-center">    
+              <h6 class="dish-name"><%= dish.name.upcase %></h6>
+              <!--  dish ingredients -->
+                <div class="text-center ingredient">    
                 <% dish.ingredients[0...-1].each do |ingredient| %>
-                  <%= ingredient.name %>,
+                  <%= ingredient.name.upcase %>,
                 <% end %>
                 <% if dish.ingredients.count > 0 %>  
-                <%= dish.ingredients.last.name %>
+                <%= dish.ingredients.last.name.upcase %>
                 <% end %>
               </div>
             <!--   end of dish ingredients -->
-              <h6 class="dish-name"><%= dish.name.upcase %></h6>
             </div>
           </div>
         </div>
