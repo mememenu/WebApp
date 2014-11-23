@@ -23,3 +23,16 @@
   padding-top: 130px;
   padding-bottom: 20px;
 }
+
+.navbar-default{
+
+background-color: transparent;
+border-color: transparent;
+
+}
+
+.nav>li>a:hover, .nav>li>a:focus {
+
+background-color: transparent;
+  
+}

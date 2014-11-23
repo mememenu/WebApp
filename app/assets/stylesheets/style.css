@@ -392,10 +392,10 @@
     .tz_icon_menu i{
 
     }
-    .nav-collapse{
+    /*.nav-collapse{
         height: 0;
         overflow: hidden;
-    }
+    }*/
     body .tz-header{
         padding: 0  20px;
     }
@@ -9849,6 +9849,8 @@ body .kfrontstats .kcol-mid{
         text-align: center;
     }
 
+    
+
     .award_next{
         display: none;
     }
@@ -10034,6 +10036,7 @@ body .kfrontstats .kcol-mid{
     .tz-logo img{
         max-width: 35px;
         width: 100%;
+        margin-bottom: 15px;
     }
 
     body .tz-header3{
@@ -10850,6 +10853,24 @@ width:33%;
         margin-top: 3%;
         margin-bottom: 3%;
     }
+
+    .nav-collapse li {
+
+        width: 100% !important;
+        
+    }
+
+    .navbar-toggle {
+
+        margin-top: 17px;
+
+    }
+
+    /*.nav-collapse li a{
+
+        width: 100% !important;
+
+    }*/
 
 }
 

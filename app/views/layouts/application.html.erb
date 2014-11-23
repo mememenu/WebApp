@@ -46,7 +46,75 @@
 
     <header class="tz-header tz-header3">
       <div class="container">
-        <h3 class="tz-logo pull-left">
+
+          <nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <h3 class="tz-logo pull-left">
+          <%= link_to root_path do %>
+          <%= image_tag "logo_100px_black.png" %>
+          <% end %>
+        </h3>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+      <ul class="nav nav-collapse">
+        <li>
+              <%= link_to 'HOME', root_path %>
+            </li>
+            <li class="active">
+              <a href="#">RESTAURANTS</a>
+              <div class="nav-child dropdown-menu mega-dropdown-menu">
+                <div class="mega-dropdown-inner">
+                  <div class="row">
+                    <div data-width="12" class="col-md-12 mega-col-nav">
+                      <div class="mega-inner">
+                        <ul class="mega-nav level1">
+                          <% restaurant_dropdown_options.each do |restaurant| %>
+                          <li>
+                            <%= link_to restaurant.name, restaurant %>
+                          </li>
+                          <% end %>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <a href="http://meme-menu.tumblr.com" target="_blank">BLOG</a>
+            </li>
+            <li>
+              <%= link_to 'ABOUT', home_about_path %>
+            </li>
+            <li>
+              <%= link_to 'CONTACT', home_contact_path %>
+            </li>
+        
+
+      </ul>
+      
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+
+
+
+
+<!--         <h3 class="tz-logo pull-left">
           <%= link_to root_path do %>
           <%= image_tag "logo_100px_black.png" %>
           <% end %>
@@ -90,7 +158,7 @@
             </li>
           </ul>
         </nav>
-      </div><!--end class container-->
+ -->      </div><!--end class container-->
     </header><!--end class tz-header-->
 
     <%= yield %>
