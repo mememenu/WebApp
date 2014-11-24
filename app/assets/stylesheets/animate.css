@@ -2544,6 +2544,35 @@ Copyright (c) 2014 Daniel Eden
           animation-name: zoomIn;
 }
 
+@-webkit-keyframes zoomInB {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomInB {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(.3, .3, .3);
+            transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.zoomInB {
+  -webkit-animation-name: zoomInB;
+          animation-name: zoomInB;
+}
+
 @-webkit-keyframes zoomInDown {
   0% {
     opacity: 0;
@@ -2579,6 +2608,7 @@ Copyright (c) 2014 Daniel Eden
             animation-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1);
   }
 }
+
 
 .zoomInDown {
   -webkit-animation-name: zoomInDown;
