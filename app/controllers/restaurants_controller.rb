@@ -18,7 +18,7 @@ class RestaurantsController < ApplicationController
     @active_menus = @menus.where(hide: [nil, false]).order(priority: :asc)
     @inactive_menus = @menus.where(hide: true).order(:name)
     @category = Category.new
-    @categories = Category.all
+    @categories = Category.where(restaurant_id: @restaurant.id)
     @active_categories = @categories.where(hide: [nil, false]).order(priority: :asc)
     @inactive_categories = @categories.where(hide: true).order(:name)
     @dish = Dish.new
