@@ -28,8 +28,12 @@
 
 background-color: transparent;
 border-color: transparent;
-
+padding-bottom: 0;
 }
+
+.navbar-default .navbar-collapse{
+    border-color: #ffffff;
+  }
 
 .nav>li>a:hover, .nav>li>a:focus {
 

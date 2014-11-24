@@ -483,7 +483,7 @@
 
 .tz-header{
     background: #333333;
-    padding: 8px 0;
+    padding: 0 0;
     position: relative;
     z-index: 9999;
 }
@@ -535,7 +535,7 @@
     font-family: 'Raleway', sans-serif;
     font-size: 16px;
     font-weight: 0;
-    line-height: 16px;
+    line-height: 40px;
     margin: 0;
     padding: 21px 0;
     text-align: center;
@@ -923,7 +923,7 @@ body .tz-header5{
     width: 500px;
 }
 .width1170{
-    width: 1170px;
+    width: 1072px;
 }
 body .tz-header ul li .mega-menu-style2 ul li{
     border: 0;
@@ -10028,14 +10028,23 @@ body .kfrontstats .kcol-mid{
         -ms-transition: all 0s linear 0s;
     }
     .tz-logo img{
-        max-width: 35px;
+        max-width: 50px;
         width: 100%;
-        margin-bottom: 15px;
+        margin-bottom: 0;
     }
 
     body .tz-header3{
         background: #fff !important;
     }
+
+    body .tz-header3 ul.nav-collapse li a{
+        line-height: 0;
+
+    }
+
+
+
+
     .tz-header3 .tz_icon_menu i{
         color: #000000;
     }
