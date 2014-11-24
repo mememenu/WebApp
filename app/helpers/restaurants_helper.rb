@@ -140,6 +140,34 @@ module RestaurantsHelper
 
   end
 
+  def class_of_restaurant_category_and_category_menu_names
+
+    menus = []
+
+    @restaurant.menus.each do |menu|
+      menus<<menu
+    end
+
+    categories = []
+    
+    menus.each do |menu|
+      menu.categories.each do |category|
+        categories<<category
+      end
+    end
+
+    category_and_menu_names = []
+
+    categories.each do |category|
+
+      category_and_menu_names<<('.'+category.clean_name+category.menu.clean_name)
+
+    end
+
+    category_and_menu_names.join(', ')
+
+  end
+
 
   def restaurant_menu_options
     
@@ -177,6 +205,17 @@ module RestaurantsHelper
   #     1
   #   end
   # end
+
+def restaurant_menu_names
+    menus = []
+
+    @restaurant.menus.each do |menu|
+      menus<<menu.clean_name.prepend('.')
+    end
+
+    menus.join(", ")
+  end
+
 
   def default_menu_from_category_edit
     if @category.menu
