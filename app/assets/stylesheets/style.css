@@ -11283,7 +11283,7 @@ width:33%;
     }
     .tz-inner {
         min-width: 315px;
-        min-height: 365px;
+        min-height: 375px;
     }
 
     .tz-header ul.nav-collapse li a{
@@ -11411,8 +11411,7 @@ padding-bottom: 20px;
 
     .tz-inner{
         min-width: 233px;
-        min-height: 345px;
-
+        min-height: 355px;
     }
 }
 
@@ -11467,7 +11466,7 @@ padding-bottom: 20px;
 
     .tz-inner{
         min-width: 233px;
-        min-height: 345px;
+        min-height: 355px;
 
     }
 
