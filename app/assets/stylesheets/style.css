@@ -392,6 +392,7 @@
     .tz_icon_menu i{
 
     }
+    /*This line disables the button to show a dropdown menu in mobile mode*/
     /*.nav-collapse{
         height: 0;
         overflow: hidden;
@@ -9879,12 +9880,6 @@ body .kfrontstats .kcol-mid{
     -ms-transition: all 0.2s linear 0s;
     -o-transition: all 0.2s linear 0s;
 }
-
-
-
-     {
-        padding: 40px 0;
-    }
     .tz-introduce .col-md-6:first-child{
         padding-right: 15px;
     }
@@ -10870,12 +10865,6 @@ width:33%;
 
         text-align: center !important;
     }
-
-    /*.nav-collapse li a{
-
-        width: 100% !important;
-
-    }*/
 
 }
 
