@@ -39,7 +39,7 @@
     <!-- start of Pictures of Food -->
     <div class="tzportfolio-pages tz-no-mansory row">
       <% @active_dishes.each do |dish| %>
-      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 <%= dish.category.clean_name + dish.category.menu.clean_name %> <%= dish.category.menu.clean_name %> food-photos animated">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 <%= dish.category.clean_name + dish.category.menu.clean_name %> <%= dish.category.menu.clean_name %> food-photos animated zoomInB">
         <div class="element">
           <div class="tz-inner">
             <div class="tz-image-item">
@@ -383,7 +383,7 @@ $(document).ready(function(){
     $('span#<%=menu.clean_name%> a').addClass('selected-menu');
     $("<%= other_menus.map{|b| b.clean_name + ' a'}.map{|c| c.prepend('span#')}.join(', ')%>").removeClass('selected-menu');
     $('<%= other_menus2.map{|a| a.clean_name}.map{|a| a.prepend(".")}.join(", ") %>').addClass('hidden');
-    $('.<%=menu.clean_name%>').removeClass('hidden');
+    $('.<%=menu.clean_name%>').removeClass('hidden zoomIn zoomInB');
     $('.<%=menu.clean_name%>').addClass('zoomIn');
   });
 });
@@ -401,8 +401,8 @@ $(document).ready(function(){
     $(this).addClass('selected-category');
     $("<%=other_category_and_category_menu_names.map{|b| b.prepend('a#')}.join(', ')%>").removeClass('selected-category');
     $("<%=other_category_and_category_menu_names2.map{|a| a.prepend('.')}.join(', ')%>").addClass('hidden');
-    $('.<%=category.clean_name+category.menu.clean_name%>').removeClass('hidden');
-    $('.<%=category.clean_name+category.menu.clean_name%>').addClass('zoomIn');
+    $('.<%=category.clean_name+category.menu.clean_name%>').removeClass('hidden zoomIn zoomInB');
+    $('.<%=category.clean_name+category.menu.clean_name%>').addClass('zoomInB');
   });
 });
 <% end %>
