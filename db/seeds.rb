@@ -56,11 +56,11 @@ Dish.create!([
 ])
 
 Ingredient.create!([
-  {name: "black & blue jam", restaurant_id: 1, description: "", dish_id: 33},
-  {name: "dulce de leche cream", restaurant_id: 1, description: "", dish_id: 33},
+  {name: "black & blue jam", restaurant_id: 1, description: "", dish_id: 31},
+  {name: "dulce de leche cream", restaurant_id: 1, description: "", dish_id: 31},
   {name: "yuzu sorbet", restaurant_id: 1, description: "", dish_id: 32},
   {name: "strawberry compote", restaurant_id: 1, description: "", dish_id: 32},
-  {name: "Mint Chocolate Chip Ice Cream", restaurant_id: 1, description: "", dish_id: 31},
+  {name: "Mint Chocolate Chip Ice Cream", restaurant_id: 1, description: "", dish_id: 33},
   {name: "banana anglaise", restaurant_id: 1, description: "", dish_id: 34},
   {name: "spiced pineapple", restaurant_id: 1, description: "", dish_id: 34}
 ])
