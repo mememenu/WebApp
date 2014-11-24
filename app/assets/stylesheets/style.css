@@ -11067,16 +11067,7 @@ width:33%;
     .tzpage-default {
         padding: 50px 0;
     }
-    .nav-child{
-        display: block;
-        min-width: 100%;
-        top: 0;
-        left: 0;
-        position: relative;
-        padding: 10px;
-        background: #222;
-        width: 100%;
-    }
+
     .entry-shop-menu{
         padding: 0;
     }

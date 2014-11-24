@@ -1,167 +1,115 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>meme • menu</title>
-    
-    <!-- Latest compiled and minified Bootstrap CSS-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Google Font "Raleway" -->
-    <link href="//fonts.googleapis.com/css?family=Raleway:400,700,600,500,300,100,200,800" rel="stylesheet" />
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>meme • menu</title>
 
-    <%= stylesheet_link_tag    'application', media: 'all'%>
-    <%= javascript_include_tag 'application'%>
-    <%= csrf_meta_tags %>
-    <!-- Latest compiled and minified Bootstrap JS-->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <!-- Latest compiled and minified Bootstrap CSS-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Google Font "Raleway" -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,700,600,500,300,100,200,800" rel="stylesheet" />
 
-    <link rel="icon" type="image/png" href="assets/favicon.ico">
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="assets/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/apple-touch-icon-76x76.png">
-    <link rel="icon" type="image/png" href="assets/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="assets/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="assets/favicon-32x32.png" sizes="32x32">
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <%= javascript_include_tag 'application'%>
+  <%= csrf_meta_tags %>
+  <!-- Latest compiled and minified Bootstrap JS-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-  <!-- GOOGLE ANALYTICS -->
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <link rel="icon" type="image/png" href="assets/favicon.ico">
+  <link rel="apple-touch-icon" sizes="57x57" href="assets/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="assets/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="assets/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="assets/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/apple-touch-icon-76x76.png">
+  <link rel="icon" type="image/png" href="assets/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="assets/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="assets/favicon-32x32.png" sizes="32x32">
+</head>
 
-    ga('create', 'UA-56672219-1', 'auto');
-    ga('send', 'pageview');
+<!-- GOOGLE ANALYTICS -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  </script>
-  <!-- END GOOGLE ANALYTICS -->
+ga('create', 'UA-56672219-1', 'auto');
+ga('send', 'pageview');
 
-  <body class="home-meme">
+</script>
+<!-- END GOOGLE ANALYTICS -->
 
-    <header class="tz-header tz-header3">
-      <div class="container">
+<body class="home-meme">
 
-          <nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <h3 class="tz-logo pull-left">
-          <%= link_to root_path do %>
-          <%= image_tag "logo_100px_black.png" %>
-          <% end %>
-        </h3>
-    </div>
+  <header class="tz-header tz-header3">
+    <div class="container">
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-      <ul class="nav nav-collapse">
-        <li>
-              <%= link_to 'HOME', root_path %>
-            </li>
-            <li class="active">
-              <a href="#">RESTAURANTS</a>
-              <div class="nav-child dropdown-menu mega-dropdown-menu">
-                <div class="mega-dropdown-inner">
-                  <div class="row">
-                    <div data-width="12" class="col-md-12 mega-col-nav">
-                      <div class="mega-inner">
-                        <ul class="mega-nav level1">
-                          <% restaurant_dropdown_options.each do |restaurant| %>
-                          <li>
-                            <%= link_to restaurant.name, restaurant %>
-                          </li>
-                          <% end %>
-                        </ul>
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <h3 class="tz-logo pull-left">
+              <%= link_to root_path do %>
+              <%= image_tag "logo_100px_black.png" %>
+              <% end %>
+            </h3>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+            <ul class="nav nav-collapse">
+              <li>
+                <%= link_to 'HOME', root_path %>
+              </li>
+              <li class="active">
+                <a href="#">RESTAURANTS</a>
+                <div class="nav-child dropdown-menu mega-dropdown-menu">
+                  <div class="mega-dropdown-inner">
+                    <div class="row">
+                      <div data-width="12" class="col-md-12 mega-col-nav">
+                        <div class="mega-inner">
+                          <ul class="mega-nav level1">
+                            <% restaurant_dropdown_options.each do |restaurant| %>
+                            <li>
+                              <%= link_to restaurant.name, restaurant %>
+                            </li>
+                            <% end %>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </li>
-            <li>
-              <a href="http://meme-menu.tumblr.com" target="_blank">BLOG</a>
-            </li>
-            <li>
-              <%= link_to 'ABOUT', home_about_path %>
-            </li>
-            <li>
-              <%= link_to 'CONTACT', home_contact_path %>
-            </li>
-        
+              </li>
+              <li>
+                <a href="http://meme-menu.tumblr.com" target="_blank">BLOG</a>
+              </li>
+              <li>
+                <%= link_to 'ABOUT', home_about_path %>
+              </li>
+              <li>
+                <%= link_to 'CONTACT', home_contact_path %>
+              </li>
 
-      </ul>
-      
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+            </ul> <!-- closes nav nav-collapse -->
+        </div><!-- collapse navbar-collapse navbar-right -->
+      </div><!-- end of class container-fluid -->
+    </nav> <!-- closes navbar navbar-default -->
 
 
+  </div><!--end class container-->
+</header><!--end class tz-header-->
 
+<%= yield %>
 
-
-
-
-<!--         <h3 class="tz-logo pull-left">
-          <%= link_to root_path do %>
-          <%= image_tag "logo_100px_black.png" %>
-          <% end %>
-        </h3>
-        <button type="button" class="btn-navbar tz_icon_menu pull-right" data-target=".nav-collapse">
-          <i class="fa fa-bars"></i>
-        </button>
-        <nav class="pull-right">
-          <ul class="nav-collapse">
-            <li>
-              <%= link_to 'HOME', root_path %>
-            </li>
-            <li class="active">
-              <a href="#">RESTAURANTS</a>
-              <div class="nav-child dropdown-menu mega-dropdown-menu">
-                <div class="mega-dropdown-inner">
-                  <div class="row">
-                    <div data-width="12" class="col-md-12 mega-col-nav">
-                      <div class="mega-inner">
-                        <ul class="mega-nav level1">
-                          <% restaurant_dropdown_options.each do |restaurant| %>
-                          <li>
-                            <%= link_to restaurant.name, restaurant %>
-                          </li>
-                          <% end %>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li>
-              <a href="http://meme-menu.tumblr.com" target="_blank">BLOG</a>
-            </li>
-            <li>
-              <%= link_to 'ABOUT', home_about_path %>
-            </li>
-            <li>
-              <%= link_to 'CONTACT', home_contact_path %>
-            </li>
-          </ul>
-        </nav>
- -->      </div><!--end class container-->
-    </header><!--end class tz-header-->
-
-    <%= yield %>
-      
-  </body>
+</body> <!-- closes class meme-menu -->
 </html>
