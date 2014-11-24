@@ -54,7 +54,7 @@
 li {
   position: relative;
   list-style: none;
-  padding-bottom: 15px;
+  padding-bottom: 0;
   top: 0px;
 }
 
