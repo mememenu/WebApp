@@ -10866,6 +10866,11 @@ width:33%;
 
     }
 
+    .nav-child ul li a{
+
+        text-align: center !important;
+    }
+
     /*.nav-collapse li a{
 
         width: 100% !important;
@@ -11293,6 +11298,15 @@ width:33%;
     .tz-inner {
         min-width: 315px;
         min-height: 365px;
+    }
+
+    .tz-header ul.nav-collapse li a{
+
+        font-size: 14px;
+    }
+
+    .tz-header ul.nav-collapse > li{
+        padding-right: 10px !important;
     }
 
 }
