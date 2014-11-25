@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
 
-      <%= render 'contacts/form' %>
+<!--       <%= render 'contacts/form' %> -->
 
       <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
         <div class="tz-infomation-website">
@@ -34,25 +34,25 @@
 </footer><!--end class tz-footer-->
 
 
-// <script>
-// function initialize()
-// {
-//   var mapProp = {
-//     center: new google.maps.LatLng(25.801540, -80.202223),
-//     zoom:17,
-//     mapTypeId: google.maps.MapTypeId.ROADMAP
-//   };
-//   var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-// }
+<script>
+function initialize()
+{
+  var mapProp = {
+    center: new google.maps.LatLng(25.801540, -80.202223),
+    zoom:17,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
 
-// function loadScript()
-// {
-//   var script = document.createElement("script");
-//   script.type = "text/javascript";
-//   script.src = "//maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false&callback=initialize";
-//   document.body.appendChild(script);
-// }
+function loadScript()
+{
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "//maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false&callback=initialize";
+  document.body.appendChild(script);
+}
 
-// window.onload = loadScript;
-// </script>
+window.onload = loadScript;
+</script>
 
