@@ -5545,7 +5545,7 @@ body .custom-right .tz-collection2{
     font-weight: 500;
     line-height: 13px;
     margin: 20px 0 0 45px;
-    padding: 0;
+    padding-top: 17px;
     text-decoration: none;
     text-transform: uppercase;
     transition: all 0.2s linear 0s;
@@ -9857,7 +9857,7 @@ body .kfrontstats .kcol-mid{
     }
 
   .menu-options .menu-list {
-        margin-top: 20px;
+        margin-top: 0;
         position: absolute;
         text-align: center;
         width: 100%;
@@ -10280,7 +10280,7 @@ body .kfrontstats .kcol-mid{
         margin: 0 10px 0 10px;
     }
     .tzportfolio-pages{
-        margin-top: 100px;
+        margin-top: 7px;
     }
     .tzfilter a{
         margin: 15px 0 0 15px;
@@ -10876,6 +10876,10 @@ width:33%;
 
         padding-top: 0px;
         padding-bottom: 0px;
+    }
+
+    .container {
+        padding: 0;
     }
 
 }
