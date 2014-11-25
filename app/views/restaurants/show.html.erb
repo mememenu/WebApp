@@ -31,7 +31,7 @@
         <% @active_categories.each do |category| %>
         <a id="<%= category.clean_name + category.menu.clean_name %>" class="<%=category.menu.clean_name%> hidden animated category"><%= category.name %></a>
         <% end %>        
-      </div><!--   End of Restaurant menu categories -->
+      </div><!--   End of Restaurant Menu categories -->
     </div><!-- End of Restaurant menus -->
 
 
@@ -45,15 +45,16 @@
             <div class="tz-image-item">
               <%= image_tag dish.avatar.url(:large) %>
             </div>
-            <h6 class="dish-name"><%= dish.name.upcase %></h6>
+            <!-- start of dish name -->
+            <% unless dish.name == nil %>
+              <h6 class="dish-name">
+                <%= dish.name.upcase %>
+              </h6>
+            <% end %>
             <!--  start of dish ingredients -->
-            <div class="text-center ingredient">      
-              <% dish.ingredients[0...-1].each do |ingredient| %>
-              <%= ingredient.name.upcase %>,
-              <% end %>
-
-              <% if dish.ingredients.count > 0 %>  
-              <%= dish.ingredients.last.name.upcase %>
+            <div class="text-center ingredient">    
+              <% unless dish.description == nil %>  
+                <%= dish.description.upcase %>
               <% end %>
             </div><!--   end of dish ingredients -->
           </div> <!-- end of tz-inner -->
