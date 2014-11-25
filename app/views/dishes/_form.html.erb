@@ -1,118 +1,90 @@
 <%= form_for @dish, :html => { :multipart => true } do |f| %>
   <% if @dish.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@dish.errors.count, "error") %> prohibited this dish from being saved:</h2>
-      <ul>
+  <div id="error_explanation">
+    <h2><%= pluralize(@dish.errors.count, "error") %> prohibited this dish from being saved:</h2>
+    <ul>
       <% @dish.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
   <% end %>
 
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title"><%if @dish.restaurant_id %>
-      Editing 
-      <% else %>
-      New 
-      <% end %>
-      Dish</h3>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"> <% @dish.restaurant_id ? "Editing" : "New" %> Dish </h3>
+    </div>
+    <div class="panel-body">
+
+      <!-- start of dish name row -->
+      <div class="row">
+        <div class="field col-md-12">
+          <%= f.label :name, 'Dish Name' %><br>
+          <%= f.text_field :name, :class=>'form-control' %>
+        </div>
+      </div> <!-- end of dish name row -->
+      <br>
+      <!-- start of description row -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="field">
+            <%= f.label :description %><br>
+            <%= f.text_area :description, class: 'dish-description' %>
+          </div>
+        </div>
+      </div> <!-- end of description row -->
+      <br>
+      <!-- start of menu, category and hide row -->
+      <div class="row">
+        <div class="col-md-4">
+          <div class="field">
+            <!-- Dropdown for menus -->
+            <%= f.label :menu_id %><br>
+            <%= f.select :menu_id, options_for_select(restaurant_menu_options, default_menu_from_dish_edit)%>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="field">
+            <!-- Dropdown for categories -->
+            <%= f.label :category_id %><br>
+            <%= f.grouped_collection_select :category_id, @menus.order(:name), :categories, :name, :id, :name %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="field">
+            <%= f.label :hide, "Hide Dish"%><br>
+            <%= f.check_box :hide%>
+          </div>
+        </div>
+      </div> <!-- end of menu, category and hide row -->
+      <br>
+      <!-- start of avatar row -->
+      <div class="row">      
+        <div class="col-md-12">      
+          <div class="field">
+            <%= f.label "Add an Image" %><br>
+            <%= f.file_field :avatar %>
+          </div>
+        </div>
+      </div> <!-- end of avatar row -->
+      <br>
+      <!-- start of submit row -->
+      <div class="row">
+        <div class="actions col-md-12 text-center">
+          <%= f.submit 'Submit', class: 'btn btn-primary btn-xs' %>
+        </div>
+      </div> <!-- end of submit row -->
+
+    </div> <!-- end of class: panel-body -->
+  </div> <!-- end of class: panel panel-default -->
+
+  <div class="field">
+    <%= f.hidden_field :restaurant_id, value: @restaurant.id%>
   </div>
-  <div class="panel-body">
-    <div class="row">
-      <div class="field col-md-8">
-      <%= f.label :name, 'Dish Name' %><br>
-      <%= f.text_field :name, :class=>'form-control' %>
-    </div>
-      <!-- <div class="field">
-        <%= f.label :description %><br>
-        <%= f.text_area :description %>
-      </div> -->
-<div class="field col-md-4">
-  <br>
-  <%= f.label :hide%>
-  <%= f.check_box :hide %>
-</div>
-    </div>
-
-
-<div class="row">
-<br>
-<div class="col-md-12">      
-      <div class="field">
-      <!-- Drop Down menu for menus -->
-      <%= f.label :menu_id %><br>
-      <%= f.select :menu_id, options_for_select(restaurant_menu_options, default_menu_from_dish_edit)%>
-      </div><br>
-      <div class="field">
-        <!-- Drop Down menu for categories -->
-        <%= f.label :category_id %><br>
-        <%= f.grouped_collection_select :category_id, @menus.order(:name), :categories, :name, :id, :name %>
-      </div><br>
-      <div class="field">
-        <%= f.hidden_field :restaurant_id, value: @restaurant.id%>
-      </div>
-    </div>
-</div>
-
-<div class="row">      
-<div class="col-md-12">      
-      <div class="field">
-        <%= f.label "Add an Image" %><br>
-        <%= f.file_field :avatar %>
-      </div>
-    </div>
-</div>
-
-<br>
-<div class="row">
-  <div class="col-md-12">
-  <%= f.label :ingredients %><br>
-      <%= f.fields_for :ingredients do |builder| %>
-        <%= render 'dishes/ingredient_fields', f: builder %>
-      <% end %>
-      
-      <%= link_to_add_fields "Add New Ingredient", f, :ingredients %>
-</div>
-</div>
-<div class="row">
-<div class="actions col-md-12 text-right">
-        <%= f.submit 'Submit', class: 'btn btn-default btn-xs' %>
-      </div>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-
-  
-
-    
-    
-
-  
-      
-  
-  
-
-
 
 <% end %>
+
+
+
+
