@@ -31,6 +31,12 @@ border-color: transparent;
 padding-bottom: 0;
 }
 
+nav {
+
+margin: 0px !important;
+
+}
+
 .navbar-default .navbar-collapse{
     border-color: #ffffff;
   }
