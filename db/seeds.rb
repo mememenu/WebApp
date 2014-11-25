@@ -49,20 +49,10 @@ Dish.create!([
   {name: "roast marinated chicken, wild rice, dill yogurt, greens", description: nil, portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 6, avatar_file_name: "sup_sec_05.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 157779, avatar_updated_at: "2014-11-21 17:47:50", menu_id: 2, restaurant_id: 1},
   {name: "sea scallops, \"carrots and peas\", ginger, black quinoa", description: nil, portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 6, avatar_file_name: "sup_sec_06.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 127736, avatar_updated_at: "2014-11-21 17:48:11", menu_id: 2, restaurant_id: 1},
   {name: "smoked pork chops, sauerkraut, roast apples, mustard jus", description: nil, portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 6, avatar_file_name: "sup_sec_03.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 163752, avatar_updated_at: "2014-11-21 17:48:32", menu_id: 2, restaurant_id: 1},
-  {name: "New Orleans beignets", description: nil, portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 7, avatar_file_name: "des_03.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 133043, avatar_updated_at: "2014-11-21 17:48:53", menu_id: 3, restaurant_id: 1},
-  {name: "Toasted Almond panna cotta", description: nil, portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 7, avatar_file_name: "des_02.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 109638, avatar_updated_at: "2014-11-21 17:49:20", menu_id: 3, restaurant_id: 1},
-  {name: "chocolate souffle ", description: nil, portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 7, avatar_file_name: "des_01.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 121495, avatar_updated_at: "2014-11-21 17:49:55", menu_id: 3, restaurant_id: 1},
-  {name: "coconut ice cream cake", description: nil, portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 7, avatar_file_name: "des_04.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 97970, avatar_updated_at: "2014-11-21 17:50:15", menu_id: 3, restaurant_id: 1}
-])
-
-Ingredient.create!([
-  {name: "black & blue jam", restaurant_id: 1, description: "", dish_id: 31},
-  {name: "dulce de leche cream", restaurant_id: 1, description: "", dish_id: 31},
-  {name: "yuzu sorbet", restaurant_id: 1, description: "", dish_id: 32},
-  {name: "strawberry compote", restaurant_id: 1, description: "", dish_id: 32},
-  {name: "Mint Chocolate Chip Ice Cream", restaurant_id: 1, description: "", dish_id: 33},
-  {name: "banana anglaise", restaurant_id: 1, description: "", dish_id: 34},
-  {name: "spiced pineapple", restaurant_id: 1, description: "", dish_id: 34}
+  {name: "New Orleans beignets", description: "black & blue jam, dulce de leche cream", portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 7, avatar_file_name: "des_03.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 133043, avatar_updated_at: "2014-11-21 17:48:53", menu_id: 3, restaurant_id: 1},
+  {name: "Toasted Almond panna cotta", description: "yuzu sorbet, strawberry compote", portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 7, avatar_file_name: "des_02.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 109638, avatar_updated_at: "2014-11-21 17:49:20", menu_id: 3, restaurant_id: 1},
+  {name: "chocolate souffle ", description: "mint chocolate chip ice cream", portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 7, avatar_file_name: "des_01.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 121495, avatar_updated_at: "2014-11-21 17:49:55", menu_id: 3, restaurant_id: 1},
+  {name: "coconut ice cream cake", description: "banana anglaise, spiced pineapple", portion_size: nil, spice: nil, hot: nil, gluten_free: nil, vegetarian: nil, hide: false, category_id: 7, avatar_file_name: "des_04.jpg", avatar_content_type: "image/jpeg", avatar_file_size: 97970, avatar_updated_at: "2014-11-21 17:50:15", menu_id: 3, restaurant_id: 1}
 ])
 
 
