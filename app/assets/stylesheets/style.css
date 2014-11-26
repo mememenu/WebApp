@@ -9877,7 +9877,7 @@ body .kfrontstats .kcol-mid{
     }
 
   .menu-options .menu-list {
-        margin-top: 0;
+        margin-top: -10px;
         position: absolute;
         text-align: center;
         width: 100%;
@@ -10217,7 +10217,7 @@ body .kfrontstats .kcol-mid{
     body .tz-grid-2 .tz-image-item {
         height: 350px;
     }
-    
+
     body .tz-grid-3 .tz-image-item {
         height: 250px;
     }
@@ -10880,7 +10880,7 @@ width:33%;
 
         width: 100% !important;
         padding: 5px 25px !important;
-        
+
     }
 
     .navbar-toggle {
@@ -10900,7 +10900,7 @@ width:33%;
     }
     .tz-logo img{
       padding-bottom: 15px;
-      
+
     }
 
 }
@@ -11507,9 +11507,14 @@ padding-bottom: 20px;
 }
 
 
-a {color: black;}
+a {
+    color: black;
+    cursor: pointer;
+}
 
-a :hover {color: black;}
+a:hover, a:focus {
+    color: #000000;
+}
 
 .food-photos {
     margin-left: auto;
