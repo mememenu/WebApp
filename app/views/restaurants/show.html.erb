@@ -11,7 +11,7 @@
       <% unless @restaurant.address_2.empty? %>
       <%= @restaurant.address_2 %><br>
       <% end %>
-      <%= @restaurant.city %><br>
+      <%= @restaurant.city %>,&nbsp<%= @restaurant.state %>&nbsp<%= @restaurant.zipcode %><br>
       <%= number_to_phone(@restaurant.phone, area_code: true) %>
       <hr>
     </div> <!--   End of restaurant info -->
