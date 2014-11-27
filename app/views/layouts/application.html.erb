@@ -26,7 +26,7 @@
   <link rel="icon" type="image/png" href="assets/favicon-96x96.png" sizes="96x96">
   <link rel="icon" type="image/png" href="assets/favicon-16x16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="assets/favicon-32x32.png" sizes="32x32">
-   <%=favicon_link_tag 'favicon.ico' %>
+  <%=favicon_link_tag 'favicon.ico' %>
 </head>
 
 <!-- GOOGLE ANALYTICS -->
@@ -48,20 +48,21 @@ ga('send', 'pageview');
     <div class="container">
       <nav class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
+            <!-- Brand and toggle get grouped. allows for better mobile display -->
+            <!-- Mobile Dropdown button -->
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
-            </button>
+            </button> <!-- end of mobile dropdown button -->
             <h3 class="tz-logo pull-left">
               <%= link_to root_path do %>
-              <%= image_tag "logo_100px_black.png", width: '110px;' %>
+              <%= image_tag "logo_100px_black.png", width: '110px;' %> <!-- Meme•Menu Logo --> 
               <% end %>
-            </h3>
-          </div>
+            </h3>    
+          </div> <!-- end of class navbar-header -->
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
@@ -83,12 +84,12 @@ ga('send', 'pageview');
                             </li>
                             <% end %>
                           </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </li>
+                        </div> <!-- end of class mega-inner -->
+                      </div> <!-- end of class col-md-12 mega-col-nav -->
+                    </div> <!-- end of row -->
+                  </div> <!-- end of class mega-dropdown-inner -->
+                </div> <!-- end of nav-child dropdown-menu mega-dropdown-menu -->
+              </li> <!-- closes class active -->
               <li>
                 <a href="http://meme-menu.tumblr.com" target="_blank">BLOG</a>
               </li>
@@ -99,16 +100,14 @@ ga('send', 'pageview');
                 <%= link_to 'CONTACT', home_contact_path %>
               </li>
 
-            </ul> <!-- closes nav nav-collapse -->
-        </div><!-- collapse navbar-collapse navbar-right -->
-      </div><!-- end of class container-fluid -->
-    </nav> <!-- closes navbar navbar-default -->
+            </ul> <!-- closes class nav nav-collapse -->
+          </div><!-- end of class collapse navbar-collapse navbar-right -->
+        </div><!-- end of class container-fluid -->
+      </nav> <!-- closes class navbar navbar-default -->
+    </div><!--end class container-->
+  </header><!--end class tz-header-->
 
+  <%= yield %>
 
-  </div><!--end class container-->
-</header><!--end class tz-header-->
-
-<%= yield %>
-
-</body> <!-- closes class meme-menu -->
+</body> <!-- closes class home-meme -->
 </html>
