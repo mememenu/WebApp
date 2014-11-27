@@ -4,12 +4,12 @@
 
     <!-- start of restaurant info -->
     <h2 class="title-restaurant"><%= @restaurant.name.upcase %></h2>
-    <h3 class="location-restaurant"><%= @restaurant.city.upcase %></h3>
+    <h3 class="location-restaurant"><%= @restaurant.zone.upcase %></h3>
     <hr>
     <div class="info-restaurant">
       <%= @restaurant.address_1 %><br>
       <% unless @restaurant.address_2.empty? %>
-      <%= @restaurant.address_2 %><br>
+        <%= @restaurant.address_2 %><br>
       <% end %>
       <%= @restaurant.city %>,&nbsp<%= @restaurant.state %>&nbsp<%= @restaurant.zipcode %><br>
       <%= number_to_phone(@restaurant.phone, area_code: true) %>

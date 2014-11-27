@@ -1,5 +1,5 @@
 Restaurant.create!([
-  {name: "The Dutch", address_1: "2201 Collins Ave", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: nil, phone: "3059383111", dollars: nil, reservations: false, hide: false, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil}
+  {name: "The Dutch", address_1: "2201 Collins Ave", address_2: "", city: "Miami Beach", state: "FL", zipcode: "33139", description: nil, phone: "3059383111", dollars: nil, reservations: false, hide: false, avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil, zone: "Miami Beach"}
 ])
 
 Menu.create!([

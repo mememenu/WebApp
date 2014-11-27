@@ -1,83 +1,74 @@
 <%= form_for @restaurant, :html => { :multipart => true } do |f| %>
   <% if @restaurant.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
+  <div id="error_explanation">
+    <h2><%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
 
-      <ul>
+    <ul>
       <% @restaurant.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
   <% end %>
 
   <div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">
-      Restaurant Form
-  </div>
-  <div class="panel-body">
-    <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
-  <div class="field">
-    <%= f.label :address_1 %><br>
-    <%= f.text_field :address_1, class: 'form-control' %>
-  </div>
-  <div class="field">
-    <%= f.label :address_2 %><br>
-    <%= f.text_field :address_2, class: 'form-control' %>
-  </div>
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city, class: 'form-control' %>
-  </div>
-  <div class="field">
-    <%= f.label :state %><br>
-    <%= f.select :state, options_for_select(us_states, restaurant_state)%>
-  </div>
-  <div class="field">
-    <%= f.label :zipcode %><br>
-    <%= f.text_field :zipcode, class: 'form-control' %>
-  </div>
-  <!-- <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div> -->
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone, class: 'form-control' %>
-  </div>
-  <!-- <div class="field">
-    <%= f.label :dollars %><br>
-    <%= f.select :dollars, options_for_select([1,2,3,4], restaurant_dollars)%>
-  </div> -->
-  <!-- <div class="field">
-    <%= f.label :reservations %><br>
-    <%= f.check_box :reservations %>
-  </div> -->
-  <div class="field">
-    <%= f.label :hide %><br>
-    <%= f.check_box :hide %>
-  </div>
-  <!-- <div class="field">
-    <%= f.label :avatar %>
-    <%= f.file_field :avatar %>
-  </div> -->
-  <hr>
-  <div class="field">
-    <%= hidden_field_tag "restaurant[cuisine_ids][]", nil %>
-    <% Cuisine.all.each do |cuisine| %>
-      <%= check_box_tag "restaurant[cuisine_ids][]", cuisine.id, @restaurant.cuisine_ids.include?(cuisine.id), id: dom_id(cuisine) %>
-      <%= label_tag dom_id(cuisine), cuisine.genre %><br>
-    <% end %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-  </div>
-  </div>
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        Restaurant Form
+      </div>
+      <div class="panel-body">
+        <div class="field">
+          <%= f.label :name %><br>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :zone %><br>
+          <%= f.text_field :zone, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :address_1 %><br>
+          <%= f.text_field :address_1, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :address_2 %><br>
+          <%= f.text_field :address_2, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :city %><br>
+          <%= f.text_field :city, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :state %><br>
+          <%= f.select :state, options_for_select(us_states, restaurant_state)%>
+        </div>
+        <div class="field">
+          <%= f.label :zipcode %><br>
+          <%= f.text_field :zipcode, class: 'form-control' %>
+        </div>
 
+        <div class="field">
+          <%= f.label :phone %><br>
+          <%= f.text_field :phone, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :hide %><br>
+          <%= f.check_box :hide %>
+        </div>
+        <hr>
+        <div class="field">
+          <%= hidden_field_tag "restaurant[cuisine_ids][]", nil %>
+          <% Cuisine.all.each do |cuisine| %>
+          <%= check_box_tag "restaurant[cuisine_ids][]", cuisine.id, @restaurant.cuisine_ids.include?(cuisine.id), id: dom_id(cuisine) %>
+          <%= label_tag dom_id(cuisine), cuisine.genre %><br>
+          <% end %>
+        </div>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+
+      </div> <!-- end of class panel-body -->
+    </div> <!-- end of class panel-heading -->
+  </div> <!-- end of class panel panel-default -->
 
 <% end %>

@@ -16,6 +16,7 @@ class Restaurant < ActiveRecord::Base
   validates :zipcode, presence: true, numericality: true, length: { is: 5 }
   validates :phone, presence: true, numericality: true, length: { is: 10 }
   validates :slug, uniqueness: true, presence: true
+  validates :zone, presence: true
 
   after_save :cascade_hidden, :if => :hide_changed?
 
