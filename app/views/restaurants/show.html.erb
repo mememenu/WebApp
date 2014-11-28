@@ -70,6 +70,8 @@
 <% if current_user %>
   <% if current_user.admin || current_user.restaurant_id == @restaurant.id%>
     <div class="container-fluid">
+      
+      <!-- User Notifications -->
       <div class="text-center">
         <hr>
         <% if notice %>
@@ -83,284 +85,306 @@
         <hr>
         <div><%= link_to 'Edit Restaurant Details', edit_restaurant_path(@restaurant) %></div>
         <hr>
-      </div> <!-- end of class text-center -->
+      </div> <!-- end of User Notifications -->
 
       <ul class="nav nav-pills">
         <li><a href="#dishes" data-toggle="tab">Dishes</a></li>
         <li><a href="#categories" data-toggle="tab">Categories</a></li>
         <li><a href="#menus" data-toggle="tab">Menus</a></li>
       </ul>
-
       <div class="tab-content">
-        <!-- Start of Menu tab -->
+
+        <!-- Start of Menus tab -->
         <div class="tab-pane" id="menus">
-          <div class="row">
-            <div class="col-md-4">
+          <div class="row"> 
+            <!-- Start of Active Menus Column -->
+            <div class="col-md-4"> 
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Active Menus</h3>
                 </div>
                 <% if @active_menus.count > 0 %>
-                <table class="table table-condensed table-hover">
-                  <thead>
-                    <tr>
-                      <th></th>
-                      <th>Edit</th>
-                      <th>Destroy</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @active_menus.each do |menu| %>
-                    <tr>
-                      <td><%= menu.name %></td>
-                      <td><%= link_to edit_menu_path(menu) do%>
-                        <i class="fa fa-pencil-square-o"></i>
-                        <%end%>
-                      </td>
-                      <td><%= link_to menu, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                        <i class="fa fa-trash-o"></i>
-                        <% end %>
-                      </td>
-                    </tr>
-                    <% end %>
-                  </tbody>
-                </table>
+                  <table class="table table-condensed table-hover">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Edit</th>
+                        <th>Destroy</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @active_menus.each do |menu| %>
+                      <tr>
+                        <td><%= menu.name %></td>
+                        <td><%= link_to edit_menu_path(menu) do%>
+                          <i class="fa fa-pencil-square-o"></i>
+                          <%end%>
+                        </td>
+                        <td>
+                          <%= link_to menu, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                            <i class="fa fa-trash-o"></i>
+                          <% end %>
+                        </td>
+                      </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
                 <% else %>
-                <div class="panel-body">
-                  None
-                </div>
+                  <div class="panel-body">
+                    None
+                  </div>
                 <% end %>
               </div>
-            </div> <!-- end of active_menu column -->
-            <div class="col-md-4">
+            </div> <!-- end of Active Menu Column -->
+            <!-- Start of Inactive Menus Column -->
+            <div class="col-md-4"> 
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Inactive Menus</h3>
                 </div>
                 <% if @inactive_menus.count > 0 %>
-                <table class="table table-condensed">
-                  <thead>
-                    <tr class="active">
-                      <th></th>
-                      <th>Edit</th>
-                      <th>Destroy</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @inactive_menus.each do |menu| %>
-                    <tr class="active">
-                      <td><%= menu.name %></td>
-                      <td><%= link_to edit_menu_path(menu) do%>
-                        <i class="fa fa-pencil-square-o"></i>
-                        <%end%>
-                      </td>
-                      <td><%= link_to menu, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                        <i class="fa fa-trash-o"></i>
-                        <% end %>
-                      </td>
-                    </tr>
-                    <% end %>
-                  </tbody>
-                </table>
+                  <table class="table table-condensed">
+                    <thead>
+                      <tr class="active">
+                        <th></th>
+                        <th>Edit</th>
+                        <th>Destroy</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @inactive_menus.each do |menu| %>
+                      <tr class="active">
+                        <td><%= menu.name %></td>
+                        <td>
+                          <%= link_to edit_menu_path(menu) do%>
+                            <i class="fa fa-pencil-square-o"></i>
+                          <%end%>
+                        </td>
+                        <td>
+                          <%= link_to menu, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                            <i class="fa fa-trash-o"></i>
+                          <% end %>
+                        </td>
+                      </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
                 <% else %>
-                <div class="panel-body">
-                  None
-                </div>
+                  <div class="panel-body">
+                    None
+                  </div>
                 <% end %>
               </div>
-            </div> <!-- end of inactive_menu column -->
+            </div> <!-- end of Inactive Menu Column -->
             <!-- New Menu Form -->
             <div class="col-md-4 text-left">
               <%= render 'menus/form' %> 
             </div>
-          </div> <!-- end of row -->
-        </div> <!-- end of class tab-pane -->
-        <!-- End of Menus Tab -->
+          </div> <!-- end of Menus Row -->
+        </div> <!-- End of Menus Tab -->
 
+        <!-- Start of Categories Tab -->
         <div class="tab-pane" id="categories">
           <div class="row">
+            <!-- Start of Active Categories Column -->
             <div class="col-md-4">
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Active Menu Categories</h3>
                 </div>
                 <% if @active_categories.count > 0 %>
-                <table class="table table-condensed table-hover">
-                  <thead>
-                    <tr>
-                      <th> </th>
-                      <th>Menu</th>
-                      <th>Edit</th>
-                      <th>Destroy</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @active_categories.each do |category| %>
-                      <% if category.menu.restaurant.id == @restaurant.id %>
+                  <table class="table table-condensed table-hover">
+                    <thead>
                       <tr>
-                        <td><%= category.name %></td>
-                        <td><%= category.menu.name %></td>
-                        <td><%= link_to edit_category_path(category) do%>
-                          <i class="fa fa-pencil-square-o"></i>
-                      <%end%>
-                        </td>
-                        <td><%= link_to category, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                          <i class="fa fa-trash-o"></i>
-                          <% end %>
-                        </td>
+                        <th> </th>
+                        <th>Menu</th>
+                        <th>Edit</th>
+                        <th>Destroy</th>
                       </tr>
+                    </thead>
+                    <tbody>
+                      <% @active_categories.each do |category| %>
+                        <% if category.menu.restaurant.id == @restaurant.id %>
+                        <tr>
+                          <td><%= category.name %></td>
+                          <td><%= category.menu.name %></td>
+                          <td>
+                            <%= link_to edit_category_path(category) do%>
+                              <i class="fa fa-pencil-square-o"></i>
+                            <%end%>
+                          </td>
+                          <td>
+                            <%= link_to category, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                              <i class="fa fa-trash-o"></i>
+                            <% end %>
+                          </td>
+                        </tr>
+                        <% end %>
                       <% end %>
-                    <% end %>
-                  </tbody>
-                </table>
+                    </tbody>
+                  </table>
                 <% else %>
-                <div class="panel-body">
-                  None
-                </div>
+                  <div class="panel-body">
+                    None
+                  </div>
                 <% end %>
-              </div> <!-- end of class panel panel-default -->
-            </div> <!-- end of column -->
+              </div>
+            </div> <!-- end of Active Categories Column -->
+            <!-- Start of Inactive Cateories Column -->
             <div class="col-md-4">
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Inactive Menu Categories</h3>
                 </div>
                 <% if @inactive_categories.count > 0 %>
-                <table class="table table-condensed">
-                  <thead>
-                    <tr class="active">
-                      <th> </th>
-                      <th>Menu</th>
-                      <th>Edit</th>
-                      <th>Destroy</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @inactive_categories.each do |category| %>
-                    <% if category.menu.restaurant.id == @restaurant.id %>
-                    <tr class="active">
-                      <td><%= category.name %></td>
-                      <td><%= category.menu.name %></td>
-                      <td><%= link_to edit_category_path(category) do%>
-                        <i class="fa fa-pencil-square-o"></i>
-                        <%end%>
-                      </td>
-                      <td><%= link_to category, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                        <i class="fa fa-trash-o"></i>
+                  <table class="table table-condensed">
+                    <thead>
+                      <tr class="active">
+                        <th> </th>
+                        <th>Menu</th>
+                        <th>Edit</th>
+                        <th>Destroy</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @inactive_categories.each do |category| %>
+                        <% if category.menu.restaurant.id == @restaurant.id %>
+                        <tr class="active">
+                          <td><%= category.name %></td>
+                          <td><%= category.menu.name %></td>
+                          <td>
+                            <%= link_to edit_category_path(category) do%>
+                              <i class="fa fa-pencil-square-o"></i>
+                            <%end%>
+                          </td>
+                          <td>
+                            <%= link_to category, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                              <i class="fa fa-trash-o"></i>
+                            <% end %>
+                          </td>
+                        </tr>
                         <% end %>
-                      </td>
-                    </tr>
-                    <% end %>
-                    <% end %>
-                  </tbody>
-                </table>
+                      <% end %>
+                    </tbody>
+                  </table>
                 <% else %>
-                <div class="panel-body">
-                  None
-                </div>
+                  <div class="panel-body">
+                    None
+                  </div>
                 <% end %>
-              </div> <!-- end of class panel panel-default -->
-            </div> <!-- end of column -->
+              </div>
+            </div> <!-- end of Inactive Categories Column -->
+            <!-- New Category Form -->
             <div class="col-md-4 text-left">
               <%= render 'categories/form' %>
-            </div> <!-- end of column -->
+            </div>
           </div> <!-- end of row -->
-        </div> <!-- end of class tab-pane -->
+        </div> <!-- end of Categories Tab -->
+
+        <!-- Start of Dishes Tab -->
         <div class="tab-pane active" id="dishes">
           <div class="row">
+            <!-- Start of Active Dishes Column -->
             <div class="col-md-4">
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Active Dishes</h3>
                 </div>
                 <% if @active_dishes.count > 0 %>
-                <table class="table table-condensed table-hover">
-                  <thead>
-                    <tr>
-                      <th> </th>
-                      <th>Menu</th>
-                      <th>Category</th>
-                      <th>Edit</th>
-                      <th>Destroy</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @active_dishes.each do |dish| %>
-                    <% if dish.category.menu.restaurant.id == @restaurant.id %>
-                    <tr>
-                      <td><%= dish.name %></td>
-                      <td><%= dish.category.menu.name %></td>
-                      <td><%= dish.category.name %></td>
-                      <td><%= link_to edit_dish_path(dish) do%>
-                        <i class="fa fa-pencil-square-o"></i>
-                        <%end%>
-                      </td>
-                      <td><%= link_to dish, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                        <i class="fa fa-trash-o"></i>
+                  <table class="table table-condensed table-hover">
+                    <thead>
+                      <tr>
+                        <th> </th>
+                        <th>Menu</th>
+                        <th>Category</th>
+                        <th>Edit</th>
+                        <th>Destroy</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @active_dishes.each do |dish| %>
+                        <% if dish.category.menu.restaurant.id == @restaurant.id %>
+                        <tr>
+                          <td><%= dish.name %></td>
+                          <td><%= dish.category.menu.name %></td>
+                          <td><%= dish.category.name %></td>
+                          <td>
+                            <%= link_to edit_dish_path(dish) do%>
+                              <i class="fa fa-pencil-square-o"></i>
+                            <%end%>
+                          </td>
+                          <td>
+                            <%= link_to dish, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                              <i class="fa fa-trash-o"></i>
+                            <% end %>
+                          </td>
+                        </tr>
                         <% end %>
-                      </td>
-                    </tr>
-                    <% end %>
-                    <% end %>
-                  </tbody>
-                </table>
+                      <% end %>
+                    </tbody>
+                  </table>
                 <% else %>
-                <div class="panel-body">
-                  None
-                </div>
+                  <div class="panel-body">
+                    None
+                  </div>
                 <% end %>
               </div>
-            </div>
+            </div> <!-- end of Active Dishes Column -->
+            <!-- start of Inactive Dishes Column -->
             <div class="col-md-4">
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Inactive Dishes</h3>
                 </div>
                 <% if @inactive_dishes.count > 0 %>
-                <table class="table table-condensed">
-                  <thead>
-                    <tr class="active">
-                      <th> </th>
-                      <th>Menu</th>
-                      <th>Category</th>
-                      <th>Edit</th>
-                      <th>Destroy</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <% @inactive_dishes.each do |dish| %>
-                    <% if dish.category.menu.restaurant.id == @restaurant.id %>
-                    <tr class="active">
-                      <td><%= dish.name %></td>
-                      <td><%= dish.category.menu.name %></td>
-                      <td><%= dish.category.name %></td>
-                      <td><%= link_to edit_dish_path(dish) do%>
-                        <i class="fa fa-pencil-square-o"></i>
-                        <%end%>
-                      </td>
-                      <td><%= link_to dish, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                        <i class="fa fa-trash-o"></i>
+                  <table class="table table-condensed">
+                    <thead>
+                      <tr class="active">
+                        <th> </th>
+                        <th>Menu</th>
+                        <th>Category</th>
+                        <th>Edit</th>
+                        <th>Destroy</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @inactive_dishes.each do |dish| %>
+                        <% if dish.category.menu.restaurant.id == @restaurant.id %>
+                        <tr class="active">
+                          <td><%= dish.name %></td>
+                          <td><%= dish.category.menu.name %></td>
+                          <td><%= dish.category.name %></td>
+                          <td>
+                            <%= link_to edit_dish_path(dish) do%>
+                              <i class="fa fa-pencil-square-o"></i>
+                            <%end%>
+                          </td>
+                          <td>
+                            <%= link_to dish, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                              <i class="fa fa-trash-o"></i>
+                            <% end %>
+                          </td>
+                        </tr>
                         <% end %>
-                      </td>
-                    </tr>
-                    <% end %>
-                    <% end %>
-                  </tbody>
-                </table>
+                      <% end %>
+                    </tbody>
+                  </table>
                 <% else %>
                 <div class="panel-body">
                   None
                 </div>
                 <% end %>
               </div>
-            </div>
+            </div> <!-- end of Inactive Dishes Column -->
+            <!-- New Dish Form -->
             <div class="col-md-4 text-left">
               <%= render 'dishes/form' %>
             </div>
-          </div>
-        </div>
+          </div> <!-- end of dishes row -->
+        </div> <!-- end of dishes tab -->
+
       </div> <!-- end of tab content -->
-    </div>
+    </div> <!-- end of container-fluid -->
   <% end %>
 <% end %>
 <!-- End of Admin Panel -->
