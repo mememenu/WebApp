@@ -1,3 +1,4 @@
+<!-- Image Slider -->
 <div class="tzslider">
   <div id="rev_slider_2_1_wrapper" class="rev_slider_wrapper fullscreen-container">
     <div id="rev_slider_2_1" class="rev_slider fullscreenbanner">
@@ -24,6 +25,7 @@
     </div> <!-- end of class full screen banner -->
   </div> <!-- end of class rev_slider_wrapper -->
 </div><!--end class tzslider-->
+<!-- End of image slider -->
 
 <!-- start of Our Standards -->
 <section class="tz-about tz-about2 theme-white">
@@ -48,7 +50,7 @@
             <p>Vision is integral to appetite.  We provide great pictures of great food.</p>
           </div>
         </div>
-      </div>
+      </div> <!-- end of column -->
       <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
         <div class="tz-about-item">
           <i class="fa fa-cutlery"></i>
@@ -63,7 +65,7 @@
             <p>We showcase unique dishes handcrafted with quality ingredients.</p>
           </div>
         </div>
-      </div>
+      </div> <!-- end of column -->
       <div class="col-lg-4 colg-md-4 col-sm-12 col-xs-12">
         <div class="tz-about-item">
           <i class="fa fa-thumb-tack"></i>
@@ -78,24 +80,24 @@
             <p>We celebrate local restaurants that execute a purity of vision.</p>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+      </div> <!-- end of column -->
+    </div> <!-- end of row -->
+  </div> <!-- end of container -->
 </section><!--end of Our Standards. class:tz-about-->
 
 <!-- start of parallax -->
 <div class="parallax tz-simple">
-    <button class="simple_prev"><i class="fa fa-angle-left"></i></button>
-    <button class="simple_next"><i class="fa fa-angle-right "></i></button>
-    <div class="container">
-        <ul class="tz-simple-product">
-            <% @restaurants.each do |restaurant| %>
-            <li><p><%= restaurant.name %></p>
-              <%= link_to 'Menu', restaurant %>
-            </li>
-            <% end %>
-        </ul>
-    </div>
+  <button class="simple_prev"><i class="fa fa-angle-left"></i></button>
+  <button class="simple_next"><i class="fa fa-angle-right "></i></button>
+  <div class="container">
+    <ul class="tz-simple-product">
+      <% @restaurants.each do |restaurant| %>
+      <li><p><%= restaurant.name %></p>
+        <%= link_to 'Menu', restaurant %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
 </div><!--end class parallax-->
 
 <!-- start of We Are Inspired By: -->
@@ -150,7 +152,7 @@
         <!-- Meme Menu Logo -->
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
           <%= image_tag '1.jpg', width: '100%' %>
-        </div> <!-- end of Meme Menu Logo -->
+        </div>
 
         <!-- start of right side column -->
         <div class="col-lg-4 colg-md-4 col-sm-4 col-xs-12">
@@ -193,7 +195,8 @@
       </div><!--end of row-->
     </div><!--end of container-->
   </div> <!-- end of tz-choose-content -->
-</section> <!-- end of We Are Inspired By section -->
+</section> <!-- end of class tz-why-choose theme-gray -->
+<!-- end of We are Inspired by section -->
 
 <!-- start of Footer -->
 <footer>
@@ -213,7 +216,7 @@
             To celebrate Culinary Creativity and superlative quality.
             This is the the purpose of meme • menu.
           </div>
-        </div>
+        </div> <!-- end of column -->
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 footer-item">
           <h3 class="module-title">
             <span>
@@ -229,7 +232,7 @@
             </span>
             <a href="mailto:hello@meme.menu?Subject=Hello%20Meme" target="_top">hello@meme.menu</a>
           </div>
-        </div>
+        </div> <!-- end of column -->
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 footer-item">
           <h3 class="module-title">
             <span>FOLLOW US</span>
@@ -256,7 +259,7 @@
               </div>
             </li>
           </ul>
-        </div>
+        </div> <!-- end of column -->
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 footer-item">
           <h3 class="module-title">
             <span>
@@ -270,10 +273,10 @@
           <%= link_to 'http://thelabmiami.com', target: '_blank' do %>
           <%= image_tag 'thelab_logo.png' %>
           <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
+        </div> <!-- end of column -->
+      </div> <!-- end of row -->
+    </div> <!-- end of container -->
+  </div> <!-- end of tz-footer-content -->
   <div class="tz-copyright theme-white">
     <p>meme • menu • 2014 • All Rights Reserved.</p>
   </div>
