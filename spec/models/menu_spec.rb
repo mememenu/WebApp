@@ -2,13 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Menu, :type => :model do
   before :each do
-    @restaurant = Restaurant.create(name: "Mmmm", address_1: "123 fake lane", address_2: "apartment 4", city: "Miami", state: "FL", zipcode: "33132", phone: "1234567890", description: "tasty food", dollars: 2, reservations: true)
+    @restaurant = Restaurant.create(name: "Mmmm", address_1: "123 fake lane", address_2: "apartment 4", city: "Miami", state: "FL", zipcode: "33132", phone: "1234567890", description: "tasty food", dollars: 2, reservations: true, zone: "Miami", slug: "Mmmm")
   end
   
   def create_menu
     @menu = Menu.new
     @menu.name = "Lunch"
     @menu.restaurant_id = @restaurant.id
+    @menu.priority = 1
     @menu.save
     expect(Menu.count).to eq(1)
   end

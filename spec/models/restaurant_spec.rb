@@ -9,6 +9,7 @@ RSpec.describe Restaurant, :type => :model do
   def create_restaurant
     @rest = Restaurant.new
     @rest.name = "mmmm"
+    @rest.zone = "Wynwood"
     @rest.address_1 = "123 fake lane"
     @rest.address_2 = "apartment 4"
     @rest.city = "miami"
@@ -19,9 +20,9 @@ RSpec.describe Restaurant, :type => :model do
     @rest.dollars = 4
     @rest.reservations = true
     @rest.cuisine_ids << @cuisine.id
+    @rest.slug = "mmmm"
     @rest.save
   end
-
 
 
   it "should save a restaurant if all validations pass" do
@@ -31,28 +32,6 @@ RSpec.describe Restaurant, :type => :model do
     expect(Restaurant.count).to eq(1)
   end
 
-  # This test will fail until cuisine_ids validation conflict with seed file is fixed
-  # it "should not save if no cuisine genre is selected" do
-  #   expect(Cuisine.count).to eq(1)
-
-  #   expect(Restaurant.count).to eq(0)
-  #   rest = Restaurant.new
-  #   rest.name = "mmmm"
-  #   rest.address_1 = "123 fake lane"
-  #   rest.address_2 = "apartment 4"
-  #   rest.city = "miami"
-  #   rest.state = "fl"
-  #   rest.zipcode = "33134"
-  #   rest.phone = "3059999999"
-  #   rest.description = "tasty treats for you"
-  #   rest.dollars = 4
-  #   rest.reservations = true
-  #   rest.cuisine_ids = nil
-  #   rest.save
-  #   expect { raise StandardError }.to raise_error
-  #   expect(Restaurant.count).to eq(0)
-  # end
-
   it "should not save if name and city are not unique to that restaurant" do
     expect(Cuisine.count).to eq(1)
     expect(Restaurant.count).to eq(0)
@@ -61,6 +40,7 @@ RSpec.describe Restaurant, :type => :model do
 
     rest2 = Restaurant.new
     rest2.name = "mmmm"
+    rest2.zone = "Wynwood"
     rest2.address_1 = "456 fake faker"
     rest2.address_2 = "Unit 10"
     rest2.city = "miami"
@@ -71,6 +51,7 @@ RSpec.describe Restaurant, :type => :model do
     rest2.dollars = 2
     rest2.reservations = false
     rest2.cuisine_ids = @cuisine.id
+    rest2.slug = "mmmm"
     rest2.save
     expect{ raise "(A restaurant with this name already exists in this city)" }.to raise_error
     expect(Restaurant.count).to eq(1)
@@ -82,6 +63,7 @@ RSpec.describe Restaurant, :type => :model do
 
     rest = Restaurant.new
     rest.name = "mmmm"
+    rest.zone = "Wynwood"
     rest.address_1 = "123 fake lane"
     rest.address_2 = "apartment 4"
     rest.city = "miami"
@@ -92,6 +74,7 @@ RSpec.describe Restaurant, :type => :model do
     rest.dollars = 4
     rest.reservations = true
     rest.cuisine_ids = @cuisine.id
+    rest.slug = "mmmm"
     rest.save
     expect { raise StandardError }.to raise_error
     expect(Restaurant.count).to eq(0)
@@ -103,6 +86,7 @@ RSpec.describe Restaurant, :type => :model do
     
     rest = Restaurant.new
     rest.name = "mmmm"
+    rest.zone = "Wynwood"
     rest.address_1 = "123 fake lane"
     rest.address_2 = "apartment 4"
     rest.city = "miami"
@@ -113,6 +97,7 @@ RSpec.describe Restaurant, :type => :model do
     rest.dollars = 4
     rest.reservations = true
     rest.cuisine_ids = @cuisine.id
+    rest.slug = "mmmm"
     rest.save
     expect { raise StandardError }.to raise_error
     expect(Restaurant.count).to eq(0)

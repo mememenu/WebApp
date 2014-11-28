@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Dish, :type => :model do
-  
+
   before :each do 
-    @restaurant = Restaurant.create!(name: "Mmmm", address_1: "123 fake lane", address_2: "apartment 4", city: "Miami", state: "FL", zipcode: "33132", phone: "1234567890", description: "tasty food", dollars: 2, reservations: true)
-    @menu = Menu.create!(name: "Lunch", restaurant_id: @restaurant.id)
-    @category = Category.create!(name: 'Appetizer', menu_id: @menu.id)
+    @restaurant = Restaurant.create(name: "Mmmm", address_1: "123 fake lane", address_2: "apartment 4", city: "Miami", state: "FL", zipcode: "33132", phone: "1234567890", description: "tasty food", dollars: 2, reservations: true, zone: "Miami", slug: "Mmmm")
+    @menu = Menu.create(name: "Lunch", restaurant_id: @restaurant.id, priority: 1)
+    @category = Category.create!(name: 'Appetizer', menu_id: @menu.id, restaurant_id: @restaurant.id, priority: 1)
   end
 
   def create_dish
@@ -13,12 +13,9 @@ RSpec.describe Dish, :type => :model do
     @dish = Dish.new
     @dish.name = "Cheese"
     @dish.description = "It tastes really good"
-    @dish.portion_size = "full"
-    @dish.spice = 3
-    @dish.hot = true
-    @dish.gluten_free = false
-    @dish.vegetarian = false
     @dish.category_id = @category.id
+    @dish.menu_id = @menu.id
+    @dish.restaurant_id = @restaurant.id
     @dish.hide = false
     @dish.save
     expect(Dish.count).to eq(1)
@@ -28,32 +25,52 @@ RSpec.describe Dish, :type => :model do
     create_dish
   end
 
-  it "should not save succesfully without name" do
+  # it "should not save without name" do
+  #   expect(Dish.count).to eq(0)
+  #   @dish = Dish.new
+  #   @dish.description = "It tastes really good"
+  #   @dish.category_id = @category.id
+  #   @dish.menu_id = @menu.id
+  #   @dish.restaurant_id = @restaurant.id
+  #   @dish.hide = false
+  #   @dish.save
+  #   expect(Dish.count).to eq(0)
+  #   expect { raise StandardError }.to raise_error
+  # end
+
+  it "should not save without a category_id" do
     expect(Dish.count).to eq(0)
     @dish = Dish.new
+    @dish.name = "Cheese"
     @dish.description = "It tastes really good"
-    @dish.portion_size = "full"
-    @dish.spice = 3
-    @dish.hot = true
-    @dish.gluten_free = false
-    @dish.vegetarian = false
-    @dish.category_id = @category.id
+    @dish.menu_id = @menu.id
+    @dish.restaurant_id = @restaurant.id
     @dish.hide = false
     @dish.save
     expect(Dish.count).to eq(0)
     expect { raise StandardError }.to raise_error
   end
 
-    it "should not save succesfully without category_id" do
+  it "should not save without a menu_id" do
     expect(Dish.count).to eq(0)
     @dish = Dish.new
     @dish.name = "Cheese"
     @dish.description = "It tastes really good"
-    @dish.portion_size = "full"
-    @dish.spice = 3
-    @dish.hot = true
-    @dish.gluten_free = false
-    @dish.vegetarian = false
+    @dish.category_id = @category.id
+    @dish.restaurant_id = @restaurant.id
+    @dish.hide = false
+    @dish.save
+    expect(Dish.count).to eq(0)
+    expect { raise StandardError }.to raise_error
+  end
+
+  it "should not save without a restaurant_id" do
+    expect(Dish.count).to eq(0)
+    @dish = Dish.new
+    @dish.name = "Cheese"
+    @dish.description = "It tastes really good"
+    @dish.menu_id = @menu.id
+    @dish.category_id = @category.id
     @dish.hide = false
     @dish.save
     expect(Dish.count).to eq(0)

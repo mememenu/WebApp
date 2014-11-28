@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe Image, :type => :model do
   
   before :each do 
-    @restaurant = Restaurant.create!(name: "Mmmm", address_1: "123 fake lane", address_2: "apartment 4", city: "Miami", state: "FL", zipcode: "33132", phone: "1234567890", description: "tasty food", dollars: 2, reservations: true)
-    @menu = Menu.create!(name: "Lunch", restaurant_id: @restaurant.id)
-    @category = Category.create!(name: 'Appetizer', menu_id: @menu.id)
-    @dish = Dish.create!(name: "pork belly", category_id: @category.id, portion_size: 'full', spice: 3)
+    @restaurant = Restaurant.create(name: "Mmmm", address_1: "123 fake lane", address_2: "apartment 4", city: "Miami", state: "FL", zipcode: "33132", phone: "1234567890", description: "tasty food", dollars: 2, reservations: true, zone: "Miami", slug: "Mmmm")
+    @menu = Menu.create(name: "Lunch", restaurant_id: @restaurant.id, priority: 1)
+    @category = Category.create!(name: 'Appetizer', menu_id: @menu.id, restaurant_id: @restaurant.id, priority: 1)
+    @dish = Dish.create(name: "pork belly", category_id: @category.id, menu_id: @menu.id, restaurant_id: @restaurant.id)
   end
 
 
@@ -22,7 +22,7 @@ RSpec.describe Image, :type => :model do
     create_image
   end
 
-  it "should be destroyed if correspnding dish is destroyed" do 
+  it "should be destroyed if corresponding dish is destroyed" do 
     create_image
 
     @dish.destroy
@@ -30,7 +30,7 @@ RSpec.describe Image, :type => :model do
     expect(Image.count).to eq(0)
   end
 
-  it "should be destroyed if correspnding restaurant is destroyed" do
+  it "should be destroyed if corresponding restaurant is destroyed" do
     create_image
 
     @restaurant.destroy
@@ -38,7 +38,7 @@ RSpec.describe Image, :type => :model do
     expect(Image.count).to eq(0)
   end
 
-  it "should become hidden if correspnding dish becomes hidden" do
+  it "should become hidden if corresponding dish becomes hidden" do
     create_image
 
     @dish.hide = true
@@ -49,7 +49,7 @@ RSpec.describe Image, :type => :model do
     expect(@image.hide).to eq(@dish.hide)
   end
 
-  it "should become unhidden is correspnding dish becomes unhidden" do
+  it "should become unhidden is corresponding dish becomes unhidden" do
     create_image
 
     @dish.hide = true
@@ -67,7 +67,7 @@ RSpec.describe Image, :type => :model do
     expect(@image.hide).to eq(@dish.hide)
   end
 
-  it "should become hidden if correspnding restaurant becomes hidden" do 
+  it "should become hidden if corresponding restaurant becomes hidden" do 
     create_image
 
     @restaurant.hide = true

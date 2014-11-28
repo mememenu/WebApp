@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Category, :type => :model do
 
   before :each do 
-    @restaurant = Restaurant.create!(name: "Mmmm", address_1: "123 fake lane", address_2: "apartment 4", city: "Miami", state: "FL", zipcode: "33132", phone: "1234567890", description: "tasty food", dollars: 2, reservations: true)
-    @menu = Menu.create!(name: "Lunch", restaurant_id: @restaurant.id)
+    @restaurant = Restaurant.create(name: "Mmmm", address_1: "123 fake lane", address_2: "apartment 4", city: "Miami", state: "FL", zipcode: "33132", phone: "1234567890", description: "tasty food", dollars: 2, reservations: true, zone: "Miami", slug: "Mmmm")
+    @menu = Menu.create(name: "Lunch", restaurant_id: @restaurant.id, priority: 1)
   end
 
   def create_category
@@ -12,7 +12,9 @@ RSpec.describe Category, :type => :model do
     @category = Category.new
     @category.name = "Appetizer"
     @category.menu_id = @menu.id
+    @category.restaurant_id = @restaurant.id
     @category.hide = false
+    @category.priority = 1
     @category.save
     expect(Category.count).to eq(1)
   end
@@ -25,6 +27,9 @@ RSpec.describe Category, :type => :model do
     expect(Category.count).to eq(0)
     @category = Category.new
     @category.menu_id = @menu.id
+    @category.restaurant_id = @restaurant.id
+    @category.hide = false
+    @category.priority = 1
     @category.save
     expect(Category.count).to eq(0)
     expect { raise StandardError }.to raise_error
@@ -34,6 +39,21 @@ RSpec.describe Category, :type => :model do
     expect(Category.count).to eq(0)
     @category = Category.new
     @category.name = "Appetizer"
+    @category.restaurant_id = @restaurant.id
+    @category.hide = false
+    @category.priority = 1
+    @category.save
+    expect(Category.count).to eq(0)
+    expect { raise StandardError }.to raise_error
+  end
+
+  it "should not save if restaurant_id is not present" do
+    expect(Category.count).to eq(0)
+    @category = Category.new
+    @category.name = "Appetizer"
+    @category.menu_id = @menu.id
+    @category.hide = false
+    @category.priority = 1
     @category.save
     expect(Category.count).to eq(0)
     expect { raise StandardError }.to raise_error
