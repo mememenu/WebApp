@@ -1,0 +1,2 @@
+class IosApiController < ApplicationController
+end
