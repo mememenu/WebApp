@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'home/about'
   get 'home/contact'
 
+  get 'restaurants/ios'
+
   resources :contacts
 
   resources :ingredients
