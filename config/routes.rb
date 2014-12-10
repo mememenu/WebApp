@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'home/contact'
 
   get 'ios/restaurant_info'
+  get 'ios/menu_info/:id', to: 'ios#menu_info'
 
   resources :contacts
 
