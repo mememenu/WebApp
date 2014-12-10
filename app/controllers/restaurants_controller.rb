@@ -78,10 +78,6 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  def ios
-    @restaurants = Restaurant.where(hide: [nil, false])
-  end
-
   private
     
     def check_hidden
