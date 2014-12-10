@@ -1,5 +1,5 @@
 class IosController < ApplicationController
-  before_action :find_menus, only: [:menu_info]
+  before_action :find_restaurant, only: [:menu_info, :category_info]
 
   # GET ios/restaurant_info.json
   def restaurant_info
@@ -12,10 +12,15 @@ class IosController < ApplicationController
     @active_menus = @menus.where(hide: [nil, false]).order(priority: :asc)
   end
 
+  def category_info
+    @categories = Category.where(restaurant_id: @restaurant.id)
+    @active_categories = @categories.where(hide: [nil, false]).order(priority: :asc)
+  end
+
 
   private
 
-  def find_menus
+  def find_restaurant
     @restaurant = Restaurant.find_by_slug!(params[:id])
   end
 
