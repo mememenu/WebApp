@@ -12,6 +12,7 @@ class IosController < ApplicationController
     @active_menus = @menus.where(hide: [nil, false]).order(priority: :asc)
   end
 
+  # GET ios/category_info/1.json
   def category_info
     @categories = Category.where(restaurant_id: @restaurant.id)
     @active_categories = @categories.where(hide: [nil, false]).order(priority: :asc)
