@@ -11,7 +11,7 @@ class Dish < ActiveRecord::Base
   validates :menu_id, presence: true
   validates :restaurant_id, presence: true
 
-  has_attached_file :avatar, :styles => { :large => "648x648>", :medium => "300x300>", :thumb => "100x100>" }, :default_url => "http://s3.amazonaws.com/meme-menu/dishes/avatars/000/000/089/large/1-1.jpg?1418338319"
+  has_attached_file :avatar, :styles => { :large => "648x648>", :medium => "300x300>", :thumb => "100x100>" }, :default_url => "https://s3.amazonaws.com/meme-menu/missing_small.jpg"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
 
