@@ -23,6 +23,10 @@ class IosController < ApplicationController
     @active_dishes = @dishes.where(hide: [nil, false]).order(:menu_id, :category_id, :name)
   end
 
+  def dish_feed
+    @dishes = Dish.where(hide: [nil, false]).order(updated_at: :asc)
+  end
+
 
   private
 
