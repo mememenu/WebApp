@@ -25,6 +25,7 @@ class IosController < ApplicationController
 
   def dish_feed
     @dishes = Dish.where(hide: [nil, false]).order(updated_at: :desc).limit(25)
+    @restaurants = @dishes.map {|dish| dish.restaurant}
   end
 
 
