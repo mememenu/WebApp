@@ -24,7 +24,7 @@ class IosController < ApplicationController
   end
 
   def dish_feed
-    @dishes = Dish.where(hide: [nil, false]).order(updated_at: :desc).limit(25)
+    @dishes = Dish.where(hide: [nil, false]).order(updated_at: :desc)
   end
 
 
