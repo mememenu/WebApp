@@ -7,7 +7,7 @@ json.array!(@dishes) do |dish|
   json.restaurant_avatar dish.restaurant.avatar
   json.menu dish.menu.name
   json.category dish.category.name
-  json.restautant_zone dish.restaurant.zone
+  json.restaurant_zone dish.restaurant.zone
   json.updated_at time_ago_in_words(dish.updated_at)
 end
 
