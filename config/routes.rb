@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :restaurant_tiles
+
   root 'home#index'
 
   get 'home/index'
