@@ -60,7 +60,11 @@ class RestaurantsController < ApplicationController
   # PATCH/PUT /restaurants/1
   # PATCH/PUT /restaurants/1.json
   def update
-    @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
+    if @restaurant.restaurant_tile.has_changed?
+      @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
+    else  
+      @restautant.restaurant_tile = @restautant.restaurant_tile
+    end
     # @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
     respond_to do |format|
       if @restaurant.update(restaurant_params)
