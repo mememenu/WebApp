@@ -7,7 +7,7 @@ class Restaurant < ActiveRecord::Base
   has_many :categories
   has_one :restaurant_tile
 
-  accepts_nested_attributes_for :restaurant_tile, allow_destroy: true
+  accepts_nested_attributes_for :restaurant_tile, reject_if: proc { |attributes| attributes['avatar'].blank? }
 
   before_validation :generate_slug
 

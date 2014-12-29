@@ -31,6 +31,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/new
   def new
     @restaurant = Restaurant.new
+    @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
   end
 
   # POST /restaurants
@@ -38,7 +39,7 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     # @restaurant.restaurant_tile.restaurant_id = @restaurant.id
-    @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
+    # @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
       
 
     @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
@@ -60,11 +61,6 @@ class RestaurantsController < ApplicationController
   # PATCH/PUT /restaurants/1
   # PATCH/PUT /restaurants/1.json
   def update
-    if @restaurant.restaurant_tile.has_changed?
-      @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
-    else  
-      @restautant.restaurant_tile = @restautant.restaurant_tile
-    end
     # @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
     respond_to do |format|
       if @restaurant.update(restaurant_params)
@@ -108,10 +104,10 @@ class RestaurantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def restaurant_params
-      params.require(:restaurant).permit(:name, :address_1, :address_2, :city, :state, :zipcode, :description, :phone, :dollars, :reservations, :hide, :avatar, :zone, restaurant_tile_attributes: [:avatar, :restaurant_id, :_destroy])
+      params.require(:restaurant).permit(:name, :address_1, :address_2, :city, :state, :zipcode, :description, :phone, :dollars, :reservations, :hide, :avatar, :zone, restaurant_tile_attributes: [:avatar, :restaurant_id])
     end
 
     def restaurant_tile_params
-      params.permit(:restaurant_tile).permit(:restaurant_id, :avatar, :_destroy)
+      params.permit(:restaurant_tile).permit(:restaurant_id, :avatar)
     end
 end
