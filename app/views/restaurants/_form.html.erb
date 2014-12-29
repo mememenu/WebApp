@@ -26,7 +26,7 @@
           <%= f.file_field :avatar %>
         </div>
 
-        <%= f.fields_for :restaurant_tiles do |builder| %>
+        <%= f.fields_for :restaurant_tile do |builder| %>
           <fieldset>
             <%= builder.label :avatar, "Add Restaurant Tile for IOS" %><br>
             <%= builder.file_field :avatar %>

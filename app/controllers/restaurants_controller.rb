@@ -31,7 +31,6 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/new
   def new
     @restaurant = Restaurant.new
-    @restaurant.restaurant_tile.new
   end
 
   # POST /restaurants
@@ -39,8 +38,8 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     # @restaurant.restaurant_tile.restaurant_id = @restaurant.id
-    # @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
-    
+    @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
+      
 
     @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
     respond_to do |format|
@@ -56,17 +55,13 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants/1/edit
   def edit
-    @restaurant_tile = RestaurantTile.where(restaurant_id: @restaurant.id).first ||= RestaurantTile.new(restaurant_tile_params)
   end
 
   # PATCH/PUT /restaurants/1
   # PATCH/PUT /restaurants/1.json
   def update
-    # @restaurant_tile = RestaurantTile.new(restaurant_tile_params)
+    @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
     # @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
-    
-    
-
     respond_to do |format|
       if @restaurant.update(restaurant_params)
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
