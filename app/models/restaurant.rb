@@ -5,6 +5,9 @@ class Restaurant < ActiveRecord::Base
   has_many :ingredients, dependent: :destroy
   has_many :dishes
   has_many :categories
+  has_one :restaurant_tile
+
+  accepts_nested_attributes_for :restaurant_tile, allow_destroy: true
 
   before_validation :generate_slug
 

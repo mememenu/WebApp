@@ -31,16 +31,17 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/new
   def new
     @restaurant = Restaurant.new
-  end
-
-  # GET /restaurants/1/edit
-  def edit
+    @restaurant.restaurant_tile.new
   end
 
   # POST /restaurants
   # POST /restaurants.json
   def create
     @restaurant = Restaurant.new(restaurant_params)
+    # @restaurant.restaurant_tile.restaurant_id = @restaurant.id
+    # @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
+    
+
     @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
     respond_to do |format|
       if @restaurant.save
@@ -53,10 +54,19 @@ class RestaurantsController < ApplicationController
     end
   end
 
+  # GET /restaurants/1/edit
+  def edit
+    @restaurant_tile = RestaurantTile.where(restaurant_id: @restaurant.id).first ||= RestaurantTile.new(restaurant_tile_params)
+  end
+
   # PATCH/PUT /restaurants/1
   # PATCH/PUT /restaurants/1.json
   def update
-    @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
+    # @restaurant_tile = RestaurantTile.new(restaurant_tile_params)
+    # @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
+    
+    
+
     respond_to do |format|
       if @restaurant.update(restaurant_params)
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
@@ -99,6 +109,10 @@ class RestaurantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def restaurant_params
-      params.require(:restaurant).permit(:name, :address_1, :address_2, :city, :state, :zipcode, :description, :phone, :dollars, :reservations, :hide, :avatar, :zone)
+      params.require(:restaurant).permit(:name, :address_1, :address_2, :city, :state, :zipcode, :description, :phone, :dollars, :reservations, :hide, :avatar, :zone, restaurant_tile_attributes: [:avatar, :restaurant_id, :_destroy])
+    end
+
+    def restaurant_tile_params
+      params.permit(:restaurant_tile).permit(:restaurant_id, :avatar, :_destroy)
     end
 end

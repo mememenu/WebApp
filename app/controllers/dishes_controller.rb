@@ -53,7 +53,9 @@ class DishesController < ApplicationController
   # PATCH/PUT /dishes/1
   # PATCH/PUT /dishes/1.json
   def update
-    @dish.ingredient_ids = params[:dish][:ingredient_ids]
+    # note to future self:
+    # this is for searching dish by ingredient through intemdeiary model dish_ingredients
+    # @dish.ingredient_ids = params[:dish][:ingredient_ids]
     respond_to do |format|
       if @dish.update(dish_params)
         format.html { redirect_to @dish.restaurant, notice: 'Dish was successfully updated.' }

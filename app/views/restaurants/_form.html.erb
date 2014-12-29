@@ -22,9 +22,18 @@
           <%= f.text_field :name, class: 'form-control' %>
         </div>
         <div class="field">
-          <%= f.label "Add an Image" %><br>
+          <%= f.label :avatar, "Add Restaurant Logo" %><br>
           <%= f.file_field :avatar %>
         </div>
+
+        <%= f.fields_for :restaurant_tiles do |builder| %>
+          <fieldset>
+            <%= builder.label :avatar, "Add Restaurant Tile for IOS" %><br>
+            <%= builder.file_field :avatar %>
+            <%= builder.hidden_field :restaurant_id, value: @restaurant.id %>
+          </fieldset>
+        <% end %>
+
         <div class="field">
           <%= f.label :zone %><br>
           <%= f.text_field :zone, class: 'form-control' %>
