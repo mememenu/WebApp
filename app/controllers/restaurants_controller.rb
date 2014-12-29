@@ -31,6 +31,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/new
   def new
     @restaurant = Restaurant.new
+    @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
   end
 
   # POST /restaurants
@@ -38,7 +39,7 @@ class RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     # @restaurant.restaurant_tile.restaurant_id = @restaurant.id
-    @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
+    # @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
       
 
     @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
@@ -60,7 +61,7 @@ class RestaurantsController < ApplicationController
   # PATCH/PUT /restaurants/1
   # PATCH/PUT /restaurants/1.json
   def update
-    @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
+    @restaurant.restaurant_tile = @restaurant.restaurant_tile
     # @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
     respond_to do |format|
       if @restaurant.update(restaurant_params)
