@@ -10,6 +10,10 @@ class IosController < ApplicationController
   def menu_info
     @menus = Menu.where(restaurant_id: @restaurant.id)
     @active_menus = @menus.where(hide: [nil, false]).order(priority: :asc)
+    @categories = Category.where(restaurant_id: @restaurant.id)
+    @active_categories = @categories.where(hide: [nil, false]).order(priority: :asc)
+    @dishes = Dish.where(restaurant_id: @restaurant.id)
+    @active_dishes = @dishes.where(hide: [nil, false]).order(:menu_id, :category_id, :name)
   end
 
   # GET ios/category_info/1.json
