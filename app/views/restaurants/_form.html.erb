@@ -33,6 +33,13 @@
           </fieldset>
         <% end %>
 
+        <%= f.fields_for :restaurant_header do |builder| %>
+          <fieldset>
+            <%= builder.label :avatar, "Add Restaurant Page Header Image for IOS" %><br>
+            <%= builder.file_field :avatar %>
+          </fieldset>
+        <% end %>
+
         <div class="field">
           <%= f.label :zone %><br>
           <%= f.text_field :zone, class: 'form-control' %>

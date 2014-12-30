@@ -32,17 +32,14 @@ class RestaurantsController < ApplicationController
   def new
     @restaurant = Restaurant.new
     @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
+    @restaurant.restaurant_header = RestaurantHeader.new(restaurant_header_params)
   end
 
   # POST /restaurants
   # POST /restaurants.json
   def create
-    @restaurant = Restaurant.new(restaurant_params)
-    # @restaurant.restaurant_tile.restaurant_id = @restaurant.id
-    # @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
-      
-
-    @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
+    @restaurant = Restaurant.new(restaurant_params)  
+    # @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
     respond_to do |format|
       if @restaurant.save
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
@@ -104,10 +101,14 @@ class RestaurantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def restaurant_params
-      params.require(:restaurant).permit(:name, :address_1, :address_2, :city, :state, :zipcode, :description, :phone, :dollars, :reservations, :hide, :avatar, :zone, restaurant_tile_attributes: [:avatar, :restaurant_id])
+      params.require(:restaurant).permit(:name, :address_1, :address_2, :city, :state, :zipcode, :description, :phone, :dollars, :reservations, :hide, :avatar, :zone, restaurant_tile_attributes: [:avatar, :restaurant_id], restaurant_header_attributes: [:avatar, :restaurant_id])
     end
 
     def restaurant_tile_params
       params.permit(:restaurant_tile).permit(:restaurant_id, :avatar)
+    end
+
+    def restaurant_header_params
+      params.permit(:restaurant_header).permit(:restaurant_id, :avatar)
     end
 end

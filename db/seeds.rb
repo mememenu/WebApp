@@ -6,6 +6,10 @@ RestaurantTile.create!([
   {avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil, restaurant_id: 1}
 ])
 
+RestaurantHeader.create!([
+  {avatar_file_name: nil, avatar_content_type: nil, avatar_file_size: nil, avatar_updated_at: nil, restaurant_id: 1}
+])
+
 Menu.create!([
   {name: "Lunch", description: nil, hide: false, restaurant_id: 1, priority: 1},
   {name: "Supper", description: nil, hide: false, restaurant_id: 1, priority: 2},
