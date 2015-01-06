@@ -5,7 +5,7 @@ json.array!(@active_menus) do |menu|
   json.categories ordered_categories.each do |category| 
 
     if category.hide == false || category.hide == nil
-      json.(category, :name)
+      json.(category, :name, :priority)
     else
       
     end
