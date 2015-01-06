@@ -46,4 +46,7 @@ class IosController < ApplicationController
     @restaurant = Restaurant.find_by_slug!(params[:id])
   end
 
+  # def find_menu
+  #   @menu = Menu.find(params[:id])
+
 end

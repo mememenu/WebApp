@@ -1,6 +1,15 @@
 json.array!(@active_menus) do |menu|
+
   json.name menu.name 
-  json.categories menu.categories.each do |category| 
-    json.(category, :name)
+  ordered_categories = menu.categories.order(priority: :asc)
+  json.categories ordered_categories.each do |category| 
+
+    if category.hide == false || category.hide == nil
+      json.(category, :name)
+    else
+      
+    end
+
   end
+
 end
