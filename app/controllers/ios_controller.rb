@@ -33,7 +33,12 @@ class IosController < ApplicationController
 
   def paginated_dish_feed
     @dishes = Dish.where(hide: [nil, false]).order(updated_at: :desc)
-    paginate json: @dishes
+    
+    paginate json: @dishes, per_page: 10
+  end
+
+  def default_serializer_options
+    {root: false}
   end
 
   def category_info_by_menu
@@ -50,8 +55,5 @@ class IosController < ApplicationController
   def find_restaurant
     @restaurant = Restaurant.find_by_slug!(params[:id])
   end
-
-  # def find_menu
-  #   @menu = Menu.find(params[:id])
 
 end
