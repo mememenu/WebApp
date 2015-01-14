@@ -27,6 +27,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    api-pagination (4.0.0)
     arel (5.0.1.20140414130214)
     aws-sdk (1.60.2)
       aws-sdk-v1 (= 1.60.2)
@@ -77,6 +78,9 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.1)
     jwt (1.2.0)
+    kaminari (0.16.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.9.2)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -201,6 +205,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  api-pagination
   aws-sdk
   better_errors
   binding_of_caller
@@ -209,6 +214,7 @@ DEPENDENCIES
   html5_validators
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   newrelic_rpm
   omniauth-facebook
   paperclip (~> 4.2)

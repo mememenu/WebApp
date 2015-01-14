@@ -31,6 +31,11 @@ class IosController < ApplicationController
     @dishes = Dish.where(hide: [nil, false]).order(updated_at: :desc).limit(40)
   end
 
+  def paginated_dish_feed
+    @dishes = Dish.where(hide: [nil, false]).order(updated_at: :desc)
+    paginate json: @dishes
+  end
+
   def category_info_by_menu
     @menus = Menu.where(restaurant_id: @restaurant.id)
     @active_menus = @menus.where(hide: [nil, false]).order(priority: :asc)

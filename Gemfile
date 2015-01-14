@@ -36,6 +36,10 @@ gem 'seed_dump'
 
 gem 'aws-sdk'
 
+# pagination
+gem 'kaminari'
+gem 'api-pagination'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
