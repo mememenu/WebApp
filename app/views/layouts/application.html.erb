@@ -69,6 +69,7 @@ ga('send', 'pageview');
               <li>
                 <%= link_to 'HOME', root_path %>
               </li>
+              <!-- Start of Miami Tab -->
               <li>
                 <a href="#">MIAMI</a>
                 <div class="nav-child dropdown-menu mega-dropdown-menu">
@@ -88,8 +89,9 @@ ga('send', 'pageview');
                     </div> <!-- end of row -->
                   </div> <!-- end of class mega-dropdown-inner -->
                 </div> <!-- end of nav-child dropdown-menu mega-dropdown-menu -->
-              </li> <!-- closes class active -->
-
+              </li> <!-- end of Miami tab -->
+              <% if nola_restaurant_dropdown_options.count > 0 %>
+              <!-- Start of NOLA tab -->
               <li>
                 <a href="#">NEW ORLEANS</a>
                 <div class="nav-child dropdown-menu mega-dropdown-menu">
@@ -109,8 +111,8 @@ ga('send', 'pageview');
                     </div> <!-- end of row -->
                   </div> <!-- end of class mega-dropdown-inner -->
                 </div> <!-- end of nav-child dropdown-menu mega-dropdown-menu -->
-              </li> <!-- closes class active -->
-
+              </li> <!-- end of NOLA tab -->
+              <% end %>
 
               <li>
                 <a href="http://meme-menu.tumblr.com" target="_blank">BLOG</a>
