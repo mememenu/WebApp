@@ -57,6 +57,27 @@ module RestaurantsHelper
     ]
   end
 
+  def restaurant_state 
+    if @restaurant.state 
+      @restaurant.state
+    else
+      1
+    end
+  end
+
+  def current_regions
+    ["Miami", "New Orleans"]
+  end
+
+  def restaurant_region
+    if @restaurant.region 
+      @restaurant.region
+    else
+      0
+    end
+  end
+
+
   def restaurant_dollars
     if @restaurant.dollars 
       @restaurant.dollars
@@ -65,13 +86,7 @@ module RestaurantsHelper
     end
   end
 
-  def restaurant_state 
-    if @restaurant.state 
-      @restaurant.state
-    else
-      1
-    end
-  end
+
 
   def restaurant_id_array
     [@restaurant.id]

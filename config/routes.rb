@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
   get 'ios/paginated_dish_feed'
 
+  get 'ios/miami_restaurants_list'
+  get 'ios/nola_restaurants_list'
+
   get 'ios/menu_info/:id', to: 'ios#menu_info'
   get 'ios/category_info/:id', to: 'ios#category_info'
   get 'ios/dish_info/:id', to: 'ios#dish_info'

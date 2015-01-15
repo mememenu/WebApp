@@ -6,6 +6,15 @@ class IosController < ApplicationController
     @restaurants = Restaurant.where(hide: [nil, false])
   end
 
+  def miami_restaurants_list
+    @restaurants = Restaurant.where(hide: [nil, false], region: "Miami")
+  end
+
+  def nola_restaurants_list
+    @restaurants = Restaurant.where(hide: [nil, false], region: "New Orleans")
+  end
+
+
   # GET ios/menu_info/1.json
   def menu_info
     @menus = Menu.where(restaurant_id: @restaurant.id)

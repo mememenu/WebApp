@@ -11,8 +11,12 @@ module ApplicationHelper
     finder
   end
 
-  def restaurant_dropdown_options
-    Restaurant.where(hide: [nil, false])
+  def miami_restaurant_dropdown_options
+    Restaurant.where(hide: [nil, false], region: "Miami")
+  end
+
+  def nola_restaurant_dropdown_options
+    Restaurant.where(hide: [nil, false], region: "New Orleans")
   end
 
   def link_to_add_fields(name, f, association)

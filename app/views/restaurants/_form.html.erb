@@ -40,10 +40,7 @@
           </fieldset>
         <% end %>
 
-        <div class="field">
-          <%= f.label :zone %><br>
-          <%= f.text_field :zone, class: 'form-control' %>
-        </div>
+
         <div class="field">
           <%= f.label :address_1 %><br>
           <%= f.text_field :address_1, class: 'form-control' %>
@@ -64,7 +61,14 @@
           <%= f.label :zipcode %><br>
           <%= f.text_field :zipcode, class: 'form-control' %>
         </div>
-
+        <div class="field">
+          <%= f.label :zone %><br>
+          <%= f.text_field :zone, class: 'form-control'%>
+        </div>
+        <div class="field">
+          <%= f.label :region %><br>
+          <%= f.select :region, options_for_select(current_regions, restaurant_region)%>
+        </div>
         <div class="field">
           <%= f.label :phone %><br>
           <%= f.text_field :phone, class: 'form-control' %>
