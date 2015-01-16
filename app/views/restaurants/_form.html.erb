@@ -73,19 +73,46 @@
           <%= f.label :phone %><br>
           <%= f.text_field :phone, class: 'form-control' %>
         </div>
-
+        <div class="field">
+          <%= f.label :monday_hours %><br>
+          <%= f.text_field :monday_hours, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :tuesday_hours %><br>
+          <%= f.text_field :tuesday_hours, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :wednesday_hours %><br>
+          <%= f.text_field :wednesday_hours, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :thursday_hours %><br>
+          <%= f.text_field :thursday_hours, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :friday_hours %><br>
+          <%= f.text_field :friday_hours, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :saturday_hours %><br>
+          <%= f.text_field :saturday_hours, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :sunday_hours %><br>
+          <%= f.text_field :sunday_hours, class: 'form-control' %>
+        </div>
         <div class="field">
           <%= f.label :hide %><br>
           <%= f.check_box :hide %>
         </div>
         <hr>
-        <div class="field">
+        <!-- <div class="field">
           <%= hidden_field_tag "restaurant[cuisine_ids][]", nil %>
           <% Cuisine.all.each do |cuisine| %>
           <%= check_box_tag "restaurant[cuisine_ids][]", cuisine.id, @restaurant.cuisine_ids.include?(cuisine.id), id: dom_id(cuisine) %>
           <%= label_tag dom_id(cuisine), cuisine.genre %><br>
           <% end %>
-        </div>
+        </div> -->
         <div class="actions">
           <%= f.submit %>
         </div>

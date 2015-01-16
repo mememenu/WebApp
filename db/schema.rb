@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150115162627) do
+ActiveRecord::Schema.define(version: 20150116202844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,13 @@ ActiveRecord::Schema.define(version: 20150115162627) do
     t.string   "slug"
     t.string   "zone"
     t.string   "region"
+    t.string   "monday_hours"
+    t.string   "tuesday_hours"
+    t.string   "wednesday_hours"
+    t.string   "thursday_hours"
+    t.string   "friday_hours"
+    t.string   "saturday_hours"
+    t.string   "sunday_hours"
   end
 
   add_index "restaurants", ["slug"], name: "index_restaurants_on_slug", using: :btree
