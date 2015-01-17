@@ -61,6 +61,7 @@ class RestaurantsController < ApplicationController
     # @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
     respond_to do |format|
       if @restaurant.update(restaurant_params)
+        puts @restaurant.monday_hours
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
         format.json { render :show, status: :ok, location: @restaurant }
       else
