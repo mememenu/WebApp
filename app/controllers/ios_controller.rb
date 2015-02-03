@@ -7,11 +7,11 @@ class IosController < ApplicationController
   end
 
   def miami_restaurants_list
-    @restaurants = Restaurant.where(hide: [nil, false], region: "Miami")
+    @restaurants = Restaurant.where(hide: [nil, false], region: "MIA")
   end
 
   def nola_restaurants_list
-    @restaurants = Restaurant.where(hide: [nil, false], region: "New Orleans")
+    @restaurants = Restaurant.where(hide: [nil, false], region: "NOLA")
   end
 
 
