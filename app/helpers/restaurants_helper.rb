@@ -66,7 +66,7 @@ module RestaurantsHelper
   end
 
   def current_regions
-    ["Miami", "New Orleans"]
+    ["MIA", "NOLA"]
   end
 
   def restaurant_region

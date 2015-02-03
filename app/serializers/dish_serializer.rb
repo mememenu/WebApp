@@ -1,5 +1,6 @@
 class DishSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :avatar, :restaurant_name, :restaurant_avatar, :restaurant_zone, :restaurant_city, :menu_name, :category_name, :monday_hours, :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours, :sunday_hours
+  
+  attributes :id, :name, :description, :avatar, :restaurant_name, :restaurant_avatar, :restaurant_zone, :restaurant_city, :restaurant_region, :menu_name, :category_name, :monday_hours, :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours, :sunday_hours
 
   def restaurant_name
     object.restaurant.name
@@ -15,6 +16,10 @@ class DishSerializer < ActiveModel::Serializer
 
   def restaurant_city
     object.restaurant.city
+  end
+
+  def restaurant_region
+    object.restaurant.region
   end
 
   def menu_name
