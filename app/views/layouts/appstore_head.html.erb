@@ -1,49 +1,47 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meme • Menu</title>
+
     <!-- Google Font 'Open Sans' -->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet'>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Meme • Menu</title>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet'>
 
 
-
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-  <%= stylesheet_link_tag    'application_appstore', media: 'all' %>
-  <%= javascript_include_tag 'application_appstore' %>
-  <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application_appstore', media: 'all' %>
+    <%= javascript_include_tag 'application_appstore' %>
+    <%= csrf_meta_tags %>
 
 
+    <link rel="shortcut icon" href="images/favicon.ico" type="images/x-icon">
+    <link rel="icon" href="images/favicon.ico" type="images/x-icon">
+  </head>
 
-</head>
-
-<body>
-  <nav class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1"> 
-          <span class="sr-only">Toggle navigation</span> 
-          <span class="icon-bar"></span> 
-          <span class="icon-bar"></span> 
-          <span class="icon-bar"></span> 
-        </button>
-        <a class="navbar-brand" href="">
-          <%= image_tag "logo-nav@2x.png" %>
-        </a> 
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse-1"> 
+            <span class="sr-only">Toggle navigation</span> 
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span> 
+          </button>
+          <a class="navbar-brand" href="">
+            <%= image_tag "logo-nav@2x.png" %>
+          </a> 
+        </div>
+        <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <%= yield %>
-</body>
+    </nav>
+    <%= yield %>
+  </body>
 
 </html>
