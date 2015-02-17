@@ -688,7 +688,7 @@ body { height: 100%; }
   position: absolute;
   left: 50%;
   top: 50%;
-  background: url(../img/load.gif) no-repeat center center;
+  background: url(../assets/load444.gif) no-repeat center center;
   margin: -170px 0 0 -100px;
 }
 }
