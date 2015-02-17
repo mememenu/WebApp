@@ -12,7 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require main
-//= require plugins.min
 //= require_tree .
 
