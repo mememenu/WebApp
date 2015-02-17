@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/about'
   get 'home/contact'
+  get 'home/appstore'
 
   get 'ios/restaurant_info'
   get 'ios/dish_feed'

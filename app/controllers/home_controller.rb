@@ -11,4 +11,8 @@ class HomeController < ApplicationController
     @contact = Contact.new
   end
 
+  def appstore
+    render layout: "appstore_head"
+  end
+
 end
