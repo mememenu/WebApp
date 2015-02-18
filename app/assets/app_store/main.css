@@ -161,7 +161,7 @@ li {
 
 .stick {
   display: block;
-  position: fixed;
+  position: fixed !important;
   width: 100%;
   background: rgba(255, 255, 255, 0.97);
   left: 0;
