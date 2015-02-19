@@ -19,6 +19,13 @@
   <!-- Latest compiled and minified Bootstrap JS-->
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
+  <script type="text/javascript">
+    var userAgent = window.navigator.userAgent;
+    if (userAgent.match(/iPad/i) || userAgent.match(/iPhone/i)) {
+      window.location = "/home/appstore.html"
+    }
+  </script>
+
   <link rel="apple-touch-icon" sizes="57x57" href="assets/apple-touch-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="114x114" href="assets/apple-touch-icon-114x114.png">
   <link rel="apple-touch-icon" sizes="72x72" href="assets/apple-touch-icon-72x72.png">
