@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :restaurant_tiles
 
-  root 'home#index'
+  root 'home#appstore'
 
   get 'home/index'
   get 'home/about'
