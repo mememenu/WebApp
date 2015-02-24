@@ -1,0 +1,54 @@
+<%= form_for(@contact) do |f| %>
+  <% if @contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+      <ul>
+      <% @contact.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    
+  <div class="contact-form">
+
+      <div class="row">
+        <div class="">
+          <div class="field">
+            <%= f.text_field :first_name, class: 'form-control', placeholder: 'Your Name', size: 350 %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="">
+          <div class="field">
+            <%= f.text_field :email, class: 'form-control', autofocus: false, placeholder: 'Email Address' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="">
+          <div class="field">
+            <%= f.text_area :message, class: 'form-control', autofocus: false, placeholder: 'Enter Your Message' %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="">
+          <%= f.submit "Submit", class: 'btn btn-default submit-btn' %>
+        </div>
+      </div>
+
+  </div>
+
+
+<% end %>
+
+
+
+
