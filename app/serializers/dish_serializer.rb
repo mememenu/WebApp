@@ -58,16 +58,16 @@ class DishSerializer < ActiveModel::Serializer
     object.restaurant.sunday_hours
   end
 
-  def website
-    object.website
-  end
+  # def website
+  #   object.website
+  # end
 
-  def photographer_name
-    object.photographer_name
-  end
+  # def photographer_name
+  #   object.photographer_name
+  # end
 
-  def photographer_media_link
-    object.photographer_media_link
-  end
+  # def photographer_media_link
+  #   object.photographer_media_link
+  # end
 
 end
