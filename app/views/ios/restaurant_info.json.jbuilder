@@ -17,4 +17,7 @@ json.array!(@restaurants) do |restaurant|
   json.friday_hours restaurant.friday_hours
   json.saturday_hours restaurant.saturday_hours
   json.sunday_hours restaurant.sunday_hours
+  json.website restaurant.website
+  json.photographer_name restaurant.photographer_name
+  json.photographer_media_link restaurant.photographer_media_link
 end
