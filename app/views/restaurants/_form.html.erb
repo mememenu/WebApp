@@ -70,6 +70,18 @@
           <%= f.select :region, options_for_select(current_regions, restaurant_region)%>
         </div>
         <div class="field">
+          <%= f.label :website %><br>
+          <%= f.text_field :website, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :photographer_name %><br>
+          <%= f.text_field :photographer_name, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :photographer_media_link %><br>
+          <%= f.text_field :photographer_media_link, class: 'form-control' %>
+        </div>
+        <div class="field">
           <%= f.label :phone %><br>
           <%= f.text_field :phone, class: 'form-control' %>
         </div>
