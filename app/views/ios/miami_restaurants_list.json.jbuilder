@@ -1,5 +1,6 @@
 json.array!(@restaurants) do |restaurant|
   json.name restaurant.name
+  json.slug restaurant.slug
   json.avatar restaurant.avatar
   json.restaurant_header restaurant.restaurant_header.avatar
   json.ios_tile restaurant.restaurant_tile.avatar
