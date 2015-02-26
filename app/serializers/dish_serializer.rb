@@ -1,6 +1,6 @@
 class DishSerializer < ActiveModel::Serializer
   
-  attributes :id, :name, :description, :avatar, :restaurant_name, :restaurant_avatar, :restaurant_zone, :restaurant_city, :restaurant_region, :menu_name, :category_name, :monday_hours, :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours, :sunday_hours
+  attributes :id, :name, :description, :avatar, :restaurant_name, :restaurant_avatar, :restaurant_zone, :restaurant_city, :restaurant_region, :menu_name, :category_name, :monday_hours, :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours, :sunday_hours, :website, :photographer_name, :photographer_media_link
 
   def restaurant_name
     object.restaurant.name
@@ -31,31 +31,43 @@ class DishSerializer < ActiveModel::Serializer
   end
 
   def monday_hours
-    object.restaurant.monday_hours
+    object.restaurant.monday_hours unless object.restaurant.monday_hours.class == nil
   end
   
   def tuesday_hours
-    object.restaurant.tuesday_hours
+    object.restaurant.tuesday_hours unless object.restaurant.tuesday_hours.class == nil
   end
 
   def wednesday_hours
-    object.restaurant.wednesday_hours
+    object.restaurant.wednesday_hours unless object.restaurant.wednesday_hours.class == nil
   end
 
   def thursday_hours
-    object.restaurant.thursday_hours
+    object.restaurant.thursday_hours unless object.restaurant.thursday_hours.class == nil
   end
 
   def friday_hours
-    object.restaurant.friday_hours
+    object.restaurant.friday_hours unless object.restaurant.friday_hours.class == nil
   end
 
   def saturday_hours
-    object.restaurant.saturday_hours
+    object.restaurant.saturday_hours unless object.restaurant.saturday_hours.class == nil
   end
 
   def sunday_hours
-    object.restaurant.sunday_hours
+    object.restaurant.sunday_hours unless object.restaurant.sunday_hours.class == nil
+  end
+
+  def website
+    object.restaurant.website unless object.restaurant.website.class == nil
+  end
+
+  def photographer_name
+    object.restaurant.photographer_name unless object.restaurant.photographer_name.class == nil
+  end
+
+  def photographer_media_link
+    object.restaurant.photographer_media_link unless object.restaurant.photographer_media_link.class == nil
   end
   
 end
