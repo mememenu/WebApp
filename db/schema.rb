@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225040528) do
+ActiveRecord::Schema.define(version: 20150227195603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,6 +171,9 @@ ActiveRecord::Schema.define(version: 20150225040528) do
     t.string   "website"
     t.string   "photographer_name"
     t.string   "photographer_media_link"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.string   "instagram"
   end
 
   add_index "restaurants", ["slug"], name: "index_restaurants_on_slug", using: :btree
