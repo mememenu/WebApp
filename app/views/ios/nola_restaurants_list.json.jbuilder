@@ -21,4 +21,7 @@ json.array!(@restaurants) do |restaurant|
   json.website restaurant.website
   json.photographer_name restaurant.photographer_name
   json.photographer_media_link restaurant.photographer_media_link
+  json.facebook restaurant.facebook
+  json.twitter restaurant.twitter
+  json.instagram restaurant.instagram
 end
