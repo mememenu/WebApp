@@ -10974,8 +10974,6 @@ $(function() {
         if ($(window).scrollTop() > $(window).height()) {
             menu.addClass('stick');
         } else {
-        console.log("wut");
-
             menu.removeClass('stick');
         
         }
