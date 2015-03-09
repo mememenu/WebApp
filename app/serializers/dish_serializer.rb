@@ -82,7 +82,7 @@ class DishSerializer < ActiveModel::Serializer
     object.restaurant.instagram unless object.restaurant.instagram.class == nil
   end
 
-  def object.cloud_front
+  def cloud_front
     object.cloud_front unless object.cloud_front.class == nil 
   end
   
