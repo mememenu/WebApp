@@ -85,5 +85,10 @@ class DishSerializer < ActiveModel::Serializer
   def cloud_front
     object.cloud_front unless object.cloud_front.class == nil 
   end
+
+  def maps_url
+    object.maps_url unless object.maps_url.class == nil 
+  end
+
   
 end
