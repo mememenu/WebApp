@@ -87,7 +87,7 @@ class DishSerializer < ActiveModel::Serializer
   end
 
   def maps_url
-    object.maps_url unless object.maps_url.class == nil 
+    object.restaurant.maps_url unless object.restaurant.maps_url.class == nil 
   end
 
   
