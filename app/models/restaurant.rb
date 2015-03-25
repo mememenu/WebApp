@@ -28,7 +28,16 @@ class Restaurant < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :large => "500x500>", :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/placeholder_image1-1050x663.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
+  
+  after_create :create_google_maps_url
 
+
+
+  def create_google_maps_url
+    formatted_address_1 = self.address_1.split.join('+')
+    formatted_city = self.city.split.join('+') + "+" + self.state + "+" + self.zipcode
+    self.maps_url = "https://www.google.com/maps/place/" + formatted_address_1 + ",+" + formatted_city
+  end
   
   #returns an array of all category ID's associated with that restaurant
   def restaurant_categories
