@@ -7,7 +7,7 @@ class IosController < ApplicationController
   end
 
   def miami_restaurants_list
-    @restaurants = Restaurant.where(hide: [nil, false], region: "MIA").order(updated_at: :desc)
+    @restaurants = Restaurant.where(hide: [nil, false], region: "MIA").order(clean_name: :asc)
   end
 
   def nola_restaurants_list

@@ -30,8 +30,12 @@ class Restaurant < ActiveRecord::Base
   validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
   
   after_create :create_google_maps_url
+  after_create :clean_name
 
 
+  def clean_name
+    self.clean_name = self.name.gsub('The', '').split.join('')
+  end
 
   def create_google_maps_url
     formatted_address_1 = self.address_1.split.join('+')
