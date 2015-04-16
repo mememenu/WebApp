@@ -15,13 +15,13 @@ class Dish < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
 
-  after_create :create_cloudfront_url
+  after_save :create_cloudfront_url
   after_save :cascade_hidden, :if => :hide_changed?
   
 
 
   def create_cloudfront_url
-    dish.cloud_front = dish.avatar.url.gsub('http://s3.amazonaws.com/meme-menu', 'http://dm7g4xbxa7ld3.cloudfront.net').gsub('original', 'large')
+    self.cloud_front = self.avatar.url.gsub('http://s3.amazonaws.com/meme-menu', 'http://dm7g4xbxa7ld3.cloudfront.net').gsub('original', 'large')
   end
 
   def cascade_hidden
