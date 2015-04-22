@@ -1,6 +1,6 @@
 class DishSerializer < ActiveModel::Serializer
   
-  attributes :id, :name, :description, :avatar, :restaurant_name, :restaurant_avatar, :restaurant_zone, :restaurant_city, :restaurant_region, :menu_name, :category_name, :monday_hours, :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours, :sunday_hours, :website, :photographer_name, :photographer_media_link, :facebook, :twitter, :instagram, :cloud_front, :maps_url
+  attributes :id, :name, :description, :avatar, :restaurant_name, :restaurant_avatar, :restaurant_zone, :restaurant_city, :restaurant_region, :menu_name, :category_name, :monday_hours, :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours, :sunday_hours, :website, :photographer_name, :photographer_media_link, :facebook, :twitter, :instagram, :cloud_front, :maps_url, :address_1, :state, :zipcode, :phone, :slug
 
   def restaurant_name
     object.restaurant.name
@@ -90,5 +90,23 @@ class DishSerializer < ActiveModel::Serializer
     object.restaurant.maps_url unless object.restaurant.maps_url.class == nil 
   end
 
-  
+  def address_1
+    object.restaurant.address_1 unless object.restaurant.address_1.class == nil
+  end
+
+  def state
+    object.restaurant.state unless object.restaurant.state.class == nil
+  end
+
+  def zipcode
+    object.restaurant.zipcode unless object.restaurant.zipcode.class == nil
+  end
+
+  def phone
+    object.restaurant.phone unless object.restaurant.phone.class == nil
+  end
+
+  def slug
+    object.restaurant.slug unless object.restaurant.slug.class == nil
+  end 
 end
