@@ -119,7 +119,7 @@ class DishSerializer < ActiveModel::Serializer
   end
 
   def menu_id
-    object.menu.id
+    object.menu.priority
   end
 
 end
