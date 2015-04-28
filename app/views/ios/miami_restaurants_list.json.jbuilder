@@ -26,4 +26,5 @@ json.array!(@restaurants) do |restaurant|
   json.instagram restaurant.instagram
   json.cloud_front restaurant.restaurant_tile.cloud_front
   json.maps_url restaurant.maps_url
+  json.delivery_url restaurant.delivery_url
 end
