@@ -12,6 +12,7 @@ class Restaurant < ActiveRecord::Base
   accepts_nested_attributes_for :restaurant_header, reject_if: proc { |attributes| attributes['avatar'].blank? }
 
   before_validation :generate_slug
+  before_validation :generate_clean_name
 
   validates :name, presence: true, uniqueness: { scope: :city,
     message: "(A restaurant with this name already exists in this city)" }
@@ -22,6 +23,7 @@ class Restaurant < ActiveRecord::Base
   validates :phone, presence: true, numericality: true, length: { is: 10 }
   validates :slug, uniqueness: true, presence: true
   validates :zone, presence: true
+  validates :clean_name, presence: true
 
   after_save :cascade_hidden, :if => :hide_changed?
 
@@ -33,8 +35,8 @@ class Restaurant < ActiveRecord::Base
   after_create :clean_name
 
 
-  def clean_name
-    self.clean_name = self.name.gsub('The', '').split.join('')
+  def generate_clean_name
+    self.clean_name ||= self.name.gsub('The', '').split.join('')
   end
 
   def create_google_maps_url
