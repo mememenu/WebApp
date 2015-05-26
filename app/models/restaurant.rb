@@ -14,6 +14,7 @@ class Restaurant < ActiveRecord::Base
   before_validation :generate_slug
   before_validation :generate_clean_name
   before_validation :create_google_maps_url
+  before_validation :check_for_delivery
 
   validates :name, presence: true, uniqueness: { scope: :city,
     message: "(A restaurant with this name already exists in this city)" }
@@ -33,6 +34,12 @@ class Restaurant < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
 
+
+  def check_for_delivery
+    if self.delivery_url == "" || nil
+      self.delivery_url = nil
+    end
+  end
 
   def generate_clean_name
     self.clean_name ||= self.name.gsub('The', '').split.join('')
