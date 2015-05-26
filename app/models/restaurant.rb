@@ -13,6 +13,7 @@ class Restaurant < ActiveRecord::Base
 
   before_validation :generate_slug
   before_validation :generate_clean_name
+  before_validation :create_google_maps_url
 
   validates :name, presence: true, uniqueness: { scope: :city,
     message: "(A restaurant with this name already exists in this city)" }
@@ -24,15 +25,13 @@ class Restaurant < ActiveRecord::Base
   validates :slug, uniqueness: true, presence: true
   validates :zone, presence: true
   validates :clean_name, presence: true
+  validates :maps_url, presence: true
 
   after_save :cascade_hidden, :if => :hide_changed?
 
   has_attached_file :avatar, :styles => { :large => "500x500>", :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/placeholder_image1-1050x663.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
-  
-  after_create :create_google_maps_url
-  after_create :clean_name
 
 
   def generate_clean_name
@@ -42,7 +41,7 @@ class Restaurant < ActiveRecord::Base
   def create_google_maps_url
     formatted_address_1 = self.address_1.split.join('+')
     formatted_city = self.city.split.join('+') + "+" + self.state + "+" + self.zipcode
-    self.maps_url = "https://www.google.com/maps/place/" + formatted_address_1 + ",+" + formatted_city
+    self.maps_url ||= "https://www.google.com/maps/place/" + formatted_address_1 + ",+" + formatted_city
   end
   
   #returns an array of all category ID's associated with that restaurant
