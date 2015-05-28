@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Image, :type => :model do
   
   before :each do 
-    @restaurant = Restaurant.create(name: "Mmmm", address_1: "123 fake lane", address_2: "apartment 4", city: "Miami", state: "FL", zipcode: "33132", phone: "1234567890", description: "tasty food", dollars: 2, reservations: true, zone: "Miami", slug: "Mmmm")
+    @restaurant = Restaurant.create(name: "Mmmm", address_1: "123 fake lane", address_2: "apartment 4", city: "Miami", state: "FL", zipcode: "33132", phone: "1234567890", description: "tasty food", dollars: 2, reservations: true, zone: "Miami", slug: "Mmmm", foursquare_id: "foursquare_id")
     @menu = Menu.create(name: "Lunch", restaurant_id: @restaurant.id, priority: 1)
     @category = Category.create!(name: 'Appetizer', menu_id: @menu.id, restaurant_id: @restaurant.id, priority: 1)
     @dish = Dish.create(name: "pork belly", category_id: @category.id, menu_id: @menu.id, restaurant_id: @restaurant.id)

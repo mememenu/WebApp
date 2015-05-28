@@ -27,6 +27,7 @@ class Restaurant < ActiveRecord::Base
   validates :zone, presence: true
   validates :clean_name, presence: true
   validates :maps_url, presence: true
+  validates :foursquare_id, presence: true
 
   after_save :cascade_hidden, :if => :hide_changed?
 

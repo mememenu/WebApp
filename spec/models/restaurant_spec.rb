@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Restaurant, :type => :model do
-  
+
   before :each do 
     @cuisine = Cuisine.create(genre: "Italian")
   end
@@ -21,6 +21,7 @@ RSpec.describe Restaurant, :type => :model do
     @rest.reservations = true
     @rest.cuisine_ids << @cuisine.id
     @rest.slug = "mmmm"
+    @rest.foursquare_id = "foursquare_id"
     @rest.save
   end
 
@@ -80,10 +81,10 @@ RSpec.describe Restaurant, :type => :model do
     expect(Restaurant.count).to eq(0)
   end
 
-    it "should not save if restaurant phone number is not 10 characters" do
+  it "should not save if restaurant phone number is not 10 characters" do
     expect(Cuisine.count).to eq(1)
     expect(Restaurant.count).to eq(0)
-    
+
     rest = Restaurant.new
     rest.name = "mmmm"
     rest.zone = "Wynwood"
@@ -98,6 +99,29 @@ RSpec.describe Restaurant, :type => :model do
     rest.reservations = true
     rest.cuisine_ids = @cuisine.id
     rest.slug = "mmmm"
+    rest.save
+    expect { raise StandardError }.to raise_error
+    expect(Restaurant.count).to eq(0)
+  end
+
+  it 'should not save if foursquare_id is left blank' do
+    expect(Restaurant.count).to eq(0)
+
+    rest = Restaurant.new
+    rest.name = "mmmm"
+    rest.zone = "Wynwood"
+    rest.address_1 = "123 fake lane"
+    rest.address_2 = "apartment 4"
+    rest.city = "miami"
+    rest.state = "FL"
+    rest.zipcode = "33134"
+    rest.phone = "1234567890"
+    rest.description = "tasty treats for you"
+    rest.dollars = 4
+    rest.reservations = true
+    rest.cuisine_ids = @cuisine.id
+    rest.slug = "mmmm"
+    rest.foursquare_id = nil
     rest.save
     expect { raise StandardError }.to raise_error
     expect(Restaurant.count).to eq(0)
