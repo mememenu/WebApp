@@ -50,7 +50,7 @@
               <!--  start of dish ingredients -->
               <div class="text-center ingredient">    
                 <% unless dish.description == nil %>  
-                  <%= dish.description.upcase %>
+                  <%= dish.description.capitalize.truncate(45) %>
                 <% end %>
               </div><!--   end of dish ingredients -->
             </div> <!-- end of tz-inner -->
