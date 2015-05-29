@@ -6,15 +6,12 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Zone</th>
+      <th>Foursquare ID</th>
+      <th>Delivers</th>
+      <th># of Menus</th>
+      <th># of Dishes</th>
       <th>Hidden</th>
-      <th>Address 1</th>
-      <th>Address 2</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Zipcode</th>
-      <th>Phone</th>
-      <th>Dollars</th>
-      <th>Reservations</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,18 +20,14 @@
     <% @restaurants.each do |restaurant| %>
       <tr>
         <td><%= restaurant.name %></td>
-        <td><%= restaurant.hide %></td>
-        <td><%= restaurant.address_1 %></td>
-        <td><%= restaurant.address_2 %></td>
-        <td><%= restaurant.city %></td>
-        <td><%= restaurant.state %></td>
-        <td><%= restaurant.zipcode %></td>
-        <td><%= restaurant.phone %></td>
-        <td><%= restaurant.dollars %></td>
-        <td><%= restaurant.reservations %></td>
+        <td><%= restaurant.zone.downcase %></td>
+        <td><%= restaurant.foursquare_id %></td>
+        <td><%= restaurant.delivery_url ? "Yes" : "No" %></td>
+        <td><%= restaurant.menus.count %></td>
+        <td><%= restaurant.dishes.count %></td>
+        <td><%= restaurant.hide ? "Yes" : "No" %></td>
         <td><%= link_to 'Show', restaurant %></td>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-        <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
