@@ -7,9 +7,6 @@
     <hr>
     <div class="info-restaurant">
       <%= @restaurant.address_1 %><br>
-      <% unless @restaurant.address_2.empty? %>
-        <%= @restaurant.address_2 %><br>
-      <% end %>
       <%= @restaurant.city %>,&nbsp<%= @restaurant.state %>&nbsp<%= @restaurant.zipcode %><br>
       <%= number_to_phone(@restaurant.phone, area_code: true) %>
       <hr>
