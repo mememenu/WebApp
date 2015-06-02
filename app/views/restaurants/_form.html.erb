@@ -17,32 +17,13 @@
         Restaurant Form
       </div>
       <div class="panel-body">
+
         <div class="field">
           <%= f.label :name %><br>
           <%= f.text_field :name, class: 'form-control' %>
         </div>
         <div class="field">
-          <%= f.label :avatar, "Add Restaurant Logo" %><br>
-          <%= f.file_field :avatar %>
-        </div>
-
-        <%= f.fields_for :restaurant_tile do |builder| %>
-          <fieldset>
-            <%= builder.label :avatar, "Add Restaurant Tile for IOS" %><br>
-            <%= builder.file_field :avatar %>
-          </fieldset>
-        <% end %>
-
-        <%= f.fields_for :restaurant_header do |builder| %>
-          <fieldset>
-            <%= builder.label :avatar, "Add Restaurant Page Header Image for IOS" %><br>
-            <%= builder.file_field :avatar %>
-          </fieldset>
-        <% end %>
-
-
-        <div class="field">
-          <%= f.label :address_1 %><br>
+          <%= f.label :address_1, "Address" %><br>
           <%= f.text_field :address_1, class: 'form-control' %>
         </div>
         <div class="field">
@@ -65,32 +46,33 @@
           <%= f.label :region %><br>
           <%= f.select :region, options_for_select(current_regions, restaurant_region)%>
         </div>
+        <hr>
         <div class="field">
           <%= f.label :phone %><br>
           <%= f.text_field :phone, class: 'form-control' %>
         </div>
         <div class="field">
-          <%= f.label :website %><br>
+          <%= f.label :website, 'Website URL' %><br>
           <%= f.text_field :website, class: 'form-control' %>
         </div>
         <div class="field">
-          <%= f.label :facebook %><br>
+          <%= f.label :facebook, 'Facebook URL' %><br>
           <%= f.text_field :facebook, class: 'form-control' %>
         </div>
         <div class="field">
-          <%= f.label :twitter %><br>
+          <%= f.label :twitter, 'Twitter URL' %><br>
           <%= f.text_field :twitter, class: 'form-control' %>
         </div>
         <div class="field">
-          <%= f.label :instagram %><br>
+          <%= f.label :instagram, 'Instagram URL' %><br>
           <%= f.text_field :instagram, class: 'form-control' %>
         </div>
         <div class="field">
-          <%= f.label :photographer_name %><br>
+          <%= f.label :photographer_name, 'Photographer Handle' %><br>
           <%= f.text_field :photographer_name, class: 'form-control' %>
         </div>
         <div class="field">
-          <%= f.label :photographer_media_link %><br>
+          <%= f.label :photographer_media_link, 'Photographer URL' %><br>
           <%= f.text_field :photographer_media_link, class: 'form-control' %>
         </div>
         <div class="field">
@@ -98,9 +80,29 @@
           <%= f.text_field :delivery_url, class: 'form-control' %>
         </div>
         <div class="field">
-          <%= f.label :foursquare_id %><br>
+          <%= f.label :foursquare_id, 'Foursquare ID' %><br>
           <%= f.text_field :foursquare_id, class: 'form-control' %>
         </div>
+        <hr>
+        <div class="field">
+          <%= f.label :avatar, "Add Restaurant Logo" %><br>
+          <%= f.file_field :avatar %>
+        </div>
+
+        <%= f.fields_for :restaurant_tile do |builder| %>
+          <fieldset>
+            <%= builder.label :avatar, "Add Restaurant Tile for IOS" %><br>
+            <%= builder.file_field :avatar %>
+          </fieldset>
+        <% end %>
+
+        <%= f.fields_for :restaurant_header do |builder| %>
+          <fieldset>
+            <%= builder.label :avatar, "Add Restaurant Page Header Image for IOS" %><br>
+            <%= builder.file_field :avatar %>
+          </fieldset>
+        <% end %>
+        <hr>
         <div class="field">
           <%= f.label :hide %><br>
           <%= f.check_box :hide %>
