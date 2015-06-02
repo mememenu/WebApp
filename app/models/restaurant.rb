@@ -8,8 +8,8 @@ class Restaurant < ActiveRecord::Base
   has_one :restaurant_tile
   has_one :restaurant_header
 
-  accepts_nested_attributes_for :restaurant_tile, reject_if: proc { |attributes| attributes['avatar'].blank? }
-  accepts_nested_attributes_for :restaurant_header, reject_if: proc { |attributes| attributes['avatar'].blank? }
+  accepts_nested_attributes_for :restaurant_tile, reject_if: :all_blank
+  accepts_nested_attributes_for :restaurant_header, reject_if: :all_blank
 
   before_validation :generate_slug
   before_validation :generate_clean_name
@@ -30,6 +30,7 @@ class Restaurant < ActiveRecord::Base
   validates :foursquare_id, presence: true
 
   after_save :cascade_hidden, :if => :hide_changed?
+  after_initialize :set_default_tile_and_header
 
   has_attached_file :avatar, :styles => { :large => "500x500>", :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/placeholder_image1-1050x663.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
@@ -87,10 +88,8 @@ class Restaurant < ActiveRecord::Base
     self.slug ||= name.parameterize
   end
 
+  def set_default_tile_and_header
+    self.build_restaurant_tile if restaurant_tile.nil?
+    self.build_restaurant_header if restaurant_header.nil?
+  end
 end
-
-
-
-
-
-
