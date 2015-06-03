@@ -89,14 +89,14 @@
           <%= f.file_field :avatar %>
         </div>
 
-        <%= f.fields_for :restaurant_tile do |builder| %>
+        <%= f.fields_for :restaurant_tile, @restaurant.restaurant_tile || @restaurant.build_restaurant_tile do |builder| %>
           <fieldset>
             <%= builder.label :avatar, "Add Restaurant Tile for IOS" %><br>
             <%= builder.file_field :avatar %>
           </fieldset>
         <% end %>
 
-        <%= f.fields_for :restaurant_header do |builder| %>
+        <%= f.fields_for :restaurant_header, @restaurant.restaurant_header || @restaurant.build_restaurant_header do |builder| %>
           <fieldset>
             <%= builder.label :avatar, "Add Restaurant Page Header Image for IOS" %><br>
             <%= builder.file_field :avatar %>
