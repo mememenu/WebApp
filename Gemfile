@@ -26,7 +26,15 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
-gem 'rspec-rails'
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'database_cleaner'
+end
+
+group :test, :development do
+  gem 'pry-byebug'
+end
 
 gem 'devise', '~> 3.3.0'
 
@@ -49,9 +57,6 @@ gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
 
 # Both required for better errors
  gem "better_errors"
