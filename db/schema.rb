@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527164904) do
+ActiveRecord::Schema.define(version: 20150603150428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150527164904) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.boolean  "hide"
+    t.string   "cloudfront_url"
   end
 
   add_index "images", ["dish_id"], name: "index_images_on_dish_id", using: :btree
