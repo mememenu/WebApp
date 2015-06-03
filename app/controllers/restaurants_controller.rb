@@ -31,6 +31,8 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/new
   def new
     @restaurant = Restaurant.new
+    @restaurant.restaurant_tile = RestaurantTile.new(restaurant_tile_params)
+    @restaurant.restaurant_header = RestaurantHeader.new(restaurant_header_params)
   end
 
   # POST /restaurants
