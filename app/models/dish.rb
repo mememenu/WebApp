@@ -5,7 +5,8 @@ class Dish < ActiveRecord::Base
   has_many :images, dependent: :destroy
   has_many :ingredients, dependent: :destroy
   accepts_nested_attributes_for :ingredients, allow_destroy: true
-  
+  accepts_nested_attributes_for :images, allow_destroy: true, reject_if: proc { |attrs| attrs['avatar'].blank? }
+
   # validates :name, presence: true
   validates :category_id, presence: true
   validates :menu_id, presence: true
@@ -17,8 +18,6 @@ class Dish < ActiveRecord::Base
 
   before_save :create_cloudfront_url
   after_save :cascade_hidden, :if => :hide_changed?
-  
-
 
   def create_cloudfront_url
     self.cloud_front = self.avatar.url.gsub('http://s3.amazonaws.com/meme-menu', 'http://dm7g4xbxa7ld3.cloudfront.net').gsub('original', 'large')

@@ -57,7 +57,7 @@ class DishesController < ApplicationController
     # this is for searching dish by ingredient through intemdeiary model dish_ingredients
     # @dish.ingredient_ids = params[:dish][:ingredient_ids]
     respond_to do |format|
-      if @dish.update(dish_params)
+      if @dish.update_attributes(dish_params)
         format.html { redirect_to @dish.restaurant, notice: 'Dish was successfully updated.' }
         format.json { render :show, status: :ok, location: @dish }
       else
@@ -98,7 +98,7 @@ class DishesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dish_params
-      params.require(:dish).permit(:name, :description, :portion_size, :spice, :hot, :gluten_free, :vegetarian, :category_id, :hide, :avatar, :menu_id, :restaurant_id, :cloud_front, ingredients_attributes: [:name, :description, :dish_id, :restaurant_id, :_destroy])                           
+      params.require(:dish).permit(:name, :description, :portion_size, :spice, :hot, :gluten_free, :vegetarian, :category_id, :hide, :avatar, :menu_id, :restaurant_id, :cloud_front, ingredients_attributes: [:name, :description, :dish_id, :restaurant_id, :_destroy], images_attributes: [:avatar, :id, :_destroy])
     end
 
     def ingredient_params

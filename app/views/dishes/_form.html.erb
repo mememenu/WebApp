@@ -60,14 +60,33 @@
       </div> <!-- end of menu, category and hide row -->
       <br>
       <!-- start of avatar row -->
-      <div class="row">      
-        <div class="col-md-12">      
+      <div class="row">
+        <div class="col-md-12">
           <div class="field">
-            <%= f.label "Add an Image" %><br>
+            <%= f.label "Add an Avatar" %><br>
+            <%= image_tag f.object.avatar.url(:thumb) %>
             <%= f.file_field :avatar %>
           </div>
         </div>
       </div> <!-- end of avatar row -->
+      <% if @dish.avatar.exists? %>
+        <br>
+        <label>Images</label>
+        <%= f.fields_for :images, @dish.images do |builder| %>
+          <div class="row">
+            <div class='avatar col-md-12'>
+              <%= image_tag builder.object.avatar.url(:thumb) %>
+              <%= render 'dishes/image_fields', f: builder %>
+            </div>
+          </div>
+          <br>
+        <% end %>
+        <div class='row'>
+          <div class='col-md-12'>
+            <%= link_to_add_fields 'Add Image', f, :images %>
+          </div>
+        </div>
+      <% end %>
       <br>
       <!-- start of submit row -->
       <div class="row">
