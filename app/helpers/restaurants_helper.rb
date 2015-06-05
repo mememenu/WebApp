@@ -197,7 +197,7 @@ module RestaurantsHelper
         menu_options<<[menu.name, menu.id]
       end
     else 
-      @dish.resaurant.menus.each do |menu|
+      @dish.restaurant.menus.each do |menu|
         menu_options<<[menu.name, menu.id]
       end
     end
