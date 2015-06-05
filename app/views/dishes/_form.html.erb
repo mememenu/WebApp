@@ -73,7 +73,7 @@
         <br>
         <label>Images</label>
         <% @dish.images.in_groups_of(3, false) do |images| %>
-          <div class="row">
+          <div class="row col-md-12 text-center">
             <%= f.fields_for :images, images do |builder| %>
               <div class='avatar col-md-4 well text-center'>
                 <%= image_tag builder.object.avatar.url(:thumb) %>
@@ -82,9 +82,10 @@
             <% end %>
           </div>
         <% end %>
-        <div class='row'>
-          <%= link_to_add_fields 'Add Image', f, :images %>
+        <br>
+        <div class='row col-md-12'>
         </div>
+        <%= link_to_add_fields 'Add Image', f, :images %>
       <% end %>
       <br>
       <!-- start of submit row -->

@@ -29,7 +29,7 @@ module ApplicationHelper
         class: ['avatar', 'col-md-4', 'well', 'text-center']
       )
     end
-    link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
+    link_to(name, '#', class: "add_fields btn btn-default btn-xs", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
 end
