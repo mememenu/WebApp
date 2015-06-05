@@ -63,7 +63,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="field">
-            <%= f.label "Add an Avatar" %><br>
+            <%= f.label "Default Image" %><br>
             <%= image_tag f.object.avatar.url(:thumb) %>
             <%= f.file_field :avatar %>
           </div>
@@ -71,7 +71,7 @@
       </div> <!-- end of avatar row -->
       <% if @dish.avatar.exists? %>
         <br>
-        <label>Images</label>
+        <label>Additional images</label>
         <% @dish.images.in_groups_of(3, false) do |images| %>
           <div class="row col-md-12 text-center">
             <%= f.fields_for :images, images do |builder| %>
