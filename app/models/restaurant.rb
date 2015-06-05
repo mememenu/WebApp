@@ -3,7 +3,7 @@ class Restaurant < ActiveRecord::Base
   has_many :restaurant_cuisines, dependent: :destroy
   has_many :menus, dependent: :destroy
   has_many :ingredients, dependent: :destroy
-  has_many :dishes
+  has_many :dishes, dependent: :destroy
   has_many :categories
   has_one :restaurant_tile
   has_one :restaurant_header
