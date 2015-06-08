@@ -11339,6 +11339,16 @@ padding-bottom: 20px;
 
 }
 
+.edit_dish .avatar {
+  min-height: 180px;
+  position: relative;
+}
+
+.edit_dish .avatar fieldset {
+  position: absolute;
+  bottom: 10px;
+}
+
 @media (min-width: 991px) and (max-width: 1200px) {
     .laster-thumb {
         height: 210px;
@@ -11564,5 +11574,3 @@ margin: 0;
 .dish-description{
     width: 100%;
 }
-
-

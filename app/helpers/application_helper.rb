@@ -23,9 +23,13 @@ module ApplicationHelper
     new_object = f.object.send(association).klass.new
     id = new_object.object_id
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
-      render('dishes/' + association.to_s.singularize + "_fields", f: builder)
+      content_tag(
+        :div,
+        render('dishes/' + association.to_s.singularize + "_fields", f: builder),
+        class: ['avatar', 'col-md-4', 'well', 'text-center']
+      )
     end
-    link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
+    link_to(name, '#', class: "add_fields btn btn-default btn-xs", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
 end
