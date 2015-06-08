@@ -9,6 +9,6 @@ class Image < ActiveRecord::Base
   before_save :create_cloudfront_url
 
   def create_cloudfront_url
-    self.cloudfront_url = avatar.url.gsub('http://s3.amazonaws.com/meme-menu', 'http://dm7g4xbxa7ld3.cloudfront.net').gsub('original', 'large')
+    self.cloud_front = avatar.url.gsub('http://s3.amazonaws.com/meme-menu', 'http://dm7g4xbxa7ld3.cloudfront.net').gsub('original', 'large')
   end
 end
