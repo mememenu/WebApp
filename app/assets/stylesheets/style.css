@@ -11505,9 +11505,8 @@ padding-bottom: 20px;
     }
 
     .tz-inner{
-        min-width: 263px;
-        min-height: 330px;
-
+      width: 263px;
+      height: 355px;
     }
 
     .tzportfolio-wrap{
