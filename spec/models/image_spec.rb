@@ -64,4 +64,22 @@ RSpec.describe Image, :type => :model do
     expect(image.cloudfront_url).to include("large")
     expect(image.cloudfront_url).not_to include("original")
   end
+
+  describe 'validations' do
+    describe 'Validate image dimension' do
+      it 'is invalid if the image is smaller than 700x700' do
+        invalid_pic = File.new(fixture_file_upload('/images/430x505.jpeg', 'image/jpeg'))
+        image = FactoryGirl.build(:image, avatar: invalid_pic)
+
+        expect(image).not_to be_valid
+        expect(image.errors[:avatar_dimension]).to eq(['is too small.'])
+      end
+
+      it 'is valid if the avatar is bigger than 648x648' do
+        valid_pic = FactoryGirl.build(:image, :with_avatar)
+
+        expect(valid_pic).to be_valid
+      end
+    end
+  end
 end

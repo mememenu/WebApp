@@ -12,10 +12,22 @@ class Dish < ActiveRecord::Base
   validates :menu_id, presence: true
   validates :restaurant_id, presence: true
 
-  has_attached_file :avatar, :styles => { :large => "648x648>", :medium => "300x300>", :thumb => "100x100>" }, :default_url => "https://s3.amazonaws.com/meme-menu/missing_small.jpg"
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-  validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
+  has_attached_file :avatar,
+    :styles => {
+      :large => { geometry:  "648x648>" },
+      :medium => "300x300>",
+      :thumb => "100x100>",
+      :watermark => {
+        processors: [:watermark],
+        geometry:  "648x648>",
+        watermark_path: "#{Rails.root}/app/assets/images/logo.png",
+        auto_orient:    false
+      }
+    },
+    :default_url => "https://s3.amazonaws.com/meme-menu/missing_small.jpg"
+  validates_attachment_content_type :avatar, :content_type => 'image/jpeg'
 
+  validate :minimum_avatar_dimension
   before_save :create_cloudfront_url
   after_save :cascade_hidden, :if => :hide_changed?
 
@@ -30,4 +42,14 @@ class Dish < ActiveRecord::Base
     end
   end
 
+  private
+
+  def minimum_avatar_dimension
+    if avatar.queued_for_write[:original].present?
+      geometry = Paperclip::Geometry.from_file(avatar.queued_for_write[:original].path)
+      if geometry.width < 648 || geometry.height < 648
+        errors.add(:avatar_dimension, 'is too small.')
+      end
+    end
+  end
 end
