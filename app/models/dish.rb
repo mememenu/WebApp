@@ -25,7 +25,7 @@ class Dish < ActiveRecord::Base
       }
     },
     :default_url => "https://s3.amazonaws.com/meme-menu/missing_small.jpg"
-  validates_attachment_content_type :avatar, :content_type => 'image/jpeg'
+  validates_attachment_content_type :avatar, content_type: ["image/jpeg", "image/png"]
 
   validate :minimum_avatar_dimension
   before_save :create_cloudfront_url

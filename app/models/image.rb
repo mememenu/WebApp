@@ -16,7 +16,7 @@ class Image < ActiveRecord::Base
       }
     },
     :default_url => "/images/:style/missing.png"
-  validates_attachment_content_type :avatar, :content_type => 'image/jpeg'
+  validates_attachment_content_type :avatar, content_type: ["image/jpeg", "image/png"]
   validate :minimum_avatar_dimension
   before_save :create_cloudfront_url
 
