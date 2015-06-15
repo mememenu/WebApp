@@ -113,6 +113,10 @@ class DishSerializer < ActiveModel::Serializer
   def restaurant_header
     object.restaurant.restaurant_header.avatar unless  object.restaurant.restaurant_header.avatar.class == nil
   end
+
+  def restaurant_banner
+    object.restaurant.restaurant_banner.avatar.exists? && object.restaurant.restaurant_banner.avatar
+  end
   
   def city
     object.restaurant.city
