@@ -3,7 +3,6 @@ json.array!(@restaurants) do |restaurant|
   json.avatar restaurant.avatar
   json.restaurant_header restaurant.restaurant_header.avatar
   json.ios_tile restaurant.restaurant_tile.avatar
-  json.restaurant_banner restaurant.restaurant_banner.avatar
   json.address_1 restaurant.address_1
   json.address_2 restaurant.address_2
   json.city restaurant.city
@@ -29,4 +28,5 @@ json.array!(@restaurants) do |restaurant|
   json.delivery_url restaurant.delivery_url
   json.foursquare_id restaurant.foursquare_id
   json.status restaurant.status
+  json.restaurant_banner restaurant.restaurant_banner.avatar
 end
