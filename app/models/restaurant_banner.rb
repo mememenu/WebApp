@@ -8,5 +8,5 @@ class RestaurantBanner < ActiveRecord::Base
       :thumb => "375x140>",
     },
     :default_url => "https://s3.amazonaws.com/meme-menu/missing_small.jpg"
-  validates_attachment_content_type :avatar, :content_type => { :content_type => ["image/jpeg", "image/png"] }
+  validates_attachment_content_type :avatar, :content_type => ["image/jpeg", "image/png"]
 end
