@@ -107,6 +107,13 @@
             <%= builder.file_field :avatar %>
           </fieldset>
         <% end %>
+
+        <%= f.fields_for :restaurant_banner, @restaurant.restaurant_banner || @restaurant.build_restaurant_banner do |builder| %>
+          <fieldset>
+            <%= builder.label :avatar, "Add Restaurant Banner for IOS" %><br>
+            <%= builder.file_field :avatar %>
+          </fieldset>
+        <% end %>
         <hr>
         <div class="field">
           <%= f.label :hide %><br>

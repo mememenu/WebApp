@@ -7,6 +7,7 @@ class Restaurant < ActiveRecord::Base
   has_many :categories
   has_one :restaurant_tile
   has_one :restaurant_header
+  has_one :restaurant_banner
 
   accepts_nested_attributes_for :restaurant_tile, reject_if: proc { |attributes| attributes['avatar'].blank? }
   accepts_nested_attributes_for :restaurant_header, reject_if: proc { |attributes| attributes['avatar'].blank? }
