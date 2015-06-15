@@ -100,7 +100,7 @@ class RestaurantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def restaurant_params
-      params.require(:restaurant).permit(:name, :address_1, :address_2, :city, :state, :zipcode, :description, :phone, :dollars, :reservations, :hide, :avatar, :zone, :region, :monday_hours, :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours, :sunday_hours, :website, :photographer_name, :photographer_media_link, :clean_name, :facebook, :twitter, :instagram, :delivery_url, :foursquare_id, :status, restaurant_tile_attributes: [:avatar, :restaurant_id], restaurant_header_attributes: [:avatar, :restaurant_id])
+      params.require(:restaurant).permit(:name, :address_1, :address_2, :city, :state, :zipcode, :description, :phone, :dollars, :reservations, :hide, :avatar, :zone, :region, :monday_hours, :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours, :sunday_hours, :website, :photographer_name, :photographer_media_link, :clean_name, :facebook, :twitter, :instagram, :delivery_url, :foursquare_id, :status, restaurant_tile_attributes: [:avatar, :restaurant_id], restaurant_header_attributes: [:avatar, :restaurant_id], restaurant_banner_attributes: [:avatar, :restaurant_id])
     end
 
     def restaurant_tile_params
@@ -109,5 +109,9 @@ class RestaurantsController < ApplicationController
 
     def restaurant_header_params
       params.permit(:restaurant_header).permit(:restaurant_id, :avatar)
+    end
+
+    def restaurant_header_params
+      params.permit(:restaurant_banner).permit(:restaurant_id, :avatar)
     end
 end
