@@ -24,7 +24,7 @@ json.array!(@restaurants) do |restaurant|
   json.facebook restaurant.facebook
   json.twitter restaurant.twitter
   json.instagram restaurant.instagram
-  json.cloud_front restaurant.restaurant_tile.cloud_front
+  json.cloud_front restaurant.restaurant_tile.try(:cloud_front)
   json.maps_url restaurant.maps_url
   json.delivery_url restaurant.delivery_url
   json.foursquare_id restaurant.foursquare_id
