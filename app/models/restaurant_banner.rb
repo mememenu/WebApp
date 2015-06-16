@@ -3,7 +3,7 @@ class RestaurantBanner < ActiveRecord::Base
 
   has_attached_file :avatar,
     :styles => {
-      :large => { geometry:  "750x280>" },
+      :large => "750x280>",
       :medium => "500x188>",
       :thumb => "375x140>",
     },
