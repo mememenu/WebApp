@@ -111,7 +111,7 @@ class RestaurantsController < ApplicationController
       params.permit(:restaurant_header).permit(:restaurant_id, :avatar)
     end
 
-    def restaurant_header_params
+    def restaurant_banner_params
       params.permit(:restaurant_banner).permit(:restaurant_id, :avatar)
     end
 end

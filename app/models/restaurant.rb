@@ -11,6 +11,7 @@ class Restaurant < ActiveRecord::Base
 
   accepts_nested_attributes_for :restaurant_tile, reject_if: proc { |attributes| attributes['avatar'].blank? }
   accepts_nested_attributes_for :restaurant_header, reject_if: proc { |attributes| attributes['avatar'].blank? }
+  accepts_nested_attributes_for :restaurant_banner, reject_if: proc { |attributes| attributes['avatar'].blank? }
 
   before_validation :generate_slug
   before_validation :generate_clean_name

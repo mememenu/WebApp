@@ -115,7 +115,7 @@ class DishSerializer < ActiveModel::Serializer
   end
 
   def restaurant_banner
-    object.restaurant.restaurant_banner.avatar unless  object.restaurant.restaurant_banner.avatar.class == nil
+    object.restaurant.restaurant_banner.avatar unless  object.restaurant.restaurant_banner.class == nil
   end
   
   def city
