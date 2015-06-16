@@ -28,4 +28,5 @@ json.array!(@restaurants) do |restaurant|
   json.delivery_url restaurant.delivery_url
   json.foursquare_id restaurant.foursquare_id
   json.status restaurant.status
+  json.restaurant_banner restaurant.restaurant_banner.avatar
 end
