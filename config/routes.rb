@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-
-  resources :restaurant_headers
-
-  resources :restaurant_tiles
-  resources :restaurant_banners
-
   root 'home#appstore'
 
   get 'home/index'
@@ -25,28 +19,21 @@ Rails.application.routes.draw do
   get 'ios/dish_info/:id', to: 'ios#dish_info'
   get 'ios/category_info_by_menu/:id', to: 'ios#category_info_by_menu'
 
-
   resources :contacts
-
   resources :ingredients
-
   resources :images
-
   resources :categories
-
   resources :dishes
-
   resources :menus
-
   resources :restaurant_cuisines
-
   resources :cuisines
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   resources :users
-  
   resources :restaurants, only: [:index, :new, :create]
   resources :restaurants, path: "", except: [:index, :new, :create]
+  resources :restaurant_headers
+  resources :restaurant_tiles
 
 end
