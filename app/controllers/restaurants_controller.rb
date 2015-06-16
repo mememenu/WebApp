@@ -36,8 +36,7 @@ class RestaurantsController < ApplicationController
   # POST /restaurants
   # POST /restaurants.json
   def create
-    @restaurant = Restaurant.new(restaurant_params)  
-    # @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
+    @restaurant = Restaurant.new(restaurant_params)
     respond_to do |format|
       if @restaurant.save
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
@@ -56,7 +55,6 @@ class RestaurantsController < ApplicationController
   # PATCH/PUT /restaurants/1
   # PATCH/PUT /restaurants/1.json
   def update
-    # @restaurant.cuisine_ids = params[:restaurant][:cuisine_ids]
     respond_to do |format|
       if @restaurant.update(restaurant_params)
         puts @restaurant.monday_hours
@@ -80,34 +78,35 @@ class RestaurantsController < ApplicationController
   end
 
   private
-    
-    def check_hidden
-      if @restaurant.hide 
-        if current_user
-          unless current_user.admin || current_user.restaurant_id == @restaurant.id
-            redirect_to root_path
-          end
-        else
+
+  def check_hidden
+    if @restaurant.hide
+      if current_user
+        unless current_user.admin || current_user.restaurant_id == @restaurant.id
           redirect_to root_path
         end
+      else
+        redirect_to root_path
       end
     end
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_restaurant
-      @restaurant = Restaurant.find_by_slug!(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_restaurant
+    @restaurant = Restaurant.find_by_slug!(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def restaurant_params
-      params.require(:restaurant).permit(:name, :address_1, :address_2, :city, :state, :zipcode, :description, :phone, :dollars, :reservations, :hide, :avatar, :zone, :region, :monday_hours, :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours, :sunday_hours, :website, :photographer_name, :photographer_media_link, :clean_name, :facebook, :twitter, :instagram, :delivery_url, :foursquare_id, :status, restaurant_tile_attributes: [:avatar, :restaurant_id], restaurant_header_attributes: [:avatar, :restaurant_id])
-    end
-
-    def restaurant_tile_params
-      params.permit(:restaurant_tile).permit(:restaurant_id, :avatar)
-    end
-
-    def restaurant_header_params
-      params.permit(:restaurant_header).permit(:restaurant_id, :avatar)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def restaurant_params
+    params.require(:restaurant).permit(
+      :name, :address_1, :address_2, :city, :state, :zipcode, :description, :phone,
+      :dollars, :reservations, :hide, :avatar, :zone, :region, :monday_hours,
+      :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours,
+      :sunday_hours, :website, :photographer_name, :photographer_media_link, :clean_name,
+      :facebook, :twitter, :instagram, :delivery_url, :foursquare_id, :status,
+      restaurant_tile_attributes: [:avatar, :restaurant_id],
+      restaurant_header_attributes: [:avatar, :restaurant_id],
+      restaurant_banner_attributes: [:avatar, :restaurant_id]
+    )
+  end
 end
