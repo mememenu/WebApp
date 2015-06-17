@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe RestaurantCuisinesController, :type => :controller do
+RSpec.xdescribe RestaurantCuisinesController, :type => :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # RestaurantCuisine. As you add validations to RestaurantCuisine, be sure to
