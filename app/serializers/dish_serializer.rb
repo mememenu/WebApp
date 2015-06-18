@@ -117,12 +117,12 @@ class DishSerializer < ActiveModel::Serializer
   end
 
   def restaurant_header
-    object.restaurant.restaurant_header.avatar.exists? &&
+    object.restaurant.restaurant_header.avatar.present? &&
       object.restaurant.restaurant_header.avatar
   end
 
   def restaurant_banner
-    object.restaurant.restaurant_banner.avatar.exists? &&
+    object.restaurant.restaurant_banner.avatar.present? &&
       object.restaurant.restaurant_banner.avatar
   end
 
