@@ -1,130 +1,59 @@
 require 'rails_helper'
 
-RSpec.describe Restaurant, :type => :model do
+describe Restaurant, :type => :model do
+  let(:restaurant) { FactoryGirl.create(:restaurant) }
 
-  before :each do 
-    @cuisine = Cuisine.create(genre: "Italian")
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:address_1) }
+  it { should validate_presence_of(:city) }
+  it { should validate_presence_of(:state) }
+  it { should ensure_length_of(:state).is_equal_to(2) }
+  it { should validate_presence_of(:zipcode) }
+  it { should validate_numericality_of(:zipcode) }
+  it { should ensure_length_of(:zipcode).is_equal_to(5) }
+  it { should validate_presence_of(:phone) }
+  it { should validate_numericality_of(:phone) }
+  it { should ensure_length_of(:phone).is_equal_to(10) }
+  it { should validate_presence_of(:zone) }
+  it { should validate_presence_of(:foursquare_id) }
+
+  context "name uniqueness scoped to city" do
+    it "is invalid if the name already exists for that city" do
+      FactoryGirl.create(:restaurant, name: 'dummy restaurant', city: 'Miami')
+      invalid_restaurant = FactoryGirl.build(:restaurant,
+                                             name: 'dummy restaurant',
+                                             city: 'Miami')
+
+      expect(invalid_restaurant).not_to be_valid
+      error_msg = "(A restaurant with this name already exists in this city)"
+      expect(invalid_restaurant.errors[:name].first).to eq(error_msg)
+    end
+
+    it "is valid if the name exists for a different city" do
+      FactoryGirl.create(:restaurant, name: 'dummy restaurant', city: 'Miami')
+      valid_restaurant = FactoryGirl.build(:restaurant,
+                                           name: 'dummy restaurant',
+                                           city: 'Orlando')
+
+      expect(valid_restaurant).to be_valid
+    end
+
+    it "is valid if the name does not exists in any city" do
+      valid_restaurant = FactoryGirl.build(:restaurant, name: 'dummy restaurant')
+
+      expect(valid_restaurant).to be_valid
+    end
   end
 
-  def create_restaurant
-    @rest = Restaurant.new
-    @rest.name = "mmmm"
-    @rest.zone = "Wynwood"
-    @rest.address_1 = "123 fake lane"
-    @rest.address_2 = "apartment 4"
-    @rest.city = "miami"
-    @rest.state = "fl"
-    @rest.zipcode = "33134"
-    @rest.phone = "3059999999"
-    @rest.description = "tasty treats for you"
-    @rest.dollars = 4
-    @rest.reservations = true
-    @rest.cuisine_ids << @cuisine.id
-    @rest.slug = "mmmm"
-    @rest.foursquare_id = "foursquare_id"
-    @rest.save
+  it "sets restaurant coordinates based on its full address" do
+    expect(restaurant.latitude).not_to be_nil
+    expect(restaurant.longitude).not_to be_nil
   end
 
+  it "does not fetch coordinates again if full address components did not change" do
+    restaurant
 
-  it "should save a restaurant if all validations pass" do
-    expect(Cuisine.count).to eq(1)
-    expect(Restaurant.count).to eq(0)
-    create_restaurant
-    expect(Restaurant.count).to eq(1)
+    expect(Geocoder).not_to receive(:search)
+    restaurant.save
   end
-
-  it "should not save if name and city are not unique to that restaurant" do
-    expect(Cuisine.count).to eq(1)
-    expect(Restaurant.count).to eq(0)
-    create_restaurant
-    expect(Restaurant.count).to eq(1)
-
-    rest2 = Restaurant.new
-    rest2.name = "mmmm"
-    rest2.zone = "Wynwood"
-    rest2.address_1 = "456 fake faker"
-    rest2.address_2 = "Unit 10"
-    rest2.city = "miami"
-    rest2.state = "fl"
-    rest2.zipcode = "12345"
-    rest2.phone = "0987654321"
-    rest2.description = "yummy"
-    rest2.dollars = 2
-    rest2.reservations = false
-    rest2.cuisine_ids = @cuisine.id
-    rest2.slug = "mmmm"
-    rest2.save
-    expect{ raise "(A restaurant with this name already exists in this city)" }.to raise_error
-    expect(Restaurant.count).to eq(1)
-  end
-
-  it "should not save if restaurant state is not 2 characters" do
-    expect(Cuisine.count).to eq(1)
-    expect(Restaurant.count).to eq(0)
-
-    rest = Restaurant.new
-    rest.name = "mmmm"
-    rest.zone = "Wynwood"
-    rest.address_1 = "123 fake lane"
-    rest.address_2 = "apartment 4"
-    rest.city = "miami"
-    rest.state = "Florida"
-    rest.zipcode = "33134"
-    rest.phone = "3059999999"
-    rest.description = "tasty treats for you"
-    rest.dollars = 4
-    rest.reservations = true
-    rest.cuisine_ids = @cuisine.id
-    rest.slug = "mmmm"
-    rest.save
-    expect { raise StandardError }.to raise_error
-    expect(Restaurant.count).to eq(0)
-  end
-
-  it "should not save if restaurant phone number is not 10 characters" do
-    expect(Cuisine.count).to eq(1)
-    expect(Restaurant.count).to eq(0)
-
-    rest = Restaurant.new
-    rest.name = "mmmm"
-    rest.zone = "Wynwood"
-    rest.address_1 = "123 fake lane"
-    rest.address_2 = "apartment 4"
-    rest.city = "miami"
-    rest.state = "FL"
-    rest.zipcode = "33134"
-    rest.phone = "123456789"
-    rest.description = "tasty treats for you"
-    rest.dollars = 4
-    rest.reservations = true
-    rest.cuisine_ids = @cuisine.id
-    rest.slug = "mmmm"
-    rest.save
-    expect { raise StandardError }.to raise_error
-    expect(Restaurant.count).to eq(0)
-  end
-
-  it 'should not save if foursquare_id is left blank' do
-    expect(Restaurant.count).to eq(0)
-
-    rest = Restaurant.new
-    rest.name = "mmmm"
-    rest.zone = "Wynwood"
-    rest.address_1 = "123 fake lane"
-    rest.address_2 = "apartment 4"
-    rest.city = "miami"
-    rest.state = "FL"
-    rest.zipcode = "33134"
-    rest.phone = "1234567890"
-    rest.description = "tasty treats for you"
-    rest.dollars = 4
-    rest.reservations = true
-    rest.cuisine_ids = @cuisine.id
-    rest.slug = "mmmm"
-    rest.foursquare_id = nil
-    rest.save
-    expect { raise StandardError }.to raise_error
-    expect(Restaurant.count).to eq(0)
-  end
-
 end

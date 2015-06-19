@@ -30,6 +30,7 @@ group :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
 end
 
 group :test, :development do
@@ -64,4 +65,5 @@ gem 'unicorn'
  gem 'newrelic_rpm'
  gem 'rails_12factor'
  gem "paperclip", "~> 4.2"
+ gem 'geocoder'
  gem 'html5_validators'

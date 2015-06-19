@@ -11,6 +11,8 @@ json.array!(@restaurants) do |restaurant|
   json.zipcode restaurant.zipcode
   json.phone restaurant.phone
   json.zone restaurant.zone
+  json.lat restaurant.latitude
+  json.long restaurant.longitude
   json.monday_hours restaurant.monday_hours
   json.tuesday_hours restaurant.tuesday_hours
   json.wednesday_hours restaurant.wednesday_hours

@@ -1,4 +1,6 @@
 class Restaurant < ActiveRecord::Base
+  geocoded_by :full_address
+
   has_many :cuisines, through: :restaurant_cuisines
   has_many :restaurant_cuisines, dependent: :destroy
   has_many :menus, dependent: :destroy
@@ -13,10 +15,10 @@ class Restaurant < ActiveRecord::Base
   accepts_nested_attributes_for :restaurant_header, reject_if: proc { |attributes| attributes['avatar'].blank? }
   accepts_nested_attributes_for :restaurant_banner, reject_if: proc { |attributes| attributes['avatar'].blank? }
 
-  before_validation :generate_slug
-  before_validation :generate_clean_name
-  before_validation :create_google_maps_url
-  before_validation :check_for_delivery
+  before_save :generate_slug
+  before_save :generate_clean_name
+  before_save :create_google_maps_url
+  before_save :check_for_delivery
 
   validates :name, presence: true, uniqueness: { scope: :city,
     message: "(A restaurant with this name already exists in this city)" }
@@ -25,13 +27,11 @@ class Restaurant < ActiveRecord::Base
   validates :state, presence: true, length: { is: 2}
   validates :zipcode, presence: true, numericality: true, length: { is: 5 }
   validates :phone, presence: true, numericality: true, length: { is: 10 }
-  validates :slug, uniqueness: true, presence: true
   validates :zone, presence: true
-  validates :clean_name, presence: true
-  validates :maps_url, presence: true
   validates :foursquare_id, presence: true
 
   after_save :cascade_hidden, :if => :hide_changed?
+  after_validation :geocode, if: :geolocate_address?
 
   has_attached_file :avatar, :styles => { :large => "500x500>", :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/placeholder_image1-1050x663.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
@@ -39,21 +39,21 @@ class Restaurant < ActiveRecord::Base
 
 
   def check_for_delivery
-    if self.delivery_url == "" || nil
-      self.delivery_url = nil
-    end
+    self.delivery_url = nil if delivery_url.blank?
   end
 
   def generate_clean_name
-    self.clean_name ||= self.name.gsub('The', '').split.join('')
+    if name.present?
+      self.clean_name ||= name.gsub('The', '').split.join('')
+    end
   end
 
   def create_google_maps_url
-    formatted_address_1 = self.address_1.split.join('+')
-    formatted_city = self.city.split.join('+') + "+" + self.state + "+" + self.zipcode
+    formatted_address_1 = address_1.split.join('+')
+    formatted_city = city.split.join('+') + "+" + state + "+" + zipcode
     self.maps_url ||= "https://www.google.com/maps/place/" + formatted_address_1 + ",+" + formatted_city
   end
-  
+
   #returns an array of all category ID's associated with that restaurant
   def restaurant_categories
     menus = []
@@ -74,9 +74,8 @@ class Restaurant < ActiveRecord::Base
   end
 
   def cascade_hidden
-
-    self.menus.each do |menu|
-      menu.hide = self.hide
+    menus.each do |menu|
+      menu.hide = hide
       menu.save
     end
   end
@@ -86,13 +85,17 @@ class Restaurant < ActiveRecord::Base
   end
 
   def generate_slug
-    self.slug ||= name.parameterize
+    self.slug ||= name.parameterize if name.present?
   end
 
+  def full_address
+    [address_1, city, state, zipcode].compact.join(', ')
+  end
+
+  private
+
+  def geolocate_address?
+    full_address.present? &&
+    (address_1_changed? || city_changed? || state_changed? || zipcode_changed?)
+  end
 end
-
-
-
-
-
-
