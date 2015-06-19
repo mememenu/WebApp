@@ -130,6 +130,14 @@ class DishSerializer < ActiveModel::Serializer
     object.restaurant.city
   end
 
+  def lat
+    object.restaurant.latitude
+  end
+
+  def long
+    object.restaurant.longitude
+  end
+
   def menu_id
     object.menu.priority
   end
