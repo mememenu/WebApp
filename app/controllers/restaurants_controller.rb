@@ -104,9 +104,9 @@ class RestaurantsController < ApplicationController
       :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours,
       :sunday_hours, :website, :photographer_name, :photographer_media_link, :clean_name,
       :facebook, :twitter, :instagram, :delivery_url, :foursquare_id, :status,
-      restaurant_tile_attributes: [:avatar, :restaurant_id],
-      restaurant_header_attributes: [:avatar, :restaurant_id],
-      restaurant_banner_attributes: [:avatar, :restaurant_id]
+      restaurant_tile_attributes: [:id, :avatar, :restaurant_id],
+      restaurant_header_attributes: [:id, :avatar, :restaurant_id],
+      restaurant_banner_attributes: [:id, :avatar, :restaurant_id]
     )
   end
 end
