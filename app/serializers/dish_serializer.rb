@@ -4,7 +4,7 @@ class DishSerializer < ActiveModel::Serializer
              :category_name, :monday_hours, :tuesday_hours, :wednesday_hours,
              :thursday_hours, :friday_hours, :saturday_hours, :sunday_hours, :website,
              :photographer_name, :photographer_media_link, :facebook, :twitter, :instagram,
-             :cloud_front, :maps_url, :address_1, :state, :zipcode, :phone, :slug,
+             :cloud_front, :maps_url, :address_1, :state, :zipcode, :lat, :long, :phone, :slug,
              :restaurant_header, :city, :menu_id, :delivery_url, :foursquare_id, :status,
              :restaurant_banner
 
@@ -106,6 +106,14 @@ class DishSerializer < ActiveModel::Serializer
 
   def zipcode
     object.restaurant.zipcode if object.restaurant.zipcode.present?
+  end
+
+  def lat
+    object.restaurant.latitude if object.restaurant.latitude.present?
+  end
+
+  def long
+    object.restaurant.longitude if object.restaurant.longitude.present?
   end
 
   def phone
