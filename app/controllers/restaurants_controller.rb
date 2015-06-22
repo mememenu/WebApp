@@ -2,6 +2,7 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show]
   before_action :validate_restaurant_owner_or_admin, except: [:show]
+  before_action :validate_admin, only: :edit
   before_action :check_hidden, only: :show
 
   # GET /restaurants
