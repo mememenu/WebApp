@@ -91,12 +91,18 @@
         <hr>
         <div class="field">
           <%= f.label :avatar, "Add Restaurant Logo" %><br>
+          <%- unless f.object.new_record? %>
+            <%= image_tag f.object.avatar.url(:thumb) %>
+          <%- end %>
           <%= f.file_field :avatar %>
         </div>
 
         <%= f.fields_for :restaurant_tile, @restaurant.restaurant_tile || @restaurant.build_restaurant_tile do |builder| %>
           <fieldset>
             <%= builder.label :avatar, "Add Restaurant Tile for IOS" %><br>
+            <%- unless @restaurant.restaurant_tile.new_record? %>
+              <%= image_tag @restaurant.restaurant_tile.avatar.url(:thumb) %>
+            <%- end %>
             <%= builder.file_field :avatar %>
           </fieldset>
         <% end %>
@@ -104,6 +110,9 @@
         <%= f.fields_for :restaurant_header, @restaurant.restaurant_header || @restaurant.build_restaurant_header do |builder| %>
           <fieldset>
             <%= builder.label :avatar, "Add Restaurant Page Header Image for IOS" %><br>
+            <%- unless @restaurant.restaurant_header.new_record? %>
+              <%= image_tag @restaurant.restaurant_header.avatar.url(:thumb) %>
+            <%- end %>
             <%= builder.file_field :avatar %>
           </fieldset>
         <% end %>
@@ -111,6 +120,9 @@
         <%= f.fields_for :restaurant_banner, @restaurant.restaurant_banner || @restaurant.build_restaurant_banner do |builder| %>
           <fieldset>
             <%= builder.label :avatar, "Add Restaurant Banner for IOS" %><br>
+            <%- unless @restaurant.restaurant_banner.new_record? %>
+              <%= image_tag @restaurant.restaurant_banner.avatar.url(:thumb) %>
+            <%- end %>
             <%= builder.file_field :avatar %>
           </fieldset>
         <% end %>
