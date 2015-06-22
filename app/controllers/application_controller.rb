@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def validate_restaurant_owner_or_admin
-
     unless current_user.admin
       if @restaurant
         if current_user.restaurant_id == @restaurant.id
@@ -35,7 +34,6 @@ class ApplicationController < ActionController::Base
         redirect_to root_path
       end
     end
-
   end
 
   def validate_admin

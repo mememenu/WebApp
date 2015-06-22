@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  
   def self.new_with_session(params, session)
     if session["devise.user_attributes"]
       new(session["devise.user_attributes"], without_protection: true) do |user|
@@ -26,7 +25,7 @@ class User < ActiveRecord::Base
   end
 
   def password_required?
-    if self.uid.nil?  
+    if uid.nil?
       super && true
     else
       false
