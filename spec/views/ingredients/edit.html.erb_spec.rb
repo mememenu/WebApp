@@ -1,18 +1,23 @@
 require 'rails_helper'
 
-RSpec.describe "ingredients/edit", :type => :view do
+RSpec.describe 'ingredients/edit', :type => :view do
+  let(:ingredient) { FactoryGirl.create(:ingredient) }
+
   before(:each) do
-    @ingredient = assign(:ingredient, Ingredient.create!(
-      :name => "MyString"
-    ))
+    assign(:ingredient, ingredient)
+    render
   end
 
-  it "renders the edit ingredient form" do
-    render
+  it 'renders a title' do
+    expect(rendered).to have_css('h1', text: 'Editing ingredient')
+  end
 
-    assert_select "form[action=?][method=?]", ingredient_path(@ingredient), "post" do
+  it 'renders the edit ingredient form' do
+    expect(rendered).to render_template('ingredients/_form')
+  end
 
-      assert_select "input#ingredient_name[name=?]", "ingredient[name]"
-    end
+  it 'renders link to show and back' do
+    expect(rendered).to have_link('Show', href: ingredient_path(ingredient))
+    expect(rendered).to have_link('Back', href: ingredients_path)
   end
 end
