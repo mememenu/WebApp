@@ -1,18 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe "cuisines/new", :type => :view do
+RSpec.describe 'cuisines/new', :type => :view do
   before(:each) do
-    assign(:cuisine, Cuisine.new(
-      :type => ""
-    ))
+    assign(:cuisine, FactoryGirl.create(:cuisine))
+    render
   end
 
-  it "renders new cuisine form" do
-    render
+  it 'has a title' do
+    expect(rendered).to have_css('h1', text: 'New cuisine')
+  end
 
-    assert_select "form[action=?][method=?]", cuisines_path, "post" do
+  it 'renders the form' do
+    expect(rendered).to render_template('cuisines/_form')
+  end
 
-      assert_select "input#cuisine_type[name=?]", "cuisine[type]"
-    end
+  it 'has a link to go back' do
+    expect(rendered).to have_link('Back', href: cuisines_path)
   end
 end
