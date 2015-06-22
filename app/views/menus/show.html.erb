@@ -9,6 +9,7 @@
     <% @categories.each do |category| %>
       <%= link_to category.name, category %> |
     <% end %>
+    <% #XXX: Is the title of this link correct? %>
     <strong><%= link_to "All", @category.menu %></strong>
   </div>
   <hr>
