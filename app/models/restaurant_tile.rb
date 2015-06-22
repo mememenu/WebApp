@@ -1,16 +1,19 @@
 class RestaurantTile < ActiveRecord::Base
   belongs_to :restaurant
 
-  has_attached_file :avatar, :styles => { :large => "648x648#"}, :default_url => "/images/placeholder_image1-1050x663.png"
+  has_attached_file :avatar,
+    :styles => {
+      :thumb => "100x100>",
+      :large => "648x648#"
+    },
+    :default_url => "/images/placeholder_image1-1050x663.png"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
 
   after_create :create_cloud_front
 
-
-
   def create_cloud_front
-    self.cloud_front = self.avatar.url.gsub('http://s3.amazonaws.com/meme-menu', 'http://dm7g4xbxa7ld3.cloudfront.net')
-    self.save
+    self.cloud_front = avatar.url.gsub('http://s3.amazonaws.com/meme-menu', 'http://dm7g4xbxa7ld3.cloudfront.net')
+    save
   end
 end
