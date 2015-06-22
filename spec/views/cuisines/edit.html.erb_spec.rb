@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'cuisines/edit', :type => :view do
-  let(:cuisine) { Cuisine.create!(genre: 'French') }
+  let(:cuisine) { FactoryGirl.create(:cuisine) }
 
   before(:each) do
     assign(:cuisine, cuisine)
