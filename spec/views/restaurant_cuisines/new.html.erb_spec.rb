@@ -8,7 +8,7 @@ RSpec.describe "restaurant_cuisines/new", :type => :view do
     ))
   end
 
-  it "renders new restaurant_cuisine form" do
+  xit "renders new restaurant_cuisine form" do
     render
 
     assert_select "form[action=?][method=?]", restaurant_cuisines_path, "post" do
