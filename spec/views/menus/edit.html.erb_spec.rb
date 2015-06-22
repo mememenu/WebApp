@@ -1,27 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe "menus/edit", :type => :view do
+RSpec.describe 'menus/edit', :type => :view do
+  let(:menu) { FactoryGirl.create(:menu, name: 'My Menu') }
+
   before(:each) do
-    @menu = assign(:menu, Menu.create!(
-      :name => "MyString",
-      :display_name => "MyString",
-      :description => "MyText",
-      :restaurant => nil
-    ))
+    assign(:menu, menu)
+    render
   end
 
-  it "renders the edit menu form" do
-    render
+  it 'renders the edit menu form' do
+    expect(rendered).to render_template('menus/_form')
+  end
 
-    assert_select "form[action=?][method=?]", menu_path(@menu), "post" do
-
-      assert_select "input#menu_name[name=?]", "menu[name]"
-
-      assert_select "input#menu_display_name[name=?]", "menu[display_name]"
-
-      assert_select "textarea#menu_description[name=?]", "menu[description]"
-
-      assert_select "input#menu_restaurant_id[name=?]", "menu[restaurant_id]"
-    end
+  it 'renders a link to go back' do
+    expect(rendered).to have_link('Back', href: restaurant_path(menu.restaurant))
   end
 end
