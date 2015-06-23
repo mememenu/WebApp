@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.4'
+gem 'rails'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -37,7 +37,7 @@ group :test, :development do
   gem 'pry-byebug'
 end
 
-gem 'devise', '~> 3.3.0'
+gem 'devise'
 
 gem 'omniauth-facebook'
 
@@ -64,6 +64,8 @@ gem 'unicorn'
  gem "binding_of_caller"
  gem 'newrelic_rpm'
  gem 'rails_12factor'
- gem "paperclip", "~> 4.2"
+ # Locked to 4.2.4 due to paperclip issue 1904
+ # TODO: Upgrade after it gets solved
+ gem "paperclip", "4.2.4"
  gem 'geocoder'
  gem 'html5_validators'
