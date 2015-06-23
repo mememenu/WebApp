@@ -65,7 +65,7 @@ gem 'unicorn'
  gem "better_errors"
  gem "binding_of_caller"
  gem 'newrelic_rpm'
- gem 'rails_12factor'
+ gem 'rails_12factor', group: :production
  # Locked to 4.2.4 due to paperclip issue 1904
  # TODO: Upgrade after it gets solved
  gem "paperclip", "4.2.4"
