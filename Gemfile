@@ -43,7 +43,7 @@ gem 'omniauth-facebook'
 
 gem 'seed_dump'
 
-gem 'aws-sdk'
+gem 'aws-sdk', '< 2.0'
 
 # pagination
 gem 'kaminari'
