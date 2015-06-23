@@ -105,10 +105,6 @@ module RestaurantsHelper
     end    
   end
 
-  def comma_separated_cuisines
-    @restaurant.cuisines.map{|cuisine| cuisine.genre}.join(', ') 
-  end
-
   def restaurant_category_names
     menus = []
 

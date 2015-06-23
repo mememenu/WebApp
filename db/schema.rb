@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617140632) do
+ActiveRecord::Schema.define(version: 20150623145811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,12 +37,6 @@ ActiveRecord::Schema.define(version: 20150617140632) do
     t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "cuisines", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "genre"
   end
 
   create_table "dishes", force: true do |t|
@@ -119,16 +113,6 @@ ActiveRecord::Schema.define(version: 20150617140632) do
   end
 
   add_index "restaurant_banners", ["restaurant_id"], name: "index_restaurant_banners_on_restaurant_id", using: :btree
-
-  create_table "restaurant_cuisines", force: true do |t|
-    t.integer  "restaurant_id"
-    t.integer  "cuisine_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "restaurant_cuisines", ["cuisine_id"], name: "index_restaurant_cuisines_on_cuisine_id", using: :btree
-  add_index "restaurant_cuisines", ["restaurant_id"], name: "index_restaurant_cuisines_on_restaurant_id", using: :btree
 
   create_table "restaurant_headers", force: true do |t|
     t.integer  "restaurant_id"

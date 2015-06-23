@@ -1,16 +1,4 @@
 module ApplicationHelper
-  def cuisine_finder
-    finder = []
-
-    Cuisine.all.each do |cuisine|
-      unless cuisine.restaurants.empty?
-        finder<<cuisine
-      end
-    end
-    
-    finder
-  end
-
   def miami_restaurant_dropdown_options
     Restaurant.where(hide: [nil, false], region: "MIA")
   end

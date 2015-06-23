@@ -25,8 +25,6 @@ Rails.application.routes.draw do
   resources :categories
   resources :dishes
   resources :menus
-  resources :restaurant_cuisines
-  resources :cuisines
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
