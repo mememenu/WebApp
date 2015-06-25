@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   get 'ios/category_info_by_menu/:id', to: 'ios#category_info_by_menu'
 
   resources :contacts
-  resources :ingredients
   resources :images
   resources :categories
   resources :dishes

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'dishes/show', :type => :view do
-  let(:ingredient) { FactoryGirl.create(:ingredient) }
   let(:image) { FactoryGirl.create(:image, :with_avatar) }
   let(:dish) do
     FactoryGirl.create(
@@ -14,8 +13,7 @@ RSpec.describe 'dishes/show', :type => :view do
       spice: 1,
       hot: false,
       gluten_free: true,
-      vegetarian: true,
-      ingredients: [ingredient],
+      vegetarian: true
     )
   end
 
@@ -36,11 +34,6 @@ RSpec.describe 'dishes/show', :type => :view do
     expect(rendered).to have_css('p', text: 'Portion Size')
     expect(rendered).to have_css('p', text: 'Spice:')
     expect(rendered).to have_css('p', text: '1/5')
-  end
-
-  it 'renders the ingredients' do
-    expect(rendered).to have_css('thead th', text: 'Ingredients')
-    expect(rendered).to have_css('tbody td', text: ingredient.name)
   end
 
   it 'renders the images' do

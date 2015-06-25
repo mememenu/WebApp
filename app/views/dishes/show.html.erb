@@ -36,21 +36,6 @@
           <% end %>
         </p>
 
-          <table align="center">
-            <thead>
-              <th>Ingredients</th>
-            </thead>
-            <tbody>
-              <% @dish.ingredients.each do |ingredient| %>
-              <tr>
-                <td class="has-hover-popover" data-toggle="popover" data-content="<p><%= ingredient.description %></p>"><%= ingredient.name %></td>
-              </tr>
-              <% end %> 
-            </tbody>
-          </table>
-          <br>
-      
-
         <%= link_to 'Back to Restaurant', @dish.restaurant %>
       </div>
     </div>

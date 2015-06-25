@@ -78,18 +78,6 @@ ActiveRecord::Schema.define(version: 20150623145811) do
 
   add_index "images", ["dish_id"], name: "index_images_on_dish_id", using: :btree
 
-  create_table "ingredients", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "restaurant_id"
-    t.text     "description"
-    t.integer  "dish_id"
-  end
-
-  add_index "ingredients", ["dish_id"], name: "index_ingredients_on_dish_id", using: :btree
-  add_index "ingredients", ["restaurant_id"], name: "index_ingredients_on_restaurant_id", using: :btree
-
   create_table "menus", force: true do |t|
     t.string   "name"
     t.text     "description"
