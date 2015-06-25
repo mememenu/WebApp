@@ -1,5 +1,4 @@
 module IngredientsHelper
-
   def restaurant_options
     restaurants = []
 
@@ -17,5 +16,4 @@ module IngredientsHelper
       1
     end
   end
-
 end
