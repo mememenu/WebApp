@@ -20,13 +20,10 @@ Rails.application.routes.draw do
   get 'ios/category_info_by_menu/:id', to: 'ios#category_info_by_menu'
 
   resources :contacts
-  resources :ingredients
   resources :images
   resources :categories
   resources :dishes
   resources :menus
-  resources :restaurant_cuisines
-  resources :cuisines
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 

@@ -3,11 +3,11 @@ FactoryGirl.define do
     association :restaurant, factory: :restaurant
 
     after(:build) do |dish|
-      dish.menu = FactoryGirl.create(:menu, restaurant: dish.restaurant)
+      dish.menu ||= FactoryGirl.create(:menu, restaurant: dish.restaurant)
     end
 
     after(:build) do |dish|
-      dish.category = FactoryGirl.create(:category, restaurant: dish.restaurant,
+      dish.category ||= FactoryGirl.create(:category, restaurant: dish.restaurant,
                                          menu: dish.menu)
     end
 

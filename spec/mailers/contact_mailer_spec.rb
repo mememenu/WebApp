@@ -2,16 +2,20 @@ require "rails_helper"
 
 RSpec.describe ContactMailer, :type => :mailer do
   describe "contact_confirmation" do
-    let(:mail) { ContactMailer.contact_confirmation }
+    let(:contact) { FactoryGirl.create(:contact) }
+    let(:mail) { ContactMailer.contact_confirmation(contact) }
 
     it "renders the headers" do
-      expect(mail.subject).to eq("Contact confirmation")
-      expect(mail.to).to eq(["to@example.org"])
-      expect(mail.from).to eq(["from@example.com"])
+      expect(mail.subject).to eq("New Contact Submission")
+      expect(mail.to).to eq(["hello@meme.menu"])
+      expect(mail.from).to eq(["hello@meme.menu"])
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to match("Hi")
+      body = mail.body.encoded
+      expect(body).to match(/John/)
+      expect(body).to match(/me@johndoe.com/)
+      expect(body).to match(/MyText/)
     end
   end
 

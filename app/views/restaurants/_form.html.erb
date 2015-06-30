@@ -132,13 +132,6 @@
           <%= f.check_box :hide %>
         </div>
         <hr>
-        <!-- <div class="field">
-          <%= hidden_field_tag "restaurant[cuisine_ids][]", nil %>
-          <% Cuisine.all.each do |cuisine| %>
-          <%= check_box_tag "restaurant[cuisine_ids][]", cuisine.id, @restaurant.cuisine_ids.include?(cuisine.id), id: dom_id(cuisine) %>
-          <%= label_tag dom_id(cuisine), cuisine.genre %><br>
-          <% end %>
-        </div> -->
         <div class="actions">
           <%= f.submit %>
         </div>

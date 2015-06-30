@@ -57,8 +57,8 @@ module RestaurantsHelper
     ]
   end
 
-  def restaurant_state 
-    if @restaurant.state 
+  def restaurant_state
+    if @restaurant.state
       @restaurant.state
     else
       1
@@ -70,23 +70,20 @@ module RestaurantsHelper
   end
 
   def restaurant_region
-    if @restaurant.region 
+    if @restaurant.region
       @restaurant.region
     else
       0
     end
   end
 
-
   def restaurant_dollars
-    if @restaurant.dollars 
+    if @restaurant.dollars
       @restaurant.dollars
     else
       1
     end
   end
-
-
 
   def restaurant_id_array
     [@restaurant.id]
@@ -95,18 +92,14 @@ module RestaurantsHelper
   def dollars
     case @restaurant.dollars
     when 1
-    '$' 
+      '$'
     when 2
-    '$$'
+      '$$'
     when 3
-    '$$$'
+      '$$$'
     when 4
-    '$$$$'
-    end    
-  end
-
-  def comma_separated_cuisines
-    @restaurant.cuisines.map{|cuisine| cuisine.genre}.join(', ') 
+      '$$$$'
+    end
   end
 
   def restaurant_category_names
@@ -128,7 +121,6 @@ module RestaurantsHelper
   end
 
   def restaurant_category_and_category_menu_names
-
     menus = []
 
     @restaurant.menus.each do |menu|
@@ -136,7 +128,7 @@ module RestaurantsHelper
     end
 
     categories = []
-    
+
     menus.each do |menu|
       menu.categories.each do |category|
         categories<<category
@@ -146,17 +138,13 @@ module RestaurantsHelper
     category_and_menu_names = []
 
     categories.each do |category|
-
       category_and_menu_names<<('a#'+category.clean_name+category.menu.clean_name)
-
     end
 
     category_and_menu_names.join(', ')
-
   end
 
   def class_of_restaurant_category_and_category_menu_names
-
     menus = []
 
     @restaurant.menus.each do |menu|
@@ -164,7 +152,7 @@ module RestaurantsHelper
     end
 
     categories = []
-    
+
     menus.each do |menu|
       menu.categories.each do |category|
         categories<<category
@@ -174,21 +162,17 @@ module RestaurantsHelper
     category_and_menu_names = []
 
     categories.each do |category|
-
       category_and_menu_names<<('.'+category.clean_name+category.menu.clean_name)
-
     end
 
     category_and_menu_names.join(', ')
-
   end
 
 
   def restaurant_menu_options
-    
     menu_options = []
 
-    if @restaurant  
+    if @restaurant
       @restaurant.menus.each do |menu|
         menu_options<<[menu.name, menu.id]
       end
@@ -196,32 +180,16 @@ module RestaurantsHelper
       @category.restaurant.menus.each do |menu|
         menu_options<<[menu.name, menu.id]
       end
-    else 
+    else
       @dish.restaurant.menus.each do |menu|
         menu_options<<[menu.name, menu.id]
       end
     end
 
     menu_options
-
   end
 
-  # def default_menu_option
-
-  #   if @category
-  #     if @category.menu
-  #       @category.menu.id
-  #     elsif @dish.category
-  #       @dish.category.menu.id
-  #     else
-  #       1    
-  #     end
-  #   else
-  #     1
-  #   end
-  # end
-
-def restaurant_menu_names
+  def restaurant_menu_names
     menus = []
 
     @restaurant.menus.each do |menu|
@@ -247,5 +215,4 @@ def restaurant_menu_names
       1
     end
   end
-
 end

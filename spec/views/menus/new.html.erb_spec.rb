@@ -1,27 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe "menus/new", :type => :view do
+RSpec.describe 'menus/new', :type => :view do
   before(:each) do
-    assign(:menu, Menu.new(
-      :name => "MyString",
-      :display_name => "MyString",
-      :description => "MyText",
-      :restaurant => nil
-    ))
+    assign(:menu, Menu.new)
+    render
   end
 
   it "renders new menu form" do
-    render
+    expect(rendered).to render_template('menus/_form')
+  end
 
-    assert_select "form[action=?][method=?]", menus_path, "post" do
-
-      assert_select "input#menu_name[name=?]", "menu[name]"
-
-      assert_select "input#menu_display_name[name=?]", "menu[display_name]"
-
-      assert_select "textarea#menu_description[name=?]", "menu[description]"
-
-      assert_select "input#menu_restaurant_id[name=?]", "menu[restaurant_id]"
-    end
+  it 'renders a link to go back' do
+    expect(rendered).to have_link('Back', href: menus_path)
   end
 end
