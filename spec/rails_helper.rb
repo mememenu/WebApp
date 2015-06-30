@@ -57,4 +57,19 @@ RSpec.configure do |config|
   config.before :suite do
     Warden.test_mode!
   end
+
+  Geocoder.configure(lookup: :test)
+  Geocoder::Lookup::Test.set_default_stub(
+    [
+      {
+        'latitude'     => 25.7982813,
+        'longitude'    => -80.1283682,
+        'address'      => '210 23rd Street',
+        'state'        => 'Florida',
+        'state_code'   => 'FL',
+        'country'      => 'United States',
+        'country_code' => 'US'
+      }
+    ]
+  )
 end
