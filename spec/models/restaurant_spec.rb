@@ -7,13 +7,13 @@ describe Restaurant, :type => :model do
   it { should validate_presence_of(:address_1) }
   it { should validate_presence_of(:city) }
   it { should validate_presence_of(:state) }
-  it { should ensure_length_of(:state).is_equal_to(2) }
+  it { should validate_length_of(:state).is_equal_to(2) }
   it { should validate_presence_of(:zipcode) }
   it { should validate_numericality_of(:zipcode) }
-  it { should ensure_length_of(:zipcode).is_equal_to(5) }
+  it { should validate_length_of(:zipcode).is_equal_to(5) }
   it { should validate_presence_of(:phone) }
   it { should validate_numericality_of(:phone) }
-  it { should ensure_length_of(:phone).is_equal_to(10) }
+  it { should validate_length_of(:phone).is_equal_to(10) }
   it { should validate_presence_of(:zone) }
   it { should validate_presence_of(:foursquare_id) }
 
