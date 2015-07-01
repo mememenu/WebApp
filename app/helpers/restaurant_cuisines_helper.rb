@@ -1,2 +1,0 @@
-module RestaurantCuisinesHelper
-end

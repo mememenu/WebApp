@@ -1,16 +1,4 @@
 module ApplicationHelper
-  def cuisine_finder
-    finder = []
-
-    Cuisine.all.each do |cuisine|
-      unless cuisine.restaurants.empty?
-        finder<<cuisine
-      end
-    end
-    
-    finder
-  end
-
   def miami_restaurant_dropdown_options
     Restaurant.where(hide: [nil, false], region: "MIA")
   end
@@ -31,5 +19,4 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_fields btn btn-default btn-xs", data: {id: id, fields: fields.gsub("\n", "")})
   end
-
 end

@@ -1,10 +1,7 @@
 class Restaurant < ActiveRecord::Base
   geocoded_by :full_address
 
-  has_many :cuisines, through: :restaurant_cuisines
-  has_many :restaurant_cuisines, dependent: :destroy
   has_many :menus, dependent: :destroy
-  has_many :ingredients, dependent: :destroy
   has_many :dishes, dependent: :destroy
   has_many :categories
   has_one :restaurant_tile
