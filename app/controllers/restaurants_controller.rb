@@ -26,7 +26,6 @@ class RestaurantsController < ApplicationController
     @dishes = Dish.where(category_id: @restaurant.restaurant_categories)
     @active_dishes = @dishes.where(hide: [nil, false]).order(:menu_id, :category_id, :name)
     @inactive_dishes = @dishes.where(hide: true).order(:name)
-    @ingredients = Ingredient.where(restaurant_id: @restaurant.id)
   end
 
   # GET /restaurants/new

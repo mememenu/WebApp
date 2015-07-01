@@ -21,37 +21,23 @@ RSpec.describe Image, :type => :model do
   end
 
   it "should become hidden if corresponding dish becomes hidden" do
-    @dish.hide = true
-    @dish.save
-    @dish.reload
-    @image.reload
+    @image.update_attributes(hide: false)
+    @dish.update_attributes(hide: true)
 
-    expect(@image.hide).to eq(@dish.hide)
+    expect(@image.reload.hide).to be_truthy
   end
 
   it "should become unhidden is corresponding dish becomes unhidden" do
-    @dish.hide = true
-    @dish.save
-    @dish.reload
-    @image.reload
+    @image.update_attributes(hide: true)
+    @dish.update_attributes(hide: false)
 
-    expect(@image.hide).to eq(@dish.hide)
-
-    @dish.hide = false
-    @dish.save
-    @dish.reload
-    @image.reload
-
-    expect(@image.hide).to eq(@dish.hide)
+    expect(@image.reload.hide).to be_falsy
   end
 
   it "should become hidden if corresponding restaurant becomes hidden" do
-    @restaurant.hide = true
-    @restaurant.save
-    @restaurant.reload
-    @image.reload
+    @restaurant.update_attributes(hide: true)
 
-    expect(@image.hide).to eq(@restaurant.hide)
+    expect(@image.reload.hide).to be_truthy
   end
 
   it "sets cloudfront_url after saving the image" do

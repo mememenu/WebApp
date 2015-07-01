@@ -3,8 +3,6 @@ class Dish < ActiveRecord::Base
   belongs_to :menu
   belongs_to :restaurant
   has_many :images, dependent: :destroy
-  has_many :ingredients, dependent: :destroy
-  accepts_nested_attributes_for :ingredients, allow_destroy: true
   accepts_nested_attributes_for :images, allow_destroy: true, reject_if: proc { |attrs| attrs['avatar'].blank? }
 
   # validates :name, presence: true
