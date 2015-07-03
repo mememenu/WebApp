@@ -39,4 +39,16 @@ RSpec.describe 'Dishes API', type: :request do
       expect(json_dish2['cloud_front']).to eq(dish2.cloud_front)
     end
   end
+
+  describe '#paginated_dish_feed' do
+    it 'returns a paginated list of dishes that are not hidden, 10 per page' do
+      FactoryGirl.create_list(:dish, 12, hide: false)
+      FactoryGirl.create(:dish, hide: true)
+
+      get '/ios/paginated_dish_feed.json'
+
+      expect(response).to be_success
+      expect(json.length).to eq(10)
+    end
+  end
 end
