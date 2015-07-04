@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :restaurant do
     sequence(:name) { |i| "Restaurant #{i}" }
     address_1 "123 Test St."
+    address_2 "Suite 2"
     city "Miami"
     state "FL"
     zipcode "12345"
