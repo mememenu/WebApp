@@ -9,13 +9,6 @@ json.state restaurant.state
 json.zipcode restaurant.zipcode
 json.phone restaurant.phone
 json.zone restaurant.zone
-json.monday_hours restaurant.monday_hours
-json.tuesday_hours restaurant.tuesday_hours
-json.wednesday_hours restaurant.wednesday_hours
-json.thursday_hours restaurant.thursday_hours
-json.friday_hours restaurant.friday_hours
-json.saturday_hours restaurant.saturday_hours
-json.sunday_hours restaurant.sunday_hours
 json.website restaurant.website
 json.photographer_name restaurant.photographer_name
 json.photographer_media_link restaurant.photographer_media_link

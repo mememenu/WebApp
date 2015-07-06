@@ -16,10 +16,10 @@ RSpec.describe 'ios/nola_restaurants_list.json.jbuilder', type: :view do
     expect(parsed).to be_an_instance_of(Array)
     expect(parsed.length).to eq(2)
 
-    expect(first.keys.length).to eq(25)
+    expect(first.keys.length).to eq(18)
     expect(first['slug']).to eq(restaurant1.slug)
 
-    expect(second.keys.length).to eq(25)
+    expect(second.keys.length).to eq(18)
     expect(second['slug']).to eq(restaurant2.slug)
   end
 end

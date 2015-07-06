@@ -9,13 +9,6 @@ RSpec.describe 'ios/_base_restaurant.json.jbuilder', type: :view do
       :restaurant,
       :with_avatar,
       name: 'My Restaurant',
-      monday_hours: '10-20',
-      tuesday_hours: '10-20',
-      wednesday_hours: '11-20',
-      thursday_hours: '10-20',
-      friday_hours: '10-24',
-      saturday_hours: '10-24',
-      sunday_hours: '10-24',
       website: 'http://meme.menu.com',
       photographer_name: 'John Doe',
       photographer_media_link: 'http://john.doe.com',
@@ -37,7 +30,7 @@ RSpec.describe 'ios/_base_restaurant.json.jbuilder', type: :view do
 
   it 'renders the basic info of the restaurant' do
     parsed = JSON.parse(rendered)
-    expect(parsed.keys.length).to eq(24)
+    expect(parsed.keys.length).to eq(17)
     expect(parsed['name']).to eq('My Restaurant')
     expect(parsed['avatar']).to eq(restaurant.avatar.url)
     expect(parsed['restaurant_header']).to eq(header.avatar.url)
@@ -49,13 +42,6 @@ RSpec.describe 'ios/_base_restaurant.json.jbuilder', type: :view do
     expect(parsed['zipcode']).to eq('12345')
     expect(parsed['phone']).to eq('0123456789')
     expect(parsed['zone']).to eq('Miami Beach')
-    expect(parsed['monday_hours']).to eq('10-20')
-    expect(parsed['tuesday_hours']).to eq('10-20')
-    expect(parsed['wednesday_hours']).to eq('11-20')
-    expect(parsed['thursday_hours']).to eq('10-20')
-    expect(parsed['friday_hours']).to eq('10-24')
-    expect(parsed['saturday_hours']).to eq('10-24')
-    expect(parsed['sunday_hours']).to eq('10-24')
     expect(parsed['website']).to eq('http://meme.menu.com')
     expect(parsed['photographer_name']).to eq('John Doe')
     expect(parsed['photographer_media_link']).to eq('http://john.doe.com')

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150701173919) do
+ActiveRecord::Schema.define(version: 20150706141650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,13 +148,6 @@ ActiveRecord::Schema.define(version: 20150701173919) do
     t.string   "slug",                    limit: 255
     t.string   "zone",                    limit: 255
     t.string   "region",                  limit: 255
-    t.string   "monday_hours",            limit: 255
-    t.string   "tuesday_hours",           limit: 255
-    t.string   "wednesday_hours",         limit: 255
-    t.string   "thursday_hours",          limit: 255
-    t.string   "friday_hours",            limit: 255
-    t.string   "saturday_hours",          limit: 255
-    t.string   "sunday_hours",            limit: 255
     t.string   "website",                 limit: 255
     t.string   "photographer_name",       limit: 255
     t.string   "photographer_media_link", limit: 255

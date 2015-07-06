@@ -9,13 +9,6 @@ describe DishSerializer, type: :model do
       :restaurant,
       :with_avatar,
       name: 'My Restaurant',
-      monday_hours: '10-20',
-      tuesday_hours: '10-20',
-      wednesday_hours: '11-20',
-      thursday_hours: '10-20',
-      friday_hours: '10-24',
-      saturday_hours: '10-24',
-      sunday_hours: '10-24',
       website: 'http://meme.menu.com',
       photographer_name: 'John Doe',
       photographer_media_link: 'http://john.doe.com',
@@ -120,90 +113,6 @@ describe DishSerializer, type: :model do
 
     xcontext 'basic dish' do
       let(:serializer) { described_class.new(basic_dish) }
-    end
-  end
-
-  describe '#monday_hours' do
-    context 'detailed dish' do
-      let(:serializer) { described_class.new(detailed_dish) }
-      it { expect(serializer.monday_hours).to eq('10-20') }
-    end
-
-    context 'basic dish' do
-      let(:serializer) { described_class.new(basic_dish) }
-      it { expect(serializer.monday_hours).to be_nil }
-    end
-  end
-
-  describe '#tuesday_hours' do
-    context 'detailed dish' do
-      let(:serializer) { described_class.new(detailed_dish) }
-      it { expect(serializer.tuesday_hours).to eq('10-20') }
-    end
-
-    context 'basic dish' do
-      let(:serializer) { described_class.new(basic_dish) }
-      it { expect(serializer.tuesday_hours).to be_nil }
-    end
-  end
-
-  describe '#wednesday_hours' do
-    context 'detailed dish' do
-      let(:serializer) { described_class.new(detailed_dish) }
-      it { expect(serializer.wednesday_hours).to eq('11-20') }
-    end
-
-    context 'basic dish' do
-      let(:serializer) { described_class.new(basic_dish) }
-      it { expect(serializer.wednesday_hours).to be_nil }
-    end
-  end
-
-  describe '#thursday_hours' do
-    context 'detailed dish' do
-      let(:serializer) { described_class.new(detailed_dish) }
-      it { expect(serializer.thursday_hours).to eq('10-20') }
-    end
-
-    context 'basic dish' do
-      let(:serializer) { described_class.new(basic_dish) }
-      it { expect(serializer.thursday_hours).to be_nil }
-    end
-  end
-
-  describe '#friday_hours' do
-    context 'detailed dish' do
-      let(:serializer) { described_class.new(detailed_dish) }
-      it { expect(serializer.friday_hours).to eq('10-24') }
-    end
-
-    context 'basic dish' do
-      let(:serializer) { described_class.new(basic_dish) }
-      it { expect(serializer.friday_hours).to be_nil }
-    end
-  end
-
-  describe '#saturday_hours' do
-    context 'detailed dish' do
-      let(:serializer) { described_class.new(detailed_dish) }
-      it { expect(serializer.saturday_hours).to eq('10-24') }
-    end
-
-    context 'basic dish' do
-      let(:serializer) { described_class.new(basic_dish) }
-      it { expect(serializer.saturday_hours).to be_nil }
-    end
-  end
-
-  describe '#sunday_hours' do
-    context 'detailed dish' do
-      let(:serializer) { described_class.new(detailed_dish) }
-      it { expect(serializer.sunday_hours).to eq('10-24') }
-    end
-
-    context 'basic dish' do
-      let(:serializer) { described_class.new(basic_dish) }
-      it { expect(serializer.sunday_hours).to be_nil }
     end
   end
 
