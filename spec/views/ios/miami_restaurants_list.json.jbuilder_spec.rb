@@ -9,13 +9,6 @@ RSpec.describe 'ios/miami_restaurants_list.json.jbuilder', type: :view do
       :restaurant,
       2,
       :with_avatar,
-      monday_hours: '10-20',
-      tuesday_hours: '10-20',
-      wednesday_hours: '11-20',
-      thursday_hours: '10-20',
-      friday_hours: '10-24',
-      saturday_hours: '10-24',
-      sunday_hours: '10-24',
       website: 'http://meme.menu.com',
       photographer_name: 'John Doe',
       photographer_media_link: 'http://john.doe.com',
@@ -45,7 +38,7 @@ RSpec.describe 'ios/miami_restaurants_list.json.jbuilder', type: :view do
     expect(parsed).to be_an_instance_of(Array)
     expect(parsed.length).to eq(2)
 
-    expect(first.keys.length).to eq(33)
+    expect(first.keys.length).to eq(26)
     expect(first['slug']).to eq(restaurant1.slug)
     expect(first['lat']).to eq(25.7982813)
     expect(first['long']).to eq(-80.1283682)
@@ -56,7 +49,7 @@ RSpec.describe 'ios/miami_restaurants_list.json.jbuilder', type: :view do
     expect(first['status']).to eq('iOS Status Message')
     expect(first['restaurant_banner']).to eq(banner.avatar.url)
 
-    expect(second.keys.length).to eq(33)
+    expect(second.keys.length).to eq(26)
     expect(second['slug']).to eq(restaurant2.slug)
     expect(second['lat']).to eq(25.7982813)
     expect(second['long']).to eq(-80.1283682)

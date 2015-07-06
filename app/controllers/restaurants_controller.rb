@@ -57,7 +57,6 @@ class RestaurantsController < ApplicationController
   def update
     respond_to do |format|
       if @restaurant.update(restaurant_params)
-        puts @restaurant.monday_hours
         format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
         format.json { render :show, status: :ok, location: @restaurant }
       else
@@ -100,9 +99,8 @@ class RestaurantsController < ApplicationController
   def restaurant_params
     params.require(:restaurant).permit(
       :name, :address_1, :address_2, :city, :state, :zipcode, :description, :phone,
-      :dollars, :reservations, :hide, :avatar, :zone, :region, :monday_hours,
-      :tuesday_hours, :wednesday_hours, :thursday_hours, :friday_hours, :saturday_hours,
-      :sunday_hours, :website, :photographer_name, :photographer_media_link, :clean_name,
+      :dollars, :reservations, :hide, :avatar, :zone, :region, :website,
+      :photographer_name, :photographer_media_link, :clean_name,
       :facebook, :twitter, :instagram, :delivery_url, :foursquare_id, :status,
       restaurant_tile_attributes: [:id, :avatar, :restaurant_id],
       restaurant_header_attributes: [:id, :avatar, :restaurant_id],
