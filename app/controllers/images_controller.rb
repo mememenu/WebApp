@@ -61,25 +61,26 @@ class ImagesController < ApplicationController
 
   private
 
-    def check_hidden
-      if @image.hide 
-        if current_user 
-            unless current_user.admin || current_user.restaurant_id == @image.dish.category.menu.restaurant.id
-              redirect_to root_path
-            end
-        else
+  def check_hidden
+    if @image.hide 
+      if current_user 
+        unless current_user.admin || current_user.restaurant_id == @image.dish.category.menu.restaurant.id
           redirect_to root_path
         end
+      else
+        redirect_to root_path
       end
     end
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_image
-      @image = Image.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_image
+    @image = Image.find(params[:id])
+    @restaurant = @image.dish.restaurant
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def image_params
-      params.require(:image).permit(:dish_id, :avatar, :hide)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def image_params
+    params.require(:image).permit(:dish_id, :avatar, :hide)
+  end
 end

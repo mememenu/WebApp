@@ -18,6 +18,38 @@ RSpec.describe RestaurantsController, :type => :controller do
 
   let(:valid_session) { {} }
 
+  describe "validate_restaurant_owner_or_admin filter" do
+    subject do
+      put :update,
+        { id: restaurant.to_param, restaurant: new_attributes },
+        valid_session
+    end
+    let(:restaurant) { FactoryGirl.create(:restaurant) }
+    let(:new_attributes) do
+      { restaurant_banner_attributes: { avatar: fixture_file_upload('/images/896x1052.jpeg', 'image/jpeg') } }
+    end
+
+    it "redirects to root_path if user is not the restaurant owner nor admin" do
+      sign_in FactoryGirl.create(:user)
+
+      expect(subject).to redirect_to(root_path)
+    end
+
+    it "lets you go through if user is restaurant owner" do
+      user = FactoryGirl.create(:user)
+      restaurant.update_column(:owner_id, user.id)
+      sign_in user
+
+      expect(subject).not_to redirect_to root_path
+    end
+
+    it "lets you go through if user is an admin" do
+      sign_in FactoryGirl.create(:admin)
+
+      expect(subject).not_to redirect_to root_path
+    end
+  end
+
   describe "GET index" do
     it "assigns all restaurants as @restaurants" do
       restaurant = Restaurant.create! valid_attributes

@@ -4,7 +4,6 @@ class DishesController < ApplicationController
   before_action :validate_restaurant_owner_or_admin, except: [:show, :create, :update]
   before_action :check_hidden, only: :show
 
-
   # GET /dishes
   # GET /dishes.json
   def index
@@ -72,25 +71,26 @@ class DishesController < ApplicationController
 
   private
 
-    def check_hidden
-      if @dish.hide 
-        if current_user
-          unless current_user.admin || current_user.restaurant_id == @dish.category.menu.restaurant.id
-            redirect_to root_path
-          end
-        else
+  def check_hidden
+    if @dish.hide
+      if current_user
+        unless current_user.admin || current_user.restaurant_id == @dish.category.menu.restaurant.id
           redirect_to root_path
         end
+      else
+        redirect_to root_path
       end
     end
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_dish
-      @dish = Dish.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_dish
+    @dish = Dish.find(params[:id])
+    @restaurant = @dish.restaurant
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def dish_params
-      params.require(:dish).permit(:name, :description, :portion_size, :spice, :hot, :gluten_free, :vegetarian, :category_id, :hide, :avatar, :menu_id, :restaurant_id, :cloud_front, images_attributes: [:avatar, :id, :_destroy])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def dish_params
+    params.require(:dish).permit(:name, :description, :portion_size, :spice, :hot, :gluten_free, :vegetarian, :category_id, :hide, :avatar, :menu_id, :restaurant_id, :cloud_front, images_attributes: [:avatar, :id, :_destroy])
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625161645) do
+ActiveRecord::Schema.define(version: 20150706141650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,13 +148,6 @@ ActiveRecord::Schema.define(version: 20150625161645) do
     t.string   "slug",                    limit: 255
     t.string   "zone",                    limit: 255
     t.string   "region",                  limit: 255
-    t.string   "monday_hours",            limit: 255
-    t.string   "tuesday_hours",           limit: 255
-    t.string   "wednesday_hours",         limit: 255
-    t.string   "thursday_hours",          limit: 255
-    t.string   "friday_hours",            limit: 255
-    t.string   "saturday_hours",          limit: 255
-    t.string   "sunday_hours",            limit: 255
     t.string   "website",                 limit: 255
     t.string   "photographer_name",       limit: 255
     t.string   "photographer_media_link", limit: 255
@@ -168,8 +161,10 @@ ActiveRecord::Schema.define(version: 20150625161645) do
     t.string   "status",                  limit: 255
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "owner_id"
   end
 
+  add_index "restaurants", ["owner_id"], name: "index_restaurants_on_owner_id", using: :btree
   add_index "restaurants", ["slug"], name: "index_restaurants_on_slug", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -189,11 +184,9 @@ ActiveRecord::Schema.define(version: 20150625161645) do
     t.boolean  "restaurant"
     t.string   "provider",               limit: 255
     t.string   "uid",                    limit: 255
-    t.integer  "restaurant_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["restaurant_id"], name: "index_users_on_restaurant_id", using: :btree
 
 end

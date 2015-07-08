@@ -68,26 +68,27 @@ class MenusController < ApplicationController
   end
 
   private
-    
-    def check_hidden
-      if @menu.hide 
-        if current_user
-          unless current_user.admin || current_user.restaurant_id == @menu.restaurant.id
-            redirect_to root_path
-          end
-        else
+
+  def check_hidden
+    if @menu.hide 
+      if current_user
+        unless current_user.admin || current_user.restaurant_id == @menu.restaurant.id
           redirect_to root_path
         end
+      else
+        redirect_to root_path
       end
     end
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_menu
-      @menu = Menu.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_menu
+    @menu = Menu.find(params[:id])
+    @restaurant = @menu.restaurant
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def menu_params
-      params.require(:menu).permit(:name, :description, :hide, :restaurant_id, :priority)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def menu_params
+    params.require(:menu).permit(:name, :description, :hide, :restaurant_id, :priority)
+  end
 end

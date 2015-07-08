@@ -1,12 +1,10 @@
 class DishSerializer < ActiveModel::Serializer
   attributes :id, :name, :description, :avatar, :restaurant_name, :restaurant_avatar,
              :restaurant_zone, :restaurant_city, :restaurant_region, :menu_name,
-             :category_name, :monday_hours, :tuesday_hours, :wednesday_hours,
-             :thursday_hours, :friday_hours, :saturday_hours, :sunday_hours, :website,
-             :photographer_name, :photographer_media_link, :facebook, :twitter, :instagram,
-             :cloud_front, :maps_url, :address_1, :state, :zipcode, :lat, :long, :phone, :slug,
-             :restaurant_header, :city, :menu_id, :delivery_url, :foursquare_id, :status,
-             :restaurant_banner
+             :category_name, :website, :photographer_name, :photographer_media_link,
+             :facebook, :twitter, :instagram, :cloud_front, :maps_url, :address_1,
+             :state, :zipcode, :lat, :long, :phone, :slug, :restaurant_header, :city,
+             :menu_id, :delivery_url, :foursquare_id, :status, :restaurant_banner
 
   def restaurant_name
     object.restaurant.name
@@ -36,92 +34,64 @@ class DishSerializer < ActiveModel::Serializer
     object.category.name
   end
 
-  def monday_hours
-    object.restaurant.monday_hours if object.restaurant.monday_hours.present?
-  end
-
-  def tuesday_hours
-    object.restaurant.tuesday_hours if object.restaurant.tuesday_hours.present?
-  end
-
-  def wednesday_hours
-    object.restaurant.wednesday_hours if object.restaurant.wednesday_hours.present?
-  end
-
-  def thursday_hours
-    object.restaurant.thursday_hours if object.restaurant.thursday_hours.present?
-  end
-
-  def friday_hours
-    object.restaurant.friday_hours if object.restaurant.friday_hours.present?
-  end
-
-  def saturday_hours
-    object.restaurant.saturday_hours if object.restaurant.saturday_hours.present?
-  end
-
-  def sunday_hours
-    object.restaurant.sunday_hours if object.restaurant.sunday_hours.present?
-  end
-
   def website
-    object.restaurant.website if object.restaurant.website.present?
+    object.restaurant.website
   end
 
   def photographer_name
-    object.restaurant.photographer_name if object.restaurant.photographer_name.present?
+    object.restaurant.photographer_name
   end
 
   def photographer_media_link
-    object.restaurant.photographer_media_link if object.restaurant.photographer_media_link.present?
+    object.restaurant.photographer_media_link
   end
 
   def facebook
-    object.restaurant.facebook if object.restaurant.facebook.present?
+    object.restaurant.facebook
   end
 
   def twitter
-    object.restaurant.twitter if object.restaurant.twitter.present?
+    object.restaurant.twitter
   end
 
   def instagram
-    object.restaurant.instagram if object.restaurant.instagram.present?
+    object.restaurant.instagram
   end
 
   def cloud_front
-    object.cloud_front if object.cloud_front.present?
+    object.cloud_front
   end
 
   def maps_url
-    object.restaurant.maps_url if object.restaurant.maps_url.present?
+    object.restaurant.maps_url
   end
 
   def address_1
-    object.restaurant.address_1 if object.restaurant.address_1.present?
+    object.restaurant.address_1
   end
 
   def state
-    object.restaurant.state if object.restaurant.state.present?
+    object.restaurant.state
   end
 
   def zipcode
-    object.restaurant.zipcode if object.restaurant.zipcode.present?
+    object.restaurant.zipcode
   end
 
   def lat
-    object.restaurant.latitude if object.restaurant.latitude.present?
+    object.restaurant.latitude
   end
 
   def long
-    object.restaurant.longitude if object.restaurant.longitude.present?
+    object.restaurant.longitude
   end
 
   def phone
-    object.restaurant.phone if object.restaurant.phone.present?
+    object.restaurant.phone
   end
 
   def slug
-    object.restaurant.slug if object.restaurant.slug.present?
+    object.restaurant.slug
   end
 
   def restaurant_header
@@ -153,14 +123,14 @@ class DishSerializer < ActiveModel::Serializer
   end
 
   def delivery_url
-    object.restaurant.delivery_url if object.restaurant.delivery_url.present?
+    object.restaurant.delivery_url
   end
 
   def foursquare_id
-    object.restaurant.foursquare_id if object.restaurant.foursquare_id.present?
+    object.restaurant.foursquare_id
   end
 
   def status
-    object.restaurant.status if object.restaurant.status.present?
+    object.restaurant.status
   end
 end
