@@ -17,4 +17,26 @@ RSpec.describe User, type: :model do
     user = FactoryGirl.build(:user, email: "alfonsopintosgmail.com")
     expect(user).not_to be_valid
   end
+
+  describe "#from_omniauth" do
+    it "creates the user and sets the email if it does not exist" do
+      auth = double("Auth", provider: "facebook", uid: "1234",
+                            info: double("Info", email: "test@test.example"))
+      result = User.from_omniauth(auth)
+
+      expect(result.provider).to eq("facebook")
+      expect(result.uid).to eq("1234")
+      expect(result.email).to eq("test@test.example")
+    end
+
+    it "returns the found user if it finds one for the provider/uid pair" do
+      user = FactoryGirl.create(:user, provider: "facebook", uid: "1234")
+
+      auth = double("Auth", provider: "facebook", uid: "1234",
+                            info: double("Info", email: "test@test.example"))
+      result = User.from_omniauth(auth)
+
+      expect(result).to eq(user)
+    end
+  end
 end
