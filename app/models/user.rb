@@ -8,9 +8,7 @@ class User < ActiveRecord::Base
 
   # sets user attributes to attributes provided through omniauth
   def self.from_omniauth(auth)
-    where(auth.slice(:provider, :uid)).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
     end
   end
