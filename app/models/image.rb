@@ -3,8 +3,8 @@ class Image < ActiveRecord::Base
 
   has_attached_file :avatar,
     :styles => {
-      :large => "648x648",
-      :medium => "400x400>",
+      :large => "648x648>",
+      :medium => "300x300>",
       :thumb => "100x100>",
       :watermark => {
         processors: [:watermark],
@@ -28,7 +28,7 @@ class Image < ActiveRecord::Base
   def minimum_avatar_dimension
     if avatar.queued_for_write[:original].present?
       geometry = Paperclip::Geometry.from_file(avatar.queued_for_write[:original].path)
-      if geometry.width < 700 || geometry.height < 700
+      if geometry.width < 648 || geometry.height < 648
         errors.add(:avatar_dimension, 'is too small.')
       end
     end
