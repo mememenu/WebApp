@@ -74,9 +74,9 @@
       <% if @dish.avatar.present? %>
         <br>
         <label>Additional images</label>
-        <% @dish.images.in_groups_of(3, false) do |images| %>
+        <% @dish.additional_images.in_groups_of(3, false) do |images| %>
           <div class="row col-md-12 text-center">
-            <%= f.fields_for :images, images do |builder| %>
+            <%= f.fields_for :additional_images, images do |builder| %>
               <div class='avatar col-md-4 well text-center'>
                 <%= image_tag builder.object.avatar.url(:thumb) %>
                 <%= render 'dishes/image_fields', f: builder %>
@@ -87,7 +87,7 @@
         <br>
         <div class='row col-md-12'>
         </div>
-        <%= link_to_add_fields 'Add Image', f, :images %>
+        <%= link_to_add_fields 'Add Image', f, :additional_images %>
       <% end %>
       <br>
       <!-- start of submit row -->
