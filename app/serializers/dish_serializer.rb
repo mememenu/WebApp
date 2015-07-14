@@ -6,6 +6,10 @@ class DishSerializer < ActiveModel::Serializer
              :state, :zipcode, :lat, :long, :phone, :slug, :restaurant_header, :city,
              :menu_id, :delivery_url, :foursquare_id, :status, :restaurant_banner
 
+  def avatar
+    object.default_image.try(:avatar)
+  end
+
   def restaurant_name
     object.restaurant.name
   end
@@ -59,7 +63,7 @@ class DishSerializer < ActiveModel::Serializer
   end
 
   def cloud_front
-    object.cloud_front
+    object.default_image.try(:cloudfront_url)
   end
 
   def maps_url
