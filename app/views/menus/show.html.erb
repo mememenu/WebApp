@@ -20,9 +20,7 @@
         <div class="col-md-3 text-center">
           <%= link_to dish do %>
             <%= dish.name %> <br>
-            <%- if dish.default_image %>
-              <%= image_tag dish.default_image.avatar.url(:medium) %>
-            <%- end %>
+            <%= image_tag dish.avatar.url(:medium) %>
           <% end %>
         </div>
       <% end %>

@@ -36,9 +36,7 @@
           <div class="element">
             <div class="tz-inner">
               <div class="tz-image-item">
-                <%- if dish.default_image %>
-                  <%= image_tag dish.default_image.avatar.url(:large) %>
-                <%- end %>
+                <%= image_tag dish.avatar.url(:large) %>
               </div>
               <!-- start of dish name -->
               <% unless dish.name == nil %>

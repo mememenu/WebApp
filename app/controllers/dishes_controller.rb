@@ -93,7 +93,7 @@ class DishesController < ApplicationController
   def dish_params
     params.require(:dish).permit(
       :name, :description, :portion_size, :spice, :hot, :gluten_free, :vegetarian,
-      :category_id, :hide, :menu_id, :restaurant_id, :cloud_front,
+      :category_id, :hide, :avatar, :menu_id, :restaurant_id, :cloud_front,
       default_image_attributes: [:avatar, :dish_id, :destroy, :default, :id],
       additional_images_attributes: [:avatar, :id, :_destroy]
     )

@@ -191,7 +191,7 @@ describe DishSerializer, type: :model do
   describe '#cloud_front' do
     context 'detailed dish' do
       let(:serializer) { described_class.new(detailed_dish) }
-      it { expect(serializer.cloud_front).to eq(detailed_dish.default_image.try(:cloudfront_url)) }
+      it { expect(serializer.cloud_front).to eq(detailed_dish.cloud_front) }
     end
   end
 
