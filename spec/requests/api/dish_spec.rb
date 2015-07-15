@@ -29,14 +29,14 @@ RSpec.describe 'Dishes API', type: :request do
       expect(json_dish1['name']).to eq('Dish 1')
       expect(json_dish1['category_id']).to eq(dish1.category_id)
       expect(json_dish1['description']).to eq('Dish 1 desc.')
-      expect(json_dish1['avatar']).to eq(dish1.default_image.avatar.url)
-      expect(json_dish1['cloud_front']).to eq(dish1.default_image.cloudfront_url)
+      expect(json_dish1['avatar']).to eq(dish1.avatar.url)
+      expect(json_dish1['cloud_front']).to eq(dish1.cloud_front)
 
       expect(json_dish2['name']).to eq('Dish 2')
       expect(json_dish2['category_id']).to eq(dish2.category_id)
       expect(json_dish2['description']).to eq('Dish 2 desc.')
-      expect(json_dish2['avatar']).to eq(dish2.default_image.avatar.url)
-      expect(json_dish2['cloud_front']).to eq(dish2.default_image.cloudfront_url)
+      expect(json_dish2['avatar']).to eq(dish2.avatar.url)
+      expect(json_dish2['cloud_front']).to eq(dish2.cloud_front)
     end
   end
 

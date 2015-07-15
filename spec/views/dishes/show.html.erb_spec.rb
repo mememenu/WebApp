@@ -37,7 +37,7 @@ RSpec.describe 'dishes/show', :type => :view do
   end
 
   it 'renders the images' do
-    expect(rendered).to have_css("img[src*='#{dish.default_image.avatar.url(:medium)}']")
+    expect(rendered).to have_css("img[src*='#{dish.avatar.url(:medium)}']")
     expect(rendered).to have_css("img[src*='#{image.avatar.url(:medium)}']")
   end
 

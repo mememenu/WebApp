@@ -41,9 +41,7 @@
     </div>
 
     <div class="col-md-6">
-      <%- if @dish.default_image %>
-        <%= image_tag @dish.default_image.avatar.url(:medium) %>
-      <%- end %>
+      <%= image_tag @dish.avatar.url(:medium) %>
       <% @images.each do |image| %>
         <%= image_tag image.avatar.url(:medium) %>
       <% end %>
