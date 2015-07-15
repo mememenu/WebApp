@@ -25,7 +25,7 @@ RSpec.describe 'menus/show', :type => :view do
 
   it 'renders the dishes' do
     dish = category.dishes.first
-    expect(rendered).to have_css("img[src*='#{dish.default_image.avatar.url(:medium)}']")
+    expect(rendered).to have_css("img[src*='#{dish.avatar.url(:medium)}']")
     expect(rendered).to have_link(dish.name, href: dish_path(dish))
   end
 end

@@ -6,8 +6,4 @@ FactoryGirl.define do
       avatar { fixture_file_upload(Rails.root + 'spec/fixtures/images/896x1052.jpeg', 'image/jpeg') }
     end
   end
-
-  factory :default_image, parent: :image do
-    default true
-  end
 end

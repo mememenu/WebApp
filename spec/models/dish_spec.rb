@@ -22,7 +22,7 @@ RSpec.describe Dish, type: :model do
     expect(dish.reload.hide).to be_truthy
   end
 
-  it "should become unhidden when corresponding category becomes unhidden" do
+  it "should become unhidden when corresponding category becomes unhidden" do 
     dish.update_attributes(hide: true)
     category.update_attributes(hide: false)
 
@@ -32,11 +32,11 @@ RSpec.describe Dish, type: :model do
   describe 'validations' do
     describe 'Validate image dimension' do
       it 'is invalid if the image is smaller than 648x648' do
-        invalid_pic = fixture_file_upload('/images/430x505.jpeg', 'image/jpeg')
-        dish = FactoryGirl.build(:dish, default_image_attributes: { avatar: invalid_pic })
+        invalid_pic = File.new(fixture_file_upload('/images/430x505.jpeg', 'image/jpeg'))
+        dish = FactoryGirl.build(:dish, avatar: invalid_pic)
 
         expect(dish).not_to be_valid
-        expect(dish.errors["default_image.avatar_dimension"]).to eq(['is too small.'])
+        expect(dish.errors[:avatar_dimension]).to eq(['is too small.'])
       end
 
       it 'is valid if the image is bigger than 648x648' do
