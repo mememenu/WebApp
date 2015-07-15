@@ -63,15 +63,18 @@
       <div class="row">
         <div class="col-md-12">
           <div class="field">
-            <%= f.label :avatar, "Default Image" %><br>
-            <%- unless f.object.new_record? %>
-              <%= image_tag f.object.avatar.url(:thumb) %>
-            <%- end %>
-            <%= f.file_field :avatar %>
+            <%= f.fields_for :default_image, f.object.default_image || f.object.build_default_image do |builder| %>
+              <%= builder.label :avatar, "Default Image" %><br>
+              <%- unless builder.object.new_record? %>
+                <%= image_tag builder.object.avatar.url(:thumb) %>
+              <%- end %>
+              <%= builder.file_field :avatar %>
+              <%= builder.hidden_field :default, value: true %>
+            <% end %>
           </div>
         </div>
       </div> <!-- end of avatar row -->
-      <% if @dish.avatar.present? %>
+      <% if @dish.default_image && @dish.default_image.avatar.present? %>
         <br>
         <label>Additional images</label>
         <% @dish.additional_images.in_groups_of(3, false) do |images| %>

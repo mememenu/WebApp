@@ -12,7 +12,7 @@ FactoryGirl.define do
     end
 
     trait :with_avatar do
-      avatar { fixture_file_upload(Rails.root + 'spec/fixtures/images/896x1052.jpeg', 'image/jpeg') }
+      association :default_image, factory: :default_image
     end
   end
 end
