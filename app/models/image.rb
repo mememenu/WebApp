@@ -1,12 +1,10 @@
 class Image < ActiveRecord::Base
   belongs_to :dish
 
-  validates :dish_id, presence: true
-
   has_attached_file :avatar,
     :styles => {
-      :large => "648x648",
-      :medium => "400x400>",
+      :large => "648x648>",
+      :medium => "300x300>",
       :thumb => "100x100>",
       :watermark => {
         processors: [:watermark],
@@ -15,21 +13,32 @@ class Image < ActiveRecord::Base
         auto_orient:    false
       }
     },
-    :default_url => "/images/:style/missing.png"
+    :default_url => "https://s3.amazonaws.com/meme-menu/missing_small.jpg"
   validates_attachment_content_type :avatar, content_type: ["image/jpeg", "image/png"]
   validate :minimum_avatar_dimension
-  before_save :create_cloudfront_url
-
-  def create_cloudfront_url
-    self.cloudfront_url = avatar.url.gsub('http://s3.amazonaws.com/meme-menu', 'http://dm7g4xbxa7ld3.cloudfront.net').gsub('original', 'large')
-  end
+  validates :dish, presence: true
+  after_save :create_cloudfront_url
+  before_save :clean_cloudfront_url
 
   private
+
+  def clean_cloudfront_url
+    if avatar.dirty?
+      self.cloudfront_url = nil
+    end
+  end
+
+  def create_cloudfront_url
+    if cloudfront_url.nil?
+      self.cloudfront_url = avatar.url.gsub('http://s3.amazonaws.com/meme-menu', 'http://dm7g4xbxa7ld3.cloudfront.net').gsub('original', 'large')
+      save
+    end
+  end
 
   def minimum_avatar_dimension
     if avatar.queued_for_write[:original].present?
       geometry = Paperclip::Geometry.from_file(avatar.queued_for_write[:original].path)
-      if geometry.width < 700 || geometry.height < 700
+      if geometry.width < 648 || geometry.height < 648
         errors.add(:avatar_dimension, 'is too small.')
       end
     end

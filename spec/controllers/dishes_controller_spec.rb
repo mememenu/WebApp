@@ -63,6 +63,20 @@ RSpec.describe DishesController, :type => :controller do
       end
     end
 
+    describe "dish with default image" do
+      it "creates a default image for the dish" do
+        image = fixture_file_upload('/images/896x1052.jpeg', 'image/jpeg')
+        expect do
+          post :create, {
+               dish: valid_attributes.merge(default_image_attributes: { avatar: image })
+          }, valid_session
+        end.to change{ Dish.count }.by(1)
+
+        expect(response).to redirect_to(assigns[:dish].restaurant)
+        expect(assigns[:dish].default_image.avatar).to be
+      end
+    end
+
     describe "with invalid params" do
       it "assigns a newly created but unsaved dish as @dish" do
         post :create, {:dish => invalid_attributes}, valid_session
