@@ -17,13 +17,23 @@ class Image < ActiveRecord::Base
   validates_attachment_content_type :avatar, content_type: ["image/jpeg", "image/png"]
   validate :minimum_avatar_dimension
   validates :dish, presence: true
-  before_save :create_cloudfront_url
-
-  def create_cloudfront_url
-    self.cloudfront_url = avatar.url.gsub('http://s3.amazonaws.com/meme-menu', 'http://dm7g4xbxa7ld3.cloudfront.net').gsub('original', 'large')
-  end
+  after_save :create_cloudfront_url
+  before_save :clean_cloudfront_url
 
   private
+
+  def clean_cloudfront_url
+    if avatar.dirty?
+      self.cloudfront_url = nil
+    end
+  end
+
+  def create_cloudfront_url
+    if cloudfront_url.nil?
+      self.cloudfront_url = avatar.url.gsub('http://s3.amazonaws.com/meme-menu', 'http://dm7g4xbxa7ld3.cloudfront.net').gsub('original', 'large')
+      save
+    end
+  end
 
   def minimum_avatar_dimension
     if avatar.queued_for_write[:original].present?
