@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150709172639) do
+ActiveRecord::Schema.define(version: 20150714200805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 20150709172639) do
   end
 
   create_table "dishes", force: :cascade do |t|
-    t.string   "name",                limit: 255
+    t.string   "name",          limit: 255
     t.text     "description"
-    t.string   "portion_size",        limit: 255
+    t.string   "portion_size",  limit: 255
     t.integer  "spice"
     t.boolean  "hot"
     t.boolean  "gluten_free"
@@ -51,13 +51,8 @@ ActiveRecord::Schema.define(version: 20150709172639) do
     t.datetime "updated_at"
     t.boolean  "hide"
     t.integer  "category_id"
-    t.string   "avatar_file_name",    limit: 255
-    t.string   "avatar_content_type", limit: 255
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.integer  "menu_id"
     t.integer  "restaurant_id"
-    t.string   "cloud_front",         limit: 255
   end
 
   add_index "dishes", ["category_id"], name: "index_dishes_on_category_id", using: :btree
