@@ -23,7 +23,9 @@
         <div class="col-md-3 text-center">
           <%= link_to dish do %>
             <%= dish.name %> <br>
-            <%= image_tag dish.avatar.url(:medium) %>
+            <%- if dish.default_image %>
+              <%= image_tag dish.default_image.avatar.url(:medium) %>
+            <%- end %>
           <% end %>
         </div>
       <% end %>
