@@ -10,7 +10,7 @@ FactoryGirl.define do
 
     factory :category_with_dishes do
       after(:create) do |category, _|
-        create(:dish, :with_avatar, category: category)
+        create(:dish, :with_default_image, category: category)
       end
     end
   end
