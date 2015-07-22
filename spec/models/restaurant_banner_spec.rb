@@ -11,16 +11,16 @@ describe RestaurantBanner, type: :model do
     describe 'Validate avatar dimension' do
       it 'is invalid if the image is smaller than 750x280' do
         invalid_pic = File.new(fixture_file_upload('/images/430x505.jpeg', 'image/jpeg'))
-        dish = FactoryGirl.build(:restaurant_banner, avatar: invalid_pic)
+        restaurant_banner = FactoryGirl.build(:restaurant_banner, avatar: invalid_pic)
 
-        expect(dish).not_to be_valid
-        expect(dish.errors[:avatar_dimension]).to eq(['is too small.'])
+        expect(restaurant_banner).not_to be_valid
+        expect(restaurant_banner.errors[:avatar_dimension]).to eq(['is too small.'])
       end
 
       it 'is valid if the image is bigger than 750x280' do
-        dish_with_avatar = FactoryGirl.build(:restaurant_banner, :with_avatar)
+        restaurant_banner = FactoryGirl.build(:restaurant_banner, :with_avatar)
 
-        expect(dish_with_avatar).to be_valid
+        expect(restaurant_banner).to be_valid
       end
     end
   end
