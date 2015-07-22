@@ -82,7 +82,7 @@
             <%= f.fields_for :additional_images, images do |builder| %>
               <div class='avatar col-md-4 well text-center'>
                 <%= image_tag builder.object.avatar.url(:thumb) %>
-                <%= render 'dishes/image_fields', f: builder %>
+                <%= render 'dishes/additional_image_fields', f: builder %>
               </div>
             <% end %>
           </div>

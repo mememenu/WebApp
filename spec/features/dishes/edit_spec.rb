@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'Editing a dish', type: :feature do
-  let(:dish) { FactoryGirl.create(:dish) }
+  let(:dish) { FactoryGirl.create(:dish, :with_avatar) }
 
   background do
     login_as FactoryGirl.create(:admin)

@@ -12,7 +12,7 @@ FactoryGirl.define do
     end
 
     trait :with_avatar do
-      association :default_image, factory: :default_image
+      association :default_image, factory: [:default_image, :with_avatar]
     end
   end
 end
