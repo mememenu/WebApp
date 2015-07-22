@@ -2,7 +2,9 @@ class Dish < ActiveRecord::Base
   belongs_to :category
   belongs_to :menu
   belongs_to :restaurant
-  has_many :additional_images, dependent: :destroy, class_name: "Image", foreign_key: :dish_id, inverse_of: :dish
+  has_many :additional_images, -> { where(default: nil) }, dependent: :destroy,
+                               class_name: "Image", foreign_key: :dish_id,
+                               inverse_of: :dish
   has_one :default_image, -> { where(default: true) }, dependent: :destroy,
                           class_name: "Image", inverse_of: :dish
 

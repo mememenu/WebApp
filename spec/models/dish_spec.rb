@@ -40,10 +40,28 @@ RSpec.describe Dish, type: :model do
       end
 
       it 'is valid if the image is bigger than 648x648' do
-        dish_with_avatar = FactoryGirl.build(:dish, :with_avatar)
+        dish_with_avatar = FactoryGirl.build(:dish, :with_default_image)
 
         expect(dish_with_avatar).to be_valid
       end
+    end
+  end
+
+  context 'with default image and additional images' do
+    let(:dish) { FactoryGirl.create(:dish, :with_default_image,
+                                           :with_additional_images) }
+    it "has one default image" do
+      expect(dish.default_image.avatar.present?).to be
+    end
+
+    it "has two additional images" do
+      expect(dish.additional_images.count).to eq(2)
+      expect(dish.additional_images.first.avatar.present?).to be
+      expect(dish.additional_images.last.avatar.present?).to be
+    end
+
+    it "does not include default image among additional ones" do
+      expect(dish.additional_images).not_to include(dish.default_image)
     end
   end
 end

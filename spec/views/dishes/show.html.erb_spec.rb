@@ -5,7 +5,7 @@ RSpec.describe 'dishes/show', :type => :view do
   let(:dish) do
     FactoryGirl.create(
       :dish,
-      :with_avatar,
+      :with_default_image,
       name: 'Name',
       description: 'My Description',
       category: FactoryGirl.create(:category, name: 'My Category'),

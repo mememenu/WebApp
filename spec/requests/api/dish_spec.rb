@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe 'Dishes API', type: :request do
   let(:dish1) do
-    FactoryGirl.create(:dish, :with_avatar, hide: false, name: 'Dish 1', description: 'Dish 1 desc.')
+    FactoryGirl.create(:dish, :with_default_image, hide: false, name: 'Dish 1', description: 'Dish 1 desc.')
   end
   let(:dish2) do
-    FactoryGirl.create(:dish, :with_avatar, hide: false, name: 'Dish 2', description: 'Dish 2 desc.')
+    FactoryGirl.create(:dish, :with_default_image, hide: false, name: 'Dish 2', description: 'Dish 2 desc.')
   end
   let(:restaurant) do
     FactoryGirl.create(
