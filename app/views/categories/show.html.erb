@@ -1,8 +1,7 @@
 <div class="container">
-
   <div class="text-center">
-    <%= link_to @category.menu.restaurant do %>
-    <%= image_tag @category.menu.restaurant.avatar.url(:medium) %>
+    <%= link_to @category.menu.place do %>
+    <%= image_tag @category.menu.place.avatar.url(:medium) %>
     <% end %>
     <h3><%= @category.menu.name %></h3>
     <hr>
@@ -32,15 +31,4 @@
     </div>
     <% end %>
   </div>
-
-
-
 </div>
-
-
-
-
-
-
-
-

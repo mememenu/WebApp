@@ -1,10 +1,6 @@
 module ApplicationHelper
-  def miami_restaurant_dropdown_options
-    Restaurant.where(hide: [nil, false], region: "MIA")
-  end
-
-  def nola_restaurant_dropdown_options
-    Restaurant.where(hide: [nil, false], region: "NOLA")
+  def miami_place_dropdown_options
+    Place.where(hide: [nil, false], region: "MIA")
   end
 
   def link_to_add_fields(name, f, association)

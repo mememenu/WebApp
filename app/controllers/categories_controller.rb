@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: :show
-  before_action :validate_restaurant_owner_or_admin, except: [:show, :create, :update]
+  before_action :validate_place_owner_or_admin, except: [:show, :create, :update]
   before_action :check_hidden, only: :show
 
   # GET /categories
@@ -31,12 +31,12 @@ class CategoriesController < ApplicationController
   # POST /categories.json
   def create
     @category = Category.new(category_params)
-    @menus = Menu.where(restaurant_id: @category.restaurant_id)
-    @restaurant = Restaurant.find(@category.restaurant_id)
+    @menus = Menu.where(place_id: @category.place_id)
+    @place = Place.find(@category.place_id)
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category.restaurant, notice: 'Category was successfully created.' }
+        format.html { redirect_to @category.place, notice: 'Category was successfully created.' }
         format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category.restaurant, notice: 'Category was successfully updated.' }
+        format.html { redirect_to @category.place, notice: 'Category was successfully updated.' }
         format.json { render :show, status: :ok, location: @category }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to @category.restaurant, notice: 'Category was successfully destroyed.' }
+      format.html { redirect_to @category.place, notice: 'Category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -74,7 +74,7 @@ class CategoriesController < ApplicationController
     def check_hidden
       if @category.hide 
         if current_user
-          unless current_user.admin || current_user.restaurant_id == @category.menu.restaurant.id
+          unless current_user.admin || current_user.place_id == @category.menu.place.id
             redirect_to root_path
           end
         else
@@ -87,11 +87,11 @@ class CategoriesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])
-      @restaurant = @category.restaurant
+      @place = @category.place
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:name, :menu_id, :hide, :restaurant_id, :priority)
+      params.require(:category).permit(:name, :menu_id, :hide, :place_id, :priority)
     end
 end

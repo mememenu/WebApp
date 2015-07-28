@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: :show
-  before_action :validate_restaurant_owner_or_admin, except: [:show, :create, :update]
+  before_action :validate_place_owner_or_admin, except: [:show, :create, :update]
   before_action :check_hidden, only: :show
 
   # GET /images
@@ -64,7 +64,7 @@ class ImagesController < ApplicationController
   def check_hidden
     if @image.hide 
       if current_user 
-        unless current_user.admin || current_user.restaurant_id == @image.dish.category.menu.restaurant.id
+        unless current_user.admin || current_user.place_id == @image.dish.category.menu.place.id
           redirect_to root_path
         end
       else
@@ -76,7 +76,7 @@ class ImagesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_image
     @image = Image.find(params[:id])
-    @restaurant = @image.dish.restaurant
+    @place = @image.dish.place
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

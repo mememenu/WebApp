@@ -15,6 +15,6 @@ RSpec.feature 'Editing a menu', type: :feature do
     click_button 'Submit'
 
     expect(page).to have_css('.alert.alert-success', text: 'Menu was successfully updated.')
-    expect(page.current_url).to eq(restaurant_url(menu.restaurant))
+    expect(page.current_url).to eq(place_url(menu.place))
   end
 end

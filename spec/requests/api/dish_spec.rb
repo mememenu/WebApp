@@ -7,18 +7,18 @@ RSpec.describe 'Dishes API', type: :request do
   let(:dish2) do
     FactoryGirl.create(:dish, :with_default_image, hide: false, name: 'Dish 2', description: 'Dish 2 desc.')
   end
-  let(:restaurant) do
+  let(:place) do
     FactoryGirl.create(
-      :restaurant,
+      :place,
       dishes: [dish1, dish2]
     )
   end
 
   describe '#dish_info' do
-    it 'returns a list of the dishes of the restaurant that are not hidden' do
-      FactoryGirl.create(:dish, hide: true, restaurant: restaurant)
+    it 'returns a list of the dishes of the place that are not hidden' do
+      FactoryGirl.create(:dish, hide: true, place: place)
 
-      get "/ios/dish_info/#{restaurant.slug}.json"
+      get "/ios/dish_info/#{place.slug}.json"
 
       expect(response).to be_success
       expect(json.length).to eq(2)

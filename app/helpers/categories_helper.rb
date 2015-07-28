@@ -3,15 +3,15 @@ module CategoriesHelper
     if @menu
       @menu.id
     else
-      @category.menu.restaurant.id
+      @category.menu.place.id
     end
   end
 
   def category_menu_id_default_value
-    if @restaurant
-      @restaurant.id
+    if @place
+      @place.id
     else
-      @category.restaurant_id
+      @category.place_id
     end
   end
 end

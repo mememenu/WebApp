@@ -1,0 +1,17 @@
+json.name place.name
+json.avatar place.avatar
+json.restaurant_header place.header.try(:avatar)
+json.ios_tile place.tile.try(:avatar)
+json.address_1 place.address_1
+json.address_2 place.address_2
+json.city place.city
+json.state place.state
+json.zipcode place.zipcode
+json.phone place.phone
+json.zone place.zone
+json.website place.website
+json.photographer_name place.photographer_name
+json.photographer_media_link place.photographer_media_link
+json.facebook place.facebook
+json.twitter place.twitter
+json.instagram place.instagram

@@ -11,23 +11,23 @@ class DishSerializer < ActiveModel::Serializer
   end
 
   def restaurant_name
-    object.restaurant.name
+    object.place.name
   end
 
   def restaurant_avatar
-    object.restaurant.avatar
+    object.place.avatar
   end
 
   def restaurant_zone
-    object.restaurant.zone
+    object.place.zone
   end
 
   def restaurant_city
-    object.restaurant.city
+    object.place.city
   end
 
   def restaurant_region
-    object.restaurant.region
+    object.place.region
   end
 
   def menu_name
@@ -39,27 +39,27 @@ class DishSerializer < ActiveModel::Serializer
   end
 
   def website
-    object.restaurant.website
+    object.place.website
   end
 
   def photographer_name
-    object.restaurant.photographer_name
+    object.place.photographer_name
   end
 
   def photographer_media_link
-    object.restaurant.photographer_media_link
+    object.place.photographer_media_link
   end
 
   def facebook
-    object.restaurant.facebook
+    object.place.facebook
   end
 
   def twitter
-    object.restaurant.twitter
+    object.place.twitter
   end
 
   def instagram
-    object.restaurant.instagram
+    object.place.instagram
   end
 
   def cloud_front
@@ -67,59 +67,59 @@ class DishSerializer < ActiveModel::Serializer
   end
 
   def maps_url
-    object.restaurant.maps_url
+    object.place.maps_url
   end
 
   def address_1
-    object.restaurant.address_1
+    object.place.address_1
   end
 
   def state
-    object.restaurant.state
+    object.place.state
   end
 
   def zipcode
-    object.restaurant.zipcode
+    object.place.zipcode
   end
 
   def lat
-    object.restaurant.latitude
+    object.place.latitude
   end
 
   def long
-    object.restaurant.longitude
+    object.place.longitude
   end
 
   def phone
-    object.restaurant.phone
+    object.place.phone
   end
 
   def slug
-    object.restaurant.slug
+    object.place.slug
   end
 
   def restaurant_header
-    object.restaurant.restaurant_header.present? &&
-      object.restaurant.restaurant_header.avatar.present? &&
-      object.restaurant.restaurant_header.avatar
+    object.place.header.present? &&
+      object.place.header.avatar.present? &&
+      object.place.header.avatar
   end
 
   def restaurant_banner
-    object.restaurant.restaurant_banner.present? &&
-      object.restaurant.restaurant_banner.avatar.present? &&
-      object.restaurant.restaurant_banner.avatar
+    object.place.banner.present? &&
+      object.place.banner.avatar.present? &&
+      object.place.banner.avatar
   end
 
   def city
-    object.restaurant.city
+    object.place.city
   end
 
   def lat
-    object.restaurant.latitude
+    object.place.latitude
   end
 
   def long
-    object.restaurant.longitude
+    object.place.longitude
   end
 
   def menu_id
@@ -127,14 +127,14 @@ class DishSerializer < ActiveModel::Serializer
   end
 
   def delivery_url
-    object.restaurant.delivery_url
+    object.place.delivery_url
   end
 
   def foursquare_id
-    object.restaurant.foursquare_id
+    object.place.foursquare_id
   end
 
   def status
-    object.restaurant.status
+    object.place.status
   end
 end

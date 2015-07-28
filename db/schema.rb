@@ -11,23 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150714200805) do
+ActiveRecord::Schema.define(version: 20150727185518) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
 
+  create_table "banners", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "place_id"
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
+
+  add_index "banners", ["place_id"], name: "index_banners_on_place_id", using: :btree
+
   create_table "categories", force: :cascade do |t|
-    t.string   "name",          limit: 255
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "menu_id"
     t.boolean  "hide"
-    t.integer  "restaurant_id"
+    t.integer  "place_id"
     t.integer  "priority"
   end
 
   add_index "categories", ["menu_id"], name: "index_categories_on_menu_id", using: :btree
-  add_index "categories", ["restaurant_id"], name: "index_categories_on_restaurant_id", using: :btree
+  add_index "categories", ["place_id"], name: "index_categories_on_place_id", using: :btree
 
   create_table "contacts", force: :cascade do |t|
     t.string   "first_name",          limit: 255
@@ -40,9 +53,9 @@ ActiveRecord::Schema.define(version: 20150714200805) do
   end
 
   create_table "dishes", force: :cascade do |t|
-    t.string   "name",          limit: 255
+    t.string   "name",         limit: 255
     t.text     "description"
-    t.string   "portion_size",  limit: 255
+    t.string   "portion_size", limit: 255
     t.integer  "spice"
     t.boolean  "hot"
     t.boolean  "gluten_free"
@@ -52,12 +65,24 @@ ActiveRecord::Schema.define(version: 20150714200805) do
     t.boolean  "hide"
     t.integer  "category_id"
     t.integer  "menu_id"
-    t.integer  "restaurant_id"
+    t.integer  "place_id"
   end
 
   add_index "dishes", ["category_id"], name: "index_dishes_on_category_id", using: :btree
   add_index "dishes", ["menu_id"], name: "index_dishes_on_menu_id", using: :btree
-  add_index "dishes", ["restaurant_id"], name: "index_dishes_on_restaurant_id", using: :btree
+  add_index "dishes", ["place_id"], name: "index_dishes_on_place_id", using: :btree
+
+  create_table "headers", force: :cascade do |t|
+    t.integer  "place_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+  end
+
+  add_index "headers", ["place_id"], name: "index_headers_on_place_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.integer  "dish_id"
@@ -75,55 +100,57 @@ ActiveRecord::Schema.define(version: 20150714200805) do
   add_index "images", ["dish_id"], name: "index_images_on_dish_id", using: :btree
 
   create_table "menus", force: :cascade do |t|
-    t.string   "name",          limit: 255
+    t.string   "name",        limit: 255
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "hide"
-    t.integer  "restaurant_id"
+    t.integer  "place_id"
     t.integer  "priority"
   end
 
-  add_index "menus", ["restaurant_id"], name: "index_menus_on_restaurant_id", using: :btree
+  add_index "menus", ["place_id"], name: "index_menus_on_place_id", using: :btree
 
-  create_table "restaurant_banners", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "restaurant_id"
-    t.string   "avatar_file_name",    limit: 255
-    t.string   "avatar_content_type", limit: 255
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+  create_table "oauth_access_grants", force: :cascade do |t|
+    t.integer  "resource_owner_id", null: false
+    t.integer  "application_id",    null: false
+    t.string   "token",             null: false
+    t.integer  "expires_in",        null: false
+    t.text     "redirect_uri",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "revoked_at"
+    t.string   "scopes"
   end
 
-  add_index "restaurant_banners", ["restaurant_id"], name: "index_restaurant_banners_on_restaurant_id", using: :btree
+  add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
 
-  create_table "restaurant_headers", force: :cascade do |t|
-    t.integer  "restaurant_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "avatar_file_name",    limit: 255
-    t.string   "avatar_content_type", limit: 255
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+  create_table "oauth_access_tokens", force: :cascade do |t|
+    t.integer  "resource_owner_id"
+    t.integer  "application_id"
+    t.string   "token",             null: false
+    t.string   "refresh_token"
+    t.integer  "expires_in"
+    t.datetime "revoked_at"
+    t.datetime "created_at",        null: false
+    t.string   "scopes"
   end
 
-  add_index "restaurant_headers", ["restaurant_id"], name: "index_restaurant_headers_on_restaurant_id", using: :btree
+  add_index "oauth_access_tokens", ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true, using: :btree
+  add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", using: :btree
+  add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
 
-  create_table "restaurant_tiles", force: :cascade do |t|
-    t.integer  "restaurant_id"
+  create_table "oauth_applications", force: :cascade do |t|
+    t.string   "name",         null: false
+    t.string   "uid",          null: false
+    t.string   "secret",       null: false
+    t.text     "redirect_uri", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "avatar_file_name",    limit: 255
-    t.string   "avatar_content_type", limit: 255
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.string   "cloud_front",         limit: 255
   end
 
-  add_index "restaurant_tiles", ["restaurant_id"], name: "index_restaurant_tiles_on_restaurant_id", using: :btree
+  add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
-  create_table "restaurants", force: :cascade do |t|
+  create_table "places", force: :cascade do |t|
     t.string   "name",                    limit: 255
     t.string   "address_1",               limit: 255
     t.string   "address_2",               limit: 255
@@ -160,8 +187,21 @@ ActiveRecord::Schema.define(version: 20150714200805) do
     t.integer  "owner_id"
   end
 
-  add_index "restaurants", ["owner_id"], name: "index_restaurants_on_owner_id", using: :btree
-  add_index "restaurants", ["slug"], name: "index_restaurants_on_slug", using: :btree
+  add_index "places", ["owner_id"], name: "index_places_on_owner_id", using: :btree
+  add_index "places", ["slug"], name: "index_places_on_slug", using: :btree
+
+  create_table "tiles", force: :cascade do |t|
+    t.integer  "place_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "avatar_file_name",    limit: 255
+    t.string   "avatar_content_type", limit: 255
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "cloud_front",         limit: 255
+  end
+
+  add_index "tiles", ["place_id"], name: "index_tiles_on_place_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
   :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :restaurants, foreign_key: :owner_id
+  has_many :places, foreign_key: :owner_id
 
   # sets user attributes to attributes provided through omniauth
   def self.from_omniauth(auth)
@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def owns_restaurant?(restaurant)
-    restaurants.exists?(restaurant.id)
+  def owns_place?(place)
+    places.exists?(place.id)
   end
 
   def self.new_with_session(params, session)

@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  def validate_restaurant_owner_or_admin
-    if !current_user.admin? && !(@restaurant && current_user.owns_restaurant?(@restaurant))
+  def validate_place_owner_or_admin
+    if !current_user.admin? && !(@place && current_user.owns_place?(@place))
       redirect_to root_path
     end
   end
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   def configure_permitted_parameters
     [:sign_up, :account_update].each do |action|
-      devise_parameter_sanitizer.for(action).push(:admin, :restaurant, :restaurant_id)
+      devise_parameter_sanitizer.for(action).push(:admin, :place, :place_id)
     end
   end
 
