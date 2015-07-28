@@ -4,18 +4,18 @@ RSpec.describe 'Categories API', type: :request do
   let(:category1) { FactoryGirl.create(:category, hide: false, name: 'Cat 1') }
   let(:category2) { FactoryGirl.create(:category, hide: false, name: 'Cat 2') }
 
-  let(:restaurant) do
+  let(:place) do
     FactoryGirl.create(
-      :restaurant,
+      :place,
       categories: [category1, category2]
     )
   end
 
   describe '#category_info' do
-    it 'returns a list of the categories of the restaurant that are not hidden' do
-      FactoryGirl.create(:category, hide: true, restaurant: restaurant)
+    it 'returns a list of the categories of the place that are not hidden' do
+      FactoryGirl.create(:category, hide: true, place: place)
 
-      get "/ios/category_info/#{restaurant.slug}.json"
+      get "/ios/category_info/#{place.slug}.json"
 
       expect(response).to be_success
       expect(json.length).to eq(2)

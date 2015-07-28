@@ -1,18 +1,18 @@
 namespace :mememenu do
-  desc "Get coordinates for all restaurants using Geocoder wit Google API"
+  desc "Get coordinates for all places using Geocoder wit Google API"
 
-  task :geolocate_restaurants, [:ids] => :environment do |task, args|
-    restaurant_ids = args[:ids].split(' ') if args[:ids]
+  task :geolocate_places, [:ids] => :environment do |task, args|
+    place_ids = args[:ids].split(' ') if args[:ids]
 
-    if restaurant_ids
-      puts "----- Geolocating restaurants with ids #{args[:ids]}... -----"
+    if place_ids
+      puts "----- Geolocating places with ids #{args[:ids]}... -----"
     else
-      puts "----- Geolocating all restaurants... -----"
+      puts "----- Geolocating all places... -----"
     end
 
-    counts = RestaurantGeolocator.call(restaurant_ids)
+    counts = PlaceGeolocator.call(place_ids)
 
-    puts "----- Sucessfull geolocated restaurants: #{counts[:success]} -----"
-    puts "----- Restaurants failed to geolocate: #{counts[:failed]} -----"
+    puts "----- Sucessfull geolocated places: #{counts[:success]} -----"
+    puts "----- Places failed to geolocate: #{counts[:failed]} -----"
   end
 end

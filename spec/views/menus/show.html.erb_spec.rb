@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'menus/show', :type => :view do
-  let(:restaurant) { FactoryGirl.create(:restaurant, :with_avatar) }
+  let(:place) { FactoryGirl.create(:place, :with_avatar) }
   let(:category) { FactoryGirl.create(:category_with_dishes, name: 'Category 1') }
-  let(:menu) { FactoryGirl.create(:menu, name: 'My Menu', restaurant: restaurant) }
+  let(:menu) { FactoryGirl.create(:menu, name: 'My Menu', place: place) }
 
   before(:each) do
     assign(:menu, menu)
@@ -13,9 +13,9 @@ RSpec.describe 'menus/show', :type => :view do
     render
   end
 
-  it 'renders a link to the restaurant and the menu\'s name' do
+  it 'renders a link to the place and the menu\'s name' do
     expect(rendered).to have_css('.text-center h3', text: 'My Menu')
-    expect(rendered).to have_css("img[src*='#{restaurant.avatar.url(:medium)}']")
+    expect(rendered).to have_css("img[src*='#{place.avatar.url(:medium)}']")
   end
 
   it 'renders the categories' do

@@ -1,7 +1,7 @@
 class MenusController < ApplicationController
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: :show
-  before_action :validate_restaurant_owner_or_admin, except: [:show, :create, :update]
+  before_action :validate_place_owner_or_admin, except: [:show, :create, :update]
   before_action :check_hidden, only: :show
 
   # GET /menus
@@ -33,7 +33,7 @@ class MenusController < ApplicationController
 
     respond_to do |format|
       if @menu.save
-        format.html { redirect_to @menu.restaurant, notice: 'Menu was successfully created.' }
+        format.html { redirect_to @menu.place, notice: 'Menu was successfully created.' }
         format.json { render :show, status: :created, location: @menu }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class MenusController < ApplicationController
 
     respond_to do |format|
       if @menu.update(menu_params)
-        format.html { redirect_to @menu.restaurant, notice: 'Menu was successfully updated.' }
+        format.html { redirect_to @menu.place, notice: 'Menu was successfully updated.' }
         format.json { render :show, status: :ok, location: @menu }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class MenusController < ApplicationController
   def destroy
     @menu.destroy
     respond_to do |format|
-      format.html { redirect_to @menu.restaurant, notice: 'Menu was successfully destroyed.' }
+      format.html { redirect_to @menu.place, notice: 'Menu was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -72,7 +72,7 @@ class MenusController < ApplicationController
   def check_hidden
     if @menu.hide 
       if current_user
-        unless current_user.admin || current_user.restaurant_id == @menu.restaurant.id
+        unless current_user.admin || current_user.place_id == @menu.place.id
           redirect_to root_path
         end
       else
@@ -84,11 +84,11 @@ class MenusController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_menu
     @menu = Menu.find(params[:id])
-    @restaurant = @menu.restaurant
+    @place = @menu.place
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def menu_params
-    params.require(:menu).permit(:name, :description, :hide, :restaurant_id, :priority)
+    params.require(:menu).permit(:name, :description, :hide, :place_id, :priority)
   end
 end

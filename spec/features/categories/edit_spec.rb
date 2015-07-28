@@ -15,6 +15,6 @@ RSpec.feature 'Editing a category', type: :feature do
     click_button 'Submit'
 
     expect(page).to have_css('.alert.alert-success', text: 'Category was successfully updated.')
-    expect(page.current_url).to eq(restaurant_url(category.restaurant))
+    expect(page.current_url).to eq(place_url(category.place))
   end
 end

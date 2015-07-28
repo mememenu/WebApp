@@ -1,7 +1,7 @@
 class Dish < ActiveRecord::Base
   belongs_to :category
   belongs_to :menu
-  belongs_to :restaurant
+  belongs_to :place
   has_many :additional_images, -> { where(default: nil) }, dependent: :destroy,
                                class_name: "Image", foreign_key: :dish_id,
                                inverse_of: :dish
@@ -15,7 +15,7 @@ class Dish < ActiveRecord::Base
   # validates :name, presence: true
   validates :category_id, presence: true
   validates :menu_id, presence: true
-  validates :restaurant_id, presence: true
+  validates :place_id, presence: true
 
   after_save :cascade_hidden, :if => :hide_changed?
 

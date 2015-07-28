@@ -7,14 +7,14 @@ RSpec.describe CategoriesController, :type => :controller do
   end
 
   let(:menu) { FactoryGirl.create(:menu) }
-  let!(:category) { FactoryGirl.create(:category, menu: menu, restaurant: menu.restaurant) }
+  let!(:category) { FactoryGirl.create(:category, menu: menu, place: menu.place) }
 
   let(:valid_attributes) do
-    { name: 'Test Category', priority: 4, menu_id: menu.id, restaurant_id: menu.restaurant_id }
+    { name: 'Test Category', priority: 4, menu_id: menu.id, place_id: menu.place_id }
   end
 
   let(:invalid_attributes) do
-    { name: '', priority: 4, menu_id: menu.id, restaurant_id: menu.restaurant_id }
+    { name: '', priority: 4, menu_id: menu.id, place_id: menu.place_id }
   end
 
   let(:valid_session) { {} }
@@ -63,7 +63,7 @@ RSpec.describe CategoriesController, :type => :controller do
 
       it "redirects to the created category" do
         post :create, {:category => valid_attributes}, valid_session
-        expect(response).to redirect_to(assigns[:category].restaurant)
+        expect(response).to redirect_to(assigns[:category].place)
       end
     end
 
@@ -96,9 +96,9 @@ RSpec.describe CategoriesController, :type => :controller do
         expect(assigns(:category)).to eq(category)
       end
 
-      it "redirects to the restaurant" do
+      it "redirects to the place" do
         put :update, {:id => category.to_param, :category => valid_attributes}, valid_session
-        expect(response).to redirect_to(category.restaurant)
+        expect(response).to redirect_to(category.place)
       end
     end
 
@@ -122,9 +122,9 @@ RSpec.describe CategoriesController, :type => :controller do
       }.to change(Category, :count).by(-1)
     end
 
-    it "redirects to the restaurant" do
+    it "redirects to the place" do
       delete :destroy, {:id => category.to_param}, valid_session
-      expect(response).to redirect_to(category.restaurant)
+      expect(response).to redirect_to(category.place)
     end
   end
 

@@ -8,7 +8,7 @@ RSpec.describe MenusController, :type => :controller do
 
   let!(:menu) { FactoryGirl.create(:menu) }
   let(:valid_attributes) {
-    FactoryGirl.attributes_for(:menu).merge(restaurant_id: menu.restaurant_id)
+    FactoryGirl.attributes_for(:menu).merge(place_id: menu.place_id)
   }
 
   let(:invalid_attributes) {
@@ -61,7 +61,7 @@ RSpec.describe MenusController, :type => :controller do
 
       it "redirects to the created menu" do
         post :create, {:menu => valid_attributes}, valid_session
-        expect(response).to redirect_to(menu.restaurant)
+        expect(response).to redirect_to(menu.place)
       end
     end
 
@@ -95,9 +95,9 @@ RSpec.describe MenusController, :type => :controller do
         expect(assigns(:menu)).to eq(menu)
       end
 
-      it "redirects to the restaurant" do
+      it "redirects to the place" do
         put :update, {:id => menu.to_param, :menu => valid_attributes}, valid_session
-        expect(response).to redirect_to(menu.restaurant)
+        expect(response).to redirect_to(menu.place)
       end
     end
 
@@ -121,9 +121,9 @@ RSpec.describe MenusController, :type => :controller do
       }.to change(Menu, :count).by(-1)
     end
 
-    it "redirects to the restaurant" do
+    it "redirects to the place" do
       delete :destroy, {:id => menu.to_param}, valid_session
-      expect(response).to redirect_to(menu.restaurant)
+      expect(response).to redirect_to(menu.place)
     end
   end
 
