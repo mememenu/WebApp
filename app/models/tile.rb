@@ -10,10 +10,12 @@ class Tile < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
 
-  after_create :create_cloud_front
+  after_save :create_cloud_front
 
   def create_cloud_front
-    self.cloud_front = avatar.url.gsub('http://s3.amazonaws.com/meme-menu', 'http://dm7g4xbxa7ld3.cloudfront.net')
-    save
+    if cloud_front.nil?
+      self.cloud_front = avatar.url.gsub('http://s3.amazonaws.com/meme-menu', 'http://dm7g4xbxa7ld3.cloudfront.net')
+      save
+    end
   end
 end
