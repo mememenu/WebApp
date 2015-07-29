@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727185518) do
+ActiveRecord::Schema.define(version: 20150729201448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 20150727185518) do
   create_table "places", force: :cascade do |t|
     t.string   "name",                    limit: 255
     t.string   "address_1",               limit: 255
-    t.string   "address_2",               limit: 255
+    t.string   "address_2",               limit: 255, default: ""
     t.string   "city",                    limit: 255
     t.string   "state",                   limit: 255
     t.string   "zipcode",                 limit: 255

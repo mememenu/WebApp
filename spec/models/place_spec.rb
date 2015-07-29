@@ -56,4 +56,8 @@ describe Place, :type => :model do
     expect(Geocoder).not_to receive(:search)
     place.save
   end
+
+  it "has address_2 default value as an empty string" do
+    expect(Place.new.address_2).to eq("")
+  end
 end
