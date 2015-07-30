@@ -1,0 +1,10 @@
+production:
+  subdomain: 'dm7g4xbxa7ld3'
+staging:
+  subdomain: 'd32e18zbkgyijt'
+dev:
+  subdomain: 'd1qdk2v1o446ta'
+development:
+  subdomain: 'd1qdk2v1o446ta'
+test:
+  subdomain: 'xxxxxx'
