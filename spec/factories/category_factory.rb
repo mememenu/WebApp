@@ -2,10 +2,10 @@ FactoryGirl.define do
   factory :category do
     name "Test category"
     sequence(:priority) { |i| i }
-    association :restaurant, factory: :restaurant
+    association :place, factory: :place
 
     after(:build) do |category|
-      category.menu = FactoryGirl.create(:menu, restaurant: category.restaurant)
+      category.menu = FactoryGirl.create(:menu, place: category.place)
     end
 
     factory :category_with_dishes do

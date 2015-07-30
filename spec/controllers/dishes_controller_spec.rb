@@ -6,12 +6,12 @@ RSpec.describe DishesController, :type => :controller do
   end
 
   let(:menu) { FactoryGirl.create(:menu, categories: [FactoryGirl.create(:category)]) }
-  let!(:dish) { FactoryGirl.create(:dish, menu: menu, restaurant: menu.restaurant) }
+  let!(:dish) { FactoryGirl.create(:dish, menu: menu, place: menu.place) }
   let(:valid_attributes) do
-    { name: 'Cheese', restaurant_id: menu.restaurant_id, menu_id: menu.id, category_id: menu.categories.first }
+    { name: 'Cheese', place_id: menu.place_id, menu_id: menu.id, category_id: menu.categories.first }
   end
 
-  let(:invalid_attributes) { { menu_id: '', restaurant_id: menu.restaurant_id } }
+  let(:invalid_attributes) { { menu_id: '', place_id: menu.place_id } }
 
   let(:valid_session) { {} }
 
@@ -57,9 +57,9 @@ RSpec.describe DishesController, :type => :controller do
         expect(assigns(:dish)).to be_persisted
       end
 
-      it "redirects to the restaurant" do
+      it "redirects to the place" do
         post :create, {:dish => valid_attributes}, valid_session
-        expect(response).to redirect_to(assigns[:dish].restaurant)
+        expect(response).to redirect_to(assigns[:dish].place)
       end
     end
 
@@ -72,7 +72,7 @@ RSpec.describe DishesController, :type => :controller do
           }, valid_session
         end.to change{ Dish.count }.by(1)
 
-        expect(response).to redirect_to(assigns[:dish].restaurant)
+        expect(response).to redirect_to(assigns[:dish].place)
         expect(assigns[:dish].default_image.avatar).to be
       end
     end
@@ -105,9 +105,9 @@ RSpec.describe DishesController, :type => :controller do
         expect(assigns(:dish)).to eq(dish)
       end
 
-      it "redirects to the restaurant" do
+      it "redirects to the place" do
         put :update, {:id => dish.to_param, :dish => valid_attributes}, valid_session
-        expect(response).to redirect_to(dish.restaurant)
+        expect(response).to redirect_to(dish.place)
       end
     end
 
@@ -131,9 +131,9 @@ RSpec.describe DishesController, :type => :controller do
       }.to change(Dish, :count).by(-1)
     end
 
-    it "redirects to the restaurant" do
+    it "redirects to the place" do
       delete :destroy, {:id => dish.to_param}, valid_session
-      expect(response).to redirect_to(dish.restaurant)
+      expect(response).to redirect_to(dish.place)
     end
   end
 

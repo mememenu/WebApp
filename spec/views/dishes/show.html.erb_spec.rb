@@ -42,7 +42,7 @@ RSpec.describe 'dishes/show', :type => :view do
   end
 
   it 'renders a link to go back to the restaurant' do
-    expect(rendered).to have_link('Back to Restaurant', href: restaurant_path(dish.restaurant))
+    expect(rendered).to have_link('Back to Restaurant', href: place_path(dish.place))
   end
 
   context 'with admin' do

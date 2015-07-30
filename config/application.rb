@@ -17,6 +17,8 @@ module Mememenu
     config.time_zone = 'Eastern Time (US & Canada)'
     config.active_record.raise_in_transactional_callbacks = true
 
+    config.cloudfront_subdomain = YAML.load_file("#{Rails.root}/config/cloudfront.yml")[Rails.env]['subdomain']
+
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de

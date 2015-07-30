@@ -6,7 +6,7 @@ RSpec.describe Category, :type => :model do
 
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:menu_id) }
-  it { should validate_presence_of(:restaurant_id) }
+  it { should validate_presence_of(:place_id) }
 
   it "should be destroyed if corresponding menu is destroyed" do
     menu.destroy
@@ -21,7 +21,7 @@ RSpec.describe Category, :type => :model do
     expect(category.reload.hide).to be_truthy
   end
 
-  it "should become unhidden when corresponding restaurant becomes unhidden" do
+  it "should become unhidden when corresponding place becomes unhidden" do
     category.update_attributes(hide: true)
     menu.update_attributes(hide: false)
 

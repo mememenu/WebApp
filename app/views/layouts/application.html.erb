@@ -87,9 +87,9 @@ ga('send', 'pageview');
                       <div data-width="12" class="col-md-12 mega-col-nav">
                         <div class="mega-inner">
                           <ul class="mega-nav level1">
-                            <% miami_restaurant_dropdown_options.each do |restaurant| %>
+                            <% miami_place_dropdown_options.each do |place| %>
                             <li>
-                              <%= link_to restaurant.name, restaurant %>
+                              <%= link_to place.name, place %>
                             </li>
                             <% end %>
                           </ul>
@@ -99,31 +99,6 @@ ga('send', 'pageview');
                   </div> <!-- end of class mega-dropdown-inner -->
                 </div> <!-- end of nav-child dropdown-menu mega-dropdown-menu -->
               </li> <!-- end of Miami tab -->
-              
-              <% if nola_restaurant_dropdown_options.count > 0 %>
-              <!-- Start of NOLA tab -->
-              <li>
-                <a href="#">NEW ORLEANS</a>
-                <div class="nav-child dropdown-menu mega-dropdown-menu">
-                  <div class="mega-dropdown-inner">
-                    <div class="row">
-                      <div data-width="12" class="col-md-12 mega-col-nav">
-                        <div class="mega-inner">
-                          <ul class="mega-nav level1">
-                            <% nola_restaurant_dropdown_options.each do |restaurant| %>
-                            <li>
-                              <%= link_to restaurant.name, restaurant %>
-                            </li>
-                            <% end %>
-                          </ul>
-                        </div> <!-- end of class mega-inner -->
-                      </div> <!-- end of class col-md-12 mega-col-nav -->
-                    </div> <!-- end of row -->
-                  </div> <!-- end of class mega-dropdown-inner -->
-                </div> <!-- end of nav-child dropdown-menu mega-dropdown-menu -->
-              </li> <!-- end of NOLA tab -->
-              <% end %>
-
               <li>
                 <a href="http://meme-menu.tumblr.com" target="_blank">BLOG</a>
               </li>

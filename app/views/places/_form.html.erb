@@ -1,0 +1,143 @@
+<%= form_for @place, :html => { :multipart => true } do |f| %>
+  <% if @place.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@place.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
+
+    <ul>
+      <% @place.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        Restaurant Form
+      </div>
+      <div class="panel-body">
+
+        <div class="field">
+          <%= f.label :name %><br>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :address_1, "Address" %><br>
+          <%= f.text_field :address_1, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :city %><br>
+          <%= f.text_field :city, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :state %><br>
+          <%= f.select :state, options_for_select(us_states, place_state)%>
+        </div>
+        <div class="field">
+          <%= f.label :zipcode %><br>
+          <%= f.text_field :zipcode, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :zone %><br>
+          <%= f.text_field :zone, class: 'form-control'%>
+        </div>
+        <div class="field">
+          <%= f.label :region %><br>
+          <%= f.select :region, options_for_select(current_regions, place_region)%>
+        </div>
+        <hr>
+        <div class="field">
+          <%= f.label :phone %><br>
+          <%= f.text_field :phone, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :website, 'Website URL' %><br>
+          <%= f.text_field :website, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :facebook, 'Facebook URL' %><br>
+          <%= f.text_field :facebook, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :twitter, 'Twitter URL' %><br>
+          <%= f.text_field :twitter, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :instagram, 'Instagram URL' %><br>
+          <%= f.text_field :instagram, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :photographer_name, 'Photographer Handle' %><br>
+          <%= f.text_field :photographer_name, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :photographer_media_link, 'Photographer URL' %><br>
+          <%= f.text_field :photographer_media_link, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :delivery_url %><br>
+          <%= f.text_field :delivery_url, class: 'form-control' %>
+        </div>
+        <div class="field">
+          <%= f.label :foursquare_id, 'Foursquare ID' %><br>
+          <%= f.text_field :foursquare_id, class: 'form-control' %>
+        </div>
+
+        <div class="field">
+          <%= f.label :status, 'iOS Status Message' %><br>
+          <%= f.text_field :status, class: 'form-control' %>
+        </div>
+        <hr>
+        <div class="field">
+          <%= f.label :avatar, "Add Restaurant Logo" %><br>
+          <%- unless f.object.new_record? %>
+            <%= image_tag f.object.avatar.url(:thumb) %>
+          <%- end %>
+          <%= f.file_field :avatar %>
+        </div>
+
+        <%= f.fields_for :tile, @place.tile || @place.build_tile do |builder| %>
+          <fieldset>
+            <%= builder.label :avatar, "Add Restaurant Tile for IOS" %><br>
+            <%- unless @place.tile.new_record? %>
+              <%= image_tag @place.tile.avatar.url(:thumb) %>
+            <%- end %>
+            <%= builder.file_field :avatar %>
+          </fieldset>
+        <% end %>
+
+        <%= f.fields_for :header, @place.header || @place.build_header do |builder| %>
+          <fieldset>
+            <%= builder.label :avatar, "Add Restaurant Page Header Image for IOS" %><br>
+            <%- unless @place.header.new_record? %>
+              <%= image_tag @place.header.avatar.url(:thumb) %>
+            <%- end %>
+            <%= builder.file_field :avatar %>
+          </fieldset>
+        <% end %>
+
+        <%= f.fields_for :banner, @place.banner || @place.build_banner do |builder| %>
+          <fieldset>
+            <%= builder.label :avatar, "Add Restaurant Banner for IOS" %><br>
+            <%- unless @place.banner.new_record? %>
+              <%= image_tag @place.banner.avatar.url(:thumb) %>
+            <%- end %>
+            <%= builder.file_field :avatar %>
+          </fieldset>
+        <% end %>
+        <hr>
+        <div class="field">
+          <%= f.label :hide %><br>
+          <%= f.check_box :hide %>
+        </div>
+        <hr>
+        <div class="actions">
+          <%= f.submit "Save" %>
+        </div>
+
+      </div> <!-- end of class panel-body -->
+    </div> <!-- end of class panel-heading -->
+  </div> <!-- end of class panel panel-default -->
+
+<% end %>

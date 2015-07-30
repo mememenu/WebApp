@@ -30,7 +30,11 @@ class Image < ActiveRecord::Base
 
   def create_cloudfront_url
     if cloudfront_url.nil?
-      self.cloudfront_url = avatar.url.gsub('http://s3.amazonaws.com/meme-menu', 'http://dm7g4xbxa7ld3.cloudfront.net').gsub('original', 'large')
+      bucket_name = Rails.env.test? ? 'test' : avatar.bucket_name
+      self.cloudfront_url = avatar.url.gsub(
+        "http://s3.amazonaws.com/#{bucket_name}",
+        "http://#{Rails.configuration.cloudfront_subdomain}.cloudfront.net"
+      ).gsub('original', 'large')
       save
     end
   end

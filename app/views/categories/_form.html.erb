@@ -14,7 +14,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <%if @restaurant %>
+        <%if @place %>
         New 
         <% else %>
         Editing 
@@ -35,7 +35,7 @@
 
           <div class="field col-md-5">
             <%= f.label :menu_id %><br>
-            <%= f.select :menu_id, options_for_select(restaurant_menu_options, default_menu_from_category_edit)%>
+            <%= f.select :menu_id, options_for_select(place_menu_options, default_menu_from_category_edit)%>
           </div>
 
 
@@ -65,7 +65,7 @@
     </div>
 
     <div class="field">
-      <%= f.hidden_field :restaurant_id, value: category_menu_id_default_value %>
+      <%= f.hidden_field :place_id, value: category_menu_id_default_value %>
     </div>
 
 <% end %>

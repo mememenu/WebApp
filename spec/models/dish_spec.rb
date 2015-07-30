@@ -6,7 +6,7 @@ RSpec.describe Dish, type: :model do
 
   it { should validate_presence_of(:category_id) }
   it { should validate_presence_of(:menu_id) }
-  it { should validate_presence_of(:restaurant_id) }
+  it { should validate_presence_of(:place_id) }
 
   it "should be destroyed when its category is destroyed" do
     category.destroy

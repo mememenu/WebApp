@@ -3,19 +3,19 @@ require 'rails_helper'
 RSpec.describe 'Menus API', type: :request do
   let(:menu1) { FactoryGirl.create(:menu, name: 'Menu 1') }
   let(:menu2) { FactoryGirl.create(:menu, name: 'Menu 2') }
-  let(:restaurant) do
+  let(:place) do
     FactoryGirl.create(
-      :restaurant,
+      :place,
       hide: false,
       menus: [menu1, menu2]
     )
   end
 
   describe '#menu_info' do
-    it 'returns a list of the menus of the restaurant that are not hidden' do
-      FactoryGirl.create(:menu, hide: true, restaurant: restaurant)
+    it 'returns a list of the menus of the place that are not hidden' do
+      FactoryGirl.create(:menu, hide: true, place: place)
 
-      get "/ios/menu_info/#{restaurant.slug}.json"
+      get "/ios/menu_info/#{place.slug}.json"
 
       expect(response).to be_success
       expect(json.length).to eq(2)

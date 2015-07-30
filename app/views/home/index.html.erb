@@ -91,9 +91,9 @@
   <button class="simple_next"><i class="fa fa-angle-right "></i></button>
   <div class="container">
     <ul class="tz-simple-product">
-      <% @restaurants.each do |restaurant| %>
-      <li><p><%= restaurant.name %></p>
-        <%= link_to 'Menu', restaurant %>
+      <% @places.each do |place| %>
+      <li><p><%= place.name %></p>
+        <%= link_to 'Menu', place %>
       </li>
       <% end %>
     </ul>
