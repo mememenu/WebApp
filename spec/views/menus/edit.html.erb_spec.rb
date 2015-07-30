@@ -13,6 +13,6 @@ RSpec.describe 'menus/edit', :type => :view do
   end
 
   it 'renders a link to go back' do
-    expect(rendered).to have_link('Back', href: restaurant_path(menu.restaurant))
+    expect(rendered).to have_link('Back', href: place_path(menu.place))
   end
 end

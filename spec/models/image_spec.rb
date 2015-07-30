@@ -4,7 +4,7 @@ RSpec.describe Image, :type => :model do
   before do
     @image = FactoryGirl.create(:image)
     @dish = @image.dish
-    @restaurant = @dish.restaurant
+    @place = @dish.place
   end
 
   it "should be destroyed if corresponding dish is destroyed" do
@@ -14,8 +14,8 @@ RSpec.describe Image, :type => :model do
     expect(Image.count).to eq(0)
   end
 
-  it "should be destroyed if corresponding restaurant is destroyed" do
-    @restaurant.destroy
+  it "should be destroyed if corresponding place is destroyed" do
+    @place.destroy
 
     expect(Image.count).to be_zero
   end
@@ -34,18 +34,18 @@ RSpec.describe Image, :type => :model do
     expect(@image.reload.hide).to be_falsy
   end
 
-  it "should become hidden if corresponding restaurant becomes hidden" do
-    @restaurant.update_attributes(hide: true)
+  it "should become hidden if corresponding place becomes hidden" do
+    @place.update_attributes(hide: true)
 
     expect(@image.reload.hide).to be_truthy
   end
 
   it "sets cloudfront_url after saving the image" do
     allow_any_instance_of(Paperclip::Attachment).
-      to receive(:url).and_return("http://s3.amazonaws.com/meme-menu/original/image.png")
+      to receive(:url).and_return("http://s3.amazonaws.com/test/original/image.png")
     image = FactoryGirl.create(:image)
 
-    expect(image.cloudfront_url).to include("http://dm7g4xbxa7ld3.cloudfront.net")
+    expect(image.cloudfront_url).to include("http://xxx.cloudfront.net")
     expect(image.cloudfront_url).not_to include("http://s3.amazonaws.com/meme-menu")
     expect(image.cloudfront_url).to include("large")
     expect(image.cloudfront_url).not_to include("original")

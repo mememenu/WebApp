@@ -6,20 +6,14 @@ Rails.application.routes.draw do
   get 'home/contact'
   get 'home/appstore'
 
-  get 'ios/restaurant_info'
+  get 'ios/restaurant_info', to: 'ios#place_info'
   get 'ios/dish_feed'
-
   get 'ios/paginated_dish_feed'
-
-  get 'ios/miami_restaurants_list'
-  get 'ios/nola_restaurants_list'
-
+  get 'ios/miami_restaurants_list', to: 'ios#miami_places_list'
   get 'ios/menu_info/:id', to: 'ios#menu_info'
   get 'ios/category_info/:id', to: 'ios#category_info'
   get 'ios/dish_info/:id', to: 'ios#dish_info'
   get 'ios/category_info_by_menu/:id', to: 'ios#category_info_by_menu'
-
-
 
   get "/miamispice" => redirect { |params| "http://www.google.com/maps/d/u/0/viewer?mid=zP-Kc5lMsLps.kIO-I5y-55mM&usp=sharing" }
 
@@ -32,9 +26,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   resources :users
-  resources :restaurants, only: [:index, :new, :create]
-  resources :restaurants, path: "", except: [:index, :new, :create]
-  resources :restaurant_headers
-  resources :restaurant_tiles
+  resources :places, only: [:index, :new, :create]
+  resources :places, path: "", except: [:index, :new, :create]
+  resources :headers
+  resources :tiles
 
 end

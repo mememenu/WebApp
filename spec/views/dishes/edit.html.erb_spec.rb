@@ -5,8 +5,8 @@ RSpec.describe 'dishes/edit', :type => :view do
 
   before(:each) do
     assign(:dish, dish)
-    assign(:menus, dish.restaurant.menus)
-    assign(:restaurant, dish.restaurant)
+    assign(:menus, dish.place.menus)
+    assign(:place, dish.place)
     render
   end
 
@@ -15,6 +15,6 @@ RSpec.describe 'dishes/edit', :type => :view do
   end
 
   it 'renders a link to go back' do
-    expect(rendered).to have_link('Back', href: restaurant_path(dish.restaurant))
+    expect(rendered).to have_link('Back', href: place_path(dish.place))
   end
 end

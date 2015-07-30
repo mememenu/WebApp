@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'dishes/new', :type => :view do
-  let(:restaurant) { FactoryGirl.create(:restaurant) }
+  let(:place) { FactoryGirl.create(:place) }
 
   before(:each) do
     assign(:dish, Dish.new)
-    assign(:restaurant, restaurant)
-    assign(:menus, restaurant.menus)
+    assign(:place, place)
+    assign(:menus, place.menus)
     render
   end
 

@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
-  
   def index
-    @restaurants = Restaurant.where(hide: [nil, false])
+    @places = Place.where(hide: [nil, false])
   end
 
   def about

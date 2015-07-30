@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'dishes/index', :type => :view do
-  let(:restaurant) { FactoryGirl.create(:restaurant, name: 'Parrillada') }
-  let(:dish1) { FactoryGirl.create(:dish, name: 'Asado', restaurant: restaurant) }
-  let(:dish2) { FactoryGirl.create(:dish, name: 'Chivito', restaurant: restaurant) }
+  let(:place) { FactoryGirl.create(:place, name: 'Parrillada') }
+  let(:dish1) { FactoryGirl.create(:dish, name: 'Asado', place: place) }
+  let(:dish2) { FactoryGirl.create(:dish, name: 'Chivito', place: place) }
   let(:dishes) { [dish1, dish2] }
 
   before(:each) do

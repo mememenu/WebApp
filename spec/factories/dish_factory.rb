@@ -1,13 +1,13 @@
 FactoryGirl.define do
   factory :dish do
-    association :restaurant, factory: :restaurant
+    association :place, factory: :place
 
     after(:build) do |dish|
-      dish.menu ||= FactoryGirl.create(:menu, restaurant: dish.restaurant)
+      dish.menu ||= FactoryGirl.create(:menu, place: dish.place)
     end
 
     after(:build) do |dish|
-      dish.category ||= FactoryGirl.create(:category, restaurant: dish.restaurant,
+      dish.category ||= FactoryGirl.create(:category, place: dish.place,
                                          menu: dish.menu)
     end
 

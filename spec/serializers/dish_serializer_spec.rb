@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 describe DishSerializer, type: :model do
-  let(:restaurant_banner) { FactoryGirl.create(:restaurant_banner, :with_avatar) }
-  let(:header) { FactoryGirl.create(:restaurant_header, :with_avatar) }
-  let(:tile) { FactoryGirl.create(:restaurant_tile, :with_avatar) }
-  let(:detailed_restaurant) do
+  let(:banner) { FactoryGirl.create(:banner, :with_avatar) }
+  let(:header) { FactoryGirl.create(:header, :with_avatar) }
+  let(:tile) { FactoryGirl.create(:tile, :with_avatar) }
+  let(:detailed_place) do
     FactoryGirl.create(
-      :restaurant,
+      :place,
       :with_avatar,
       name: 'My Restaurant',
       website: 'http://meme.menu.com',
@@ -19,16 +19,16 @@ describe DishSerializer, type: :model do
       status: 'iOS Status Message',
       delivery_url: 'http://delivery.com/MyRestaurant',
       region: 'MIA',
-      restaurant_banner: restaurant_banner,
-      restaurant_header: header,
-      restaurant_tile: tile,
+      banner: banner,
+      header: header,
+      tile: tile,
       foursquare_id: '123'
     )
   end
   let(:detailed_dish) do
     FactoryGirl.create(
       :dish,
-      restaurant: detailed_restaurant,
+      place: detailed_place,
       name: 'My Dish',
       description: 'My Dish desc.',
       menu: FactoryGirl.create(:menu, name: 'My Menu'),
@@ -50,7 +50,7 @@ describe DishSerializer, type: :model do
     let(:serializer) { described_class.new(detailed_dish) }
     it 'returns the url of the avatar' do
       expect(serializer.restaurant_banner).not_to be_nil
-      expect(serializer.restaurant_banner.to_json).to eq(restaurant_banner.avatar.url.to_json)
+      expect(serializer.restaurant_banner.to_json).to eq(banner.avatar.url.to_json)
     end
   end
 
@@ -64,7 +64,7 @@ describe DishSerializer, type: :model do
   describe '#restaurant_avatar' do
     context 'detailed dish' do
       let(:serializer) { described_class.new(detailed_dish) }
-      it { expect(serializer.restaurant_avatar.to_json).to eq(detailed_restaurant.avatar.url.to_json) }
+      it { expect(serializer.restaurant_avatar.to_json).to eq(detailed_place.avatar.url.to_json) }
     end
   end
 
@@ -247,7 +247,7 @@ describe DishSerializer, type: :model do
   describe '#slug' do
     context 'detailed dish' do
       let(:serializer) { described_class.new(detailed_dish) }
-      it { expect(serializer.slug).to eq(detailed_restaurant.slug) }
+      it { expect(serializer.slug).to eq(detailed_place.slug) }
     end
   end
 

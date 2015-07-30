@@ -1,7 +1,7 @@
 class DishesController < ApplicationController
   before_action :set_dish, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: :show
-  before_action :validate_restaurant_owner_or_admin, except: [:show, :create, :update]
+  before_action :validate_place_owner_or_admin, except: [:show, :create, :update]
   before_action :check_hidden, only: :show
 
   # GET /dishes
@@ -23,20 +23,20 @@ class DishesController < ApplicationController
 
   # GET /dishes/1/edit
   def edit
-    @restaurant = Restaurant.find(@dish.restaurant.id)
-    @menus = Menu.where(restaurant_id: @dish.restaurant_id)
+    @place = Place.find(@dish.place.id)
+    @menus = Menu.where(place_id: @dish.place_id)
   end
 
   # POST /dishes
   # POST /dishes.json
   def create
     @dish = Dish.new(dish_params)
-    @menus = Menu.where(restaurant_id: @dish.restaurant_id)
-    @restaurant = Restaurant.find(@dish.restaurant_id)
+    @menus = Menu.where(place_id: @dish.place_id)
+    @place = Place.find(@dish.place_id)
 
     respond_to do |format|
       if @dish.save
-        format.html { redirect_to @dish.restaurant, notice: 'Dish was successfully created.' }
+        format.html { redirect_to @dish.place, notice: 'Dish was successfully created.' }
         format.json { render :show, status: :created, location: @dish }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class DishesController < ApplicationController
   def update
     respond_to do |format|
       if @dish.update_attributes(dish_params)
-        format.html { redirect_to @dish.restaurant, notice: 'Dish was successfully updated.' }
+        format.html { redirect_to @dish.place, notice: 'Dish was successfully updated.' }
         format.json { render :show, status: :ok, location: @dish }
       else
         format.html { render :edit }
@@ -64,7 +64,7 @@ class DishesController < ApplicationController
   def destroy
     @dish.destroy
     respond_to do |format|
-      format.html { redirect_to @dish.restaurant, notice: 'Dish was successfully destroyed.' }
+      format.html { redirect_to @dish.place, notice: 'Dish was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -74,7 +74,7 @@ class DishesController < ApplicationController
   def check_hidden
     if @dish.hide
       if current_user
-        unless current_user.admin || current_user.restaurant_id == @dish.category.menu.restaurant.id
+        unless current_user.admin || current_user.place_id == @dish.category.menu.place.id
           redirect_to root_path
         end
       else
@@ -86,14 +86,14 @@ class DishesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_dish
     @dish = Dish.find(params[:id])
-    @restaurant = @dish.restaurant
+    @place = @dish.place
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def dish_params
     params.require(:dish).permit(
       :name, :description, :portion_size, :spice, :hot, :gluten_free, :vegetarian,
-      :category_id, :hide, :menu_id, :restaurant_id, :cloud_front,
+      :category_id, :hide, :menu_id, :place_id, :cloud_front,
       default_image_attributes: [:avatar, :dish_id, :destroy, :default, :id],
       additional_images_attributes: [:avatar, :id, :_destroy]
     )

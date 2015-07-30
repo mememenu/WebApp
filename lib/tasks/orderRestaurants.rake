@@ -1,9 +1,9 @@
-desc "fills in restaurant clean name column"
+desc "fills in place clean name column"
 
-task orderRestaurants: :environment do 
-  @restaurants = Restaurant.all.where(clean_name: nil)
-  @restaurants.each do |restaurant|
-    restaurant.clean_name = restaurant.name.gsub('The', '').split.join('')
-    restaurant.save
+task orderPlaces: :environment do
+  @places = Place.all.where(clean_name: nil)
+  @places.each do |place|
+    place.clean_name = place.name.gsub('The', '').split.join('')
+    place.save
   end
 end

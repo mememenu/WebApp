@@ -1,55 +1,52 @@
 <%= form_for(@menu) do |f| %>
   <% if @menu.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
-    <ul>
-      <% @menu.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+    <div id="error_explanation">
+      <h2><%= pluralize(@menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
+      <ul>
+        <% @menu.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title">
-        <%if @restaurant %>
-        New 
+        <%if @place %>
+          New
         <% else %>
-        Editing 
+          Editing
         <% end %>
-        Menu</h3>
-      </div>
-      <div class="panel-body">
+        Menu
+      </h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="field col-md-6">
+          <%= f.label :name, 'Menu Name' %><br>
+          <%= f.text_field :name, :class=>'form-control' %>
+        </div>
+        <div class="field col-md-3">
+          <%= f.label :priority,"Meal Order" %><br>
+          <%= f.select :priority, [["First","1"],["Second","2"],["Third","3"],["Fourth","4"],["Fifth","5"],["Sixth","6"]] %>
+        </div>
+        <div class="field col-md-3">
+          <br>
+          <%= f.label :hide%>
+          <%= f.check_box :hide %>
+        </div>
 
         <div class="row">
-          <div class="field col-md-6">
-            <%= f.label :name, 'Menu Name' %><br>
-            <%= f.text_field :name, :class=>'form-control' %>
-          </div>
-          <div class="field col-md-3">
-            <%= f.label :priority,"Meal Order" %><br>
-            <%= f.select :priority, [["First","1"],["Second","2"],["Third","3"],["Fourth","4"],["Fifth","5"],["Sixth","6"]] %>
-          </div> 
-          <div class="field col-md-3">
+          <div class="actions col-md-12 text-center">
             <br>
-            <%= f.label :hide%>
-            <%= f.check_box :hide %>
+            <%= f.submit 'Submit', class: 'btn btn-primary btn-xs' %>
           </div>
- 
-
-          <div class="row">
-            <div class="actions col-md-12 text-center">
-            <br>
-              <%= f.submit 'Submit', class: 'btn btn-primary btn-xs' %>
-            </div> 
-          </div>
-
         </div>
       </div>
-    </div> 
-
-  <div class="field">
-  <%= f.hidden_field :restaurant_id, value: restaurant_id_default_value %>   
+    </div>
   </div>
 
+  <div class="field">
+    <%= f.hidden_field :place_id, value: place_id_default_value %>
+  </div>
 <% end %>
