@@ -14,8 +14,9 @@ class Tile < ActiveRecord::Base
 
   def create_cloud_front
     if cloud_front.nil?
+      bucket_name = Rails.env.test? ? 'test' : avatar.bucket_name
       self.cloud_front = avatar.url.gsub(
-        "http://s3.amazonaws.com/#{avatar.bucket_name}",
+        "http://s3.amazonaws.com/#{bucket_name}",
         "http://#{Rails.configuration.cloudfront_subdomain}.cloudfront.net"
       ).gsub('original', 'large')
       save

@@ -3,7 +3,7 @@ Rails.application.configure do
   config.paperclip_defaults = {
   :storage => :s3,
   :s3_credentials => {
-    :bucket => ENV['AWS_BUCKET_NAME'],
+    :bucket => 'meme-menu',
     :access_key_id => 'AKIAILKXHA63C3N74VJA',
     :secret_access_key => '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'
     }
