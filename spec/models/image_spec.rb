@@ -42,10 +42,10 @@ RSpec.describe Image, :type => :model do
 
   it "sets cloudfront_url after saving the image" do
     allow_any_instance_of(Paperclip::Attachment).
-      to receive(:url).and_return("http://s3.amazonaws.com/meme-menu/original/image.png")
+      to receive(:url).and_return("http://s3.amazonaws.com/test/original/image.png")
     image = FactoryGirl.create(:image)
 
-    expect(image.cloudfront_url).to include("http://dm7g4xbxa7ld3.cloudfront.net")
+    expect(image.cloudfront_url).to include("http://xxx.cloudfront.net")
     expect(image.cloudfront_url).not_to include("http://s3.amazonaws.com/meme-menu")
     expect(image.cloudfront_url).to include("large")
     expect(image.cloudfront_url).not_to include("original")
