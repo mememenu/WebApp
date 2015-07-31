@@ -8,6 +8,9 @@ class Place < ActiveRecord::Base
   has_one :header
   has_one :banner
   belongs_to :owner, class_name: "User"
+  has_and_belongs_to_many :lists
+  has_many :spotlight_items, as: :spotable
+  has_many :events, dependent: :destroy
 
   accepts_nested_attributes_for :tile, reject_if: proc { |attributes| attributes['avatar'].blank? }
   accepts_nested_attributes_for :header, reject_if: proc { |attributes| attributes['avatar'].blank? }
