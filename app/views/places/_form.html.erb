@@ -83,14 +83,17 @@
           <%= f.label :foursquare_id, 'Foursquare ID' %><br>
           <%= f.text_field :foursquare_id, class: 'form-control' %>
         </div>
-
+        <div class="field">
+          <%= f.label :google_id, 'Google Places ID' %><br>
+          <%= f.text_field :google_id, class: 'form-control' %>
+        </div>
         <div class="field">
           <%= f.label :status, 'iOS Status Message' %><br>
           <%= f.text_field :status, class: 'form-control' %>
         </div>
         <hr>
         <div class="field">
-          <%= f.label :avatar, "Add Restaurant Logo" %><br>
+          <%= f.label :avatar, "Add Restaurant Logo - (500 x 500)" %><br>
           <%- unless f.object.new_record? %>
             <%= image_tag f.object.avatar.url(:thumb) %>
           <%- end %>
@@ -99,7 +102,7 @@
 
         <%= f.fields_for :tile, @place.tile || @place.build_tile do |builder| %>
           <fieldset>
-            <%= builder.label :avatar, "Add Restaurant Tile for IOS" %><br>
+            <%= builder.label :avatar, "Add Tile for IOS - (648 x 648)" %><br>
             <%- unless @place.tile.new_record? %>
               <%= image_tag @place.tile.avatar.url(:thumb) %>
             <%- end %>
@@ -109,7 +112,7 @@
 
         <%= f.fields_for :header, @place.header || @place.build_header do |builder| %>
           <fieldset>
-            <%= builder.label :avatar, "Add Restaurant Page Header Image for IOS" %><br>
+            <%= builder.label :avatar, "Add Page Header for IOS - (500 x 500)" %><br>
             <%- unless @place.header.new_record? %>
               <%= image_tag @place.header.avatar.url(:thumb) %>
             <%- end %>
@@ -119,7 +122,7 @@
 
         <%= f.fields_for :banner, @place.banner || @place.build_banner do |builder| %>
           <fieldset>
-            <%= builder.label :avatar, "Add Restaurant Banner for IOS" %><br>
+            <%= builder.label :avatar, "Add Banner for IOS - (750 x 280)" %><br>
             <%- unless @place.banner.new_record? %>
               <%= image_tag @place.banner.avatar.url(:thumb) %>
             <%- end %>

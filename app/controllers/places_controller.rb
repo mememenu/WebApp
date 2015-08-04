@@ -101,7 +101,7 @@ class PlacesController < ApplicationController
       :name, :address_1, :address_2, :city, :state, :zipcode, :description, :phone,
       :dollars, :reservations, :hide, :avatar, :zone, :region, :website,
       :photographer_name, :photographer_media_link, :clean_name,
-      :facebook, :twitter, :instagram, :delivery_url, :foursquare_id, :status,
+      :facebook, :twitter, :instagram, :delivery_url, :foursquare_id, :status, :google_id,
       tile_attributes: [:id, :avatar, :place_id],
       header_attributes: [:id, :avatar, :place_id],
       banner_attributes: [:id, :avatar, :place_id]
