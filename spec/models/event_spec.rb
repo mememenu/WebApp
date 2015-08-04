@@ -4,7 +4,6 @@ describe Event, type: :model do
   subject { FactoryGirl.build(:event) }
 
   it { should validate_presence_of(:name) }
-  it { should validate_inclusion_of(:reservations).in_array([true, false]) }
   it { should validate_presence_of(:starts_at) }
   it { should validate_presence_of(:ends_at) }
   it { should validate_presence_of(:place) }

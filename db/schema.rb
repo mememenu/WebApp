@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(version: 20150804175153) do
     t.integer  "user_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "kind"
   end
 
   add_index "lists", ["user_id"], name: "index_lists_on_user_id", using: :btree
@@ -190,8 +191,12 @@ ActiveRecord::Schema.define(version: 20150804175153) do
     t.integer  "spotable_id"
     t.string   "spotable_type"
     t.integer  "position"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "spotlight_items", ["spotable_type", "spotable_id"], name: "index_spotlight_items_on_spotable_type_and_spotable_id", using: :btree
