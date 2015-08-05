@@ -1,6 +1,6 @@
 class DemoData
   def self.call
-    Place.destroy_all
+    Place.where(zipcode: '12345').destroy_all
     Event.destroy_all
     SpotlightItem.destroy_all
     List.destroy_all
