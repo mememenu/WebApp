@@ -38,6 +38,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     api-pagination (4.1.1)
     arel (6.0.0)
     aws-sdk (1.60.2)
@@ -111,6 +112,8 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    json-schema (2.5.1)
+      addressable (~> 2.3.7)
     jwt (1.5.0)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
@@ -274,6 +277,7 @@ DEPENDENCIES
   html5_validators
   jbuilder (~> 2.0)
   jquery-rails
+  json-schema
   kaminari
   newrelic_rpm
   omniauth-facebook

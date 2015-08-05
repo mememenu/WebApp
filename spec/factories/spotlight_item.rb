@@ -9,7 +9,7 @@ FactoryGirl.define do
     end
 
     factory :list_item do
-      association :spotable, factory: :featured_list
+      association :spotable, factory: [:generic_list, :with_places]
     end
 
     factory :place_item do

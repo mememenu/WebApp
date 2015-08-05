@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804175153) do
+ActiveRecord::Schema.define(version: 20150812211947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,6 +99,11 @@ ActiveRecord::Schema.define(version: 20150804175153) do
 
   add_index "headers", ["place_id"], name: "index_headers_on_place_id", using: :btree
 
+  create_table "home_pages", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "images", force: :cascade do |t|
     t.integer  "dish_id"
     t.datetime "created_at"
@@ -115,14 +120,16 @@ ActiveRecord::Schema.define(version: 20150804175153) do
   add_index "images", ["dish_id"], name: "index_images_on_dish_id", using: :btree
 
   create_table "lists", force: :cascade do |t|
-    t.string   "name",                      null: false
-    t.boolean  "hide",       default: true, null: false
+    t.string   "name",                        null: false
+    t.boolean  "hide",         default: true, null: false
     t.integer  "user_id"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "kind"
+    t.integer  "home_page_id"
   end
 
+  add_index "lists", ["home_page_id"], name: "index_lists_on_home_page_id", using: :btree
   add_index "lists", ["user_id"], name: "index_lists_on_user_id", using: :btree
 
   create_table "lists_places", id: false, force: :cascade do |t|
@@ -203,9 +210,12 @@ ActiveRecord::Schema.define(version: 20150804175153) do
   add_index "spotlight_items", ["spotlight_id"], name: "index_spotlight_items_on_spotlight_id", using: :btree
 
   create_table "spotlights", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "home_page_id"
   end
+
+  add_index "spotlights", ["home_page_id"], name: "index_spotlights_on_home_page_id", using: :btree
 
   create_table "tiles", force: :cascade do |t|
     t.integer  "place_id"

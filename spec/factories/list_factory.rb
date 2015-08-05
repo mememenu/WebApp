@@ -6,9 +6,14 @@ FactoryGirl.define do
       end
     end
 
-    factory :home_page_list do
-      sequence(:name) { |i| "Home Page List #{i}" }
-      kind "HomePageList"
+    factory :generic_list do
+      sequence(:name) { |i| "Generic List #{i}" }
+      kind "GenericList"
+    end
+
+    factory :contributor_list do
+      sequence(:name) { |i| "Contributor List #{i}" }
+      kind "ContributorList"
     end
 
     factory :featured_list do

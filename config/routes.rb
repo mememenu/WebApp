@@ -19,15 +19,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :spotlights, only: [:index]
+      resources :home_pages, only: [:index]
       resources :users do
         get 'list', on: :member
       end
-      resources :lists, only: [:index] do
-        collection do
-          get 'featured'
-        end
-      end
+      resources :lists, only: [:index]
       resources :places, only: [] do
         collection do
           get 'nearby'
