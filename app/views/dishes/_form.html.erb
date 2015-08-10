@@ -48,7 +48,7 @@
           <div class="field">
             <!-- Dropdown for categories -->
             <%= f.label :category_id %><br>
-            <%= f.grouped_collection_select :category_id, @menus.order(:name), :categories, :name, :id, :name %>
+            <%= f.grouped_collection_select :category_id, @place.menus.order(:name), :categories, :name, :id, :name %>
           </div>
         </div>
         <div class="col-md-4">
