@@ -12,6 +12,7 @@ class List < ActiveRecord::Base
   before_create :set_default_name
 
   scope :user_lists, ->(user_id) { where(user_id: user_id, kind: "UserList") }
+  scope :contributor_lists, ->(contributor_id) { where(user_id: contributor_id, kind: "ContributorList") }
   scope :generic_lists, -> { where(kind: "GenericList") }
   scope :featured_lists, -> { where(kind: "FeaturedList") }
 
