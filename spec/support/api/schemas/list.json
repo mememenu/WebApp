@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "required": ["lists"],
+  "properties": {
+
+    "lists": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "places"
+        ],
+        "properties": {
+          "id": { "type": "number" },
+          "name": { "type": "string" },
+          "places": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "type",
+                "name",
+                "logo"
+              ],
+              "properties": {
+                "id": { "type": "number" },
+                "type": { "type": "string" },
+                "name": { "type": "string" },
+                "logo": { "type": "url" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
