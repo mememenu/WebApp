@@ -28,14 +28,15 @@ gem 'spring',        group: :development
 
 group :test do
   gem 'rspec-rails'
-  gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'json-schema'
 end
 
-group :test, :development do
+group :test, :development, :dev, :staging do
+  gem 'factory_girl_rails', '~> 4.0'
   gem 'pry-byebug'
 end
 
