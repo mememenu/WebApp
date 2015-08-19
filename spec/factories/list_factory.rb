@@ -1,5 +1,7 @@
 FactoryGirl.define do
   factory :list do
+    avatar { fixture_file_upload(Rails.root + 'spec/fixtures/images/896x1052.jpeg', 'image/jpeg') }
+
     trait :with_places do
       after(:build) do |list|
         list.places = FactoryGirl.create_list(:place, 4, :with_avatar)

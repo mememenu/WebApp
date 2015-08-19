@@ -16,6 +16,9 @@ class List < ActiveRecord::Base
   scope :generic_lists, -> { where(kind: "GenericList") }
   scope :featured_lists, -> { where(kind: "FeaturedList") }
 
+  image_attachment styles: { large: "750x400>", medium: "375x200>" }
+  validates :avatar, attachment_presence: true
+
   def user_list?
     kind == "UserList"
   end
