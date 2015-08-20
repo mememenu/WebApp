@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817195345) do
+ActiveRecord::Schema.define(version: 20150818225817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20150817195345) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "cloudfront_url"
   end
 
   add_index "banners", ["place_id"], name: "index_banners_on_place_id", using: :btree
@@ -95,6 +96,7 @@ ActiveRecord::Schema.define(version: 20150817195345) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "cloudfront_url"
   end
 
   add_index "headers", ["place_id"], name: "index_headers_on_place_id", using: :btree
@@ -120,13 +122,18 @@ ActiveRecord::Schema.define(version: 20150817195345) do
   add_index "images", ["dish_id"], name: "index_images_on_dish_id", using: :btree
 
   create_table "lists", force: :cascade do |t|
-    t.string   "name",                        null: false
-    t.boolean  "hide",         default: true, null: false
+    t.string   "name",                               null: false
+    t.boolean  "hide",                default: true, null: false
     t.integer  "user_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "kind"
     t.integer  "home_page_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "cloudfront_url"
   end
 
   add_index "lists", ["home_page_id"], name: "index_lists_on_home_page_id", using: :btree
@@ -188,6 +195,7 @@ ActiveRecord::Schema.define(version: 20150817195345) do
     t.float    "longitude"
     t.integer  "owner_id"
     t.string   "google_id"
+    t.string   "cloudfront_url"
   end
 
   add_index "places", ["owner_id"], name: "index_places_on_owner_id", using: :btree
@@ -204,6 +212,7 @@ ActiveRecord::Schema.define(version: 20150817195345) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "cloudfront_url"
   end
 
   add_index "spotlight_items", ["spotable_type", "spotable_id"], name: "index_spotlight_items_on_spotable_type_and_spotable_id", using: :btree
@@ -225,7 +234,7 @@ ActiveRecord::Schema.define(version: 20150817195345) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.string   "cloud_front"
+    t.string   "cloudfront_url"
   end
 
   add_index "tiles", ["place_id"], name: "index_tiles_on_place_id", using: :btree

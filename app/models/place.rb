@@ -34,10 +34,7 @@ class Place < ActiveRecord::Base
   after_save :cascade_hidden, :if => :hide_changed?
   after_validation :geocode, if: :geolocate_address?
 
-  has_attached_file :avatar, :styles => { :large => "500x500>", :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/placeholder_image1-1050x663.png"
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-  validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
-
+  image_attachment styles: { large: "500x500>", medium: "200x200>", thumb: "100x100>" }
 
   def check_for_delivery
     self.delivery_url = nil if delivery_url.blank?
