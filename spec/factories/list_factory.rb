@@ -4,7 +4,7 @@ FactoryGirl.define do
 
     trait :with_places do
       after(:build) do |list|
-        list.places = FactoryGirl.create_list(:place, 4, :with_avatar)
+        list.places = FactoryGirl.create_list(:place, 4, :with_avatar, :with_banner)
       end
     end
 
