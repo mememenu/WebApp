@@ -31,6 +31,8 @@ class Place < ActiveRecord::Base
   validates :zone, presence: true
   validates :foursquare_id, presence: true
 
+  scope :unhidden, -> { where(hide: [nil, false]) }
+
   after_save :cascade_hidden, :if => :hide_changed?
   after_validation :geocode, if: :geolocate_address?
 

@@ -41,5 +41,13 @@ describe Api::V1::PlacesController, type: :controller do
       expect(response).to be_success
       expect(response).to match_response_schema("nearby")
     end
+
+    it "does not return hidden places" do
+      FactoryGirl.create(:place, :with_banner, hide: true)
+      get :nearby, format: :json, location: ["25.7982813", "-80.1283682"], distance: 10
+
+      expect(response).to be_success
+      expect(json['places'].count).to be_zero
+    end
   end
 end

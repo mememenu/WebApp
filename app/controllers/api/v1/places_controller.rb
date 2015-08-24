@@ -1,7 +1,7 @@
 class Api::V1::PlacesController < Api::V1::BaseController
   def nearby
     head :bad_request and return unless location && distance
-    near_places = Place.near(location, distance)
+    near_places = Place.unhidden.near(location, distance)
 
     render json: near_places, each_serializer: Api::V1::NearbySerializer, sent_location: location
   end
