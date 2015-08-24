@@ -60,4 +60,8 @@ describe Place, :type => :model do
   it "has address_2 default value as an empty string" do
     expect(Place.new.address_2).to eq("")
   end
+
+  it "formats phone correctly when calling #formatted_phone" do
+    expect(place.formatted_phone).to eq("(012) 345-6789")
+  end
 end

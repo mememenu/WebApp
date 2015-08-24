@@ -92,6 +92,10 @@ class Place < ActiveRecord::Base
     [address_1, city, state, zipcode].compact.join(', ')
   end
 
+  def formatted_phone
+    "(#{phone[0..2]}) #{phone[3..5]}-#{phone[6..9]}"
+  end
+
   private
 
   def geolocate_address?
