@@ -7,6 +7,7 @@ class DemoData
     List.destroy_all
     HomePage.destroy_all
 
+    FactoryGirl.create(:place_with_menus_and_categories)
     FactoryGirl.create(:home_page)
   end
 end
