@@ -11,13 +11,15 @@
           "type",
           "name",
           "logo",
-          "banner"
+          "banner",
+          "distance"
         ],
         "properties": {
           "id": { "type": "number" },
           "type": { "type": "string" },
           "name": { "type": "string" },
           "logo": { "type": "url" },
+          "distance": { "type": "numeric" },
           "banner": {
             "type": ["object", "null"],
             "required": [

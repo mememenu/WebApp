@@ -57,13 +57,27 @@
                             "id",
                             "type",
                             "name",
-                            "logo"
+                            "logo",
+                            "banner"
                           ],
                           "properties": {
                             "id": { "type": "number" },
                             "type": { "type": "string" },
                             "name": { "type": "string" },
-                            "logo": { "type": "url" }
+                            "logo": { "type": "url" },
+                            "banner": {
+                              "type": ["object", "null"],
+                              "required": [
+                                "id",
+                                "image_url",
+                                "cloudfront_url"
+                              ],
+                              "properties": {
+                                "id": { "type": "number" },
+                                "image_url": { "type": "url" },
+                                "cloudfront_url": { "type": "url" }
+                              }
+                            }
                           }
                         }
                       }
@@ -92,13 +106,27 @@
                   "id",
                   "type",
                   "name",
-                  "logo"
+                  "logo",
+                  "banner"
                 ],
                 "properties": {
                   "id": { "type": "number" },
                   "type": { "type": "string" },
                   "name": { "type": "string" },
-                  "logo": { "type": "url" }
+                  "logo": { "type": "url" },
+                  "banner": {
+                    "type": ["object", "null"],
+                    "required": [
+                      "id",
+                      "image_url",
+                      "cloudfront_url"
+                    ],
+                    "properties": {
+                      "id": { "type": "number" },
+                      "image_url": { "type": "url" },
+                      "cloudfront_url": { "type": "url" }
+                    }
+                  }
                 }
               }
             }
@@ -124,13 +152,27 @@
                     "id",
                     "type",
                     "name",
-                    "logo"
+                    "logo",
+                    "banner"
                   ],
                   "properties": {
                     "id": { "type": "number" },
                     "type": { "type": "string" },
                     "name": { "type": "string" },
-                    "logo": { "type": "url" }
+                    "logo": { "type": "url" },
+                    "banner": {
+                      "type": ["object", "null"],
+                      "required": [
+                        "id",
+                        "image_url",
+                        "cloudfront_url"
+                      ],
+                      "properties": {
+                        "id": { "type": "number" },
+                        "image_url": { "type": "url" },
+                        "cloudfront_url": { "type": "url" }
+                      }
+                    }
                   }
                 }
               }
