@@ -8,6 +8,7 @@ FactoryGirl.define do
     zipcode "12345"
     phone "0123456789"
     zone "Miami Beach"
+    price 2
     foursquare_id "123456"
 
     trait :with_avatar do

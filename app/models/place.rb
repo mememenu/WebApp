@@ -26,6 +26,7 @@ class Place < ActiveRecord::Base
   validates :address_1, presence: true
   validates :city, presence: true
   validates :state, presence: true, length: { is: 2}
+  validates :price, allow_nil: true, inclusion: { in: 1..4 }, numericality: true
   validates :zipcode, presence: true, numericality: true, length: { is: 5 }
   validates :phone, presence: true, numericality: true, length: { is: 10 }
   validates :zone, presence: true
