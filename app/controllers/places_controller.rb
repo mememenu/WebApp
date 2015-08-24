@@ -99,7 +99,7 @@ class PlacesController < ApplicationController
   def place_params
     params.require(:place).permit(
       :name, :address_1, :address_2, :city, :state, :zipcode, :description, :phone,
-      :dollars, :reservations, :hide, :avatar, :zone, :region, :website,
+      :dollars, :reservations, :hide, :avatar, :zone, :region, :website, :price,
       :photographer_name, :photographer_media_link, :clean_name,
       :facebook, :twitter, :instagram, :delivery_url, :foursquare_id, :status, :google_id,
       tile_attributes: [:id, :avatar, :place_id],
