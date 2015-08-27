@@ -8,7 +8,7 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.json
   def index
-    @places = Place.all
+    @places = Place.order(name: :asc)
   end
 
   # GET /places/1
