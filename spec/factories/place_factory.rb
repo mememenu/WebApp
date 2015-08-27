@@ -32,8 +32,8 @@ FactoryGirl.define do
       after(:create) do |place, _|
         menu_1 = create(:menu, place: place, name: 'Test Menu 1')
         menu_2 = create(:menu, place: place, name: 'Test Menu 2')
-        FactoryGirl.create_list(:category_with_dishes, 2, place: place,
-                                name: 'Test Category 1', menu: menu_1)
+        FactoryGirl.create(:category_with_dishes, place: place,
+                           name: 'Test Category 1', menu: menu_1)
         FactoryGirl.create_list(:category_with_dishes, 2, place: place,
                                 name: 'Test Category 2', menu: menu_2)
       end
