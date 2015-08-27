@@ -1,4 +1,4 @@
-class Api::V1::NearbySerializer < Api::V1::PlaceSerializer
+class Api::V1::Place::NearbySerializer < Api::V1::PlaceSerializer
   attributes :distance
 
   def distance

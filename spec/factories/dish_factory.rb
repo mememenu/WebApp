@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :dish do
+    name { "Test Dish" }
     association :place, factory: :place
 
     after(:build) do |dish|

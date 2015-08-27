@@ -5,7 +5,7 @@ FactoryGirl.define do
     association :place, factory: :place
 
     after(:build) do |category|
-      category.menu = FactoryGirl.create(:menu, place: category.place)
+      category.menu ||= FactoryGirl.create(:menu, place: category.place)
     end
 
     factory :category_with_dishes do

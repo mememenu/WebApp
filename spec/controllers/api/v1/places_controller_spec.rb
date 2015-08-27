@@ -39,7 +39,7 @@ describe Api::V1::PlacesController, type: :controller do
       get :nearby, format: :json, location: ["25.7982813", "-80.1283682"], distance: 10
 
       expect(response).to be_success
-      expect(response).to match_response_schema("nearby")
+      expect(response).to match_response_schema("place/nearby")
     end
 
     it "does not return hidden places" do
@@ -48,6 +48,16 @@ describe Api::V1::PlacesController, type: :controller do
 
       expect(response).to be_success
       expect(json['places'].count).to be_zero
+    end
+  end
+
+  describe "#show" do
+    it "validates the response has the correct schema" do
+      place = FactoryGirl.create(:place_with_menus_and_categories, :with_header)
+      get :show, format: :json, id: place.id
+
+      expect(response).to be_success
+      expect(response).to match_response_schema("place/show")
     end
   end
 end

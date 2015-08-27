@@ -10,6 +10,7 @@ FactoryGirl.define do
     zone "Miami Beach"
     price 2
     foursquare_id "123456"
+    google_id "123456"
 
     trait :with_avatar do
       avatar { fixture_file_upload(Rails.root + 'spec/fixtures/images/896x1052.jpeg', 'image/jpeg') }
@@ -21,12 +22,20 @@ FactoryGirl.define do
       end
     end
 
+    trait :with_header do
+      after(:build) do |place|
+        place.header = FactoryGirl.create(:header, :with_avatar, place: place)
+      end
+    end
+
     factory :place_with_menus_and_categories do
       after(:create) do |place, _|
-        create(:menu, place: place, name: 'Test Menu 1')
-        create(:menu, place: place, name: 'Test Menu 2')
-        create(:category, place: place, name: 'Test Category 1')
-        create(:category, place: place, name: 'Test Category 2')
+        menu_1 = create(:menu, place: place, name: 'Test Menu 1')
+        menu_2 = create(:menu, place: place, name: 'Test Menu 2')
+        FactoryGirl.create(:category_with_dishes, place: place,
+                           name: 'Test Category 1', menu: menu_1)
+        FactoryGirl.create_list(:category_with_dishes, 2, place: place,
+                                name: 'Test Category 2', menu: menu_2)
       end
     end
   end

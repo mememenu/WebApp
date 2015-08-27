@@ -3,7 +3,14 @@ class Api::V1::PlacesController < Api::V1::BaseController
     head :bad_request and return unless location && distance
     near_places = Place.unhidden.near(location, distance)
 
-    render json: near_places, each_serializer: Api::V1::NearbySerializer, sent_location: location
+    render json: near_places, each_serializer: Api::V1::Place::NearbySerializer,
+                              sent_location: location
+  end
+
+  def show
+    place = ::Place.unhidden.find(params[:id])
+
+    render json: place, serializer: Api::V1::Place::ShowSerializer, root: false
   end
 
   private
