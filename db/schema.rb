@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824183743) do
+ActiveRecord::Schema.define(version: 20150828214742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,6 +202,14 @@ ActiveRecord::Schema.define(version: 20150824183743) do
   add_index "places", ["owner_id"], name: "index_places_on_owner_id", using: :btree
   add_index "places", ["slug"], name: "index_places_on_slug", using: :btree
 
+  create_table "places_tags", id: false, force: :cascade do |t|
+    t.integer "place_id"
+    t.integer "tag_id"
+  end
+
+  add_index "places_tags", ["place_id"], name: "index_places_tags_on_place_id", using: :btree
+  add_index "places_tags", ["tag_id"], name: "index_places_tags_on_tag_id", using: :btree
+
   create_table "spotlight_items", force: :cascade do |t|
     t.integer  "spotlight_id"
     t.integer  "spotable_id"
@@ -226,6 +234,14 @@ ActiveRecord::Schema.define(version: 20150824183743) do
   end
 
   add_index "spotlights", ["home_page_id"], name: "index_spotlights_on_home_page_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
 
   create_table "tiles", force: :cascade do |t|
     t.integer  "place_id"
