@@ -32,6 +32,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :tags do
+    put 'add_to_place'
+    put 'remove_from_place'
+  end
+
   resources :contacts
   resources :images
   resources :categories

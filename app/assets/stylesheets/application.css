@@ -37,6 +37,37 @@ margin: 0px !important;
 
 }
 
+#tags span.assigned-label {
+  font-weight: bold;
+}
+
+#tags .tags-header {
+  margin-top: 20px;
+}
+
+#tags .list-group {
+  margin-top: 30px;
+  width: 40%
+}
+
+#tags .dropdown-menu li:hover {
+  cursor: pointer;
+}
+
+#tags .dropdown {
+  display: inline;
+  margin-left: 10px;
+}
+
+#tags .dropdown-menu {
+  margin-top: 10px;
+}
+
+#tags .list-group li .remove-tag{
+  float: right;
+}
+
+
 .navbar-default .navbar-collapse{
     border-color: #ffffff;
   }
