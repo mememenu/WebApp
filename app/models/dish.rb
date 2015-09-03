@@ -18,6 +18,7 @@ class Dish < ActiveRecord::Base
   validates :place_id, presence: true
 
   after_save :cascade_hidden, :if => :hide_changed?
+  scope :unhidden, -> { where(hide: [nil, false]) }
 
   def cascade_hidden
     additional_images.each do |image|

@@ -8,4 +8,8 @@ class Api::V1::Place::ShowSerializer < Api::V1::PlaceSerializer
   def location
     [object.latitude, object.longitude]
   end
+
+  def menus
+    object.menus.unhidden
+  end
 end

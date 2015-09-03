@@ -59,5 +59,41 @@ describe Api::V1::PlacesController, type: :controller do
       expect(response).to be_success
       expect(response).to match_response_schema("place/show")
     end
+
+    it "does not include hidden menus in the response" do
+      place = FactoryGirl.create(:place)
+      menu = FactoryGirl.create(:menu, hide: true)
+      place.menus << menu
+
+      get :show, format: :json, id: place.id
+
+      expect(json['menus']).to be_empty
+    end
+
+    it "does not include hidden categories in the response" do
+      place = FactoryGirl.create(:place)
+      menu = FactoryGirl.create(:menu, place: place)
+      category = FactoryGirl.create(:category, place: place, hide: true)
+      menu.categories << category
+      place.menus << menu
+
+      get :show, format: :json, id: place.id
+
+      expect(json['menus'].first['categories']).to be_empty
+    end
+
+    it "does not include hidden dishes in the response" do
+      place = FactoryGirl.create(:place)
+      menu = FactoryGirl.create(:menu, place: place)
+      category = FactoryGirl.create(:category, place: place)
+      dish = FactoryGirl.create(:dish, place: place, hide: true)
+      category.dishes << dish
+      menu.categories << category
+      place.menus << menu
+
+      get :show, format: :json, id: place.id
+
+      expect(json['menus'].first['categories'].first['dishes']).to be_empty
+    end
   end
 end

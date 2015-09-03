@@ -10,6 +10,7 @@ class Menu < ActiveRecord::Base
   has_many :dishes
 
   after_save :cascade_hidden, :if => :hide_changed?
+  scope :unhidden, -> { where(hide: [nil, false]) }
 
   def cascade_hidden
     self.categories.each do |category|
