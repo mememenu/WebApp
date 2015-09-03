@@ -12,15 +12,6 @@
       <hr>
     </div> <!--   End of place info -->
 
-    <div class="menu-options">
-      <% @place.tags.each do |tag| %>
-        <span><%= tag.name %></span>
-        <% unless @place.tags.last.id == tag.id %>
-          •
-        <% end %>
-      <% end %>
-    </div>
-
     <!-- start of place menus  -->
     <div class="menu-options">
       <% @active_menus[0...-1].each do |menu| %>

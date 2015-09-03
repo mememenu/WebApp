@@ -54,12 +54,17 @@ margin: 0px !important;
   cursor: pointer;
 }
 
+#tags {
+  position: relative;
+}
+
 #tags .dropdown {
   display: inline;
   margin-left: 10px;
 }
 
 #tags .dropdown-menu {
+  position: absolute;
   margin-top: 10px;
 }
 
