@@ -215,4 +215,8 @@ module PlacesHelper
       1
     end
   end
+
+  def addable_tags
+    @addable_tags ||= Tag.all - @place.tags
+  end
 end
