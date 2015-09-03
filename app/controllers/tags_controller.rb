@@ -1,9 +1,9 @@
 class TagsController < ApplicationController
   def add_to_place
-    place = Place.find(params[:place_id])
-    tag = Tag.find(params[:id])
+    place = Place.find_by_id(params[:place_id])
+    tag = Tag.find_by_id(params[:id])
 
-    if place.tags << tag
+    if place && tag && place.tags << tag
       head :ok
     else
       head :not_found
@@ -11,10 +11,10 @@ class TagsController < ApplicationController
   end
 
   def remove_from_place
-    place = Place.find(params[:place_id])
-    tag = Tag.find(params[:id])
+    place = Place.find_by_id(params[:place_id])
+    tag = Tag.find_by_id(params[:id])
 
-    if place.tags.delete(tag)
+    if place && tag && place.tags.delete(tag)
       head :ok
     else
       head :not_found
