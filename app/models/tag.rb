@@ -1,5 +1,5 @@
 class Tag < ActiveRecord::Base
   has_and_belongs_to_many :places
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
 end

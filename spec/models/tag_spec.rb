@@ -13,5 +13,11 @@ describe Tag, type: :model do
     it "is valid if there is no other with the same name" do
       expect(FactoryGirl.build(:tag, name: "Test tag")).to be_valid
     end
+
+    it "validaes uniqueness in a case insensitive way" do
+      FactoryGirl.create(:tag, name: "pizza")
+
+      expect(FactoryGirl.build(:tag, name: "Pizza")).not_to be_valid
+    end
   end
 end
