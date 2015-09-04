@@ -10,6 +10,7 @@ class Category < ActiveRecord::Base
   message: "(Another Category with this priority already exists.)" }
 
   after_save :cascade_hidden, :if => :hide_changed?
+  scope :unhidden, -> { where(hide: [nil, false]) }
 
   def cascade_hidden
     self.dishes.each do |dish|

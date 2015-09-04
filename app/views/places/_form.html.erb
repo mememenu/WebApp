@@ -46,11 +46,15 @@
           <%= f.label :region %><br>
           <%= f.select :region, options_for_select(current_regions, place_region)%>
         </div>
-        <hr>
+        <div class="field">
+          <%= f.label :price %><br>
+          <%= f.select :price, options_for_select(1..4) %>
+        </div>
         <div class="field">
           <%= f.label :phone %><br>
           <%= f.text_field :phone, class: 'form-control' %>
         </div>
+        <hr>
         <div class="field">
           <%= f.label :website, 'Website URL' %><br>
           <%= f.text_field :website, class: 'form-control' %>

@@ -92,8 +92,19 @@
         <li><a href="#dishes" data-toggle="tab">Dishes</a></li>
         <li><a href="#categories" data-toggle="tab">Categories</a></li>
         <li><a href="#menus" data-toggle="tab">Menus</a></li>
+        <li><a href="#tags" data-toggle="tab">Tags</a></li>
       </ul>
       <div class="tab-content">
+        <div class="tab-pane" id="tags">
+          <div class="tags-header">
+            <span class="assigned-label"> Assigned Tags </span>
+            <div class="dropdown">
+              <button class="btn btn-default" type="button" data-toggle="dropdown">Available</button>
+              <ul class="dropdown-menu"/>
+            </div>
+          </div>
+          <ul class="list-group"/>
+        </div>
 
         <!-- Start of Menus tab -->
         <div class="tab-pane" id="menus">
@@ -179,7 +190,7 @@
             </div> <!-- end of Inactive Menu Column -->
             <!-- New Menu Form -->
             <div class="col-md-4 text-left">
-              <%= render 'menus/form' %> 
+              <%= render 'menus/form' %>
             </div>
           </div> <!-- end of Menus Row -->
         </div> <!-- End of Menus Tab -->
@@ -431,4 +442,106 @@ $(document).ready(function(){
 <% end %>
 <% end %>
 
+var assigned_tags = <%= @place.tags.to_json.html_safe %>;
+var unassigned_tags = <%= addable_tags.to_json.html_safe %>;
+refreshTags();
+
+$("#tags ul.list-group").on("click", ".list-group-item > a.remove-tag", function(){
+  var id = $(this).parent().attr('id');
+  if (id == 'new_tag')
+    refreshTags();
+  else {
+    $.ajax({
+      url: "tags/remove_from_place",
+      data: { id: id, place_id: <%= @place.id %>},
+      method: 'PUT',
+      success: function() {
+        var to_remove = $.grep(assigned_tags, function(e) { return e.id == id });
+        unassigned_tags = unassigned_tags.concat(to_remove);
+        assigned_tags = $(assigned_tags).not(to_remove).get();
+        refreshTags();
+      }
+    })
+  }
+});
+
+$("#tags ul.dropdown-menu").on("click", "li > a.add-tag", function(){
+  var id = $(this).parent().attr('id');
+  $.ajax({
+    url: "tags/add_to_place",
+    data: { id: id, place_id: <%= @place.id %>},
+    method: 'PUT',
+    success: function(data) {
+      var to_remove = $.grep(unassigned_tags, function(e) { return e.id == id });
+      assigned_tags = assigned_tags.concat(to_remove)
+      unassigned_tags = $(unassigned_tags).not(to_remove).get();
+      refreshTags();
+    }
+  })
+});
+
+$("#tags ul.dropdown-menu").on("click", "li > a.new-tag", function(){
+  var ul = $("#tags ul.list-group");
+  var li = $("<li class='list-group-item' id='new_tag'/>");
+  li.append($("<input type='text'/>"));
+  var remove_link = $("<a class='remove-tag'>Remove</a>");
+  li.append(remove_link);
+  ul.append(li);
+});
+
+$("#tags ul.list-group").on("keypress", "li#new_tag > input", function(e){
+  if (e.keyCode == 13) {
+    var name = $(this).val();
+
+    if (name.length > 0) {
+      $.ajax({
+        url: "tags",
+        data: { place_id: <%= @place.id %>, name: name },
+        method: 'POST',
+        success: function(data) {
+          if (data['errors']) {
+            alert("Tag name: " + data['errors']['name'][0]);
+          }
+          else {
+            assigned_tags.push(data)
+            refreshTags();
+          }
+        }
+      })
+    }
+  }
+})
+
+function refreshTags() {
+  rePopulateAssigned();
+  rePopulateUnassigned();
+};
+
+function rePopulateAssigned() {
+  var ul = $("#tags ul.list-group");
+  ul.html("");
+
+  $.each(assigned_tags, function(index, tag) {
+    var li = $("<li class='list-group-item' id='" + tag.id + "'/>");
+    li.append($("<span>" + tag.name + "</span>"));
+    var remove_link = $("<a class='remove-tag'>Remove</a>");
+    li.append(remove_link);
+    ul.append(li);
+  });
+};
+
+function rePopulateUnassigned() {
+  var ul = $("#tags ul.dropdown-menu");
+  ul.html("");
+
+  $.each(unassigned_tags, function(index, tag) {
+    var li = $("<li id='" + tag.id + "'>");
+    var tag_link = $("<a class='add-tag'>" + tag.name + "</a>");
+    li.append(tag_link);
+    ul.append(li);
+  });
+  if (ul.children().length > 0)
+    ul.append($("<li role='separator' class='divider'/>"));
+  ul.append($("<li><a class='new-tag'>Create Tag</a></li>"));
+};
 </script>

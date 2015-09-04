@@ -8,6 +8,10 @@ class Place < ActiveRecord::Base
   has_one :header
   has_one :banner
   belongs_to :owner, class_name: "User"
+  has_and_belongs_to_many :lists
+  has_many :spotlight_items, as: :spotable
+  has_many :events, dependent: :destroy
+  has_and_belongs_to_many :tags
 
   accepts_nested_attributes_for :tile, reject_if: proc { |attributes| attributes['avatar'].blank? }
   accepts_nested_attributes_for :header, reject_if: proc { |attributes| attributes['avatar'].blank? }
@@ -23,18 +27,18 @@ class Place < ActiveRecord::Base
   validates :address_1, presence: true
   validates :city, presence: true
   validates :state, presence: true, length: { is: 2}
+  validates :price, allow_nil: true, inclusion: { in: 1..4 }, numericality: true
   validates :zipcode, presence: true, numericality: true, length: { is: 5 }
   validates :phone, presence: true, numericality: true, length: { is: 10 }
   validates :zone, presence: true
   validates :foursquare_id, presence: true
 
+  scope :unhidden, -> { where(hide: [nil, false]) }
+
   after_save :cascade_hidden, :if => :hide_changed?
   after_validation :geocode, if: :geolocate_address?
 
-  has_attached_file :avatar, :styles => { :large => "500x500>", :medium => "200x200>", :thumb => "100x100>" }, :default_url => "/images/placeholder_image1-1050x663.png"
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-  validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
-
+  image_attachment styles: { large: "500x500>", medium: "200x200>", thumb: "100x100>" }
 
   def check_for_delivery
     self.delivery_url = nil if delivery_url.blank?
@@ -88,6 +92,10 @@ class Place < ActiveRecord::Base
 
   def full_address
     [address_1, city, state, zipcode].compact.join(', ')
+  end
+
+  def formatted_phone
+    "(#{phone[0..2]}) #{phone[3..5]}-#{phone[6..9]}"
   end
 
   private

@@ -1,0 +1,84 @@
+{
+  "type": "object",
+  "required": [
+    "name",
+    "zone",
+    "formatted_phone",
+    "location",
+    "full_address",
+    "price",
+    "google_id",
+    "foursquare_id",
+    "header",
+    "menus"
+  ],
+  "properties": {
+    "name": { "type": "string" },
+    "zone": { "type": "string" },
+    "formatted_phone": { "type": "string" },
+    "location": {
+      "type": "array",
+      "items": { "type": "float" }
+    },
+    "full_address": { "type": "string" },
+    "price": { "type": "number" },
+    "google_id": { "type": "string" },
+    "foursquare_id": { "type": "string"},
+    "header": {
+      "type": "object",
+      "required": [
+        "id",
+        "image_url",
+        "cloudfront_url"
+      ],
+      "properties": {
+        "id": { "type": "number" },
+        "image_url": { "type": "url" },
+        "cloudfront_url": { "type": "url" }
+      }
+    },
+    "menus": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "categories"],
+        "properties": {
+          "id": { "type": "number" },
+          "name": { "type": "string" },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "name", "dishes"],
+              "properties": {
+                "id": { "type": "number" },
+                "name": { "type": "string" },
+                "dishes": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["id", "name", "description", "default_image"],
+                    "properties": {
+                      "id": { "type": "number" },
+                      "name": { "type": "string" },
+                      "description": { "type": ["string", "null"] },
+                      "default_image": {
+                        "type": "object",
+                        "required": ["id", "image_url", "cloudfront_url"],
+                        "properties": {
+                          "id": { "type": "number" },
+                          "image_url": { "type": "url" },
+                          "cloudfront_url": { "type": "url" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

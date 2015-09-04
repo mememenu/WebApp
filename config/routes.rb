@@ -17,6 +17,26 @@ Rails.application.routes.draw do
 
   get "/miamispice" => redirect { |params| "http://www.google.com/maps/d/u/0/viewer?mid=zP-Kc5lMsLps.kIO-I5y-55mM&usp=sharing" }
 
+  namespace :api do
+    namespace :v1 do
+      resources :home_pages, only: [:index]
+      resources :users do
+        get 'list', on: :member
+      end
+      resources :lists, only: [:index]
+      resources :places, only: [:show] do
+        collection do
+          get 'nearby'
+        end
+      end
+    end
+  end
+
+  resource :tags do
+    put 'add_to_place'
+    put 'remove_from_place'
+  end
+
   resources :contacts
   resources :images
   resources :categories
