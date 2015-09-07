@@ -96,4 +96,62 @@ describe Api::V1::PlacesController, type: :controller do
       expect(json['menus'].first['categories'].first['dishes']).to be_empty
     end
   end
+
+  describe "#search" do
+    it "validates the response has the correct schema" do
+      FactoryGirl.create(:place, name: "Test")
+      get :search, format: :json, query: "Te"
+
+      expect(response).to be_success
+      expect(response).to match_response_schema("place/search")
+    end
+
+    it "returns places with the parcial tag name in the query" do
+      FactoryGirl.create(:place)
+      place = FactoryGirl.create(:place)
+      place.tags << FactoryGirl.create(:tag, name: "Pizza")
+
+      get :search, format: :json, query: "Piz"
+
+      expect(response).to be_success
+      expect(json['places'].count).to eq(1)
+      expect(json['places'].first['id']).to eq(place.id)
+    end
+
+    it "returns places with the parcial place name in the query" do
+      FactoryGirl.create(:place)
+      place = FactoryGirl.create(:place, name: "Pizza Hut")
+
+      get :search, format: :json, query: "pi"
+
+      expect(response).to be_success
+      expect(json['places'].count).to eq(1)
+      expect(json['places'].first['id']).to eq(place.id)
+    end
+
+    it "returns places with the parcial place zone in the query" do
+      FactoryGirl.create(:place)
+      place = FactoryGirl.create(:place, zone: "South Beach")
+
+      get :search, format: :json, query: "sou"
+
+      expect(response).to be_success
+      expect(json['places'].count).to eq(1)
+      expect(json['places'].first['id']).to eq(place.id)
+    end
+
+    it "returns all results that match" do
+      FactoryGirl.create(:place)
+      place = FactoryGirl.create(:place, name: "Pizza Hut")
+      place_with_tag = FactoryGirl.create(:place)
+      place_with_tag.tags << FactoryGirl.create(:tag, name: "Pizza")
+
+      get :search, format: :json, query: "Piz"
+
+      expect(response).to be_success
+      expect(json['places'].count).to eq(2)
+      place_ids = json['places'].map{ |p| p['id'] }
+      expect(place_ids).to match_array([place_with_tag.id, place.id])
+    end
+  end
 end
