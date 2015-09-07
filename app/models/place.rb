@@ -1,5 +1,6 @@
 class Place < ActiveRecord::Base
   geocoded_by :full_address
+  serialize :quotes, Array
 
   has_many :menus, dependent: :destroy
   has_many :dishes, dependent: :destroy
@@ -32,6 +33,7 @@ class Place < ActiveRecord::Base
   validates :phone, presence: true, numericality: true, length: { is: 10 }
   validates :zone, presence: true
   validates :foursquare_id, presence: true
+  validates :quotes, length: { maximum: 3 }
 
   scope :unhidden, -> { where(hide: [nil, false]) }
 
