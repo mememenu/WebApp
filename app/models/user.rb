@@ -4,7 +4,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
   :recoverable, :rememberable, :trackable, :validatable
 
+  GENDERS = %w(Male Female)
+
   has_many :places, foreign_key: :owner_id
+  validates :gender, inclusion: { in: GENDERS }, allow_nil: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
   # sets user attributes to attributes provided through omniauth
   def self.from_omniauth(auth)
