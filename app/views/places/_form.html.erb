@@ -97,6 +97,14 @@
         </div>
         <hr>
         <div class="field">
+          <%= f.label :quotes, 'Quotes' %><br>
+          <% 3.times do |i| %>
+            <%= f.text_field 'quotes', name: "place[quotes][]", value: f.object.quotes[i],
+                                       class: 'form-control quote-input' %>
+          <% end %>
+        </div>
+        <hr>
+        <div class="field">
           <%= f.label :avatar, "Add Restaurant Logo - (500 x 500)" %><br>
           <%- unless f.object.new_record? %>
             <%= image_tag f.object.avatar.url(:thumb) %>
