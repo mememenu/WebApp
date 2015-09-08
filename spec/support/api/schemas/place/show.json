@@ -10,7 +10,8 @@
     "google_id",
     "foursquare_id",
     "header",
-    "menus"
+    "menus",
+    "quotes"
   ],
   "properties": {
     "name": { "type": "string" },
@@ -19,6 +20,10 @@
     "location": {
       "type": "array",
       "items": { "type": "float" }
+    },
+    "quotes": {
+      "type": "array",
+      "items": { "type": "string" }
     },
     "full_address": { "type": "string" },
     "price": { "type": "number" },
