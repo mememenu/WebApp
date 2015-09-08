@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  it { should validate_presence_of(:first_name) }
+  it { should validate_presence_of(:last_name) }
+  it { should validate_inclusion_of(:gender).in_array(%w(Male Female)) }
+
   it "does not save a user if the password is less that 8 characters" do
     user = FactoryGirl.build(:user, password: '123')
     expect(user).not_to be_valid

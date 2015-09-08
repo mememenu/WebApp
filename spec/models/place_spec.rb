@@ -64,4 +64,25 @@ describe Place, :type => :model do
   it "formats phone correctly when calling #formatted_phone" do
     expect(place.formatted_phone).to eq("(012) 345-6789")
   end
+
+  context "quotes length validation" do
+    it "is invalid if it has more than 3 quotes" do
+      place = FactoryGirl.build(:place, quotes: ['first', 'second', 'third', 'fourth'])
+
+      expect(place).not_to be_valid
+    end
+
+    it "is valid if it has 3 quotes" do
+      place = FactoryGirl.build(:place, quotes: ['first', 'second', 'third'])
+
+      expect(place).to be_valid
+    end
+  end
+
+  it "cleans blank quotes before validating" do
+    place = FactoryGirl.create(:place, quotes: ['first', 'second', 'third', ''])
+
+    expect(place.quotes.count).to eq(3)
+    expect(place).to be_valid
+  end
 end

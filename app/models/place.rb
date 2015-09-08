@@ -1,5 +1,6 @@
 class Place < ActiveRecord::Base
   geocoded_by :full_address
+  serialize :quotes, Array
 
   has_many :menus, dependent: :destroy
   has_many :dishes, dependent: :destroy
@@ -17,6 +18,7 @@ class Place < ActiveRecord::Base
   accepts_nested_attributes_for :header, reject_if: proc { |attributes| attributes['avatar'].blank? }
   accepts_nested_attributes_for :banner, reject_if: proc { |attributes| attributes['avatar'].blank? }
 
+  before_validation :clean_blank_quotes
   before_save :generate_slug
   before_save :generate_clean_name
   before_save :create_google_maps_url
@@ -32,6 +34,7 @@ class Place < ActiveRecord::Base
   validates :phone, presence: true, numericality: true, length: { is: 10 }
   validates :zone, presence: true
   validates :foursquare_id, presence: true
+  validate :quotes_length
 
   scope :unhidden, -> { where(hide: [nil, false]) }
 
@@ -100,8 +103,18 @@ class Place < ActiveRecord::Base
 
   private
 
+  def clean_blank_quotes
+    quotes.reject!(&:empty?)
+  end
+
   def geolocate_address?
     full_address.present? &&
     (address_1_changed? || city_changed? || state_changed? || zipcode_changed?)
+  end
+
+  def quotes_length
+    if quotes.count > 3
+      errors.add(:quotes, "too many quotes")
+    end
   end
 end

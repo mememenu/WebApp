@@ -23,6 +23,10 @@ RSpec.feature 'Creating a place', type: :feature do
     fill_in 'Delivery url', with: 'http://delivery.com'
     fill_in 'Foursquare ID', with: 'meme_menu'
     fill_in 'iOS Status Message', with: 'Ok'
+
+    quotes = page.all(:quotes, 'place[quotes]')
+    quotes.each{ |e| e.set('This place is an excelent one!') }
+
     attach_file 'Add Restaurant Logo - (500 x 500)', 'spec/fixtures/images/896x1052.jpeg'
     attach_file 'Add Tile for IOS - (648 x 648)', 'spec/fixtures/images/896x1052.jpeg'
     attach_file 'Add Page Header for IOS - (500 x 500)', 'spec/fixtures/images/896x1052.jpeg'

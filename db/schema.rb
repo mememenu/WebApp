@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828214742) do
+ActiveRecord::Schema.define(version: 20150907204201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(version: 20150828214742) do
     t.string   "google_id"
     t.string   "cloudfront_url"
     t.integer  "price"
+    t.text     "quotes"
   end
 
   add_index "places", ["owner_id"], name: "index_places_on_owner_id", using: :btree
@@ -276,6 +277,10 @@ ActiveRecord::Schema.define(version: 20150828214742) do
     t.string   "facebook_id"
     t.string   "twitter_id"
     t.string   "instagram_id"
+    t.string   "gender"
+    t.string   "locale"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
