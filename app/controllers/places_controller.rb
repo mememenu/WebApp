@@ -104,7 +104,8 @@ class PlacesController < ApplicationController
       :facebook, :twitter, :instagram, :delivery_url, :foursquare_id, :status, :google_id,
       tile_attributes: [:id, :avatar, :place_id],
       header_attributes: [:id, :avatar, :place_id],
-      banner_attributes: [:id, :avatar, :place_id]
+      banner_attributes: [:id, :avatar, :place_id],
+      quotes: []
     )
   end
 end

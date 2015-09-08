@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828214742) do
+ActiveRecord::Schema.define(version: 20150907192821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,6 +197,7 @@ ActiveRecord::Schema.define(version: 20150828214742) do
     t.string   "google_id"
     t.string   "cloudfront_url"
     t.integer  "price"
+    t.text     "quotes"
   end
 
   add_index "places", ["owner_id"], name: "index_places_on_owner_id", using: :btree

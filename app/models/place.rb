@@ -1,5 +1,6 @@
 class Place < ActiveRecord::Base
   geocoded_by :full_address
+  serialize :quotes, Array
 
   has_many :menus, dependent: :destroy
   has_many :dishes, dependent: :destroy
@@ -32,6 +33,7 @@ class Place < ActiveRecord::Base
   validates :phone, presence: true, numericality: true, length: { is: 10 }
   validates :zone, presence: true
   validates :foursquare_id, presence: true
+  validate :quotes_length
 
   scope :unhidden, -> { where(hide: [nil, false]) }
 
@@ -103,5 +105,11 @@ class Place < ActiveRecord::Base
   def geolocate_address?
     full_address.present? &&
     (address_1_changed? || city_changed? || state_changed? || zipcode_changed?)
+  end
+
+  def quotes_length
+    if quotes.count > 3
+      errors.add(:quotes, "too many quotes")
+    end
   end
 end

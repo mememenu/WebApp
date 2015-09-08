@@ -72,6 +72,9 @@ margin: 0px !important;
   float: right;
 }
 
+.field .quote-input {
+  margin-bottom: 10px;
+}
 
 .navbar-default .navbar-collapse{
     border-color: #ffffff;
