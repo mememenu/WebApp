@@ -14,7 +14,8 @@
           "banner",
           "location",
           "price",
-          "zone"
+          "zone",
+          "status"
         ],
         "properties": {
           "id": { "type": "number" },
@@ -39,6 +40,7 @@
             "items": { "type": "float" }
           },
           "price": { "type": "number" },
+          "status": { "type": ["string", "null"] },
           "zone": { "type": "string" }
         }
       }

@@ -1,5 +1,5 @@
 class Api::V1::Place::SearchSerializer < Api::V1::PlaceSerializer
-  attributes :location, :price, :zone
+  attributes :location, :price, :zone, :status
 
   has_one :banner
 
