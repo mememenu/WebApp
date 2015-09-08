@@ -78,4 +78,11 @@ describe Place, :type => :model do
       expect(place).to be_valid
     end
   end
+
+  it "cleans blank quotes before validating" do
+    place = FactoryGirl.create(:place, quotes: ['first', 'second', 'third', ''])
+
+    expect(place.quotes.count).to eq(3)
+    expect(place).to be_valid
+  end
 end

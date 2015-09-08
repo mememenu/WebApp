@@ -18,6 +18,7 @@ class Place < ActiveRecord::Base
   accepts_nested_attributes_for :header, reject_if: proc { |attributes| attributes['avatar'].blank? }
   accepts_nested_attributes_for :banner, reject_if: proc { |attributes| attributes['avatar'].blank? }
 
+  before_validation :clean_blank_quotes
   before_save :generate_slug
   before_save :generate_clean_name
   before_save :create_google_maps_url
@@ -101,6 +102,10 @@ class Place < ActiveRecord::Base
   end
 
   private
+
+  def clean_blank_quotes
+    quotes.reject!(&:empty?)
+  end
 
   def geolocate_address?
     full_address.present? &&
