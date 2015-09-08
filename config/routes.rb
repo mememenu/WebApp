@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :places, only: [:show] do
         collection do
           get 'nearby'
+          get 'search'
         end
       end
     end

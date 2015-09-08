@@ -13,6 +13,24 @@ class Api::V1::PlacesController < Api::V1::BaseController
     render json: place, serializer: Api::V1::Place::ShowSerializer, root: false
   end
 
+  def search
+    if params[:query].present?
+      querable_fields = ["tags.name", "places.name", "places.zone"]
+      fields_to_search = querable_fields.map do |field_name|
+        "lower(#{field_name}) like :query"
+      end.join(" OR ")
+
+      places = Place.unhidden.joins(
+        "LEFT OUTER JOIN places_tags ON places_tags.place_id = places.id\
+         LEFT OUTER JOIN tags ON tags.id = places_tags.tag_id").
+        where(fields_to_search, query: "%#{params[:query]}%".downcase)
+
+      render json: places, each_serializer: Api::V1::Place::SearchSerializer
+    else
+      head :bad_request
+    end
+  end
+
   private
 
   def location

@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "required": ["places"],
+  "properties": {
+    "places": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "name",
+          "logo",
+          "banner",
+          "location",
+          "price",
+          "zone"
+        ],
+        "properties": {
+          "id": { "type": "number" },
+          "type": { "type": "string" },
+          "name": { "type": "string" },
+          "logo": { "type": "url" },
+          "banner": {
+            "type": ["object", "null"],
+            "required": [
+              "id",
+              "image_url",
+              "cloudfront_url"
+            ],
+            "properties": {
+              "id": { "type": "number" },
+              "image_url": { "type": "url" },
+              "cloudfront_url": { "type": "url" }
+            }
+          },
+          "location": {
+            "type": "array",
+            "items": { "type": "float" }
+          },
+          "price": { "type": "number" },
+          "zone": { "type": "string" }
+        }
+      }
+    }
+  }
+}
