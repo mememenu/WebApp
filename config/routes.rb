@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :tracked_events, only: [:create]
       resources :home_pages, only: [:index]
       resources :users do
         get 'list', on: :member
