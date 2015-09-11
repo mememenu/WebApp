@@ -13,6 +13,7 @@ class Place < ActiveRecord::Base
   has_many :spotlight_items, as: :spotable
   has_many :events, dependent: :destroy
   has_and_belongs_to_many :tags
+  has_many :topics, as: :topicable
 
   accepts_nested_attributes_for :tile, reject_if: proc { |attributes| attributes['avatar'].blank? }
   accepts_nested_attributes_for :header, reject_if: proc { |attributes| attributes['avatar'].blank? }

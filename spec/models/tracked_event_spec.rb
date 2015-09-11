@@ -6,9 +6,9 @@ describe TrackedEvent, type: :model do
 
   it "validates that name is present if the event's kind is TopicView" do
     event = FactoryGirl.build(:topic_view_event)
-    event.name = nil
+    event.title = nil
 
     expect(event).not_to be_valid
-    expect(event.errors.messages[:name]).to include("can't be blank")
+    expect(event.errors.messages[:title]).to include("can't be blank")
   end
 end

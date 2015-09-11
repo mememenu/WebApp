@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "required": ["topics"],
+  "properties": {
+    "topics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "topicable_id",
+          "topicable_type"
+        ],
+        "properties": {
+          "id": { "type": "number" },
+          "title": { "type": "string" },
+          "topicable_id": { "type": "number" },
+          "topicable_type": { "type": "string" }
+        }
+      }
+    }
+  }
+}

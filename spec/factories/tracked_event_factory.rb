@@ -15,6 +15,7 @@ FactoryGirl.define do
 
     factory :topic_view_event do
       kind "TopicView"
+      title "dummy topic view"
     end
   end
 end
