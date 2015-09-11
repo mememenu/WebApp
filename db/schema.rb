@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907204201) do
+ActiveRecord::Schema.define(version: 20150909222020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -256,6 +256,20 @@ ActiveRecord::Schema.define(version: 20150907204201) do
   end
 
   add_index "tiles", ["place_id"], name: "index_tiles_on_place_id", using: :btree
+
+  create_table "tracked_events", force: :cascade do |t|
+    t.string   "kind",           null: false
+    t.string   "eventable_id"
+    t.string   "eventable_type"
+    t.string   "user_id"
+    t.string   "ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tracked_events", ["eventable_id"], name: "index_tracked_events_on_eventable_id", using: :btree
+  add_index "tracked_events", ["eventable_type"], name: "index_tracked_events_on_eventable_type", using: :btree
+  add_index "tracked_events", ["kind"], name: "index_tracked_events_on_kind", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
