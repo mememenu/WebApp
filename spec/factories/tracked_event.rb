@@ -8,7 +8,7 @@ FactoryGirl.define do
       kind "ResourceDetailView"
 
       trait :for_place do
-        eventable_id FactoryGirl.create(:place).id
+        eventable_id 123456
         eventable_type "Place"
       end
     end
