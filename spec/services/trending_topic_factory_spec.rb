@@ -35,7 +35,7 @@ describe TrendingTopicFactory, type: :service do
       expect(topics.count).to eq(8)
     end
 
-    it "generates at least 3 different random topics each day" do
+    it "generates a maximum of 3 different random topics each day" do
       TrendingTopicFactory.call(Date.yesterday)
       yesterday_topics = Topic.for_date(Date.yesterday).map(&:title)
 
@@ -44,7 +44,7 @@ describe TrendingTopicFactory, type: :service do
 
       diff = yesterday_topics - today_topics
 
-      expect(diff.count).to be < 3
+      expect(diff.count).to be <= 3
     end
 
     it "includes the most 5 visited topics in the last week" do
