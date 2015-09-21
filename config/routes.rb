@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'ios/category_info/:id', to: 'ios#category_info'
   get 'ios/dish_info/:id', to: 'ios#dish_info'
   get 'ios/category_info_by_menu/:id', to: 'ios#category_info_by_menu'
+  get 'ios/places/nearby', to: 'ios#nearby'
 
   get "/miamispice" => redirect { |params| "http://www.google.com/maps/d/u/0/viewer?mid=zP-Kc5lMsLps.kIO-I5y-55mM&usp=sharing" }
 
