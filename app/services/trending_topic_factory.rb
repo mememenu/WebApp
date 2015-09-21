@@ -34,8 +34,7 @@ class TrendingTopicFactory
   end
 
   def fill_with_random_topics
-    random_needed = TRENDING_SET_SIZE - @result_topics.count
-    random_needed.times do
+    while @result_topics.count < TRENDING_SET_SIZE do
       target = %w(place_zone place_name tag_name).sample
       append_topic(target)
     end
