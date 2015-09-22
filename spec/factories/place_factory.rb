@@ -16,6 +16,12 @@ FactoryGirl.define do
       avatar { fixture_file_upload(Rails.root + 'spec/fixtures/images/896x1052.jpeg', 'image/jpeg') }
     end
 
+    trait :with_tag do
+      after(:build) do |place|
+        place.tags = [FactoryGirl.create(:tag)]
+      end
+    end
+
     trait :with_banner do
       after(:build) do |place|
         place.banner = FactoryGirl.create(:banner, :with_avatar, place: place)

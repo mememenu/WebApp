@@ -154,4 +154,63 @@ describe Api::V1::PlacesController, type: :controller do
       expect(place_ids).to match_array([place_with_tag.id, place.id])
     end
   end
+
+  describe "#index", focus: true do
+    it "limits the response to 100 places" do
+      FactoryGirl.create_list(:place, 101)
+
+      get :index, format: :json
+
+      expect(response).to be_success
+      expect(json['places'].count).to eq(100)
+    end
+
+    it "has the correct schema" do
+      FactoryGirl.create(:place)
+      get :index, format: :json
+
+      expect(response).to be_success
+      expect(response).to match_response_schema("place/index")
+    end
+
+    context "filter by zone" do
+      it "returns places for the specified zone" do
+        miami_beach_place = FactoryGirl.create(:place, zone: "Miami Beach")
+        FactoryGirl.create(:place, zone: "Downtown")
+
+        get :index, format: :json, zone: "Miami Beach"
+
+        expect(response).to be_success
+        expect(json['places'].count).to eq(1)
+        expect(json['places'].first['id']).to eq(miami_beach_place.id)
+      end
+    end
+
+    context "filter by tag name" do
+      it "returns places with the specified tag name" do
+        pizza_tag = FactoryGirl.create(:tag, name: "Pizza")
+        pizza_place = FactoryGirl.create(:place, tags: [pizza_tag])
+        FactoryGirl.create(:place, :with_tag)
+
+        get :index, format: :json, tag: "Pizza"
+
+        expect(response).to be_success
+        expect(json['places'].count).to eq(1)
+        expect(json['places'].first['id']).to eq(pizza_place.id)
+      end
+    end
+
+    context "hidden places" do
+      it "does not return them" do
+        unhidden_place = FactoryGirl.create(:place, hide: false)
+        FactoryGirl.create(:place, hide: true)
+
+        get :index, format: :json
+
+        expect(response).to be_success
+        expect(json['places'].count).to eq(1)
+        expect(json['places'].first['id']).to eq(unhidden_place.id)
+      end
+    end
+  end
 end
