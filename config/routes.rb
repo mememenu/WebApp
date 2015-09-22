@@ -31,7 +31,7 @@ Rails.application.routes.draw do
         get 'list', on: :member
       end
       resources :lists, only: [:index]
-      resources :places, only: [:show] do
+      resources :places, only: [:index, :show] do
         collection do
           get 'nearby'
           get 'search'
