@@ -55,6 +55,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :places, only: [:index, :new, :create]
+  resources :lists
   resources :places, path: "", except: [:index, :new, :create]
   resources :headers
   resources :tiles
