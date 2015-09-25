@@ -60,7 +60,7 @@
 
 <script>
   var assigned_places = <%= @list.places.to_json.html_safe %>;
-  var unassigned_places = <%= Place.unhidden.not_in_list(@list).to_json.html_safe %>;
+  var unassigned_places = <%= eligible_places(@list).to_json.html_safe %>;
   refreshPlaces();
 
   $("#list_places ul.list-group").on("click", ".list-group-item > a.remove-place", function(){
