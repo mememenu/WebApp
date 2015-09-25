@@ -31,6 +31,17 @@ class Api::V1::PlacesController < Api::V1::BaseController
     end
   end
 
+  def index
+    result = Place.unhidden.limit(100)
+    result = result.where(zone: params[:zone]) if params[:zone].present?
+
+    if params[:tag].present?
+      result = result.joins(:tags).where(tags: { name: params[:tag] })
+    end
+
+    render json: result
+  end
+
   private
 
   def location

@@ -139,11 +139,13 @@
             "required": [
               "id",
               "name",
+              "cloudfront_url",
               "places"
             ],
             "properties": {
               "id": { "type": "number" },
               "name": { "type": "string" },
+              "cloudfront_url": { "type": "url" },
               "places": {
                 "type": "array",
                 "items": {
@@ -186,11 +188,13 @@
             "required": [
               "id",
               "name",
+              "cloudfront_url",
               "places"
             ],
             "properties": {
               "id": { "type": "number" },
               "name": { "type": "string" },
+              "cloudfront_url": { "type": "url" },
               "places": {
                 "type": "array",
                 "items": {

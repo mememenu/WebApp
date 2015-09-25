@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907204201) do
+ActiveRecord::Schema.define(version: 20150918142801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -240,6 +240,7 @@ ActiveRecord::Schema.define(version: 20150907204201) do
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "hide"
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", using: :btree
@@ -256,6 +257,32 @@ ActiveRecord::Schema.define(version: 20150907204201) do
   end
 
   add_index "tiles", ["place_id"], name: "index_tiles_on_place_id", using: :btree
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "title",          null: false
+    t.integer  "topicable_id"
+    t.string   "topicable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "target_date",    null: false
+  end
+
+  add_index "topics", ["title"], name: "index_topics_on_title", using: :btree
+  add_index "topics", ["topicable_type", "topicable_id"], name: "index_topics_on_topicable_type_and_topicable_id", using: :btree
+
+  create_table "tracked_events", force: :cascade do |t|
+    t.string   "kind",           null: false
+    t.string   "eventable_type"
+    t.string   "user_id"
+    t.string   "ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "eventable_id"
+    t.string   "title"
+  end
+
+  add_index "tracked_events", ["eventable_type"], name: "index_tracked_events_on_eventable_type", using: :btree
+  add_index "tracked_events", ["kind"], name: "index_tracked_events_on_kind", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

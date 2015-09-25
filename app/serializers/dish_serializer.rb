@@ -5,6 +5,7 @@ class DishSerializer < ActiveModel::Serializer
              :facebook, :twitter, :instagram, :cloud_front, :maps_url, :address_1,
              :state, :zipcode, :lat, :long, :phone, :slug, :restaurant_header, :city,
              :menu_id, :delivery_url, :foursquare_id, :status, :restaurant_banner
+  has_one :place, serializer: PlaceSerializer
 
   def avatar
     object.default_image.try(:avatar)

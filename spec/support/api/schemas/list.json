@@ -10,11 +10,13 @@
         "required": [
           "id",
           "name",
-          "places"
+          "places",
+          "cloudfront_url"
         ],
         "properties": {
           "id": { "type": "number" },
           "name": { "type": "string" },
+          "cloudfront_url": { "type": "url" },
           "places": {
             "type": "array",
             "items": {

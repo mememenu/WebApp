@@ -1,4 +1,4 @@
-class Api::V1::PlaceSerializer < ActiveModel::Serializer
+class PlaceSerializer < ActiveModel::Serializer
   attributes :id, :type, :name, :logo, :zone
   has_one :banner
 

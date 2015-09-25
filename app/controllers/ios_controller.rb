@@ -10,6 +10,15 @@ class IosController < ApplicationController
     @places = Place.where(hide: [nil, false], region: "MIA").order(clean_name: :asc)
   end
 
+  def nearby
+    head :bad_request and return unless location && distance
+    near_places = Place.unhidden.near(location, distance)
+
+    render json: near_places, each_serializer: Place::NearbySerializer,
+                              sent_location: location,
+                              root: "places"
+  end
+
   # GET ios/menu_info/1.json
   def menu_info
     @menus = Menu.where(place_id: @place.id)
@@ -59,4 +68,21 @@ class IosController < ApplicationController
     @place = Place.find_by_slug!(params[:id])
   end
 
+  def location
+    return @location unless @location.nil?
+
+    if params[:location] && params[:location].is_a?(Array) && params[:location].length == 2
+      @location = params[:location].each do |l|
+        return false if l.blank?
+        l.to_f
+      end
+    end
+  end
+
+  def distance
+    return @distance unless @distance.nil?
+    return false unless params[:distance]
+
+    @distance = params[:distance].to_i
+  end
 end

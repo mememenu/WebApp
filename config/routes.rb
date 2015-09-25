@@ -14,17 +14,24 @@ Rails.application.routes.draw do
   get 'ios/category_info/:id', to: 'ios#category_info'
   get 'ios/dish_info/:id', to: 'ios#dish_info'
   get 'ios/category_info_by_menu/:id', to: 'ios#category_info_by_menu'
+  get 'ios/places/nearby', to: 'ios#nearby'
 
   get "/miamispice" => redirect { |params| "http://www.google.com/maps/d/u/0/viewer?mid=zP-Kc5lMsLps.kIO-I5y-55mM&usp=sharing" }
 
   namespace :api do
     namespace :v1 do
+      resources :topics, only: [] do
+        collection do
+          get 'trending'
+        end
+      end
+      resources :tracked_events, only: [:create]
       resources :home_pages, only: [:index]
       resources :users do
         get 'list', on: :member
       end
       resources :lists, only: [:index]
-      resources :places, only: [:show] do
+      resources :places, only: [:index, :show] do
         collection do
           get 'nearby'
           get 'search'
@@ -48,6 +55,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :places, only: [:index, :new, :create]
+  resources :lists
   resources :places, path: "", except: [:index, :new, :create]
   resources :headers
   resources :tiles
