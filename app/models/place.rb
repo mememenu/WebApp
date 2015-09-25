@@ -38,6 +38,8 @@ class Place < ActiveRecord::Base
   validate :quotes_length
 
   scope :unhidden, -> { where(hide: [nil, false]) }
+  scope :not_in_list, ->(list) { distinct.joins("LEFT OUTER JOIN lists_places ON lists_places.place_id = places.id")
+                                 .where.not(lists_places: { list_id: list.id }) }
 
   after_save :cascade_hidden, :if => :hide_changed?
   after_validation :geocode, if: :geolocate_address?
