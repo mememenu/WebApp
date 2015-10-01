@@ -3,7 +3,9 @@ class IosController < ApplicationController
 
   # GET ios/place_info.json
   def place_info
-    @places = Place.where(hide: [nil, false])
+    place = ::Place.unhidden.find(params[:id])
+
+    render json: place, serializer: Place::ShowSerializer, root: false
   end
 
   def miami_places_list
