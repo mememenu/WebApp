@@ -11,12 +11,22 @@
     "foursquare_id",
     "header",
     "menus",
-    "quotes"
+    "quotes",
+    "phone",
+    "website",
+    "facebook",
+    "twitter",
+    "instagram"
   ],
   "properties": {
     "name": { "type": "string" },
     "zone": { "type": "string" },
     "formatted_phone": { "type": "string" },
+    "phone": { "type": "string" },
+    "facebook": { "type": ["string", "null"] },
+    "twitter": { "type": ["string", "null"] },
+    "instagram": { "type": ["string", "null"] },
+    "website": { "type": ["string", "null"] },
     "location": {
       "type": "array",
       "items": { "type": "float" }
