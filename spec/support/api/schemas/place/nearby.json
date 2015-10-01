@@ -13,7 +13,8 @@
           "logo",
           "banner",
           "distance",
-          "zone"
+          "zone",
+          "status"
         ],
         "properties": {
           "id": { "type": "number" },
@@ -22,6 +23,7 @@
           "logo": { "type": "url" },
           "distance": { "type": "numeric" },
           "zone": { "type": "string" },
+          "status": { "type": ["string", "null"] },
           "banner": {
             "type": ["object", "null"],
             "required": [
