@@ -95,6 +95,22 @@ describe Api::V1::PlacesController, type: :controller do
 
       expect(json['menus'].first['categories'].first['dishes']).to be_empty
     end
+
+    it "orders categories inside menus by priority" do
+      place = FactoryGirl.create(:place)
+      menu = FactoryGirl.create(:menu, place: place)
+      category = FactoryGirl.create(:category, place: place, priority: 2)
+      category_2 = FactoryGirl.create(:category, place: place, priority: 1)
+      dish = FactoryGirl.create(:dish, place: place, hide: true)
+      category.dishes << dish
+      menu.categories << category
+      menu.categories << category_2
+      place.menus << menu
+
+      get :show, format: :json, id: place.id
+
+      expect(json['menus'].first['categories'].first['id']).to eq(category_2.id)
+    end
   end
 
   describe "#search" do
