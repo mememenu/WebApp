@@ -1,0 +1,31 @@
+<div class="container">
+  <%= form_for(@home_page) do |f| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+         Editing Home Page
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="field col-md-6">
+            <%= f.label :featured_list, 'Featured List' %><br>
+            <%= f.select :featured_list, options_for_featured_select(@home_page), :class=>'form-control' %>
+          </div>
+        </div>
+        <div class="row lists">
+          <%= render partial: "lists", locals: { f: f, association: "generic_lists" } %>
+        </div>
+        <div class="row lists">
+          <%= render partial: "lists", locals: { f: f, association: "contributor_lists" } %>
+        </div>
+        <div class="row">
+          <div class="actions col-md-12 text-center">
+            <br>
+            <%= f.submit 'Submit', class: 'btn btn-primary btn-xs' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

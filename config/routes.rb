@@ -54,6 +54,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
+  resources :home_pages, only: [:edit, :update]
   resources :users
   resources :places, only: [:index, :new, :create]
   resources :lists

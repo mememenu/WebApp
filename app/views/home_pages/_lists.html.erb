@@ -1,0 +1,74 @@
+<div class="field col-md-3" id="<%= association %>">
+  <%= f.label :lists, association.humanize %>
+  <div class="dropdown">
+    <button class="btn btn-default" type="button" data-toggle="dropdown">Available</button>
+    <ul class="dropdown-menu"/>
+  </div>
+  <ul class="list-group"/>
+</div>
+
+<script>
+  (function() {
+    var assigned_lists = <%= @home_page.send(association.to_sym).to_json.html_safe %>;
+    var unassigned_lists = <%= @home_page.send(:"available_#{association}").to_json.html_safe %>;
+    refreshLists();
+
+    $('#<%="#{association}"%> ul.list-group').on("click", ".list-group-item > a.remove-list", function(){
+      var id = $(this).parent().attr('id');
+      var to_remove = $.grep(assigned_lists, function(e) { return e.id == id });
+      unassigned_lists = unassigned_lists.concat(to_remove);
+      assigned_lists = $(assigned_lists).not(to_remove).get();
+      refreshLists();
+    });
+
+    $('#<%="#{association}"%> ul.dropdown-menu').on("click", "li > a.add-list", function(){
+      var id = $(this).parent().attr('id');
+      var to_remove = $.grep(unassigned_lists, function(e) { return e.id == id });
+      assigned_lists = assigned_lists.concat(to_remove)
+      unassigned_lists = $(unassigned_lists).not(to_remove).get();
+      refreshLists();
+    });
+
+    function refreshLists() {
+      rePopulateAssigned();
+      rePopulateUnassigned();
+    };
+
+    function rePopulateAssigned() {
+      var selector = '#<%="#{association}"%> ul.list-group';
+      var ul = $(selector);
+      ul.html("");
+
+      $.each(assigned_lists, function(index, list) {
+        var li = $("<li class='list-group-item' id='" + list.id + "'/>");
+        li.append($("<span>" + list.name + "</span>"));
+        var remove_link = $("<a class='remove-list'>Remove</a>");
+        li.append(remove_link);
+        var hidden = $("<input multiple='multiple' name='home_page[<%= association %>_ids][]' type='hidden' value='" +
+                       list.id + "'>");
+        li.append(hidden);
+        ul.append(li);
+      });
+    };
+
+    function rePopulateUnassigned() {
+      var selector = '#<%="#{association}"%> ul.dropdown-menu';
+      var ul = $(selector);
+      ul.html("");
+
+      if (unassigned_lists.length > 0) {
+        $.each(unassigned_lists, function(index, list) {
+          var li = $("<li id='" + list.id + "'>");
+          var list_link = $("<a class='add-list'>" + list.name + "</a>");
+          li.append(list_link);
+          ul.append(li);
+        });
+      } else {
+        var li = $("<li/>");
+        var list_link = $("<a href='<%= new_list_path %>' onclick=\"return confirm('Unless have you saved, your changes will be lost')\"> Create List </a>");
+        li.append(list_link);
+        ul.append(li);
+      }
+    };
+  })();
+</script>

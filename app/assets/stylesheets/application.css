@@ -76,6 +76,7 @@ margin: 0px !important;
   margin-bottom: 10px;
 }
 
+/* List edit */
 .list-places {
   margin-top: 30px;
   width: 100%;
@@ -86,6 +87,20 @@ margin: 0px !important;
 }
 
 .row.list-places {
+  margin-top: 15px;
+}
+
+/* Home Page edit */
+.lists .field{
+  margin-top: 30px;
+  width: 40%;
+}
+
+.lists .field .list-group li .remove-list{
+  float: right;
+}
+
+.row.lists {
   margin-top: 15px;
 }
 
