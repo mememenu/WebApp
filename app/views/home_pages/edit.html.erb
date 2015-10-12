@@ -8,6 +8,9 @@
       </div>
       <div class="panel-body">
         <div class="row">
+          <%= link_to "Edit Spotlight", edit_spotlight_path(@home_page.spotlight), class: 'btn btn-default', id: 'edit-spotlight'%>
+        </div>
+        <div class="row">
           <div class="field col-md-6">
             <%= f.label :featured_list, 'Featured List' %><br>
             <%= f.select :featured_list, options_for_featured_select(@home_page), :class=>'form-control' %>

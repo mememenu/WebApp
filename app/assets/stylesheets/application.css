@@ -104,6 +104,11 @@ margin: 0px !important;
   margin-top: 15px;
 }
 
+#edit-spotlight {
+  margin-left: 13px;
+  margin-bottom: 35px;
+}
+
 .navbar-default .navbar-collapse{
     border-color: #ffffff;
   }
