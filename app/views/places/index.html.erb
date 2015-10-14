@@ -1,7 +1,8 @@
 <div class="container col-xs-12">
   <h1>
     Places
-    <%= link_to 'Edit Home Page', edit_home_page_path(HomePage.last), class: 'btn btn-default', id: 'edit-home-page' %>
+    <%= link_to 'Edit Home Page', edit_home_page_path(HomePage.last), class: 'btn btn-default right' %>
+    <%= link_to 'See Lists', lists_path, class: 'btn btn-default right' %>
   </h1>
 <h6>There are <%= @places.count %> Places currently registered</h6> 
 <h6><%= @places.where(hide: true).count %> of those are currently hidden</h6> 
