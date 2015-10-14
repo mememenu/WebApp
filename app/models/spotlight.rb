@@ -13,6 +13,6 @@ class Spotlight < ActiveRecord::Base
   end
 
   def available_items
-    available_places + available_lists
+    available_lists + available_places
   end
 end

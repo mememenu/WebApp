@@ -53,6 +53,6 @@ class ListsController < ApplicationController
   end
 
   def list_params
-    params.require(:list).permit(:name, :kind, :avatar, place_ids: [])
+    params.require(:list).permit(:name, :kind, :avatar, :hide, place_ids: [])
   end
 end
