@@ -1,0 +1,119 @@
+<div class="container">
+  <%= form_for(@spotlight) do |f| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Editing Spotlight
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="field col-md-3" id="spotlight_items">
+            <%= f.label :spotlight_items, "Spotlight Items" %>
+            <div class="dropdown">
+              <button class="btn btn-default" type="button" data-toggle="dropdown">Available</button>
+              <ul class="dropdown-menu"/>
+            </div>
+            <ul class="list-group"/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="actions col-md-12 text-center">
+            <br>
+            <%= f.submit 'Submit', class: 'btn btn-primary btn-xs' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  (function() {
+    var assigned_items = <%= @spotlight.spotlight_items.order(position: :asc).map(&:spotable).to_json(methods: :class_name).html_safe %>;
+    var unassigned_items = <%= @spotlight.available_items.to_json(methods: :class_name).html_safe %>;
+    refreshItems();
+
+    $('#spotlight_items ul.list-group').on("click", ".list-group-item > a.remove-item", function(){
+      var id = $(this).parent().data('id');
+      var type = $(this).parent().data('type');
+      var to_remove = $.grep(assigned_items, function(e) { return e.id == id && e.class_name == type });
+      unassigned_items = unassigned_items.concat(to_remove);
+      assigned_items = $(assigned_items).not(to_remove).get();
+      refreshItems();
+    });
+
+    $('#spotlight_items ul.dropdown-menu').on("click", "li > a.add-item", function(){
+      var id = $(this).parent().data('id');
+      var type = $(this).parent().data('type');
+      var to_remove = $.grep(unassigned_items, function(e) { return e.id == id && e.class_name == type });
+      assigned_items = assigned_items.concat(to_remove)
+      unassigned_items = $(unassigned_items).not(to_remove).get();
+      refreshItems();
+    });
+
+    function refreshItems() {
+      rePopulateAssigned();
+      rePopulateUnassigned();
+    };
+
+    function rePopulateAssigned() {
+      var selector = '#spotlight_items ul.list-group';
+      var ul = $(selector);
+      ul.html("");
+
+      $.each(assigned_items, function(index, item) {
+        var li = $("<li class='list-group-item' data-id='" + item.id + "' data-type='" + item.class_name + "'/>");
+        li.append($("<span>" + item.name + "</span>"));
+        var remove_link = $("<a class='remove-item'>Remove</a>");
+        li.append(remove_link);
+        var hidden_item_id = $("<input multiple='multiple' name='spotlight_items[" +
+                               index + "][id]' type='hidden' value='" + item.id + "'>");
+        var hidden_item_type = $("<input multiple='multiple' name='spotlight_items[" +
+                                 index + "][type]' type='hidden' value='" + item.class_name + "'>");
+        li.append(hidden_item_id);
+        li.append(hidden_item_type);
+        ul.append(li);
+      });
+    };
+
+    function rePopulateUnassigned() {
+      var selector = '#spotlight_items ul.dropdown-menu';
+      var ul = $(selector);
+      ul.html("");
+
+      if (unassigned_items.length > 0) {
+        $.each(unassigned_items, function(index, item) {
+          var li = $("<li data-id='" + item.id + "' data-type='" + item.class_name + "'>");
+          var item_link = $("<a class='add-item'>" + item.name + "</a>");
+          li.append(item_link);
+          ul.append(li);
+        });
+      } else {
+        var li = $("<li/>");
+        var item_link = $("<a href='<%= new_list_path %>' onclick=\"return confirm('Unless have you saved, your changes will be lost')\"> Create List </a>");
+        li.append(item_link);
+        ul.append(li);
+      }
+    };
+
+    $("ul.list-group").sortable({
+      stop: function(event, ui) {
+        var selector = '#spotlight_items ul.list-group';
+        var ul = $(selector);
+        var result = [];
+
+        ul.children().each(function(){
+          var li = $(this);
+          var id = li.data('id');
+          var type = li.data('type');
+          var item = $.grep(assigned_items, function(e) { return e.id == id && e.class_name == type });
+          result.push(item[0]);
+        })
+
+        assigned_items = result;
+        rePopulateAssigned();
+      }
+    });
+  })();
+</script>

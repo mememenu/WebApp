@@ -33,6 +33,10 @@ class List < ActiveRecord::Base
     kind == "FeaturedList"
   end
 
+  def class_name
+    "List"
+  end
+
   private
 
   def set_default_name

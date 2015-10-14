@@ -20,7 +20,6 @@ class HomePagesController < ApplicationController
     else
       redirect_to edit_home_page_path(@home_page), flash: { notice: "An error has ocurred. " }
     end
-
   end
 
   private
