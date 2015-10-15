@@ -28,7 +28,7 @@
         </div>
         <div class="field col-md-3">
           <%= f.label :kind, "Kind" %><br>
-          <%= f.select :kind, options_for_select(List::KIND) %>
+          <%= f.select :kind, options_for_select(List::KIND, f.object.kind) %>
         </div>
         <div class="field col-md-3">
           <%= f.label :hide, "Hidden?" %><br>
