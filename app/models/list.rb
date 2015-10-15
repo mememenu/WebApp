@@ -12,9 +12,11 @@ class List < ActiveRecord::Base
   before_create :set_default_name
 
   scope :user_lists, ->(user_id) { where(user_id: user_id, kind: "UserList") }
-  scope :contributor_lists, ->(contributor_id) { where(user_id: contributor_id, kind: "ContributorList") }
+  scope :contributor_lists, -> { where(kind: "ContributorList") }
+  scope :contributor_lists_from_user, ->(contributor_id) { where(user_id: contributor_id, kind: "ContributorList") }
   scope :generic_lists, -> { where(kind: "GenericList") }
   scope :featured_lists, -> { where(kind: "FeaturedList") }
+  scope :unhidden, -> { where(hide: [nil, false]) }
 
   image_attachment styles: { large: "750x400>", medium: "375x200>" }
   validates :avatar, attachment_presence: true
@@ -29,6 +31,10 @@ class List < ActiveRecord::Base
 
   def featured_list?
     kind == "FeaturedList"
+  end
+
+  def class_name
+    "List"
   end
 
   private

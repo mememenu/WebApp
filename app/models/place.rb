@@ -103,6 +103,10 @@ class Place < ActiveRecord::Base
     "(#{phone[0..2]}) #{phone[3..5]}-#{phone[6..9]}"
   end
 
+  def class_name
+    "Place"
+  end
+
   private
 
   def clean_blank_quotes

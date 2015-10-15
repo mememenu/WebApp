@@ -484,7 +484,7 @@ $("#tags ul.dropdown-menu").on("click", "li > a.new-tag", function(){
   var ul = $("#tags ul.list-group");
   var li = $("<li class='list-group-item' id='new_tag'/>");
   li.append($("<input type='text'/>"));
-  var remove_link = $("<a class='remove-tag'>Remove</a>");
+  var remove_link = $("<a class='remove-tag pull-right'>Remove</a>");
   li.append(remove_link);
   ul.append(li);
 });
@@ -524,7 +524,7 @@ function rePopulateAssigned() {
   $.each(assigned_tags, function(index, tag) {
     var li = $("<li class='list-group-item' id='" + tag.id + "'/>");
     li.append($("<span>" + tag.name + "</span>"));
-    var remove_link = $("<a class='remove-tag'>Remove</a>");
+    var remove_link = $("<a class='remove-tag pull-right'>Remove</a>");
     li.append(remove_link);
     ul.append(li);
   });

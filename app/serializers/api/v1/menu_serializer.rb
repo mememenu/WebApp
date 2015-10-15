@@ -4,6 +4,6 @@ class Api::V1::MenuSerializer < ActiveModel::Serializer
   has_many :categories, serializer: Api::V1::CategorySerializer
 
   def categories
-    object.categories.unhidden
+    object.categories.unhidden.order(priority: :asc)
   end
 end

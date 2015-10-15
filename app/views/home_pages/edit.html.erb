@@ -1,0 +1,37 @@
+<div class="container">
+  <%= form_for(@home_page) do |f| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Editing Home Page
+
+          <%= link_to 'Go to Lists', lists_path, class: 'btn btn-default pull-right' %>
+          <%= link_to 'Go to Places', places_path, class: 'btn btn-default pull-right' %>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <%= link_to "Edit Spotlight", edit_spotlight_path(@home_page.spotlight), class: 'btn btn-default', id: 'edit-spotlight'%>
+        </div>
+        <div class="row">
+          <div class="field col-md-6">
+            <%= f.label :featured_list, 'Featured List' %><br>
+            <%= f.select :featured_list, options_for_featured_select(@home_page), :class=>'form-control' %>
+          </div>
+        </div>
+        <div class="row lists">
+          <%= render partial: "lists", locals: { f: f, association: "generic_lists" } %>
+        </div>
+        <div class="row lists">
+          <%= render partial: "lists", locals: { f: f, association: "contributor_lists" } %>
+        </div>
+        <div class="row">
+          <div class="actions col-md-12 text-center">
+            <br>
+            <%= f.submit 'Submit', class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

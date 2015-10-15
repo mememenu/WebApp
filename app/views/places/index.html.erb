@@ -1,7 +1,12 @@
 <div class="container col-xs-12">
-<h1>Places</h1>
-<h6>There are <%= @places.count %> Places currently registered</h6> 
-<h6><%= @places.where(hide: true).count %> of those are currently hidden</h6> 
+  <h1>
+    Places
+    <%= link_to 'Edit Home Page', edit_home_page_path(HomePage.last), class: 'btn btn-default pull-right' %>
+    <%= link_to 'Go to Lists', lists_path, class: 'btn btn-default pull-right' %>
+  </h1>
+  <%= link_to 'New Place', new_place_path, class: "btn btn-default pull-right" %>
+<h6>There are <%= @places.count %> Places currently registered</h6>
+<h6><%= @places.where(hide: true).count %> of those are currently hidden</h6>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -31,6 +36,5 @@
 
 <br>
 
-<%= link_to 'New Restaurant', new_place_path %>
 
 </div>
