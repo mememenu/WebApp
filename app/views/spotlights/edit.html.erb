@@ -4,10 +4,10 @@
       <div class="panel-heading">
         <h3 class="panel-title">
           Editing Spotlight
+          <%= link_to 'Go to Home Page', edit_home_page_path(@spotlight.home_page), class: 'btn btn-default pull-right' %>
         </h3>
       </div>
       <div class="panel-body">
-        <%= link_to 'Back to Home Page', edit_home_page_path(@spotlight.home_page), class: 'btn btn-default' %>
         <div class="row">
           <div class="field col-md-3" id="spotlight_items">
             <%= f.label :spotlight_items, "Spotlight Items" %>
@@ -21,7 +21,7 @@
         <div class="row">
           <div class="actions col-md-12 text-center">
             <br>
-            <%= f.submit 'Submit', class: 'btn btn-primary btn-xs' %>
+            <%= f.submit 'Submit', class: 'btn btn-primary' %>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@
         var li = $("<li class='list-group-item' data-id='" + item.id +
                    "' data-type='" + item.class_name + "'/>");
         li.append($("<span>" + item.name + "</span>"));
-        var remove_link = $("<a class='remove-item'>Remove</a>");
+        var remove_link = $("<a class='remove-item pull-right'>Remove</a>");
         li.append(remove_link);
         var hidden_item_id = $("<input multiple='multiple' name='spotlight_items[" +
                                index + "][id]' type='hidden' value='" + item.id + "'>");

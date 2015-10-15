@@ -55,7 +55,7 @@
       <div class="row">
         <div class="actions col-md-12 text-center">
           <br>
-          <%= f.submit 'Submit', class: 'btn btn-primary btn-xs' %>
+          <%= f.submit 'Submit', class: 'btn btn-primary' %>
         </div>
       </div>
     </div>
@@ -95,7 +95,7 @@
     $.each(assigned_places, function(index, place) {
       var li = $("<li class='list-group-item' id='" + place.id + "'/>");
       li.append($("<span>" + place.name + "</span>"));
-      var remove_link = $("<a class='remove-place'>Remove</a>");
+      var remove_link = $("<a class='remove-place pull-right'>Remove</a>");
       li.append(remove_link);
       var hidden = $("<input multiple='multiple' name='list[place_ids][]' type='hidden' value='" + place.id + "'>");
       li.append(hidden);
