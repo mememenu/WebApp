@@ -11,9 +11,15 @@
         <div class="row">
           <div class="field col-md-3" id="spotlight_items">
             <%= f.label :spotlight_items, "Spotlight Items" %>
-            <div class="dropdown">
-              <button class="btn btn-default" type="button" data-toggle="dropdown">Available</button>
-              <ul class="dropdown-menu"/>
+            <div class='dropdown-container'>
+              <div id='places-dropdown' class="dropdown">
+                <button class="btn btn-default" type="button" data-toggle="dropdown">Places</button>
+                <ul class="dropdown-menu"/>
+              </div>
+              <div id='lists-dropdown' class="dropdown">
+                <button class="btn btn-default" type="button" data-toggle="dropdown">Lists</button>
+                <ul class="dropdown-menu"/>
+              </div>
             </div>
             <ul class="list-group"/>
           </div>
@@ -32,14 +38,18 @@
 <script>
   (function() {
     var assigned_items = <%= @spotlight.spotlight_items.order(position: :asc).map(&:spotable).to_json(methods: :class_name).html_safe %>;
-    var unassigned_items = <%= @spotlight.available_items.to_json(methods: :class_name).html_safe %>;
+    var unassigned_lists = <%= @spotlight.available_lists.to_json(methods: :class_name).html_safe %>;
+    var unassigned_places = <%= @spotlight.available_places.to_json(methods: :class_name).html_safe %>;
     refreshItems();
 
     $('#spotlight_items ul.list-group').on("click", ".list-group-item > a.remove-item", function(){
       var id = $(this).parent().data('id');
       var type = $(this).parent().data('type');
       var to_remove = $.grep(assigned_items, function(e) { return e.id == id && e.class_name == type });
-      unassigned_items = unassigned_items.concat(to_remove);
+      if (type == "List")
+        unassigned_lists = unassigned_lists.concat(to_remove);
+      else
+        unassigned_places = unassigned_places.concat(to_remove);
       assigned_items = $(assigned_items).not(to_remove).get();
       refreshItems();
     });
@@ -47,15 +57,21 @@
     $('#spotlight_items ul.dropdown-menu').on("click", "li > a.add-item", function(){
       var id = $(this).parent().data('id');
       var type = $(this).parent().data('type');
-      var to_remove = $.grep(unassigned_items, function(e) { return e.id == id && e.class_name == type });
-      assigned_items = assigned_items.concat(to_remove)
-      unassigned_items = $(unassigned_items).not(to_remove).get();
+      if (type == "List") {
+        var to_remove = $.grep(unassigned_lists, function(e) { return e.id == id && e.class_name == type });
+        unassigned_lists = $(unassigned_lists).not(to_remove).get();
+      } else {
+        var to_remove = $.grep(unassigned_places, function(e) { return e.id == id && e.class_name == type });
+        unassigned_places = $(unassigned_places).not(to_remove).get();
+      }
+      assigned_items = assigned_items.concat(to_remove);
       refreshItems();
     });
 
     function refreshItems() {
       rePopulateAssigned();
-      rePopulateUnassigned();
+      rePopulateUnassigned('lists');
+      rePopulateUnassigned('places');
     };
 
     function rePopulateAssigned() {
@@ -79,13 +95,18 @@
       });
     };
 
-    function rePopulateUnassigned() {
-      var selector = '#spotlight_items ul.dropdown-menu';
+    function rePopulateUnassigned(target) {
+      var selector = '#spotlight_items #' + target + '-dropdown ul.dropdown-menu';
       var ul = $(selector);
       ul.html("");
 
-      if (unassigned_items.length > 0) {
-        $.each(unassigned_items, function(index, item) {
+      if (target == 'lists')
+        collection = unassigned_lists
+      else
+        collection = unassigned_places
+
+      if (collection.length > 0) {
+        $.each(collection, function(index, item) {
           var li = $("<li data-id='" + item.id + "' data-type='" + item.class_name + "'>");
           var item_link = $("<a class='add-item'>" + item.name + "</a>");
           li.append(item_link);
@@ -93,10 +114,11 @@
         });
       } else {
         var li = $("<li/>");
-        var list_link = $("<a href='<%= new_list_path %>' onclick=\"return confirm('Unless have you saved, your changes will be lost')\"> Create List </a>");
-        var place_link = $("<a href='<%= new_place_path %>' onclick=\"return confirm('Unless have you saved, your changes will be lost')\"> Create Place </a>");
-        li.append(list_link);
-        li.append(place_link);
+        if (target == 'lists')
+          link = $("<a href='<%= new_list_path %>' onclick=\"return confirm('Unless have you saved, your changes will be lost')\"> Create List </a>");
+        else
+          link = $("<a href='<%= new_place_path %>' onclick=\"return confirm('Unless have you saved, your changes will be lost')\"> Create Place </a>");
+        li.append(link);
         ul.append(li);
       }
     };

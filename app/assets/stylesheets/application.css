@@ -107,6 +107,19 @@ margin: 0px !important;
   border-color: #ffffff;
 }
 
+#places-dropdown{
+  float: left;
+}
+
+#lists-dropdown{
+  margin-left: 70px;
+}
+
+.dropdown-container{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .nav>li>a:hover, .nav>li>a:focus {
 
 background-color: transparent;
