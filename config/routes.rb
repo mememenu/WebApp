@@ -53,6 +53,11 @@ Rails.application.routes.draw do
   resources :menus
 
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  devise_scope :user do
+    post 'api/v1/users/sign_in', to: "devise/sessions#create"
+    post 'api/v1/users/sign_up', to: "devise/registrations#create"
+    get  'api/v1/users/sign_out', to: "devise/sessions#destroy"
+  end
 
   resources :home_pages, only: [:edit, :update]
   resources :spotlights, only: [:edit, :update]
