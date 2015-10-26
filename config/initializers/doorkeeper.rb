@@ -5,18 +5,13 @@ Doorkeeper.configure do
 
   # This block will be called to check whether the resource owner is authenticated or not.
   resource_owner_authenticator do
-    fail "Please configure doorkeeper resource_owner_authenticator block located in #{__FILE__}"
-    # Put your resource owner authentication logic here.
-    # Example implementation:
-    #   User.find_by_id(session[:user_id]) || redirect_to(new_user_session_url)
+    current_user || render(json: { error: "User not logged in" }, status: :unauthorized)
   end
 
   # If you want to restrict access to the web interface for adding oauth authorized applications, you need to declare the block below.
-  # admin_authenticator do
-  #   # Put your admin authentication logic here.
-  #   # Example implementation:
-  #   Admin.find_by_id(session[:admin_id]) || redirect_to(new_admin_session_url)
-  # end
+  admin_authenticator do
+    current_user && current_user.admin? || redirect_to(root_path)
+  end
 
   # Authorization Code expiration time (default 10 minutes).
   # authorization_code_expires_in 10.minutes
@@ -79,7 +74,7 @@ Doorkeeper.configure do
   # so that the user skips the authorization step.
   # For example if dealing with trusted a application.
   skip_authorization do |resource_owner, client|
-    true
+    Rails.env.development? || Rails.env.test? || client.uid == ENV['mememenu-mobile-app']
   end
 
   # WWW-Authenticate Realm (default "Doorkeeper").
