@@ -8,24 +8,6 @@ en:
               fragment_present: 'cannot contain a fragment.'
               invalid_uri: 'must be a valid URI.'
               relative_uri: 'must be an absolute URI.'
-  mongoid:
-    errors:
-      models:
-        application:
-          attributes:
-            redirect_uri:
-              fragment_present: 'cannot contain a fragment.'
-              invalid_uri: 'must be a valid URI.'
-              relative_uri: 'must be an absolute URI.'
-  mongo_mapper:
-    errors:
-      models:
-        application:
-          attributes:
-            redirect_uri:
-              fragment_present: 'cannot contain a fragment.'
-              invalid_uri: 'must be a valid URI.'
-              relative_uri: 'must be an absolute URI.'
   doorkeeper:
     errors:
       messages:
