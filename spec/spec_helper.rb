@@ -52,6 +52,10 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.before(:each, type: :controller) do
+    token = double(acceptable?: true)
+    allow(controller).to receive(:doorkeeper_token).and_return(token)
+  end
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
