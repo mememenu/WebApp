@@ -33,4 +33,16 @@ describe Api::V1::ListsController, type: :controller do
 
     expect(json["lists"].count).to eq(1)
   end
+
+  it "only returns User lists that belong to the current user" do
+    user = FactoryGirl.create(:user)
+    list = user.default_list
+    sign_in user
+    FactoryGirl.create(:user_list)
+
+    get :index, format: :json, kind: "UserList"
+
+    expect(json["lists"].count).to eq(1)
+    expect(json["lists"].first["id"]).to eq(list.id)
+  end
 end
