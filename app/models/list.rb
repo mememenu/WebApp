@@ -9,8 +9,6 @@ class List < ActiveRecord::Base
   validates :name, presence: true
   validates :kind, inclusion: { in: KIND }, allow_nil: true
 
-  before_create :set_default_name
-
   scope :user_lists, ->(user_id) { where(user_id: user_id, kind: "UserList") }
   scope :contributor_lists, -> { where(kind: "ContributorList") }
   scope :contributor_lists_from_user, ->(contributor_id) { where(user_id: contributor_id, kind: "ContributorList") }
@@ -19,7 +17,7 @@ class List < ActiveRecord::Base
   scope :unhidden, -> { where(hide: [nil, false]) }
 
   image_attachment styles: { large: "750x400>", medium: "375x200>" }
-  validates :avatar, attachment_presence: true
+  validates :avatar, attachment_presence: true, unless: :user_list?
 
   def user_list?
     kind == "UserList"
@@ -35,11 +33,5 @@ class List < ActiveRecord::Base
 
   def class_name
     "List"
-  end
-
-  private
-
-  def set_default_name
-    self.name = "My List" if user_list?
   end
 end
