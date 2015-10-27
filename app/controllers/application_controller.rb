@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :exception, unless: Proc.new { |c| c.request.format == 'application/json' }
 
   def validate_place_owner_or_admin
     if !current_user.admin? && !(@place && current_user.owns_place?(@place))

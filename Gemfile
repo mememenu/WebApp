@@ -41,7 +41,7 @@ group :test, :development, :dev, :staging do
 end
 
 gem 'devise'
-
+gem 'doorkeeper'
 gem 'omniauth-facebook'
 
 gem 'seed_dump'
