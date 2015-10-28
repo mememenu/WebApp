@@ -18,4 +18,5 @@
 # ignore paperclip's files
 /public/system
 
+/publichttp:
 *.DS_Store
