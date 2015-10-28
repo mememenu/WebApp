@@ -4,7 +4,7 @@ describe Api::V1::UsersController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
 
   before do
-    sign_in user
+    allow_token_for_user(user)
   end
 
   describe '#list' do
