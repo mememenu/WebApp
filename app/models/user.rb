@@ -7,9 +7,16 @@ class User < ActiveRecord::Base
   GENDERS = %w(Male Female)
 
   has_many :places, foreign_key: :owner_id
+  has_many :other_lists, -> { where(default: nil, kind: "UserList") },
+                        dependent: :destroy, class_name: "List",
+                        foreign_key: :user_id, inverse_of: :user
+  has_one :default_list, -> { where(default: true, kind: "UserList") },
+                        dependent: :destroy, class_name: "List",
+                        inverse_of: :user
   validates :gender, inclusion: { in: GENDERS }, allow_nil: true
   validates :first_name, presence: true
   validates :last_name, presence: true
+  before_create :set_default_list
 
   # sets user attributes to attributes provided through omniauth
   def self.from_omniauth(auth)
@@ -47,6 +54,12 @@ class User < ActiveRecord::Base
     else
       super
     end
+  end
+
+  private
+
+  def set_default_list
+    build_default_list(name: "My List")
   end
 
 end

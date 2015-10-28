@@ -171,7 +171,7 @@ describe Api::V1::PlacesController, type: :controller do
     end
   end
 
-  describe "#index", focus: true do
+  describe "#index" do
     it "limits the response to 100 places" do
       FactoryGirl.create_list(:place, 101)
 
@@ -227,6 +227,44 @@ describe Api::V1::PlacesController, type: :controller do
         expect(json['places'].count).to eq(1)
         expect(json['places'].first['id']).to eq(unhidden_place.id)
       end
+    end
+  end
+
+  describe '#add_to_list' do
+    let(:place) { FactoryGirl.create(:place) }
+    let(:user) { FactoryGirl.create(:user) }
+
+    before do
+      sign_in user
+    end
+
+    it "adds the place to the current user's default list" do
+      put :add_to_list, id: place.id
+
+      expect(user.reload.default_list.places).to include(place)
+    end
+
+    it "does not add the same place, if the place was already in the list" do
+      list = user.default_list
+      list.places << place
+
+      put :add_to_list, id: place.id
+
+      expect(user.reload.default_list.places).to match_array([place])
+    end
+
+    it "adds it to the provided user list, if it belogns to the user" do
+      other_list = FactoryGirl.create(:user_list, user: user)
+      put :add_to_list, id: place.id, list_id: other_list.id
+
+      expect(other_list.reload.places).to include(place)
+    end
+
+    it "does not add it to the provided user list, if it does not belogns to the user" do
+      other_list = FactoryGirl.create(:user_list)
+      put :add_to_list, id: place.id, list_id: other_list.id
+
+      expect(other_list.reload.places).not_to include(place)
     end
   end
 end

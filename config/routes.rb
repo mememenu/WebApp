@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       end
       resources :lists, only: [:index]
       resources :places, only: [:index, :show] do
+        put 'add_to_list', on: :member
         collection do
           get 'nearby'
           get 'search'

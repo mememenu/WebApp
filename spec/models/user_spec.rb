@@ -22,6 +22,12 @@ RSpec.describe User, type: :model do
     expect(user).not_to be_valid
   end
 
+  it "creates the user's default list on user creation" do
+    user = FactoryGirl.create(:user)
+
+    expect(user.reload.default_list).to be
+  end
+
   describe "#from_omniauth" do
     it "creates the user and sets the email if it does not exist" do
       auth = double("Auth", provider: "facebook", uid: "1234",

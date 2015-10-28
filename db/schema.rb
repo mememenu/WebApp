@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151019201135) do
+ActiveRecord::Schema.define(version: 20151027145417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 20151019201135) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "cloudfront_url"
+    t.boolean  "default"
   end
 
   add_index "lists", ["home_page_id"], name: "index_lists_on_home_page_id", using: :btree
