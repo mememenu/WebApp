@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       resources :home_pages, only: [:index]
       resources :users do
         get 'list', on: :member
+        get 'lists', on: :member
       end
       resources :lists, only: [:index]
       resources :places, only: [:index, :show] do
