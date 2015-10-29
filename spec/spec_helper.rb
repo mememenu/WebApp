@@ -53,7 +53,12 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :controller) do
-    token = double(acceptable?: true)
+    token = double(acceptable?: true, resource_owner_id: nil)
+    allow(controller).to receive(:doorkeeper_token).and_return(token)
+  end
+
+  def allow_token_for_user(user)
+    token = double(acceptable?: true, resource_owner_id: user.id)
     allow(controller).to receive(:doorkeeper_token).and_return(token)
   end
 

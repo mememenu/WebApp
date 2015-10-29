@@ -37,7 +37,7 @@ describe Api::V1::ListsController, type: :controller do
   it "only returns User lists that belong to the current user" do
     user = FactoryGirl.create(:user)
     list = user.default_list
-    sign_in user
+    allow_token_for_user(user)
     FactoryGirl.create(:user_list)
 
     get :index, format: :json, kind: "UserList"

@@ -235,7 +235,7 @@ describe Api::V1::PlacesController, type: :controller do
     let(:user) { FactoryGirl.create(:user) }
 
     before do
-      sign_in user
+      allow_token_for_user(user)
     end
 
     it "adds the place to the current user's default list" do
