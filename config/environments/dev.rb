@@ -99,5 +99,16 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-
+  config.action_mailer.perform_deliveries = true
+  config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[Development] ",
+      :sender_address => %{"Meme Menu Exceptions" <meme.menu.exceptions@gmail.com>},
+      :exception_recipients => %w{alfonso@meme.menu braulio@paragon-labs.com},
+      :delivery_method => :smtp,
+      :smtp_settings => {
+        :user_name => 'meme.menu.exceptions',
+        :password => 'meme-menu'
+      }
+    }
 end

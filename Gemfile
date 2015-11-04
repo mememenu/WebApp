@@ -40,6 +40,10 @@ group :test, :development, :dev, :staging do
   gem 'pry-byebug'
 end
 
+group :dev, :staging, :production do
+  gem 'exception_notification'
+end
+
 gem 'devise'
 gem 'doorkeeper'
 gem 'omniauth-facebook'
