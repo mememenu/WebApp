@@ -41,7 +41,8 @@ group :test, :development, :dev, :staging do
 end
 
 group :dev, :staging, :production do
-  gem 'exception_notification'
+  gem 'exception_notification', git: 'https://github.com/smartinez87/exception_notification.git'
+  gem 'slack-notifier'
 end
 
 gem 'devise'

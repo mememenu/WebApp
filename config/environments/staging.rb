@@ -109,6 +109,10 @@ Rails.application.configure do
       :smtp_settings => {
         :user_name => 'meme.menu.exceptions',
         :password => 'meme-menu'
+      },
+      :slack => {
+        :webhook_url => "https://hooks.slack.com/services/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",
+        :channel => "#exception-staging"
       }
     }
 end

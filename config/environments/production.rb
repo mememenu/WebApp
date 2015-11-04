@@ -110,6 +110,10 @@ Rails.application.configure do
         :user_name => 'meme.menu.exceptions',
         :password => 'meme-menu'
       }
+    },
+    :slack => {
+      :webhook_url => "https://hooks.slack.com/services/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",
+      :channel => "#exceptions-production"
     }
 
 end
