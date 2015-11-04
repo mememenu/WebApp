@@ -72,6 +72,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   # Change mail delvery to either :smtp, :sendmail, :file, :test
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: "smtp.gmail.com",
@@ -99,5 +100,20 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.middleware.use ExceptionNotification::Rack,
+    :email => {
+      :email_prefix => "[Production] ",
+      :sender_address => %{"Meme Menu Exceptions" <meme.menu.exceptions@gmail.com>},
+      :exception_recipients => %w{alfonso@meme.menu braulio@paragon-labs.com},
+      :delivery_method => :smtp,
+      :smtp_settings => {
+        :user_name => 'meme.menu.exceptions',
+        :password => 'meme-menu'
+      }
+    },
+    :slack => {
+      :webhook_url => "https://hooks.slack.com/services/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",
+      :channel => "#exceptions-production"
+    }
 
 end
